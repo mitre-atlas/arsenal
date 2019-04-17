@@ -1,0 +1,8 @@
+---
+
+- id: 2dece965-37a0-4f70-a391-0f30e3331aba
+  name: Discover antivirus programs
+  description: Identify AV using WMIC
+  tactic: discovery
+  command: |
+    wmic /NAMESPACE:\\root\SecurityCenter2 PATH AntiVirusProduct GET /value

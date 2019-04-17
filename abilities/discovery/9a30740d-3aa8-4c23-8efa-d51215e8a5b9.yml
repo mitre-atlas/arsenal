@@ -1,0 +1,10 @@
+---
+
+- id: 9a30740d-3aa8-4c23-8efa-d51215e8a5b9
+  name: Scan WIFI networks
+  description: View all potential WIFI networks on host
+  tactic: discovery
+  command: |
+    /tmp/wifi.sh scan
+
+

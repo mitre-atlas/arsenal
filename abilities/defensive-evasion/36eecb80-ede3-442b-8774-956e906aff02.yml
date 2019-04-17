@@ -1,0 +1,7 @@
+---
+
+- id: 36eecb80-ede3-442b-8774-956e906aff02
+  name: 1-min sleep
+  description: Pause all operations to avoid making noise
+  tactic: defensive-evasion
+  command: sleep 60
