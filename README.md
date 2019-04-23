@@ -1,7 +1,10 @@
 # CALDERA plugin: Open
 
-This plugin contains open-source abilities and adversaries. The included filestore contains any
-files used by the abilities. 
+This plugin contains:
+
+* Open-source abilities and adversaries
+* A filestore
+* A basic planner (sequential) which runs all abilities on all hosts in a group
 
 You can quickly add your own abilities and adversaries, both of which are reloaded every time
 the core server reboots.
