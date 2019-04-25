@@ -4,5 +4,8 @@
   name: Discover domain controller
   description: Identify the remote domain controllers
   tactic: discovery
+  technique:
+    attack_id: T1018
+    name: Remote System Discovery
   command: |
     nltest /dclist:%USERDOMAIN%

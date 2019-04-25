@@ -4,5 +4,8 @@
   name: Discover antivirus programs
   description: Identify AV using WMIC
   tactic: discovery
+  technique:
+    attack_id: T1063
+    name: Security Software Discovery
   command: |
     wmic /NAMESPACE:\\root\SecurityCenter2 PATH AntiVirusProduct GET /value

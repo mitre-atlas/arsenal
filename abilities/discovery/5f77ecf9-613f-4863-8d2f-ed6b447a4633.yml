@@ -4,5 +4,8 @@
   name: Parse SSH known_hosts
   description: View the known_hosts file
   tactic: collection
+  technique:
+    attack_id: T1018
+    name: Remote System Discovery
   command: |
     cat ~/.ssh/known_hosts

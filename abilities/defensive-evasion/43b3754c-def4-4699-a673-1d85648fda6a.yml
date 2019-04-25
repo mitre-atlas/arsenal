@@ -4,4 +4,7 @@
   name: Unset history
   description: Clears out the bash history
   tactic: defensive-evasion
+  technique:
+    attack_id: T1107
+    name: File Deletion
   command: unset HISTFILE

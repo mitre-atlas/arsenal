@@ -4,4 +4,7 @@
   name: 1-min sleep
   description: Pause all operations to avoid making noise
   tactic: defensive-evasion
+  technique:
+    attack_id: T1108
+    name: Redundant Access
   command: sleep 60

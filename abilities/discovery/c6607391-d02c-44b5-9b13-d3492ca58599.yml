@@ -4,5 +4,8 @@
   name: Discover system services
   description: Identify system services
   tactic: discovery
+  technique:
+    attack_id: T1007
+    name: System Service Discovery
   command: |
     Get-Service

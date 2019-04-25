@@ -4,5 +4,8 @@
   name: Find all shared drives
   description: Local Network Share Discovery using Net Share
   tactic: discovery
+  technique:
+    attack_id: T1135
+    name: Network Share Discovery
   command: |
     net share

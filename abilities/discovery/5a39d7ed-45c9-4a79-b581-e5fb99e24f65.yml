@@ -4,5 +4,8 @@
   name: Discover system processes
   description: Identify system processes
   tactic: discovery
+  technique:
+    attack_id: T1057
+    name: Process Discovery
   command: |
     Get-Process
