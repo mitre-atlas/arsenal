@@ -13,7 +13,7 @@ class LogicalPlanner:
 
     async def execute(self, operation, phase):
         for member in operation['host_group']['agents']:
-            agent = await self.data_svc.dao.get('atomic_agent', dict(id=member['agent_id']))
+            agent = await self.data_svc.dao.get('core_agent', dict(id=member['agent_id']))
             await self._exhaust_agent(agent[0], operation, phase)
 
     async def _exhaust_agent(self, agent, operation, phase):
@@ -22,7 +22,7 @@ class LogicalPlanner:
             link = await self.choose_next_link(operation, agent, phase)
             if not link:
                 break
-            await self.data_svc.dao.create('atomic_chain', link)
+            await self.data_svc.dao.create('core_chain', link)
 
     @staticmethod
     async def choose_next_link(operation, agent, phase):
