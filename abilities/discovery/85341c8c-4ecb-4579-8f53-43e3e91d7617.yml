@@ -4,5 +4,8 @@
   name: Collect ARP details
   description: Locate all active IP and FQDNs on the network
   tactic: discovery
+  technique:
+    attack_id: T1018
+    name: Remove System Discovery
   command: |
     arp -a

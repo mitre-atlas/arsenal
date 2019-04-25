@@ -4,5 +4,8 @@
   name: Snag broadcast IP
   description: Capture the local network broadcast IP address
   tactic: discovery
+  technique:
+    attack_id: T1016
+    name: System Network Configuration Discovery
   command: |
     ifconfig | grep broadcast
