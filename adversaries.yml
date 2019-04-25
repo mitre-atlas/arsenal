@@ -5,16 +5,18 @@
       description: Bash discovery on a single machine
       phases:
         - phase: 1
+          id: 43b3754c-def4-4699-a673-1d85648fda6a
+        - phase: 2
           id: b6f545ef-f802-4537-b59d-2cb19831c8ed
-        - phase: 1
+        - phase: 2
           id: c0da588f-79f0-4263-8998-7496b1a40596
-        - phase: 1
+        - phase: 2
           id: 422526ec-27e9-429a-995b-c686a29561a4
-        - phase: 2
+        - phase: 3
           id: 5f77ecf9-613f-4863-8d2f-ed6b447a4633
-        - phase: 2
+        - phase: 3
           id: 85341c8c-4ecb-4579-8f53-43e3e91d7617
-        - phase: 2
+        - phase: 3
           id: 36eecb80-ede3-442b-8774-956e906aff02
         - phase: 4
           id: e9bcdf0d-be08-4aec-bf1e-e73655403d55
