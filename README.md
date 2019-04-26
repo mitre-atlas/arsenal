@@ -65,7 +65,7 @@ Abilities can optionally include a cleanup block, which will execute automatical
 cleanup should be used in instances you want to reverse a mutable action, such as stopping a started process. In
 the ability example above, note how the cleanup block is written.
 
-## Adding new adversaries
+## Adversaries
 
 New adversaries can be added to the adversaries.yml file.
 
