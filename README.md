@@ -5,7 +5,7 @@ This plugin contains:
 * A collection of abilities
 * Pre-built adversary profiles
 * A filestore
-* A basic planner (sequential) which runs all abilities on an adversary against all hosts in a group
+* A basic planner 
 
 You can quickly add your own abilities and adversaries to the stockpile, both of which are reloaded every time
 the core server reboots.
@@ -70,4 +70,6 @@ of the abilities that ran.
 
 New adversaries can be added to the adversaries.yml file.
 
+## Planners
 
+A basic planner, called sequential, runs all abilities on an adversary against all hosts in a group
