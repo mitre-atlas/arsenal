@@ -16,12 +16,14 @@
           id: 5f77ecf9-613f-4863-8d2f-ed6b447a4633
         - phase: 3
           id: 85341c8c-4ecb-4579-8f53-43e3e91d7617
-        - phase: 3
-          id: 36eecb80-ede3-442b-8774-956e906aff02
         - phase: 4
           id: e9bcdf0d-be08-4aec-bf1e-e73655403d55
         - phase: 5
           id: 9a30740d-3aa8-4c23-8efa-d51215e8a5b9
+        - phase: 6
+          id: a0676fe1-cd52-482e-8dde-349b73f9aa69
+        - phase: 7
+          id: 0c7aaf64-e5bc-4205-8b76-6271739eb7ff
     - name: Plain (open)
       description: PowerShell discovery on a single machine
       phases:

@@ -7,4 +7,5 @@
   technique:
     attack_id: T1033
     name: System Owner/User Discovery
-  command: whoami
+  command: |
+    whoami

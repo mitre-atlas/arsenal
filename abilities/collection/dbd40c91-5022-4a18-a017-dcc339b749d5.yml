@@ -1,0 +1,12 @@
+---
+
+- id: dbd40c91-5022-4a18-a017-dcc339b749d5
+  name: Find word docs
+  description: Search the file system for all word documents
+  tactic: collection
+  technique:
+    attack_id: T1005
+    name: Data from Local System
+  command: |
+    Get-ChildItem -Recurse -Include *.docx
+
