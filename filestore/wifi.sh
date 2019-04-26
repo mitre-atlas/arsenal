@@ -8,6 +8,10 @@ function wifi_hardware {
     networksetup -listallhardwareports
 }
 
+function wifi_pref {
+    networksetup -listpreferredwirelessnetworks en0
+}
+
 function wifi_on {
     networksetup -setairportpower en0 on
 }
@@ -24,6 +28,8 @@ if [ $1 = "scan" ]; then
     wifi_scan
 elif [ $1 = "hardware" ]; then
     wifi_hardware
+elif [ $1 = "pref" ]; then
+    wifi_pref
 elif [ $1 = "on" ]; then
     wifi_on
 elif [ $1 = "off" ]; then

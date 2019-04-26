@@ -7,4 +7,5 @@
   technique:
     attack_id: T1139
     name: Bash History
-  command: cat ~/.bash_history
+  command: |
+    cat ~/.bash_history

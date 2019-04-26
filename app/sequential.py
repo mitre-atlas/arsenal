@@ -41,7 +41,7 @@ class LogicalPlanner:
     async def wait_for_agent(self, op_id, agent_id):
         op = await self.data_svc.explode_operation(dict(id=op_id))
         while await self._uncollected_links(op[0], agent_id):
-            await asyncio.sleep(3)
+            await asyncio.sleep(1)
             op = await self.data_svc.explode_operation(dict(id=op_id))
         return op[0]
 
