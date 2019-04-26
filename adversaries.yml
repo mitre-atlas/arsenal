@@ -26,18 +26,8 @@
       description: PowerShell discovery on a single machine
       phases:
         - phase: 1
-          id: c0da588f-79f0-4263-8998-7496b1a40596
-        - phase: 1
-          id: c6607391-d02c-44b5-9b13-d3492ca58599
-        - phase: 1
           id: 5a39d7ed-45c9-4a79-b581-e5fb99e24f65
-        - phase: 1
-          id: ab865fe4-f55f-4705-9487-fb78c3a6e9b1
-        - phase: 1
+        - phase: 2
           id: 85341c8c-4ecb-4579-8f53-43e3e91d7617
         - phase: 2
-          id: 36eecb80-ede3-442b-8774-956e906aff02
-        - phase: 3
-          id: 2dece965-37a0-4f70-a391-0f30e3331aba
-        - phase: 3
-          id: 26c8b8b5-7b5b-4de1-a128-7d37fb14f517
+          id: c0da588f-79f0-4263-8998-7496b1a40596
