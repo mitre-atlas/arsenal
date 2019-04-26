@@ -63,7 +63,8 @@ The /file/download endpoint will look inside the filestore directory of every pl
 
 Abilities can optionally include a cleanup block, which will execute automatically at the end of an operation. The
 cleanup should be used in instances you want to reverse a mutable action, such as stopping a started process. In
-the ability example above, note how the cleanup block is written.
+the ability example above, note how the cleanup block is written. Cleanup actions will occur in reverse order
+of the abilities that ran.
 
 ## Adversaries
 
