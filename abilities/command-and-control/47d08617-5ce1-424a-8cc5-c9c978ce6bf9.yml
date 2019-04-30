@@ -3,9 +3,11 @@
 - id: 47d08617-5ce1-424a-8cc5-c9c978ce6bf9
   name: Leave note
   description: Create a text file for the user to find
+  executors:
+    - bash
   tactic: command-and-control
   technique:
     attack_id: T1105
     name: Remote File Copy
   command: |
-    echo i was here. contact me at 555-555-5555. > ~/Desktop/message.txt
+    echo i was here. contact me at 555-555-5555. > ~/message.txt

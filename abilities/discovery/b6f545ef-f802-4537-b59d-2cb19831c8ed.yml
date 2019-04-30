@@ -3,6 +3,8 @@
 - id: b6f545ef-f802-4537-b59d-2cb19831c8ed
   name: Snag broadcast IP
   description: Capture the local network broadcast IP address
+  executors:
+    - bash
   tactic: discovery
   technique:
     attack_id: T1016

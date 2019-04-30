@@ -28,6 +28,7 @@ class LogicalPlanner:
     async def choose_next_link(self, operation, agent, phase):
         host_already_ran = [l['command'] for l in operation['chain'] if l['host_id'] == agent['id'] and l['collect']]
         phase_abilities = [i for p, v in operation['adversary']['phases'].items() if p <= phase for i in v]
+        phase_abilities[:] = [p for p in phase_abilities if agent['executor'] in p['executors']]
         for a in phase_abilities:
             decoded_test = b64decode(a['test']).decode('utf-8')
             decoded_test = decoded_test.replace('#{server}', agent['server'])
