@@ -3,6 +3,8 @@
 - id: 2dece965-37a0-4f70-a391-0f30e3331aba
   name: Discover antivirus programs
   description: Identify AV using WMIC
+  executors:
+    - psh
   tactic: discovery
   technique:
     attack_id: T1063

@@ -3,6 +3,8 @@
 - id: ab865fe4-f55f-4705-9487-fb78c3a6e9b1
   name: Find all shared drives
   description: Local Network Share Discovery using Net Share
+  executors:
+    - psh
   tactic: discovery
   technique:
     attack_id: T1135

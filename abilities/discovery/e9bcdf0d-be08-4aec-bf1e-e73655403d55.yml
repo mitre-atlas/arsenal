@@ -3,6 +3,8 @@
 - id: e9bcdf0d-be08-4aec-bf1e-e73655403d55
   name: Download WIFI tools
   description: Download a set of commands for manipulating WIFI
+  executors:
+    - bash
   tactic: discovery
   technique:
     attack_id: T1016

@@ -3,6 +3,8 @@
 - id: b7e7824d-8807-4da2-8936-ca9e8b4164cc
   name: Find text files
   description: Locate text files for a given user
+  executors:
+    - bash
   tactic: discovery
   technique:
     attack_id: T1005
