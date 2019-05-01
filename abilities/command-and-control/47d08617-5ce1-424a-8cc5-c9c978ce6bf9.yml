@@ -10,4 +10,4 @@
     attack_id: T1105
     name: Remote File Copy
   command: |
-    echo i was here. contact me at 555-555-5555. > ~/message.txt
+    echo "proof that this machine was hacked." > message.txt
