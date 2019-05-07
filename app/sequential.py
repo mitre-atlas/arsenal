@@ -26,16 +26,16 @@ class LogicalPlanner:
             await self.data_svc.create_link(link, cleanup)
 
     async def choose_next_link(self, operation, agent, phase):
-        host_already_ran = [l['command'] for l in operation['chain'] if l['host_id'] == agent['id'] and l['collect']]
+        completed_tests = [l['command'] for l in operation['chain'] if l['host_id'] == agent['id'] and l['collect']]
         phase_abilities = [i for p, v in operation['adversary']['phases'].items() if p <= phase for i in v]
         phase_abilities[:] = [p for p in phase_abilities if agent['executor'] in p['executors']]
         for a in phase_abilities:
             decoded_test = b64decode(a['test']).decode('utf-8')
             decoded_test = decoded_test.replace('#{server}', agent['server'])
             decoded_test = decoded_test.replace('#{group}', operation['host_group']['name'])
-            encoded_test = str(b64encode(decoded_test.encode()), 'utf-8')
+            encoded_test = await self._apply_stealth(operation, agent, decoded_test)
             variables = re.findall(r'#{(.*?)}', decoded_test, flags=re.DOTALL)
-            if encoded_test not in host_already_ran and not variables:
+            if encoded_test not in completed_tests and not variables:
                 return dict(op_id=operation['id'], host_id=agent['id'], ability_id=a['id'], decide=datetime.now(),
                             command=encoded_test, score=0, jitter=self.utility_svc.jitter(operation['jitter'])), \
                        dict(op_id=operation['id'], agent_id=agent['id'], command=a.get('cleanup'), ability_id=a['id'])
@@ -51,3 +51,8 @@ class LogicalPlanner:
     @staticmethod
     async def _uncollected_links(operation, agent_id):
         return next((lnk for lnk in operation['chain'] if lnk['host_id'] == agent_id and not lnk['finish']), False)
+
+    async def _apply_stealth(self, operation, agent, decoded_test):
+        if operation['stealth']:
+            decoded_test = self.utility_svc.apply_stealth(agent['executor'], decoded_test)
+        return self.utility_svc.encode_string(decoded_test)
