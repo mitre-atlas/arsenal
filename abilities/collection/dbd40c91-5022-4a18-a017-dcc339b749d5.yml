@@ -1,8 +1,8 @@
 ---
 
 - id: dbd40c91-5022-4a18-a017-dcc339b749d5
-  name: Find word docs
-  description: Search the file system for all word documents
+  name: Find sensitive files
+  description: Search the file system for all sensitive files
   executors:
     - psh
   tactic: collection
@@ -10,5 +10,5 @@
     attack_id: T1005
     name: Data from Local System
   command: |
-    Get-ChildItem -Recurse -Include *.docx
+    Get-ChildItem -Recurse -Include *.caldera
 
