@@ -1,0 +1,16 @@
+---
+
+- id: 49470433-30ce-4714-a44b-bea9dbbeca9a
+  name: Disable Windows Defender Real-Time Protection
+  description: Disable Windows Defender Real-Time Protection
+  tactic: credential-access
+  technique:
+    attack_id: T1003
+    name: Credential Dumping
+  executors:
+    psh:
+      command: |
+        Set-MPPreference -DisableRealtimeMonitoring 1
+        Start-Sleep -s 10
+      clean-up:
+        Set-MPPreference -DisableRealtimeMonitoring 0

