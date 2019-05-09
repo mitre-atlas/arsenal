@@ -3,12 +3,12 @@
 - id: 23913e11-2ce2-4337-b14d-2fb1df8662e9
   name: Leave note
   description: Create a text file for the user to find
-  executors:
-    - psh
   tactic: command-and-control
   technique:
     attack_id: T1105
     name: Remote File Copy
-  command: |
-    Set-Content -Path 'message.txt' -Value 'proof that this machine was hacked.'
+  executors:
+    psh:
+      command: |
+        Set-Content -Path 'message.txt' -Value 'proof that this machine was hacked.'
 

@@ -3,11 +3,11 @@
 - id: de632c2d-a729-4b77-b781-6a6b09c148ba
   name: Find private keys
   description: Find private keys on the file system
-  executors:
-    - bash
   tactic: credential-access
   technique:
     attack_id: T1145
     name: Private Keys
-  command: |
-    for %i in (\.key \.pgp \.gpg \.ppk. \.p12 \.pem \.pfx \.cer \.p7b \.asc) do (dir c:\ /b /s .key | findstr /e "%i")
+  executors:
+    bash:
+      command: |
+        for %i in (\.key \.pgp \.gpg \.ppk. \.p12 \.pem \.pfx \.cer \.p7b \.asc) do (dir c:\ /b /s .key | findstr /e "%i")

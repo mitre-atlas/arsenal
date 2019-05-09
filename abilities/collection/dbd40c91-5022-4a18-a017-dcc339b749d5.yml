@@ -3,12 +3,12 @@
 - id: dbd40c91-5022-4a18-a017-dcc339b749d5
   name: Find sensitive files
   description: Search the file system for all sensitive files
-  executors:
-    - psh
   tactic: collection
   technique:
     attack_id: T1005
     name: Data from Local System
-  command: |
-    Get-ChildItem -Recurse -Include *.caldera
+  executors:
+    psh:
+      command: |
+        Get-ChildItem -Recurse -Include *.caldera
 

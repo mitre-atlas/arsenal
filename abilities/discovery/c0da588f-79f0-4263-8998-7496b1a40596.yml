@@ -3,12 +3,14 @@
 - id: c0da588f-79f0-4263-8998-7496b1a40596
   name: Identify active user
   description: Platform agnostic way to find the active user
-  executors:
-    - bash
-    - psh
   tactic: discovery
   technique:
     attack_id: T1033
     name: System Owner/User Discovery
-  command: |
-    whoami
+  executors:
+    bash:
+      command: |
+        whoami
+    psh:
+      command: |
+        whoami

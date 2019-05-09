@@ -3,11 +3,11 @@
 - id: c6607391-d02c-44b5-9b13-d3492ca58599
   name: Discover system services
   description: Identify system services
-  executors:
-    - psh
   tactic: discovery
   technique:
     attack_id: T1007
     name: System Service Discovery
-  command: |
-    Get-Service
+  executors:
+    psh:
+      command: |
+        Get-Service

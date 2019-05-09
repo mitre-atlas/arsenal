@@ -3,11 +3,11 @@
 - id: 3aad5312-d48b-4206-9de4-39866c12e60f
   name: Credentials in Registry
   description: Search for possible credentials stored in Registry
-  executors:
-    - psh
   tactic: credential-access
   technique:
     attack_id: T1214
     name: Credentials in Registry
-  command: |
-    reg query HKCU /f password /t REG_SZ /s
+  executors:
+    psh:
+      command: |
+        reg query HKCU /f password /t REG_SZ /s
