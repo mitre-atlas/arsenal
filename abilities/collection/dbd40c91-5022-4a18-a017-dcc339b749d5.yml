@@ -10,5 +10,5 @@
   executors:
     psh:
       command: |
-        Get-ChildItem -Recurse -Include *.caldera
+        Get-ChildItem C:\Users -Recurse -Include *.caldera | ConvertTo-Json
 
