@@ -1,7 +1,6 @@
 name = 'Stockpile'
 description = 'A stockpile of abilities, adversaries and files'
 address = None
-store = 'plugins/stockpile/filestore'
 
 
 async def initialize(app, services):
