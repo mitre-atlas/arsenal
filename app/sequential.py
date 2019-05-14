@@ -1,6 +1,6 @@
 import asyncio
 import re
-from base64 import b64decode, b64encode
+from base64 import b64decode
 from datetime import datetime
 
 

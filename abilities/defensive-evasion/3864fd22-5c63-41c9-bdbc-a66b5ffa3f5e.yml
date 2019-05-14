@@ -1,0 +1,14 @@
+---
+
+- id: 3864fd22-5c63-41c9-bdbc-a66b5ffa3f5e
+  name: Bypass ExecutionPolicy
+  description: Ensure the ExecutionPolicy is turned to Bypass
+  tactic: defensive-evasion
+  technique:
+    attack_id: T1064
+    name: Scripting
+  executors:
+    psh:
+      command: |
+        $shell = New-Object -ComObject Wscript.Shell
+        Set-ExecutionPolicy Bypass | echo $shell.sendkeys("Y`r`n")
