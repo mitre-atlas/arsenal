@@ -195,17 +195,18 @@ Param(
                 $FileStreamReader.Close()
                 $FileStreamWriter.Close()
 
+                #Output encrypted file
+                $result = Get-Item $DestinationFile
+                $result | Add-Member -MemberType NoteProperty -Name SourceFile -Value $File.FullName
+                $result | Add-Member -MemberType NoteProperty -Name Algorithm -Value $Algorithm
+                $result | Add-Member -MemberType NoteProperty -Name Key -Value $Key
+                $result | Add-Member -MemberType NoteProperty -Name CipherMode -Value $Crypto.Mode
+                $result | Add-Member -MemberType NoteProperty -Name PaddingMode -Value $Crypto.Padding
+                $result
+
                 #Delete unencrypted file
                 if($RemoveSource){Remove-Item -LiteralPath $File.FullName}
 
-                #Output ecrypted file
-                $result = Get-Item $DestinationFile
-                $result | Add-Member –MemberType NoteProperty –Name SourceFile –Value $File.FullName
-                $result | Add-Member –MemberType NoteProperty –Name Algorithm –Value $Algorithm
-                $result | Add-Member –MemberType NoteProperty –Name Key –Value $Key
-                $result | Add-Member –MemberType NoteProperty –Name CipherMode –Value $Crypto.Mode
-                $result | Add-Member –MemberType NoteProperty –Name PaddingMode –Value $Crypto.Padding
-                $result
             }
             Catch
             {
@@ -373,7 +374,7 @@ Param(
                 if($RemoveSource){Remove-Item $File.FullName}
 
                 #Output decrypted file
-                Get-Item $DestinationFile | Add-Member –MemberType NoteProperty –Name SourceFile –Value $File.FullName -PassThru
+                Get-Item $DestinationFile | Add-Member -MemberType NoteProperty -Name SourceFile -Value $File.FullName -PassThru
             }
             Catch
             {
