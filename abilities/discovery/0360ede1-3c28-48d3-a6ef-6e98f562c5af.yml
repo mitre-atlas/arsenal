@@ -2,7 +2,7 @@
 
 - id: 0360ede1-3c28-48d3-a6ef-6e98f562c5af
   name: GetComputers (Alice)
-  description:
+  description: Get a list of all computers in a domain
   tactic: Discovery
   technique:
     attack_id: T1003
