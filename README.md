@@ -4,7 +4,7 @@ This plugin contains:
 
 * A collection of abilities
 * Pre-built adversary profiles
-* Payload files
+* Payloads associated to abilities
 * A basic planner 
 
 ## Abilities
