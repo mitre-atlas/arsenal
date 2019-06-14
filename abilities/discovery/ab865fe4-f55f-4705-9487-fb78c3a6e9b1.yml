@@ -8,6 +8,6 @@
     attack_id: T1135
     name: Network Share Discovery
   executors:
-    psh:
+    windows:
       command: |
         net share

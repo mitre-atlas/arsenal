@@ -8,7 +8,7 @@
     attack_id: T1064
     name: Scripting
   executors:
-    psh:
+    windows:
       command: |
         $shell = New-Object -ComObject Wscript.Shell
         Set-ExecutionPolicy Bypass | echo $shell.sendkeys("Y`r`n")

@@ -8,6 +8,6 @@
     attack_id: T1063
     name: Security Software Discovery
   executors:
-    psh:
+    windows:
       command: |
         wmic /NAMESPACE:\\root\SecurityCenter2 PATH AntiVirusProduct GET /value

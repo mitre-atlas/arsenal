@@ -8,5 +8,7 @@
     attack_id: T1107
     name: File Deletion
   executors:
-    bash:
+    darwin:
+      command: unset HISTFILE
+    linux:
       command: unset HISTFILE

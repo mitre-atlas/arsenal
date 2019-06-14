@@ -8,7 +8,7 @@
     attack_id: T1105
     name: Remote File Copy
   executors:
-    psh:
+    windows:
       command: |
         Set-Content -Path 'message.txt' -Value 'proof that this machine was hacked.'
 

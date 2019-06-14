@@ -8,6 +8,6 @@
     attack_id: T1069
     name: Permission Groups Discovery
   executors:
-    bash:
+    darwin:
       command: |
         dscl . list /Users | grep -v '_'

@@ -8,7 +8,9 @@
     attack_id: T1108
     name: Redundant Access
   executors:
-    bash:
+    darwin:
       command: sleep 60
-    psh:
+    linux:
+      command: sleep 60
+    windows:
       command: sleep 60

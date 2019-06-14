@@ -8,6 +8,9 @@
     attack_id: T1005
     name: Data from Local System
   executors:
-    bash:
+    darwin:
+      command: |
+        pip install stormssh && storm list
+    linux:
       command: |
         pip install stormssh && storm list

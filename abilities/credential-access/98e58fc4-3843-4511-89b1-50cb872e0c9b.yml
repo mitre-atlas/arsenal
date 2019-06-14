@@ -8,6 +8,6 @@
     attack_id: T1003
     name: Credential Dumping
   executors:
-    psh:
+    windows:
       command: |
         reg query HKLM /f password /t REG_SZ /s

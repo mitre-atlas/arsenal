@@ -8,6 +8,9 @@
     attack_id: T1018
     name: Remote System Discovery
   executors:
-    bash:
+    darwin:
+      command: |
+        cat ~/.ssh/known_hosts
+    linux:
       command: |
         cat ~/.ssh/known_hosts

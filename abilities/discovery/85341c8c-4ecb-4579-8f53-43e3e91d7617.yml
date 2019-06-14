@@ -8,9 +8,9 @@
     attack_id: T1018
     name: Remove System Discovery
   executors:
-    bash:
-      command: |
-        arp -a
-    psh:
-      command: |
-        arp -a
+    darwin:
+      command: arp -a
+    linux:
+      command: arp -a
+    windows:
+      command: arp -a

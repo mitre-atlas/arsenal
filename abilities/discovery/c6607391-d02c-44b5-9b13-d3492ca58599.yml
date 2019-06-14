@@ -8,6 +8,6 @@
     attack_id: T1007
     name: System Service Discovery
   executors:
-    psh:
+    windows:
       command: |
         Get-Service

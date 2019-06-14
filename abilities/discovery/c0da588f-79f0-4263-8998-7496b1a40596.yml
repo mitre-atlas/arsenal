@@ -8,9 +8,9 @@
     attack_id: T1033
     name: System Owner/User Discovery
   executors:
-    bash:
-      command: |
-        whoami
-    psh:
-      command: |
-        whoami
+    darwin:
+      command: whoami
+    linux:
+      command: whoami
+    windows:
+      command: whoami

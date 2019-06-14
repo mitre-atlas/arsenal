@@ -8,6 +8,9 @@
     attack_id: T1057
     name: Process Discovery
   executors:
-    psh:
-      command: |
-        Get-Process
+    windows:
+      command: Get-Process
+    darwin:
+      command: ps aux
+    linux:
+      command: ps aux

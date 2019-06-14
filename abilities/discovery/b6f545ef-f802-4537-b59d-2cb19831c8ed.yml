@@ -8,6 +8,6 @@
     attack_id: T1016
     name: System Network Configuration Discovery
   executors:
-    bash:
+    darwin:
       command: |
         ifconfig | grep broadcast

@@ -8,6 +8,6 @@
     attack_id: T1059
     name: Command-Line Interface
   executors:
-    bash:
+    darwin:
       command: |
         /tmp/wifi.sh off

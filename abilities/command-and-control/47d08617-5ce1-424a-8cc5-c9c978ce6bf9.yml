@@ -8,6 +8,9 @@
     attack_id: T1105
     name: Remote File Copy
   executors:
-    bash:
+    darwin:
+      command: |
+        echo "proof that this machine was hacked." > message.txt
+    linux:
       command: |
         echo "proof that this machine was hacked." > message.txt

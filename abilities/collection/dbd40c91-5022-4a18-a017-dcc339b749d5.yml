@@ -8,7 +8,7 @@
     attack_id: T1005
     name: Data from Local System
   executors:
-    psh:
+    windows:
       command: |
         Get-ChildItem C:\Users -Recurse -Include *.caldera | ConvertTo-Json
 

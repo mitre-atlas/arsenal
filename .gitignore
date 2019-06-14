@@ -1,6 +1,5 @@
 *.pyc
 *.crt
-*.exe
 *.pyd
 *.DS_Store
 *.spec

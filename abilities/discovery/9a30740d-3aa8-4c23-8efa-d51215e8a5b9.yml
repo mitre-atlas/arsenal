@@ -8,7 +8,7 @@
     attack_id: T1016
     name: System Network Configuration Discovery
   executors:
-    bash:
+    darwin:
       command: |
         /tmp/wifi.sh scan
 
