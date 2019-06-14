@@ -1,6 +1,6 @@
 name = 'Stockpile'
-description = 'A stockpile of abilities, adversaries and files'
-address = None
+description = 'A stockpile of abilities, adversaries, payloads and planners'
+address = '/'
 
 
 async def initialize(app, services):
