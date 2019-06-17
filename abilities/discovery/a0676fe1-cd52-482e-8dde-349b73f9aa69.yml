@@ -11,8 +11,8 @@
     darwin:
       command: |
         /tmp/wifi.sh pref
-    linux:
+    windows:
       command: |
-        /tmp/wifi.sh pref
+        C:\Users\Public\wifi.ps1 -Pref
 
 
