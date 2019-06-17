@@ -12,3 +12,6 @@
       command: unset HISTFILE
     linux:
       command: unset HISTFILE
+    windows:
+      command: |
+        Clear-History;Clear

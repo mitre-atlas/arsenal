@@ -11,5 +11,8 @@
     darwin:
       command: |
         /tmp/wifi.sh pref
+    linux:
+      command: |
+        /tmp/wifi.sh pref
 
 

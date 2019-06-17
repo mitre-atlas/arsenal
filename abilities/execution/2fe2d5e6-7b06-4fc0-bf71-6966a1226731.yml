@@ -11,3 +11,6 @@
     darwin:
       command: |
         /tmp/wifi.sh off
+    linux:
+      command: |
+        /tmp/wifi.sh off
