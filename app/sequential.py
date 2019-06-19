@@ -39,7 +39,7 @@ class LogicalPlanner:
             variables = re.findall(r'#{(.*?)}', decoded_test, flags=re.DOTALL)
             if encoded_test not in completed_tests and not variables:
                 links.append(dict(
-                    instruction=dict(op_id=operation['id'], host_id=agent['id'], ability_id=a['id'],
+                    instruction=dict(op_id=operation['id'], host_id=agent['id'], ability=a['id'],
                                      decide=datetime.now(),
                                      command=encoded_test, score=0,
                                      jitter=self.utility_svc.jitter(operation['jitter'])),

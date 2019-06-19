@@ -1,7 +1,7 @@
 ---
 
 - id: 0353934b-a398-41bb-b55a-7db64dd575ca
-  name: Install cryptography module
+  name: Install cryptography
   description: Install a module for encrypting files
   tactic: impact
   technique:

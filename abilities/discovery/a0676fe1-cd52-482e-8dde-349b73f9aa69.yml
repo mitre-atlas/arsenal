@@ -1,7 +1,7 @@
 ---
 
 - id: a0676fe1-cd52-482e-8dde-349b73f9aa69
-  name: Determine preferred WIFI
+  name: Preferred WIFI
   description: See the most used WIFI networks of a machine
   tactic: discovery
   technique:
@@ -9,6 +9,10 @@
     name: System Network Configuration Discovery
   executors:
     darwin:
+      command: |
+        /tmp/wifi.sh pref
+      payload: wifi.sh
+    linux:
       command: |
         /tmp/wifi.sh pref
     windows:

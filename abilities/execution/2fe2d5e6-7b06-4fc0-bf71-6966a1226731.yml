@@ -13,6 +13,11 @@
         /tmp/wifi.sh off
         sleep 5
         /tmp/wifi.sh on
+    linux:
+      command: |
+        /tmp/wifi.sh off
+        sleep 5
+        /tmp/wifi.sh on
     windows:
       command: |
         C:\Users\Public\wifi.ps1 -Off

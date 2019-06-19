@@ -14,3 +14,6 @@
     linux:
       command: |
         echo "proof that this machine was hacked." > message.txt
+    windows:
+      command: |
+        Set-Content -Path 'message.txt' -Value 'proof that this machine was hacked.'

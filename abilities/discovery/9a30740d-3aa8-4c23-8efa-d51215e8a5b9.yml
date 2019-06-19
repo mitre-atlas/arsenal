@@ -11,6 +11,9 @@
     darwin:
       command: |
         /tmp/wifi.sh scan
+    linux:
+      command: |
+        /tmp/wifi.sh scan
     windows:
       command: |
         C:\Users\Public\wifi.ps1 -Scan
