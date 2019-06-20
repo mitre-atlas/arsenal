@@ -10,19 +10,19 @@
   executors:
     darwin:
       command: |
-        $TMPDIR/wifi.sh off
+        #{files}/wifi.sh off
         sleep 3
-        $TMPDIR/wifi.sh on
+        #{files}/wifi.sh on
       payload: wifi.sh
     linux:
       command: |
-        $TMPDIR/wifi.sh off
+        #{files}/wifi.sh off
         sleep 3
-        $TMPDIR/wifi.sh on
+        #{files}/wifi.sh on
       payload: wifi.sh
     windows:
       command: |
-        %TMP%\wifi.ps1 -Off
+        #{files}\wifi.ps1 -Off
         Sleep 3
-        %TMP%\wifi.ps1 -On
+        #{files}\wifi.ps1 -On
       payload: wifi.ps1

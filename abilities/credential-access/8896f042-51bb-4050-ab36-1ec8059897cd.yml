@@ -10,5 +10,5 @@
   executors:
     windows:
       command: |
-        %TMP%\invoke-mimikittenz-ps1
+        #{files}\invoke-mimikittenz-ps1
       payload: invoke-mimikittenz-ps1

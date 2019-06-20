@@ -10,5 +10,5 @@
   executors:
     windows:
       command: |
-        %TMP%\Invoke-Mimikatz-ps1 -DumpCreds
+        #{files}\Invoke-Mimikatz-ps1 -DumpCreds
       payload: Invoke-Mimikatz-ps1

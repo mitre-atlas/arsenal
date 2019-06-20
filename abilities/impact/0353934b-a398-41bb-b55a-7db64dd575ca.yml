@@ -10,5 +10,5 @@
   executors:
     windows:
       command: |
-        Import-Module %TMP%\FileCryptography.psm1 -Verbose -Force;
+        Import-Module #{files}\FileCryptography.psm1 -Verbose -Force;
       payload: FileCryptography.psm1
