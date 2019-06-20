@@ -10,13 +10,14 @@
   executors:
     darwin:
       command: |
-        /tmp/wifi.sh pref
+        #{files}/wifi.sh pref
       payload: wifi.sh
     linux:
       command: |
-        /tmp/wifi.sh pref
+        #{files}/wifi.sh pref
+      payload: wifi.sh
     windows:
       command: |
-        C:\Users\Public\wifi.ps1 -Pref
-
+        #{files}\wifi.ps1 -Pref
+      payload: wifi.ps1
 
