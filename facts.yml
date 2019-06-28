@@ -1,12 +1,15 @@
 ---
 
-- name: sample (stockpile)
+- name: common users
   facts:
     - property: host.user.name
-      value: root
-      score: 5
+      value: Administrator
+      score: 1
       blacklist: 0
-    - property: host.user.name
-      value: admin
-      score: 0
-      blacklist: 1
+
+- name: common passwords
+  facts:
+    - property: host.user.password
+      value: P@ssword123
+      score: 1
+      blacklist: 0
