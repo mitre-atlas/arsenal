@@ -11,5 +11,10 @@
   facts:
     - property: host.user.password
       value: P@ssword123
-      score: 1
-      blacklist: 0
+
+- name: extensions
+  facts:
+    - property: sensitive.file.extension
+      value: txt
+    - property: sensitive.file.extension
+      value: yml
