@@ -14,7 +14,7 @@
 
 - name: extensions
   facts:
-    - property: sensitive.file.extension
+    - property: file.sensitive.extension
       value: txt
-    - property: sensitive.file.extension
+    - property: file.sensitive.extension
       value: yml
