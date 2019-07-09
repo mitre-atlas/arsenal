@@ -14,11 +14,11 @@
       parser:
         name: regex
         property: remote.ssh.cmd
-        script: '\S+@\S+'
+        script: '[\w\.-]+@[\w\.-]+'
     linux:
       command: |
         pip install stormssh && storm list
       parser:
         name: regex
         property: remote.ssh.cmd
-        script: '\S+@\S+'
+        script: '[\w\.-]+@[\w\.-]+'
