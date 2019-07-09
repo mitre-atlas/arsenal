@@ -13,3 +13,7 @@
         Import-Module #{files}\PowerView.ps1 -Verbose -Force;
         Get-NetComputer;
       payload: PowerView.ps1
+      parser:
+        name: regex
+        property: host.host.fqdn
+        script: '[\S]+'

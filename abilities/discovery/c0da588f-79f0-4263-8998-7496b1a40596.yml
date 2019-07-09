@@ -10,7 +10,15 @@
   executors:
     darwin:
       command: whoami
+      parser:
+        name: line
+        property: host.user.name
+        script: ''
     linux:
       command: whoami
+      parser:
+        name: line
+        property: host.user.name
+        script: ''
     windows:
       command: whoami

@@ -10,5 +10,13 @@
   executors:
     darwin:
       command: cat ~/.bash_history
+      parser:
+        name: regex
+        property: remote.ssh.cmd
+        script: '[\n\r]*  ssh *([^\n\r]*)'
     linux:
       command: cat ~/.bash_history
+      parser:
+        name: regex
+        property: remote.ssh.cmd
+        script: '[\n\r]*  ssh *([^\n\r]*)'

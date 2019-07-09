@@ -11,3 +11,7 @@
     darwin:
       command: |
         ifconfig | grep broadcast
+      parser:
+        name: regex
+        property: host.broadcast.ip
+        script: '(?<=broadcast ).*'

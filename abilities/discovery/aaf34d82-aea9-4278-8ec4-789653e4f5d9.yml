@@ -13,3 +13,7 @@
         Import-Module #{files}\PowerView.ps1 -Verbose -Force;
         Get-NetUser | ConvertTo-Json
       payload: PowerView.ps1
+      parser:
+        name: json
+        property: host.user.name
+        script: samaccountname
