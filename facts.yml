@@ -23,4 +23,4 @@
     - property: host.user.password
       value: P@ssw0rd
     - property: remote.host.name
-      value: workstation1
+      value: work001-testdomain
