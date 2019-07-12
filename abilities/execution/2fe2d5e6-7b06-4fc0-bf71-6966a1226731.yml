@@ -11,18 +11,18 @@
     darwin:
       command: |
         #{files}/wifi.sh off
-        sleep 3
+      cleanup: |
         #{files}/wifi.sh on
       payload: wifi.sh
     linux:
       command: |
         #{files}/wifi.sh off
-        sleep 3
+      cleanup: |
         #{files}/wifi.sh on
       payload: wifi.sh
     windows:
       command: |
         #{files}\wifi.ps1 -Off
-        Sleep 3
+      cleanup: |
         #{files}\wifi.ps1 -On
       payload: wifi.ps1
