@@ -1,14 +1,11 @@
 ---
 
-- name: common users
+- name: common credentials
   facts:
     - property: host.user.name
       value: Administrator
       score: 1
       blacklist: 0
-
-- name: common passwords
-  facts:
     - property: host.user.password
       value: P@ssword123
 
@@ -18,3 +15,12 @@
       value: txt
     - property: file.sensitive.extension
       value: yml
+
+- name: test lab
+  facts:
+    - property: host.user.name
+      value: Administrator
+    - property: host.user.password
+      value: P@ssw0rd
+    - property: remote.host.name
+      value: workstation1
