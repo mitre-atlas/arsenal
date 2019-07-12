@@ -15,3 +15,11 @@
       - a0676fe1-cd52-482e-8dde-349b73f9aa69
     6:
       - 2fe2d5e6-7b06-4fc0-bf71-6966a1226731
+
+- name: File Hunter (stockpile)
+  description: Locate and steal sensitive files
+  phases:
+    1:
+      - 90c2efaa-8205-480d-8bb6-61d90dbaf81b
+    2:
+      - 5d199f56-698a-41ff-8ae9-bb7b8536adcb

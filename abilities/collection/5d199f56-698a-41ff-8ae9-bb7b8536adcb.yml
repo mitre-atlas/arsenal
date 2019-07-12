@@ -1,0 +1,19 @@
+---
+
+- id: 5d199f56-698a-41ff-8ae9-bb7b8536adcb
+  name: Steal sensitive file
+  description: Grab contents of every sensitive file
+  tactic: collection
+  technique:
+    attack_id: T1005
+    name: Data from Local System
+  executors:
+    darwin:
+      command: |
+        cat #{host.file.sensitive}
+    linux:
+      command: |
+        cat #{host.file.sensitive}
+    windows:
+      command: |
+        Get-Content #{host.file.sensitive}

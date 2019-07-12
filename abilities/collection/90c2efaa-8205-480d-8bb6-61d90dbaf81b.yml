@@ -1,0 +1,31 @@
+---
+
+- id: 90c2efaa-8205-480d-8bb6-61d90dbaf81b
+  name: Find sensitive files
+  description: Locate files deemed sensitive
+  tactic: collection
+  technique:
+    attack_id: T1005
+    name: Data from Local System
+  executors:
+    darwin:
+      command: |
+        find /Users -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -3
+      parser:
+        name: line
+        property: host.file.sensitive
+        script: ''
+    windows:
+      command: |
+        Get-ChildItem C:\Users -Recurse -Include *.#{file.sensitive.extension} | foreach {$_.FullName}
+      parser:
+        name: line
+        property: host.file.sensitive
+        script: ''
+    linux:
+      command: |
+        find / -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -3
+      parser:
+        name: line
+        property: host.file.sensitive
+        script: ''
