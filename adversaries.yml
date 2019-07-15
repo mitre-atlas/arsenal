@@ -25,7 +25,7 @@
       - 5d199f56-698a-41ff-8ae9-bb7b8536adcb
 
 - name: Worm (stockpile)
-  description: Lateral movement threat profile
+  description: Move laterally any way possible
   phases:
     1:
       - 02de522f-7e0a-4544-8afc-0c195f400f5f
