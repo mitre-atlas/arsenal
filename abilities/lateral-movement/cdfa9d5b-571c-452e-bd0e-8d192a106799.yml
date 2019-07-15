@@ -1,7 +1,7 @@
 ---
 
 - id: cdfa9d5b-571c-452e-bd0e-8d192a106799
-  name: Share 54ndc47
+  name: Copy 54ndc47
   description: Adds 54ndc47 to a network share/mount
   tactic: lateral-movement
   technique:

