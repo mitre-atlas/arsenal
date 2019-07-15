@@ -34,3 +34,18 @@
     2:
       - 10a9d979-e342-418a-a9b0-002c483e0fa6
       - 4908fdc4-74fc-4d7c-8935-26d11ad26a8d
+
+- name: Alice (stockpile)
+  description: Lateral movement through network shares/mounts
+  phases:
+    1:
+      - baac2c6d-4652-4b7e-ab0a-f1bf246edd12 #Invoke MimiKatz
+      - aaf34d82-aea9-4278-8ec4-789653e4f5d9 #Get List of Users
+      - 6131397e-7765-424e-a594-3d7fb2d93a6a #Get Network Domain Name
+      - 85341c8c-4ecb-4579-8f53-43e3e91d7617 #arp to get network IP addresses
+    2:
+      - 40161ad0-75bd-11e9-b475-0800200c9a66 #Create network share
+    3:
+      - cdfa9d5b-571c-452e-bd0e-8d192a1067 #copy rat over to target
+    4:
+      - 2a32e46f-5346-45d3-9475-52b857c05342 #WMIC to execute RAT

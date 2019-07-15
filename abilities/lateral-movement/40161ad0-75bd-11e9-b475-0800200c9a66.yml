@@ -1,0 +1,13 @@
+---
+
+- id: 40161ad0-75bd-11e9-b475-0800200c9a66
+  name: net use
+  description: Mounts a network file share on a target computer
+  tactic: lateral-movement
+  technique:
+    attack_id: T1107
+    name: Windows Admin Shares
+  executors:
+    windows:
+      command: |
+         net use \\#{remote.network.ip}\c$ /user:#{user.name}@#{network.domain} #{user.password}
