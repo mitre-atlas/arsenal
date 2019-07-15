@@ -1,0 +1,12 @@
+---
+- id: b22b3b47-6219-4504-a2e6-ae8263e49fc3
+  name: Find domain controller
+  description: Identify remote domain controller
+  tactic: discovery
+  technique:
+    attack_id: T1018
+    name: Remote System Discovery
+  executors:
+    windows:
+      command: |
+        nltest /dclist:%USERDOMAIN%

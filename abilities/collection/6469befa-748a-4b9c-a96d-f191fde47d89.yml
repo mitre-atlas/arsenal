@@ -1,0 +1,25 @@
+---
+
+- id: 6469befa-748a-4b9c-a96d-f191fde47d89
+  name: Create Staging Directory
+  description: create a directory for exfil staging
+  tactic: collection
+  technique:
+    attack_id: T1074
+    name: Data Staged
+  executors:
+    darwin:
+      command: |
+        mkdir -p #{files}/staged
+      cleanup: |
+        rm -rf #{files}/staged
+    linux:
+      command: |
+        mkdir -p #{files}/staged
+      cleanup: |
+        rm -rf #{files}/staged
+    windows:
+      command: |
+        New-Item -Path "#{files}" -Name "staged" -ItemType "directory"
+      cleanup: |
+        Remove-Item -Path "#{files}\staged" -recurse

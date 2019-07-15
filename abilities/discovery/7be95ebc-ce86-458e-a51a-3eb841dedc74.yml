@@ -1,0 +1,20 @@
+---
+
+- id: 7be95ebc-ce86-458e-a51a-3eb841dedc74
+  name: Get-Process for user
+  description: Identify system processes for a specific user
+  tactic: discovery
+  technique:
+    attack_id: T1057
+    name: Process Discovery
+  executors:
+    windows:
+      command: |
+        $owners = @{}
+        gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user}
+        $ps = get-process | select processname,Id,@{l="Owner";e={$owners[$_.id.tostring()]}}
+        foreach($p in $ps) {
+            if($p.Owner -eq "#{host.user.name}") {
+                $p
+            }
+        }

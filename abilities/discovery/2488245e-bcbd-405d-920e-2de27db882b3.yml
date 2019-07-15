@@ -1,0 +1,13 @@
+---
+
+- id: 2488245e-bcbd-405d-920e-2de27db882b3
+  name: Query Registry
+  description: Query Registry using PowerShell Get-ItemProperty
+  tactic: discovery
+  technique:
+    attack_id: T1012
+    name: Query Registry
+  executors:
+    windows:
+      command: |
+        Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion

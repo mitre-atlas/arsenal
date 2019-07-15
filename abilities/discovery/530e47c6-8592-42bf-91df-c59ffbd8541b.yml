@@ -1,0 +1,13 @@
+---
+
+- id: 530e47c6-8592-42bf-91df-c59ffbd8541b
+  name: Network Share Discovery
+  description: Network Share Discovery
+  tactic: discovery
+  technique:
+    attack_id: T1135
+    name: Network Share Discovery
+  executors:
+    windows:
+      command: |
+        Get-SmbShare

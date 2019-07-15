@@ -1,0 +1,17 @@
+---
+
+- id: 1f7ff232-ebf8-42bf-a3c4-657855794cfe
+  name: Find company emails
+  description: Grep for all emails for the given target company
+  tactic: collection
+  technique:
+    attack_id: T1005
+    name: Data from Local System
+  executors:
+    darwin:
+      command: |
+        find $(echo ~#{host.user.name}) -type f -size -500k -maxdepth 5 -exec grep -EIr -o "\b[A-Za-z0-9._%+-]+@#{target.org.name}\b" 2>/dev/null {} \;
+      parser:
+        name: regex
+        property: target.org.email
+        script: '[\w\.-]+@[\w\.-]+'

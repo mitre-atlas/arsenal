@@ -1,0 +1,24 @@
+---
+
+- id: c1cd6388-3ced-48c7-a511-0434c6ba8f48
+  name: Find local users
+  description: Get a list of all local users
+  tactic: persistence
+  technique:
+    attack_id: T1078
+    name: Valid Accounts
+  executors:
+    darwin:
+      command: |
+        cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
+      parser:
+        name: regex
+        property: host.user.name
+        script: '[a-zA-Z]\w+'
+    linux:
+      command: |
+        cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
+      parser:
+        name: regex
+        property: host.user.name
+        script: '[a-zA-Z]\w+'

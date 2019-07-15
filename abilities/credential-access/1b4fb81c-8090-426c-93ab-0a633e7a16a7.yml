@@ -1,0 +1,22 @@
+---
+
+- id: 1b4fb81c-8090-426c-93ab-0a633e7a16a7
+  name: Sniff network traffic
+  description: Perform a packet capture using the Windows PowerShell
+  tactic: credential-access
+  technique:
+    attack_id: T1040
+    name: Network Sniffing
+  executors:
+    windows:
+      command: |
+        New-NetEventSession -Name "PCAP" -CaptureMode SaveToFile -LocalFilePath "$ENV:UserProfile\Desktop\pcap.etl" -MaxFileSize 0
+        Add-NetEventPacketCaptureProvider -SessionName "PCAP"
+        Start-NetEventSession -Name "PCAP"
+        Start-Sleep -s 60
+        Stop-NetEventSession -Name "PCAP"
+        Get-Content "$ENV:UserProfile\Desktop\pcap.etl"
+      cleanup: |
+        Remove-NetEventSession -Name "Capture"
+        Remove-Item $ENV:UserProfile\Desktop\pcap.etl
+        Remove-Item $ENV:UserProfile\Desktop\pcap.cab

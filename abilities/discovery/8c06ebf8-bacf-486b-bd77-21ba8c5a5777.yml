@@ -1,0 +1,15 @@
+---
+
+- id: ee86cdc4-ca17-4a9e-b2a5-dbcc57dd950e
+  name: Identify Firewalls
+  description: Identify Firewalls
+  tactic: discovery
+  technique:
+    attack_id: T1063
+    name: Security Software Discovery
+  executors:
+    windows:
+      command: |
+        $NameSpace = Get-WmiObject -Namespace "root" -Class "__Namespace" | Select Name | Out-String -Stream | Select-String "SecurityCenter"
+        $SecurityCenter = $NameSpace | Select-Object -First 1
+        Get-WmiObject -Namespace "root\$SecurityCenter" -Class AntiVirusProduct | Select DisplayName, InstanceGuid, PathToSignedProductExe, PathToSignedReportingExe, ProductState, Timestamp | Format-List

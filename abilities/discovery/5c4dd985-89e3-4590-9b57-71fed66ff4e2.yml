@@ -1,0 +1,13 @@
+---
+
+- id: 5c4dd985-89e3-4590-9b57-71fed66ff4e2
+  name: Permission Groups Discovery
+  description: Summary of permission and security groups
+  tactic: discovery
+  technique:
+    attack_id: T1069
+    name: Permission Groups Discovery
+  executors:
+    windows:
+      command: |
+        gpresult /R

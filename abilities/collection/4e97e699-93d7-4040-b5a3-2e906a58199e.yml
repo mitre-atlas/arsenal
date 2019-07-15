@@ -1,0 +1,21 @@
+---
+
+- id: 4e97e699-93d7-4040-b5a3-2e906a58199e
+  name: Stage Sensitive Files
+  description: copy files to staging directory
+  tactic: collection
+  technique:
+    attack_id: T1074
+    name: Data Staged
+  executors:
+    darwin:
+      command: |
+        cp #{host.file.sensitive} #{files}/staged
+    linux:
+      command: |
+        cp #{host.file.sensitive} #{files}/staged
+    windows:
+      command: |
+        Copy-Item -Path #{host.file.sensitive} -Destination #{files}\staged
+
+  # see 6469befa-748a-4b9c-a96d-f191fde47d89 for creation of directory 'staged'
