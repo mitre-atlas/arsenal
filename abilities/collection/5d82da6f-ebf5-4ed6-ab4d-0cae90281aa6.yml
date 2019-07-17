@@ -10,21 +10,21 @@
   executors:
     darwin:
       command: |
-        tar -czvf #{files}/staged.tgz #{files}/staged
-        openssl enc -aes-256-cbc -salt -in #{files}/staged.tgz -out #{files}/staged.tgz.enc -k password123
+        tar -czvf #{files}/staged.tgz #{files}/staged;
+        openssl enc -aes-256-cbc -salt -in #{files}/staged.tgz -out #{files}/staged.tgz.enc -k password123 ;
       cleanup: |
         rm #{files}/staged.tgz; rm #{files}/staged.tgz.enc;
     linux:
       command: |
-        tar -czvf #{files}/staged.tgz #{files}/staged
-        openssl enc -aes-256-cbc -salt -in #{files}/staged.tgz -out #{files}/staged.tgz.enc -k password123
+        tar -czvf #{files}/staged.tgz #{files}/staged;
+        openssl enc -aes-256-cbc -salt -in #{files}/staged.tgz -out #{files}/staged.tgz.enc -k password123 ;
       cleanup: |
         rm #{files}/staged.tgz; rm #{files}/staged.tgz.enc;
     windows:
       command: |
-        Compress-Archive -Path #{files}\staged -DestinationPath #{files}\staged
-        Import-Module #{files}\FileCryptography.psm1 -Verbose -Force; Protect-File "#{files}\staged.zip" -Algorithm AES -Suffix '.enc';
-      payload: FileCryptography.psm1
+        Compress-Archive -Path #{files}\staged -DestinationPath #{files}\staged;
+        #{files}\xor.ps1 #{files}\staged.zip;
+      payload: xor.ps1
       cleanup: |
         Remove-Item -Path "#{files}\staged.zip"; Remove-Item -Path "#{files}\staged.zip.enc";
 
