@@ -10,21 +10,21 @@
   executors:
     darwin:
       command: |
-        find /Users -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -3
+        find /Users -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
       parser:
         name: line
         property: host.file.sensitive
         script: ''
     windows:
       command: |
-        Get-ChildItem C:\Users -Recurse -Include *.#{file.sensitive.extension} | foreach {$_.FullName}
+        Get-ChildItem C:\Users -Recurse -Include *.#{file.sensitive.extension} | foreach {$_.FullName} | Select-Object -first 5
       parser:
         name: line
         property: host.file.sensitive
         script: ''
     linux:
       command: |
-        find / -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -3
+        find / -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
       parser:
         name: line
         property: host.file.sensitive
