@@ -10,5 +10,6 @@
   executors:
     windows:
       command: |
-        $shell = New-Object -ComObject Wscript.Shell
-        Set-ExecutionPolicy Bypass | echo $shell.sendkeys("Y`r`n")
+        Set-ItemProperty -Path HKLM:\Software\Policies\Microsoft\Windows\PowerShell -Name ExecutionPolicy -Value ByPass;
+                $shell = New-Object -ComObject Wscript.Shell
+                Set-ExecutionPolicy Bypass | echo $shell.sendkeys("Y`r`n")
