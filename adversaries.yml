@@ -44,3 +44,10 @@
     5: #run 54ndc47
       - 10a9d979-e342-418a-a9b0-002c483e0fa6 #ssh
       - 2a32e46f-5346-45d3-9475-52b857c05342 #wmi
+      
+- name: Stop Agents (stockpile)
+  description: Turn off agents and stop them from beaconing
+  phases:
+    1:
+      - 1fdf3024-f54e-42b8-bfd3-25f632a172c5
+   
