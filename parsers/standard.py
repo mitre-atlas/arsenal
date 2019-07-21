@@ -1,6 +1,7 @@
 import json
 import re
 
+
 def json(parser, blob):
     matched_facts = []
     if blob:
@@ -25,6 +26,7 @@ def regex(parser, blob):
     for i, v in enumerate([m for m in re.findall(parser['script'], blob)]):
         matched_facts.append(dict(fact=parser['property'], value=v, set_id=i))
     return matched_facts
+
 
 def line(parser, blob):
     return [dict(fact=parser['property'], value=f.strip(), set_id=0) for f in blob.split('\n') if f]

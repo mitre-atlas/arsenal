@@ -1,5 +1,5 @@
 
-def parse_mimikatz(blob):
+def mimikatz(blob):
     set_id = 0
     matched_facts = []
     list_lines = blob.split('\n')
