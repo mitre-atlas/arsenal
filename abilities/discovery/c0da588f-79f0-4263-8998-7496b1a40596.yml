@@ -2,7 +2,7 @@
 
 - id: c0da588f-79f0-4263-8998-7496b1a40596
   name: Identify active user
-  description: Platform agnostic way to find the active user
+  description: Find user running agent
   tactic: discovery
   technique:
     attack_id: T1033

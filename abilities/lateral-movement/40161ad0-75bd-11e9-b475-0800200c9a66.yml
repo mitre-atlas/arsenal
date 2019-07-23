@@ -1,7 +1,7 @@
 ---
 
 - id: 40161ad0-75bd-11e9-b475-0800200c9a66
-  name: net use
+  name: Net use
   description: Mounts a network file share on a target computer
   tactic: lateral-movement
   technique:

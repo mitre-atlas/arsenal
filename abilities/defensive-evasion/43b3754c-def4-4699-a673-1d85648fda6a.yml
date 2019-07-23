@@ -1,8 +1,8 @@
 ---
 
 - id: 43b3754c-def4-4699-a673-1d85648fda6a
-  name: Unset history
-  description: Clears out the bash history
+  name: Avoid logs
+  description: Stop terminal from logging history
   tactic: defensive-evasion
   technique:
     attack_id: T1107
