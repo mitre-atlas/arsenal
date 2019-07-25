@@ -1,0 +1,23 @@
+---
+
+- id: ce485320-41a4-42e8-a510-f5a8fe96a644
+  name: Discover Mail Server
+  description: Identify the organizations mail server
+  tactic: discovery
+  technique:
+    attack_id: T1018
+    name: Remote System Discovery
+  executors:
+    linux:
+      command: host "#{target.org.domain}" | grep mail | grep -oE '[^ ]+$' | rev | cut -c 2- | rev
+      parser:
+        name: line
+        property: target.org.emailhost
+        script: ''
+    darwin:
+      command: host "#{target.org.domain}" | grep mail | grep -oE '[^ ]+$' | rev | cut -c 2- | rev
+      parser:
+        name: line
+        property: target.org.emailhost
+        script: ''
+
