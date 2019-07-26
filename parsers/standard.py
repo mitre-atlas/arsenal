@@ -1,11 +1,11 @@
-import json
+import json as json_library
 import re
 
 
 def json(parser, blob):
     matched_facts = []
     if blob:
-        structured = json.loads(blob)
+        structured = json_library.loads(blob)
         if isinstance(structured, (list,)):
             for i, entry in enumerate(structured):
                 matched_facts.append((dict(fact=parser['property'], value=entry.get(parser['script']), set_id=i)))
