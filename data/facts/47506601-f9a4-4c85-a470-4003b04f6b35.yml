@@ -1,0 +1,11 @@
+---
+
+id: 47506601-f9a4-4c85-a470-4003b04f6b35
+name: common credentials
+facts:
+  - property: host.user.name
+    value: Administrator
+    score: 1
+    blacklist: 0
+  - property: host.user.password
+    value: P@ssword123

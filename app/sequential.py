@@ -5,9 +5,8 @@ class LogicalPlanner:
         self.planning_svc = planning_svc
 
     async def execute(self, operation, phase):
-        for member in operation['host_group']['agents']:
-            agent = await self.data_svc.explode_agents(criteria=dict(id=member['agent_id']))
-            for l in await self.planning_svc.select_links(operation, agent[0], phase):
+        for member in operation['host_group']:
+            for l in await self.planning_svc.select_links(operation, member, phase):
                 l.pop('rewards', [])
                 await self.data_svc.create_link(l)
         await self.planning_svc.wait_for_phase(operation)

@@ -1,0 +1,8 @@
+---
+
+id: 901663e0-ab30-4b70-853a-011227ac497e
+name: Stop Agents
+description: Turn off agents and stop them from beaconing
+phases:
+  1:
+    - 1fdf3024-f54e-42b8-bfd3-25f632a172c5
