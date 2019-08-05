@@ -1,0 +1,15 @@
+---
+
+ - id: eb814e03-811a-467a-bc6d-dcd453750fa2
+  name: Install PSTools
+  description: Install PSTools by unzipping the file
+  tactic: execution
+  technique:
+    attack_id: T1086
+    name: Powershell
+  executors:
+    windows:
+      command: |
+       Add-Type -Assembly 'System.IO.Compression.FileSystem'; [System.IO.Compression.ZipFile]::ExtractToDirectory("#{files}\PSTools.zip", "C:\Windows\System32\PSTools");
+      payload:
+        PSTools.zip

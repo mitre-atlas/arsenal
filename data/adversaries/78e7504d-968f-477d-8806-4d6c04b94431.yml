@@ -4,20 +4,13 @@ id: 78e7504d-968f-477d-8806-4d6c04b94431
 name: Worm
 description: Move laterally any way possible
 phases:
-  1: #installations
-    - ac22dcfd-33aa-42cd-89ef-cfd3aea78933 #psexec
-  2: #discovery
-    - 02de522f-7e0a-4544-8afc-0c195f400f5f #ssh commands
-    - 422526ec-27e9-429a-995b-c686a29561a4 #ssh commands
-    - baac2c6d-4652-4b7e-ab0a-f1bf246edd12 #mimikatz
-    - aaf34d82-aea9-4278-8ec4-789653e4f5d9 #users
-    - 6131397e-7765-424e-a594-3d7fb2d93a6a #network domain
-    - 85341c8c-4ecb-4579-8f53-43e3e91d7617 #arp
-  3: #mutations
-    - 40161ad0-75bd-11e9-b475-0800200c9a66 #create network share
-  4: #copy 54ndc47
-    - cdfa9d5b-571c-452e-bd0e-8d192a106799 #copy
-    - 4908fdc4-74fc-4d7c-8935-26d11ad26a8d #remoting
-  5: #run 54ndc47
-    - 10a9d979-e342-418a-a9b0-002c483e0fa6 #ssh
-    - 2a32e46f-5346-45d3-9475-52b857c05342 #wmi
+    1: #discovery
+      - 02de522f-7e0a-4544-8afc-0c195f400f5f #ssh commands
+      - 422526ec-27e9-429a-995b-c686a29561a4 #ssh commands
+      - baac2c6d-4652-4b7e-ab0a-f1bf246edd12 #mimikatz
+      - 85341c8c-4ecb-4579-8f53-43e3e91d7617 #arp
+    2: #copy 54ndc47
+      - 4908fdc4-74fc-4d7c-8935-26d11ad26a8d #remoting
+    3: #run 54ndc47
+      - 10a9d979-e342-418a-a9b0-002c483e0fa6 #ssh
+      - 41bb2b7a-75af-49fd-bd15-6c827df25921 #remoting
