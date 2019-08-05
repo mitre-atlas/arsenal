@@ -13,19 +13,19 @@
         find /Users -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
       parser:
         name: line
-        property: host.file.sensitive
+        property: host.file.sensitive.private
         script: ''
     windows:
       command: |
         Get-ChildItem C:\Users -Recurse -Include *.#{file.sensitive.extension} | foreach {$_.FullName} | Select-Object -first 5
       parser:
         name: line
-        property: host.file.sensitive
+        property: host.file.sensitive.private
         script: ''
     linux:
       command: |
         find / -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
       parser:
         name: line
-        property: host.file.sensitive
+        property: host.file.sensitive.private
         script: ''
