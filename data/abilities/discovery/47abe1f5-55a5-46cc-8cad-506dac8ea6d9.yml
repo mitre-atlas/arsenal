@@ -12,4 +12,7 @@
       command: |
         python #{files}/scanner.py -i #{remote.network.ip}
       payload: scanner.py
-
+      parser:
+        name: line
+        property: remote.host.socket
+        script: ''
