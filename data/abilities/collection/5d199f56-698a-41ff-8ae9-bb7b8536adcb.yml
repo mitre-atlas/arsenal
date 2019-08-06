@@ -10,10 +10,10 @@
   executors:
     darwin:
       command: |
-        cat #{host.file.sensitive.private}
+        cat '#{host.file.sensitive.private}'
     linux:
       command: |
-        cat #{host.file.sensitive.private}
+        cat '#{host.file.sensitive.private}'
     windows:
       command: |
-        Get-Content #{host.file.sensitive.private}
+        Get-Content '#{host.file.sensitive.private}'
