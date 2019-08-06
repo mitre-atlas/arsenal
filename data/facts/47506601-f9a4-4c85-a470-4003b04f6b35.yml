@@ -6,6 +6,5 @@ facts:
   - property: host.user.name
     value: Administrator
     score: 1
-    blacklist: 0
   - property: host.user.password
     value: P@ssword123
