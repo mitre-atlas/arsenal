@@ -3,7 +3,7 @@
 - id: 3864fd22-5c63-41c9-bdbc-a66b5ffa3f5e
   name: Bypass ExecutionPolicy
   description: Ensure the ExecutionPolicy is turned to Bypass
-  tactic: defensive-evasion
+  tactic: defense-evasion
   technique:
     attack_id: T1064
     name: Scripting

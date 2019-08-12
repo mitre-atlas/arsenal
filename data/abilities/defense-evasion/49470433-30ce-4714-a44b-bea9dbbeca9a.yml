@@ -3,7 +3,7 @@
 - id: 49470433-30ce-4714-a44b-bea9dbbeca9a
   name: Disable Windows Defender Real-Time Protection
   description: Disable Windows Defender Real-Time Protection
-  tactic: credential-access
+  tactic: defense-evasion
   technique:
     attack_id: T1003
     name: Credential Dumping
