@@ -23,7 +23,7 @@ def json(parser, blob):
 
 def regex(parser, blob):
     matched_facts = []
-    for i, v in enumerate([m for m in re.findall(parser['script'], blob)]):
+    for i, v in enumerate([m for m in re.findall(parser['script'], blob.strip())]):
         matched_facts.append(dict(fact=parser['property'], value=v, set_id=i))
     return matched_facts
 
