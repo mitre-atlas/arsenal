@@ -20,4 +20,10 @@
         name: line
         property: target.org.emailhost
         script: ''
-
+    windows:
+      command: |
+        (nslookup -querytype=mx #{target.org.domain}. | Select-String -pattern 'mail' | Out-String).Trim()
+      parser:
+        name: regex
+        property: target.org.emailhost
+        script: '([a-zA-Z0-9_.]+)$'
