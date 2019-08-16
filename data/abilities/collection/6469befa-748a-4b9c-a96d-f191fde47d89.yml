@@ -10,16 +10,16 @@
   executors:
     darwin:
       command: |
-        mkdir -p #{files}/staged
+        mkdir -p staged
       cleanup: |
-        rm -rf #{files}/staged
+        rm -rf staged
     linux:
       command: |
-        mkdir -p #{files}/staged
+        mkdir -p staged
       cleanup: |
-        rm -rf #{files}/staged
+        rm -rf staged
     windows:
       command: |
-        New-Item -Path "#{files}" -Name "staged" -ItemType "directory"
+        New-Item -Path "." -Name "staged" -ItemType "directory"
       cleanup: |
-        Remove-Item -Path "#{files}\staged" -recurse
+        Remove-Item -Path "staged" -recurse

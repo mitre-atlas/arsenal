@@ -10,11 +10,11 @@
   executors:
     darwin:
       command: |
-        rm #{files}/sandcat-darwin && ps -o ppid=$(pgrep sandcat) | xargs -n1 kill
+        rm sandcat-darwin && ps -o ppid=$(pgrep sandcat) | xargs -n1 kill
     linux:
       command: |
-        rm #{files}/sandcat-linux && ps -o ppid=$(pgrep sandcat) | xargs -n1 kill
+        rm #sandcat-linux && ps -o ppid=$(pgrep sandcat) | xargs -n1 kill
     windows:
       command: |
-        Remove-Item -Path #{files}\sandcat.exe -ErrorAction SilentlyContinue;
+        Remove-Item -Path sandcat.exe -ErrorAction SilentlyContinue;
         Get-Process | Where {$_.ProcessName -Like "powershell" -or $_.ProcessName -Like "sandcat"} | Stop-Process -Force;

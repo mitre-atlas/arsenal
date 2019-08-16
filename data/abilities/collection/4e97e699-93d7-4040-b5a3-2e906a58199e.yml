@@ -10,12 +10,12 @@
   executors:
     darwin:
       command: |
-        cp "#{host.file.sensitive.private}" #{files}/staged
+        cp "#{host.file.sensitive.private}" staged
     linux:
       command: |
-        cp "#{host.file.sensitive.private}" #{files}/staged
+        cp "#{host.file.sensitive.private}" staged
     windows:
       command: |
-        Copy-Item -Path "#{host.file.sensitive.private}" -Destination #{files}\staged
+        Copy-Item -Path "#{host.file.sensitive.private}" -Destination staged
 
   # see 6469befa-748a-4b9c-a96d-f191fde47d89 for creation of directory 'staged'

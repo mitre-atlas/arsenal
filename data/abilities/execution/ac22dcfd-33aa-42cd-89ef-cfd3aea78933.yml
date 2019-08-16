@@ -11,7 +11,7 @@
     windows:
       command: |
         New-Item -ItemType "directory" C:\Windows\System32\PSTools -Force;
-        Move-Item #{files}\PsExec64.exe C:\Windows\System32\PSTools -Force;
+        Move-Item PsExec64.exe C:\Windows\System32\PSTools -Force;
       cleanup: |
         Remove-Item C:\Windows\System32\PSTools -Recurse
       payload: PSExec64.exe

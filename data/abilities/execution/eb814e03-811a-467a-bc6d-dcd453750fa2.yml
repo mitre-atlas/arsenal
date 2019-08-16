@@ -10,6 +10,6 @@
    executors:
      windows:
        command: |
-        Add-Type -Assembly 'System.IO.Compression.FileSystem'; [System.IO.Compression.ZipFile]::ExtractToDirectory("#{files}\PSTools.zip", "C:\Windows\System32\PSTools");
+        Add-Type -Assembly 'System.IO.Compression.FileSystem'; [System.IO.Compression.ZipFile]::ExtractToDirectory("PSTools.zip", "C:\Windows\System32\PSTools");
        payload:
          PSTools.zip

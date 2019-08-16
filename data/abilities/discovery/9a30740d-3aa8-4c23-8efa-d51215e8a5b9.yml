@@ -10,13 +10,13 @@
   executors:
     darwin:
       command: |
-        #{files}/wifi.sh scan
+        ./wifi.sh scan
       payload: wifi.sh
     linux:
       command: |
-        #{files}/wifi.sh scan
+        ./wifi.sh scan
       payload: wifi.sh
     windows:
       command: |
-        #{files}\wifi.ps1 -Scan
+        .\wifi.ps1 -Scan
       payload: wifi.ps1

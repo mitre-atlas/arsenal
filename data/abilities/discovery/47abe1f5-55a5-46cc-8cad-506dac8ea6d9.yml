@@ -10,7 +10,7 @@
   executors:
     darwin:
       command: |
-        python #{files}/scanner.py -i #{remote.network.ip}
+        python scanner.py -i #{remote.network.ip}
       payload: scanner.py
       parser:
         name: line

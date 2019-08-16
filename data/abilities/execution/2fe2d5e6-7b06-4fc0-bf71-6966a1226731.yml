@@ -10,19 +10,19 @@
   executors:
     darwin:
       command: |
-        #{files}/wifi.sh off
+        ./wifi.sh off
       cleanup: |
-        #{files}/wifi.sh on
+        ./wifi.sh on
       payload: wifi.sh
     linux:
       command: |
-        #{files}/wifi.sh off
+        ./wifi.sh off
       cleanup: |
-        #{files}/wifi.sh on
+        ./wifi.sh on
       payload: wifi.sh
     windows:
       command: |
-        #{files}\wifi.ps1 -Off
+        .\wifi.ps1 -Off
       cleanup: |
-        #{files}\wifi.ps1 -On
+        .\wifi.ps1 -On
       payload: wifi.ps1

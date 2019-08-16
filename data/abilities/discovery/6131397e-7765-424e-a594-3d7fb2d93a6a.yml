@@ -10,7 +10,7 @@
   executors:
     windows:
       command: |
-        Import-Module #{files}\PowerView.ps1 -Verbose -Force;
+        Import-Module PowerView.ps1 -Verbose -Force;
         Get-NetDomain | ConvertTo-Json
       payload: PowerView.ps1
       parser:
