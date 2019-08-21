@@ -2,10 +2,14 @@ import json as json_library
 import re
 
 
-def json(parser, blob):
+def json(parser, blob, log):
     matched_facts = []
     if blob:
-        structured = json_library.loads(blob)
+        try:
+            structured = json_library.loads(blob)
+        except:
+            log.warning('Malformed json returned. Unable to retrieve any facts.')
+            return matched_facts
         if isinstance(structured, (list,)):
             for i, entry in enumerate(structured):
                 matched_facts.append((dict(fact=parser['property'], value=entry.get(parser['script']), set_id=i)))
@@ -21,13 +25,13 @@ def json(parser, blob):
     return matched_facts
 
 
-def regex(parser, blob):
+def regex(parser, blob, log):
     matched_facts = []
     for i, v in enumerate([m for m in re.findall(parser['script'], blob.strip())]):
         matched_facts.append(dict(fact=parser['property'], value=v, set_id=i))
     return matched_facts
 
 
-def line(parser, blob):
+def line(parser, blob, log):
     return [dict(fact=parser['property'], value=f.strip(), set_id=0) for f in blob.split('\n') if f]
 

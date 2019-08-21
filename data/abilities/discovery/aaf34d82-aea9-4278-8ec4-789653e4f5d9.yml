@@ -11,7 +11,7 @@
     windows:
       psh:
         command: |
-          Import-Module PowerView.ps1 -Verbose -Force;
+          Import-Module .\PowerView.ps1 -Force;
           Get-NetUser | ConvertTo-Json
         payload: PowerView.ps1
         parser:

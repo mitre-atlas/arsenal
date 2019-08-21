@@ -11,8 +11,8 @@
     windows:
       psh:
         command: |
-          Import-Module PowerView.ps1 -Verbose -Force;
-          Get-NetComputer;
+          Import-Module .\PowerView.ps1 -Force;
+          Get-NetComputer
         payload: PowerView.ps1
         parser:
           name: regex
