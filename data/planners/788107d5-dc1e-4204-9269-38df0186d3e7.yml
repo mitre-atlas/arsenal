@@ -3,3 +3,4 @@
 id: 788107d5-dc1e-4204-9269-38df0186d3e7
 name: sequential
 module: plugins.stockpile.app.sequential
+params: {}
