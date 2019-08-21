@@ -7,10 +7,12 @@
   technique:
     attack_id: T1145
     name: Private Keys
-  executors:
+  platforms:
     darwin:
-      command: |
-        for %i in (\.key \.pgp \.gpg \.ppk. \.p12 \.pem \.pfx \.cer \.p7b \.asc) do (dir c:\ /b /s .key | findstr /e "%i")
+      sh:
+        command: |
+          for %i in (\.key \.pgp \.gpg \.ppk. \.p12 \.pem \.pfx \.cer \.p7b \.asc) do (dir c:\ /b /s .key | findstr /e "%i")
     linux:
-      command: |
-        for %i in (\.key \.pgp \.gpg \.ppk. \.p12 \.pem \.pfx \.cer \.p7b \.asc) do (dir c:\ /b /s .key | findstr /e "%i")
+      sh:
+        command: |
+          for %i in (\.key \.pgp \.gpg \.ppk. \.p12 \.pem \.pfx \.cer \.p7b \.asc) do (dir c:\ /b /s .key | findstr /e "%i")

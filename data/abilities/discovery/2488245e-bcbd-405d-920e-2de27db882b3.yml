@@ -7,7 +7,8 @@
   technique:
     attack_id: T1012
     name: Query Registry
-  executors:
+  platforms:
     windows:
-      command: |
-        Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion
+      psh:
+        command: |
+          Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion

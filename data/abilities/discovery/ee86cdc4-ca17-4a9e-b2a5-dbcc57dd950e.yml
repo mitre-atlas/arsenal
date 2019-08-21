@@ -7,7 +7,8 @@
   technique:
     attack_id: T1033
     name: System Owner/User Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        Get-WmiObject -Class Win32_UserAccount
+      psh:
+        command: |
+          Get-WmiObject -Class Win32_UserAccount

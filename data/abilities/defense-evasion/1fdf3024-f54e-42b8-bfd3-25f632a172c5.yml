@@ -7,14 +7,17 @@
   technique:
     attack_id: T1107
     name: File Deletion
-  executors:
+  platforms:
     darwin:
-      command: |
-        rm sandcat-darwin && ps -o ppid=$(pgrep sandcat) | xargs -n1 kill
+      sh:
+        command: |
+          rm sandcat.go-darwin && ps -o ppid=$(pgrep sandcat) | xargs -n1 kill
     linux:
-      command: |
-        rm #sandcat-linux && ps -o ppid=$(pgrep sandcat) | xargs -n1 kill
+      sh:
+        command: |
+          rm #sandcat.go-linux && ps -o ppid=$(pgrep sandcat) | xargs -n1 kill
     windows:
-      command: |
-        Remove-Item -Path sandcat.exe -ErrorAction SilentlyContinue;
-        Get-Process | Where {$_.ProcessName -Like "powershell" -or $_.ProcessName -Like "sandcat"} | Stop-Process -Force;
+      psh:
+        command: |
+          Remove-Item -Path sandcat.go-windows -ErrorAction SilentlyContinue;
+          Get-Process | Where {$_.ProcessName -Like "powershell" -or $_.ProcessName -Like "sandcat"} | Stop-Process -Force;

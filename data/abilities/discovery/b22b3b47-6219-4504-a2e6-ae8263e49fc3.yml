@@ -6,7 +6,8 @@
   technique:
     attack_id: T1018
     name: Remote System Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        nltest /dclist:%USERDOMAIN%
+      psh:
+        command: |
+          nltest /dclist:%USERDOMAIN%

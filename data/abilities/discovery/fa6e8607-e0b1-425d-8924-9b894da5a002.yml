@@ -7,13 +7,16 @@
   technique:
     attack_id: T1124
     name: System Time Discovery
-  executors:
+  platforms:
     darwin:
-      command: |
-        date -u +"%Y-%m-%dT%H:%M:%SZ"
+      sh:
+        command: |
+          date -u +"%Y-%m-%dT%H:%M:%SZ"
     linux:
-      command: |
-        date -u +"%Y-%m-%dT%H:%M:%SZ"
+      sh:
+        command: |
+          date -u +"%Y-%m-%dT%H:%M:%SZ"
     windows:
-      command: |
-        Get-Date -UFormat '+%Y-%m-%dT%H:%M:%SZ'
+      psh:
+        command: |
+          Get-Date -UFormat '+%Y-%m-%dT%H:%M:%SZ'

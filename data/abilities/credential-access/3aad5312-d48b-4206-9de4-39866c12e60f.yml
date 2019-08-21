@@ -7,7 +7,8 @@
   technique:
     attack_id: T1214
     name: Credentials in Registry
-  executors:
+  platforms:
     windows:
-      command: |
-        reg query HKCU /f password /t REG_SZ /s
+      psh:
+        command: |
+          reg query HKCU /f password /t REG_SZ /s

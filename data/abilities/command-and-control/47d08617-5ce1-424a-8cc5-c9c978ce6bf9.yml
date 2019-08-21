@@ -7,13 +7,16 @@
   technique:
     attack_id: T1105
     name: Remote File Copy
-  executors:
+  platforms:
     darwin:
-      command: |
-        echo "proof that this machine was hacked." > message.txt
+      sh:
+        command: |
+          echo "proof that this machine was hacked." > message.txt
     linux:
-      command: |
-        echo "proof that this machine was hacked." > message.txt
+      sh:
+        command: |
+          echo "proof that this machine was hacked." > message.txt
     windows:
-      command: |
-        Set-Content -Path 'message.txt' -Value 'proof that this machine was hacked.'
+      psh:
+        command: |
+          Set-Content -Path 'message.txt' -Value 'proof that this machine was hacked.'

@@ -7,16 +7,18 @@
   technique:
     attack_id: T1139
     name: Bash History
-  executors:
+  platforms:
     darwin:
-      command: cat ~/.bash_history
-      parser:
-        name: regex
-        property: remote.ssh.cmd
-        script: '[\n\r]*  ssh *([^\n\r]*)'
+      sh:
+        command: cat ~/.bash_history
+        parser:
+          name: regex
+          property: remote.ssh.cmd
+          script: '[\n\r]*  ssh *([^\n\r]*)'
     linux:
-      command: cat ~/.bash_history
-      parser:
-        name: regex
-        property: remote.ssh.cmd
-        script: '[\n\r]*  ssh *([^\n\r]*)'
+      sh:
+        command: cat ~/.bash_history
+        parser:
+          name: regex
+          property: remote.ssh.cmd
+          script: '[\n\r]*  ssh *([^\n\r]*)'

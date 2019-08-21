@@ -7,10 +7,15 @@
   technique:
     attack_id: T1057
     name: Process Discovery
-  executors:
+  platforms:
     windows:
-      command: Get-Process
+      psh:
+        command: Get-Process
+      cmd:
+        command: tasklist
     darwin:
-      command: ps aux
+      sh:
+        command: ps aux
     linux:
-      command: ps aux
+      sh:
+        command: ps aux

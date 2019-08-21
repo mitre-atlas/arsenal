@@ -7,7 +7,8 @@
   technique:
     attack_id: T1083
     name: File and Directory Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        Get-ChildItem -Path #{host.system.path}
+      psh:
+        command: |
+          Get-ChildItem -Path #{host.system.path}

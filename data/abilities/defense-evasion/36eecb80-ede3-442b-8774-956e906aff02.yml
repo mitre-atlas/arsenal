@@ -7,10 +7,13 @@
   technique:
     attack_id: T1108
     name: Redundant Access
-  executors:
+  platforms:
     darwin:
-      command: sleep 60
+      sh:
+        command: sleep 60
     linux:
-      command: sleep 60
+      sh:
+        command: sleep 60
     windows:
-      command: sleep 60
+      psh:
+        command: sleep 60

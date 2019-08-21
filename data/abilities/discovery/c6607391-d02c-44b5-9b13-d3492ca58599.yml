@@ -7,7 +7,7 @@
   technique:
     attack_id: T1007
     name: System Service Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        Get-Service
+      psh:
+        command: Get-Service

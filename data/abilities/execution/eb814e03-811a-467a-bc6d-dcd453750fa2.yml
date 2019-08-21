@@ -7,9 +7,10 @@
    technique:
      attack_id: T1086
      name: Powershell
-   executors:
+   platforms:
      windows:
-       command: |
-        Add-Type -Assembly 'System.IO.Compression.FileSystem'; [System.IO.Compression.ZipFile]::ExtractToDirectory("PSTools.zip", "C:\Windows\System32\PSTools");
-       payload:
-         PSTools.zip
+       psh:
+         command: |
+          Add-Type -Assembly 'System.IO.Compression.FileSystem'; [System.IO.Compression.ZipFile]::ExtractToDirectory("PSTools.zip", "C:\Windows\System32\PSTools");
+         payload:
+           PSTools.zip

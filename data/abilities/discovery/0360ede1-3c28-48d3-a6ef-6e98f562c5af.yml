@@ -7,13 +7,14 @@
   technique:
     attack_id: T1003
     name: discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        Import-Module PowerView.ps1 -Verbose -Force;
-        Get-NetComputer;
-      payload: PowerView.ps1
-      parser:
-        name: regex
-        property: host.host.fqdn
-        script: '[\S]+'
+      psh:
+        command: |
+          Import-Module PowerView.ps1 -Verbose -Force;
+          Get-NetComputer;
+        payload: PowerView.ps1
+        parser:
+          name: regex
+          property: host.host.fqdn
+          script: '[\S]+'

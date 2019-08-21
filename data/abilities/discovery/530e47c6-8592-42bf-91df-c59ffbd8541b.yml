@@ -7,7 +7,7 @@
   technique:
     attack_id: T1135
     name: Network Share Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        Get-SmbShare
+      psh:
+        command: Get-SmbShare

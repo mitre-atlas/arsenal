@@ -7,10 +7,11 @@
   technique:
     attack_id: T1003
     name: Credential Dumping
-  executors:
+  platforms:
     windows:
-      command: |
-        Set-MPPreference -DisableRealtimeMonitoring 1
-        Start-Sleep -s 10
-      clean-up:
-        Set-MPPreference -DisableRealtimeMonitoring 0
+      psh:
+        command: |
+          Set-MPPreference -DisableRealtimeMonitoring 1
+          Start-Sleep -s 10
+        clean-up:
+          Set-MPPreference -DisableRealtimeMonitoring 0

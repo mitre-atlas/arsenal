@@ -7,22 +7,25 @@
   technique:
     attack_id: T1059
     name: Command-Line Interface
-  executors:
+  platforms:
     darwin:
-      command: |
-        ./wifi.sh off
-      cleanup: |
-        ./wifi.sh on
-      payload: wifi.sh
+      sh:
+        command: |
+          ./wifi.sh off
+        cleanup: |
+          ./wifi.sh on
+        payload: wifi.sh
     linux:
-      command: |
-        ./wifi.sh off
-      cleanup: |
-        ./wifi.sh on
-      payload: wifi.sh
+      sh:
+        command: |
+          ./wifi.sh off
+        cleanup: |
+          ./wifi.sh on
+        payload: wifi.sh
     windows:
-      command: |
-        .\wifi.ps1 -Off
-      cleanup: |
-        .\wifi.ps1 -On
-      payload: wifi.ps1
+      psh:
+        command: |
+          .\wifi.ps1 -Off
+        cleanup: |
+          .\wifi.ps1 -On
+        payload: wifi.ps1

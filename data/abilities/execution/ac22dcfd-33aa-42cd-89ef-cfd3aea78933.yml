@@ -7,11 +7,12 @@
   technique:
     attack_id: T1086
     name: PowerShell
-  executors:
+  platforms:
     windows:
-      command: |
-        New-Item -ItemType "directory" C:\Windows\System32\PSTools -Force;
-        Move-Item PsExec64.exe C:\Windows\System32\PSTools -Force;
-      cleanup: |
-        Remove-Item C:\Windows\System32\PSTools -Recurse
-      payload: PSExec64.exe
+      psh:
+        command: |
+          New-Item -ItemType "directory" C:\Windows\System32\PSTools -Force;
+          Move-Item PsExec64.exe C:\Windows\System32\PSTools -Force;
+        cleanup: |
+          Remove-Item C:\Windows\System32\PSTools -Recurse
+        payload: PSExec64.exe

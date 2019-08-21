@@ -7,13 +7,14 @@
   technique:
     attack_id: T1033
     name: System Owner/User Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        Import-Module PowerView.ps1 -Verbose -Force;
-        Get-NetUser | ConvertTo-Json
-      payload: PowerView.ps1
-      parser:
-        name: json
-        property: host.user.name
-        script: samaccountname
+      psh:
+        command: |
+          Import-Module PowerView.ps1 -Verbose -Force;
+          Get-NetUser | ConvertTo-Json
+        payload: PowerView.ps1
+        parser:
+          name: json
+          property: host.user.name
+          script: samaccountname

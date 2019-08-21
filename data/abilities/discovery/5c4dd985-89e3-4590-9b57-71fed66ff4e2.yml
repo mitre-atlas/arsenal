@@ -7,7 +7,8 @@
   technique:
     attack_id: T1069
     name: Permission Groups Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        gpresult /R
+      psh:
+        command: |
+          gpresult /R

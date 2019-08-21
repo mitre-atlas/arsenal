@@ -7,22 +7,25 @@
   technique:
     attack_id: T1018
     name: Remove System Discovery
-  executors:
+  platforms:
     darwin:
-      command: arp -a
-      parser:
-        name: regex
-        property: remote.host.ip
-        script: '\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
+      sh:
+        command: arp -a
+        parser:
+          name: regex
+          property: remote.host.ip
+          script: '\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
     linux:
-      command: arp -a
-      parser:
-        name: regex
-        property: remote.host.ip
-        script: '\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
+      sh:
+        command: arp -a
+        parser:
+          name: regex
+          property: remote.host.ip
+          script: '\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
     windows:
-      command: arp -a
-      parser:
-        name: regex
-        property: remote.host.ip
-        script: '\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'
+      psh:
+        command: arp -a
+        parser:
+          name: regex
+          property: remote.host.ip
+          script: '\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b'

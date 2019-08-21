@@ -7,13 +7,14 @@
   technique:
     attack_id: T1482
     name: Domain Trust Discovery  
-  executors:
+  platforms:
     windows:
-      command: |
-        Import-Module PowerView.ps1 -Verbose -Force;
-        Get-NetDomain | ConvertTo-Json
-      payload: PowerView.ps1
-      parser:
-        name: json
-        property: network.domain
-        script: Forest,Name
+      psh:
+        command: |
+          Import-Module PowerView.ps1 -Verbose -Force;
+          Get-NetDomain | ConvertTo-Json
+        payload: PowerView.ps1
+        parser:
+          name: json
+          property: network.domain
+          script: Forest,Name

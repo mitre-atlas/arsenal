@@ -7,17 +7,20 @@
   technique:
     attack_id: T1016
     name: System Network Configuration Discovery
-  executors:
+  platforms:
     darwin:
-      command: |
-        ./wifi.sh pref
-      payload: wifi.sh
+      sh:
+        command: |
+          ./wifi.sh pref
+        payload: wifi.sh
     linux:
-      command: |
-        ./wifi.sh pref
-      payload: wifi.sh
+      sh:
+        command: |
+          ./wifi.sh pref
+        payload: wifi.sh
     windows:
-      command: |
-        .\wifi.ps1 -Pref
-      payload: wifi.ps1
+      psh:
+        command: |
+          .\wifi.ps1 -Pref
+        payload: wifi.ps1
 

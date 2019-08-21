@@ -7,8 +7,9 @@
   technique:
     attack_id: T1016
     name: System Network Configuration Discovery
-  executors:
+  platforms:
     darwin:
-      command: |
-        for ip in $(seq 190 199); do ping -c 1 $(echo #{host.broadcast.ip} |
-        cut -d. -f-3).$ip -W 1; done
+      sh:
+        command: |
+          for ip in $(seq 190 199); do ping -c 1 $(echo #{host.broadcast.ip} |
+          cut -d. -f-3).$ip -W 1; done

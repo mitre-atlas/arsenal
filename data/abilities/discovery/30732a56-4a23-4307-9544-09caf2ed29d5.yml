@@ -7,7 +7,8 @@
   technique:
     attack_id: T1082
     name: System Information Discovery
-  executors:
+  platforms:
     darwin:
-      command: |
-        find / -type d -user #{host.user.name} \( -perm -g+w -or -perm -o+w \) 2>/dev/null -exec ls -adl {} \;
+      sh:
+        command: |
+          find / -type d -user #{host.user.name} \( -perm -g+w -or -perm -o+w \) 2>/dev/null -exec ls -adl {} \;

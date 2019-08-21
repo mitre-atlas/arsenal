@@ -7,7 +7,12 @@
   technique:
     attack_id: T1005
     name: Data from Local System
-  executors:
+  platforms:
     darwin:
-      command: |
-        curl #{remote.host.socket}
+      sh:
+        command: |
+          curl #{remote.host.socket}
+    linux:
+      sh:
+        command: |
+          curl #{remote.host.socket}

@@ -7,9 +7,10 @@
   technique:
     attack_id: T1064
     name: Scripting
-  executors:
+  platforms:
     windows:
-      command: |
-        Set-ItemProperty -Path HKLM:\Software\Policies\Microsoft\Windows\PowerShell -Name ExecutionPolicy -Value ByPass;
-                $shell = New-Object -ComObject Wscript.Shell
-                Set-ExecutionPolicy Bypass | echo $shell.sendkeys("Y`r`n")
+      psh:
+        command: |
+          Set-ItemProperty -Path HKLM:\Software\Policies\Microsoft\Windows\PowerShell -Name ExecutionPolicy -Value ByPass;
+                  $shell = New-Object -ComObject Wscript.Shell
+                  Set-ExecutionPolicy Bypass | echo $shell.sendkeys("Y`r`n")

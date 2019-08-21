@@ -7,11 +7,12 @@
   technique:
     attack_id: T1018
     name: Remote System Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        nbtstat -A #{remote.host.ip}
-      parser:
-        name: host
-        property: remote.host.name
-        script: ' \s*([^<\s]+)\s*<00>\s*UNIQUE'
+      psh:
+        command: |
+          nbtstat -A #{remote.host.ip}
+        parser:
+          name: host
+          property: remote.host.name
+          script: ' \s*([^<\s]+)\s*<00>\s*UNIQUE'

@@ -7,18 +7,21 @@
   technique:
     attack_id: T1033
     name: System Owner/User Discovery
-  executors:
+  platforms:
     darwin:
-      command: whoami
-      parser:
-        name: line
-        property: host.user.name
-        script: ''
+      sh:
+        command: whoami
+        parser:
+          name: line
+          property: host.user.name
+          script: ''
     linux:
-      command: whoami
-      parser:
-        name: line
-        property: host.user.name
-        script: ''
+      sh:
+        command: whoami
+        parser:
+          name: line
+          property: host.user.name
+          script: ''
     windows:
-      command: whoami
+      psh:
+        command: whoami

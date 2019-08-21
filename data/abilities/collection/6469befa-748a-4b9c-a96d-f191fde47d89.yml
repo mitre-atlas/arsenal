@@ -7,19 +7,22 @@
   technique:
     attack_id: T1074
     name: Data Staged
-  executors:
+  platforms:
     darwin:
-      command: |
-        mkdir -p staged
-      cleanup: |
-        rm -rf staged
+      sh:
+        command: |
+          mkdir -p staged
+        cleanup: |
+          rm -rf staged
     linux:
-      command: |
-        mkdir -p staged
-      cleanup: |
-        rm -rf staged
+      sh:
+        command: |
+          mkdir -p staged
+        cleanup: |
+          rm -rf staged
     windows:
-      command: |
-        New-Item -Path "." -Name "staged" -ItemType "directory"
-      cleanup: |
-        Remove-Item -Path "staged" -recurse
+      psh:
+        command: |
+          New-Item -Path "." -Name "staged" -ItemType "directory"
+        cleanup: |
+          Remove-Item -Path "staged" -recurse

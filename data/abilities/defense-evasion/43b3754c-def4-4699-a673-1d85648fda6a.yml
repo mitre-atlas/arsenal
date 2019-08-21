@@ -7,11 +7,13 @@
   technique:
     attack_id: T1107
     name: File Deletion
-  executors:
+  platforms:
     darwin:
-      command: unset HISTFILE
+      sh:
+        command: unset HISTFILE
     linux:
-      command: unset HISTFILE
+      sh:
+        command: unset HISTFILE
     windows:
-      command: |
-        Clear-History;Clear
+      psh:
+        command: Clear-History;Clear

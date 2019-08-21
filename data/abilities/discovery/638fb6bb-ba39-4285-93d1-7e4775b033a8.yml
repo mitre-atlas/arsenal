@@ -6,13 +6,16 @@
   technique:
     attack_id: T1049
     name: System Network Connections Discovery
-  executors:
+  platforms:
     darwin:
-      command: |
-        netstat -ant
+      sh:
+        command: |
+          netstat -ant
     linux:
-      command: |
-        netstat -ant
+      sh:
+        command: |
+          netstat -ant
     windows:
-      command: |
-        Get-NetTCPConnection
+      psh:
+        command: |
+          Get-NetTCPConnection

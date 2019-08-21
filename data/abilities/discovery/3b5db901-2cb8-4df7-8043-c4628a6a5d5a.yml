@@ -7,12 +7,14 @@
   technique:
     attack_id: T1057
     name: Process Discovery
-  executors:
+  platforms:
     darwin:
-      command: |
-        ps aux | grep #{host.user.name}
+      sh:
+        command: |
+          ps aux | grep #{host.user.name}
     linux:
-      command: |
-        ps aux | grep #{host.user.name}
+      sh:
+        command: |
+          ps aux | grep #{host.user.name}
 
 

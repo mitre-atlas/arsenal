@@ -7,11 +7,12 @@
   technique:
     attack_id: T1016
     name: System Network Configuration Discovery
-  executors:
+  platforms:
     darwin:
-      command: |
-        ifconfig | grep broadcast
-      parser:
-        name: regex
-        property: host.broadcast.ip
-        script: '(?<=broadcast ).*'
+      sh:
+        command: |
+          ifconfig | grep broadcast
+        parser:
+          name: regex
+          property: host.broadcast.ip
+          script: '(?<=broadcast ).*'

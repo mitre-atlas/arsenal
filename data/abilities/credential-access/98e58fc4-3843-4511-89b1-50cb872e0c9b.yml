@@ -7,7 +7,8 @@
   technique:
     attack_id: T1003
     name: Credential Dumping
-  executors:
+  platforms:
     windows:
-      command: |
-        reg query HKLM /f password /t REG_SZ /s
+      psh:
+        command: |
+          reg query HKLM /f password /t REG_SZ /s

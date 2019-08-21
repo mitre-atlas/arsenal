@@ -7,14 +7,15 @@
   technique:
     attack_id: T1057
     name: Process Discovery
-  executors:
+  platforms:
     windows:
-      command: |
-        $owners = @{}
-        gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user}
-        $ps = get-process | select processname,Id,@{l="Owner";e={$owners[$_.id.tostring()]}}
-        foreach($p in $ps) {
-            if($p.Owner -eq "#{host.user.name}") {
-                $p
-            }
-        }
+      psh:
+        command: |
+          $owners = @{}
+          gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user}
+          $ps = get-process | select processname,Id,@{l="Owner";e={$owners[$_.id.tostring()]}}
+          foreach($p in $ps) {
+              if($p.Owner -eq "#{host.user.name}") {
+                  $p
+              }
+          }

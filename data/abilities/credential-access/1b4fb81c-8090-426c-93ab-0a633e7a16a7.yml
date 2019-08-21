@@ -7,16 +7,17 @@
   technique:
     attack_id: T1040
     name: Network Sniffing
-  executors:
+  platforms:
     windows:
-      command: |
-        New-NetEventSession -Name "PCAP" -CaptureMode SaveToFile -LocalFilePath "$ENV:UserProfile\Desktop\pcap.etl" -MaxFileSize 0
-        Add-NetEventPacketCaptureProvider -SessionName "PCAP"
-        Start-NetEventSession -Name "PCAP"
-        Start-Sleep -s 60
-        Stop-NetEventSession -Name "PCAP"
-        Get-Content "$ENV:UserProfile\Desktop\pcap.etl"
-      cleanup: |
-        Remove-NetEventSession -Name "Capture"
-        Remove-Item $ENV:UserProfile\Desktop\pcap.etl
-        Remove-Item $ENV:UserProfile\Desktop\pcap.cab
+      psh:
+        command: |
+          New-NetEventSession -Name "PCAP" -CaptureMode SaveToFile -LocalFilePath "$ENV:UserProfile\Desktop\pcap.etl" -MaxFileSize 0
+          Add-NetEventPacketCaptureProvider -SessionName "PCAP"
+          Start-NetEventSession -Name "PCAP"
+          Start-Sleep -s 60
+          Stop-NetEventSession -Name "PCAP"
+          Get-Content "$ENV:UserProfile\Desktop\pcap.etl"
+        cleanup: |
+          Remove-NetEventSession -Name "Capture"
+          Remove-Item $ENV:UserProfile\Desktop\pcap.etl
+          Remove-Item $ENV:UserProfile\Desktop\pcap.cab

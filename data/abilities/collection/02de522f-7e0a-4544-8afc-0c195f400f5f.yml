@@ -7,18 +7,20 @@
   technique:
     attack_id: T1005
     name: Data from Local System
-  executors:
+  platforms:
     darwin:
-      command: |
-        pip install stormssh && storm list
-      parser:
-        name: regex
-        property: remote.ssh.cmd
-        script: '[\w\.-]+@[\w\.-]+'
+      sh:
+        command: |
+          pip install stormssh && storm list
+        parser:
+          name: regex
+          property: remote.ssh.cmd
+          script: '[\w\.-]+@[\w\.-]+'
     linux:
-      command: |
-        pip install stormssh && storm list
-      parser:
-        name: regex
-        property: remote.ssh.cmd
-        script: '[\w\.-]+@[\w\.-]+'
+      sh:
+        command: |
+          pip install stormssh && storm list
+        parser:
+          name: regex
+          property: remote.ssh.cmd
+          script: '[\w\.-]+@[\w\.-]+'

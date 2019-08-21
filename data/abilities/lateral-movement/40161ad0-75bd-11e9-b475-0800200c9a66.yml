@@ -7,7 +7,8 @@
   technique:
     attack_id: T1107
     name: Windows Admin Shares
-  executors:
+  platforms:
     windows:
-      command: |
-         net use \\#{remote.network.ip}\c$ /user:#{user.name}@#{network.domain} #{user.password}
+      psh:
+        command: |
+           net use \\#{remote.network.ip}\c$ /user:#{user.name}@#{network.domain} #{user.password}

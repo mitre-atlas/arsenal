@@ -7,8 +7,9 @@
   technique:
     attack_id: T1105
     name: Remote File Copy
-  executors:
+  platforms:
     windows:
-      command: |
-        cmd /c copy 54ndc47.exe \\#{remote.network.ip}\c$\54ndc47.exe
-      payload: sandcat.exe
+      psh:
+        command: |
+          cmd /c copy 54ndc47.exe \\#{remote.network.ip}\c$\54ndc47.exe
+        payload: sandcat.go

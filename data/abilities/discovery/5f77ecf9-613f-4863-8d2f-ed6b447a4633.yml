@@ -7,18 +7,20 @@
   technique:
     attack_id: T1018
     name: Remote System Discovery
-  executors:
+  platforms:
     darwin:
-      command: |
-        cat ~/.ssh/known_hosts
-      parser:
-        name: regex
-        property: remote.ssh.ip
-        script: '[0-9]+(?:\.[0-9]+){3}'
+      sh:
+        command: |
+          cat ~/.ssh/known_hosts
+        parser:
+          name: regex
+          property: remote.ssh.ip
+          script: '[0-9]+(?:\.[0-9]+){3}'
     linux:
-      command: |
-        cat ~/.ssh/known_hosts
-      parser:
-        name: regex
-        property: remote.ssh.ip
-        script: '[0-9]+(?:\.[0-9]+){3}'
+      sh:
+        command: |
+          cat ~/.ssh/known_hosts
+        parser:
+          name: regex
+          property: remote.ssh.ip
+          script: '[0-9]+(?:\.[0-9]+){3}'

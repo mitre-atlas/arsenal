@@ -7,18 +7,20 @@
   technique:
     attack_id: T1078
     name: Valid Accounts
-  executors:
+  platforms:
     darwin:
-      command: |
-        cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
-      parser:
-        name: regex
-        property: host.user.name
-        script: '[a-zA-Z]\w+'
+      sh:
+        command: |
+          cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
+        parser:
+          name: regex
+          property: host.user.name
+          script: '[a-zA-Z]\w+'
     linux:
-      command: |
-        cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
-      parser:
-        name: regex
-        property: host.user.name
-        script: '[a-zA-Z]\w+'
+      sh:
+        command: |
+          cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
+        parser:
+          name: regex
+          property: host.user.name
+          script: '[a-zA-Z]\w+'
