@@ -1,7 +1,7 @@
 ---
 
 id: 1a98b8e6-18ce-4617-8cc5-e65a1a9d490e
-name: File Hunter
+name: Hunter
 description: Locate and steal sensitive files
 phases:
   1:
