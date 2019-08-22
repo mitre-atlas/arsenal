@@ -10,8 +10,10 @@ phases:
       - baac2c6d-4652-4b7e-ab0a-f1bf246edd12 #mimikatz
       - 85341c8c-4ecb-4579-8f53-43e3e91d7617 #arp
       - fdf8bf36-797f-4157-805b-fe7c1c6fc903 #hostname
+      - 530e47c6-8592-42bf-91df-c59ffbd8541b #admin shares
     2: #copy 54ndc47
       - 4908fdc4-74fc-4d7c-8935-26d11ad26a8d #remoting
     3: #run 54ndc47
+      - 2a32e46f-5346-45d3-9475-52b857c05342 #wmi
       - 10a9d979-e342-418a-a9b0-002c483e0fa6 #ssh
       - 41bb2b7a-75af-49fd-bd15-6c827df25921 #remoting

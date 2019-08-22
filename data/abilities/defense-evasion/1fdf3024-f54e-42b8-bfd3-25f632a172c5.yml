@@ -19,5 +19,5 @@
     windows:
       psh:
         command: |
-          Remove-Item -Path sandcat.go-windows -ErrorAction SilentlyContinue;
+          Remove-Item -Path sandcat.exe -ErrorAction SilentlyContinue;
           Get-Process | Where {$_.ProcessName -Like "powershell" -or $_.ProcessName -Like "sandcat"} | Stop-Process -Force;

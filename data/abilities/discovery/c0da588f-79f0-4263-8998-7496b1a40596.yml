@@ -23,5 +23,5 @@
           property: host.user.name
           script: ''
     windows:
-      psh:
+      psh,cmd:
         command: whoami

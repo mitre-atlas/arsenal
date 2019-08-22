@@ -1,7 +1,7 @@
 ---
 
 - id: 530e47c6-8592-42bf-91df-c59ffbd8541b
-  name: Network Share Discovery
+  name: View admin shares
   description: Network Share Discovery
   tactic: discovery
   technique:
@@ -11,3 +11,5 @@
     windows:
       psh:
         command: Get-SmbShare
+      cmd:
+        command: net share

