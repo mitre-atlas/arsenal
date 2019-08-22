@@ -5,6 +5,11 @@ name: File Hunter
 description: Locate and steal sensitive files
 phases:
   1:
-    - 90c2efaa-8205-480d-8bb6-61d90dbaf81b
+    - 90c2efaa-8205-480d-8bb6-61d90dbaf81b #find sensitive files
+    - 6469befa-748a-4b9c-a96d-f191fde47d89 #create staging dir
   2:
-    - 5d199f56-698a-41ff-8ae9-bb7b8536adcb
+    - 4e97e699-93d7-4040-b5a3-2e906a58199e #stage files
+  3:
+    - 300157e5-f4ad-4569-b533-9d1fa0e74d74 #compress staged dir
+  4:
+    - ea713bc4-63f0-491c-9a6f-0b01d560b87e #exfil compressed dir

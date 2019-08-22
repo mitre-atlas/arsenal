@@ -1,7 +1,7 @@
 ---
 
 - id: 4e97e699-93d7-4040-b5a3-2e906a58199e
-  name: Stage Sensitive Files
+  name: Stage sensitive files
   description: copy files to staging directory
   tactic: collection
   technique:
@@ -11,14 +11,12 @@
     darwin:
       sh:
         command: |
-          cp "#{host.file.sensitive.private}" staged
+          cp "#{host.file.sensitive.private}" #{host.dir.staged.private}
     linux:
       sh:
         command: |
-          cp "#{host.file.sensitive.private}" staged
+          cp "#{host.file.sensitive.private}" #{host.dir.staged.private}
     windows:
       psh:
         command: |
-          Copy-Item -Path "#{host.file.sensitive.private}" -Destination staged
-
-  # see 6469befa-748a-4b9c-a96d-f191fde47d89 for creation of directory 'staged'
+          Copy-Item -Path "#{host.file.sensitive.private}" -Destination #{host.dir.staged.private}

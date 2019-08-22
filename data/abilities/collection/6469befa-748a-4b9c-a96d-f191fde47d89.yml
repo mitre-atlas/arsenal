@@ -1,7 +1,7 @@
 ---
 
 - id: 6469befa-748a-4b9c-a96d-f191fde47d89
-  name: Create Staging Directory
+  name: Create staging directory
   description: create a directory for exfil staging
   tactic: collection
   technique:
@@ -11,18 +11,30 @@
     darwin:
       sh:
         command: |
-          mkdir -p staged
+          mkdir -p staged && echo $PWD/staged
         cleanup: |
           rm -rf staged
+        parser:
+          name: line
+          property: host.dir.staged.private
+          script: ''
     linux:
       sh:
         command: |
-          mkdir -p staged
+          mkdir -p staged && echo $PWD/staged
         cleanup: |
           rm -rf staged
+        parser:
+          name: line
+          property: host.dir.staged.private
+          script: ''
     windows:
       psh:
         command: |
-          New-Item -Path "." -Name "staged" -ItemType "directory"
+          New-Item -Path "." -Name "staged" -ItemType "directory" -Force | foreach {$_.FullName} | Select-Object
         cleanup: |
           Remove-Item -Path "staged" -recurse
+        parser:
+          name: line
+          property: host.dir.staged.private
+          script: ''
