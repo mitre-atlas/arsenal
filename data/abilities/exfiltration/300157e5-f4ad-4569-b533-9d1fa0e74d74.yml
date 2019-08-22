@@ -29,7 +29,7 @@
           property: host.dir.compress.private
           script: ''
     windows:
-      psh:
+      psh,pwsh:
         command: |
           Compress-Archive -Path #{host.dir.staged.private} -DestinationPath #{host.dir.staged.private}.zip -Force;
           ls #{host.dir.staged.private}.zip | foreach {$_.FullName} | select

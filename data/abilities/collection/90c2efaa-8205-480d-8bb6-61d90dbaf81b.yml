@@ -17,7 +17,7 @@
           property: host.file.sensitive.private
           script: ''
     windows:
-      psh:
+      psh,pwsh:
         command: |
           Get-ChildItem C:\Users -Recurse -Include *.#{file.sensitive.extension} | foreach {$_.FullName} | Select-Object -first 5
         parser:

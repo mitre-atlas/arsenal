@@ -17,6 +17,6 @@
         command: |
           cp "#{host.file.sensitive.private}" #{host.dir.staged.private}
     windows:
-      psh:
+      psh,pwsh:
         command: |
-          Copy-Item -Path "#{host.file.sensitive.private}" -Destination #{host.dir.staged.private}
+          Copy-Item -Path "#{host.file.sensitive.private}" -Destination #{host.dir.staged.private} -Force

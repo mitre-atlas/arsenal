@@ -29,7 +29,7 @@
           property: host.dir.staged.private
           script: ''
     windows:
-      psh:
+      psh,pwsh:
         command: |
           New-Item -Path "." -Name "staged" -ItemType "directory" -Force | foreach {$_.FullName} | Select-Object
         cleanup: |

