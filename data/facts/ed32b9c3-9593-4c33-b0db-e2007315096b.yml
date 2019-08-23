@@ -7,3 +7,5 @@ facts:
     value: txt
   - property: file.sensitive.extension
     value: yml
+  - property: host.service.modifiable
+    value: fax
