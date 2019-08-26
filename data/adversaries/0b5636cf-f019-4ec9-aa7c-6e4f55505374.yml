@@ -1,0 +1,12 @@
+---
+
+id: 0b5636cf-f019-4ec9-aa7c-6e4f55505374
+name: Windows Worm (SMB+WMI)
+description: Move laterally any way possible
+phases:
+  1: # Initial discovery
+    - 85341c8c-4ecb-4579-8f53-43e3e91d7617 # arp -a
+  2: # Copy remotely
+    - c5e75d70-09ae-469f-8717-621a1b7ef946 # SMB copy
+  3: # Remote exec
+    - 2a32e46f-5346-45d3-9475-52b857c05342 # WMI exec
