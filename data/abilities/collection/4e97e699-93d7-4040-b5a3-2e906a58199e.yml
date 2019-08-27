@@ -11,12 +11,12 @@
     darwin:
       sh:
         command: |
-          cp "#{host.file.sensitive.private}" #{host.dir.staged.private}
+          cp "#{host.file.sensitive}" #{host.dir.staged}
     linux:
       sh:
         command: |
-          cp "#{host.file.sensitive.private}" #{host.dir.staged.private}
+          cp "#{host.file.sensitive}" #{host.dir.staged}
     windows:
       psh,pwsh:
         command: |
-          Copy-Item -Path "#{host.file.sensitive.private}" -Destination #{host.dir.staged.private} -Force
+          Copy-Item -Path "#{host.file.sensitive}" -Destination #{host.dir.staged} -Force

@@ -16,7 +16,7 @@
           rm -rf staged
         parser:
           name: line
-          property: host.dir.staged.private
+          property: host.dir.staged
           script: ''
     linux:
       sh:
@@ -26,7 +26,7 @@
           rm -rf staged
         parser:
           name: line
-          property: host.dir.staged.private
+          property: host.dir.staged
           script: ''
     windows:
       psh,pwsh:
@@ -36,5 +36,5 @@
           Remove-Item -Path "staged" -recurse
         parser:
           name: line
-          property: host.dir.staged.private
+          property: host.dir.staged
           script: ''

@@ -11,31 +11,31 @@
     darwin:
       sh:
         command: |
-          tar -P -zcf #{host.dir.staged.private}.tar.gz #{host.dir.staged.private} && echo #{host.dir.staged.private}.tar.gz
+          tar -P -zcf #{host.dir.staged}.tar.gz #{host.dir.staged} && echo #{host.dir.staged}.tar.gz
         cleanup: |
-          rm #{host.dir.staged.private}.tar.gz
+          rm #{host.dir.staged}.tar.gz
         parser:
           name: line
-          property: host.dir.compress.private
+          property: host.dir.compress
           script: ''
     linux:
       sh:
         command: |
-          tar -P -zcf #{host.dir.staged.private}.tar.gz #{host.dir.staged.private} && echo #{host.dir.staged.private}.tar.gz
+          tar -P -zcf #{host.dir.staged}.tar.gz #{host.dir.staged} && echo #{host.dir.staged}.tar.gz
         cleanup: |
-          rm #{host.dir.staged.private}.tar.gz
+          rm #{host.dir.staged}.tar.gz
         parser:
           name: line
-          property: host.dir.compress.private
+          property: host.dir.compress
           script: ''
     windows:
       psh,pwsh:
         command: |
-          Compress-Archive -Path #{host.dir.staged.private} -DestinationPath #{host.dir.staged.private}.zip -Force;
-          ls #{host.dir.staged.private}.zip | foreach {$_.FullName} | select
+          Compress-Archive -Path #{host.dir.staged} -DestinationPath #{host.dir.staged}.zip -Force;
+          ls #{host.dir.staged}.zip | foreach {$_.FullName} | select
         cleanup: |
-          rm #{host.dir.staged.private}.zip
+          rm #{host.dir.staged}.zip
         parser:
           name: line
-          property: host.dir.compress.private
+          property: host.dir.compress
           script: ''

