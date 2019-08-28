@@ -3,7 +3,7 @@
  - id: bddc0abc-07a0-41b7-813f-e0c64d9226b3
    name: Copy Sandcat File
    description: Copy Sandcat file using PsExec
-   tactic: Lateral-Movement
+   tactic: lateral-movement
    technique:
      attack_id: T1105
      name: Remote File Copy

@@ -3,7 +3,7 @@
 - id: 29451844-9b76-4e16-a9ee-d6feab4b24db
   name: PowerShell version
   description: Discover the PowerShell version
-  tactic: Discovery
+  tactic: discovery
   technique:
     attack_id: T1082
     name: System Information Discovery

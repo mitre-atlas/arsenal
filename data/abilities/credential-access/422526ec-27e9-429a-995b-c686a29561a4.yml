@@ -3,7 +3,7 @@
 - id: 422526ec-27e9-429a-995b-c686a29561a4
   name: Dump history
   description: Get contents of bash history
-  tactic: collection
+  tactic: credential-access
   technique:
     attack_id: T1139
     name: Bash History

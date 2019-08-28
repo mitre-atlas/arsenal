@@ -3,7 +3,7 @@
 - id: b6b105b9-41dc-490b-bc5c-80d699b82ce8
   name: Find OS Version
   description: Find OS Version
-  tactic: Discovery
+  tactic: discovery
   technique:
     attack_id: T1082
     name: System Information Discovery

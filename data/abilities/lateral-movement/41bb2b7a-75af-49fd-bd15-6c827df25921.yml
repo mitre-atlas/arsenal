@@ -4,7 +4,7 @@
 - id: 41bb2b7a-75af-49fd-bd15-6c827df25921
   name: Start Agent (WinRM)
   description: Start Agent using WinRM (WinRM)
-  tactic: Lateral-Movement
+  tactic: lateral-movement
   technique:
     attack_id: T1021
     name: Remote Services
