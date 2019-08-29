@@ -11,7 +11,7 @@ phases:
     - 85341c8c-4ecb-4579-8f53-43e3e91d7617 # arp -a
     - baac2c6d-4652-4b7e-ab0a-f1bf246edd12 # Invoke-Mimikatz
   2: # Get FQDNs and Hostname
-    - fdf8bf36-797f-4157-805b-fe7c1c6fc90  # nbtstat hostname lookup
+    - fdf8bf36-797f-4157-805b-fe7c1c6fc903  # nbtstat hostname lookup
     - fa4ed735-7006-4451-a578-b516f80e559f # nslookup names
   3: # Copy remotely
     - c5e75d70-09ae-469f-8717-621a1b7ef946 # SMB copy
