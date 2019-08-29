@@ -15,6 +15,6 @@
           $output="PowerShellCore.msi";
           $wc.DownloadFile("https://github.com/PowerShell/PowerShell/releases/download/v6.2.2/PowerShell-6.2.2-win-x64.msi", $output);
           msiexec.exe /package PowerShellCore.msi /quiet ADD_EXPLORER_CONTEXT_MENU_OPENPOWERSHELL=1 ENABLE_PSREMOTING=1 REGISTER_MANIFEST=1;
-          Start-Process powershell -ArgumentList "pwsh -c #{location} -server #{server} -group #{group} -executor pwsh" -WindowStyle hidden;
+          Start-Process powershell -ArgumentList "pwsh -c #{location} -server #{server} -group #{group} -executors pwsh" -WindowStyle hidden;
         cleanup: |
           rm PowerShellCore.msi;
