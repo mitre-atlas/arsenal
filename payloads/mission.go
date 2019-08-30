@@ -1,18 +1,12 @@
 package main
 
 import (
-	"bytes"
-	"encoding/base64"
-	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
-	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
-	"strings"
 	"time"
 )
 
@@ -61,57 +55,28 @@ func modifyFiles(files []string, message string) []string {
 	return successfulFiles
 }
 
-func postResults(server string, files []string) {
-	address := fmt.Sprintf("%s/sand/results", server)
-	for _, f := range files {
-		fmt.Println(string(f))
-	}
-	results := strings.Join(files, ",")
-	data, _ := json.Marshal(map[string]string{"modified_files": results})
-	request(address, encode(data))
-}
-
-func request(address string, data []byte) []byte {
-	req, _ := http.NewRequest("POST", address, bytes.NewBuffer(data))
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		return nil
-	}
-	body, _ := ioutil.ReadAll(resp.Body)
-	return decode(string(body))
-}
-
-func encode(b []byte) []byte {
-	return []byte(base64.StdEncoding.EncodeToString(b))
-}
-
-func decode(s string) []byte {
-	raw, _ := base64.StdEncoding.DecodeString(s)
-	return raw
-}
-
-func runMission(server string, extension string, message string, rootDir string) {
+func runMission(extension string, message string, rootDir string) {
 	allFiles := getFiles(rootDir, extension)
 	newFiles := findNewFiles(allFiles)
 	successfulFiles := modifyFiles(newFiles, message)
-	postResults(server, successfulFiles)
+	for _, f := range successfulFiles {
+		fmt.Println(string(f))
+	}
 }
 
 func main() {
-	server := flag.String("server", "http://localhost:8888", "The FQDN of the server")
 	duration := flag.String("duration", "60", "How long the mission should run (seconds)")
 	extension := flag.String("extension", ".caldera", "What extension are we searching for")
 	message := flag.String("message", "caldera wuz here", "What message should be inserted into the files")
 	dir := flag.String("dir", "/", "Where should CALDERA start looking for files")
 	flag.Parse()
+
 	modifiedFiles = make(map[string]bool)
-	fmt.Printf("Running mission for %s seconds, posting results to %s\n", *duration, *server)
+	fmt.Printf("Running mission for %s seconds\n", *duration)
 	i, _ := strconv.Atoi(*duration)
 	expires := time.Now().Add(time.Duration(i) * time.Second)
 	for time.Now().Sub(expires) < 0 {
-		fmt.Println("In mission loop...")
-		runMission(*server, *extension, *message, *dir)
+		runMission(*extension, *message, *dir)
 		time.Sleep(time.Duration(3) * time.Second)
 	}
 	fmt.Println("Done with mission")

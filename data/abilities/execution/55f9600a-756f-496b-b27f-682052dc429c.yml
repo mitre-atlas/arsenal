@@ -11,16 +11,16 @@
     linux:
       sh:
         command: |
-          ./mission.go -server #{server} -duration 60 -message 'caldera wuz here' -dir '/tmp'
+          ./mission.go -duration 60 -extension .caldera -dir '/'
         payload: mission.go
     darwin:
       sh:
         command: |
-          ./mission.go -server #{server} -duration 60 -message 'caldera wuz here' -dir '/tmp'
+          ./mission.go -duration 60 -extension .caldera -dir '/'
         payload: mission.go
     windows:
       psh:
         command: |
            mv mission.go mission.exe;
-           .\mission.exe -server #{server} -duration 60 -message 'caldera wuz here' -dir 'C:\';
+           .\mission.exe -duration 60 -extension .caldera -dir 'C:\';
         payload: mission.go
