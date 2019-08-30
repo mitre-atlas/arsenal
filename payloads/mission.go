@@ -112,6 +112,7 @@ func main() {
 	for time.Now().Sub(expires) < 0 {
 		fmt.Println("In mission loop...")
 		runMission(*server, *extension, *message, *dir)
+		time.Sleep(time.Duration(3) * time.Second)
 	}
 	fmt.Println("Done with mission")
 }

