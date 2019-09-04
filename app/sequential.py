@@ -6,8 +6,8 @@ class LogicalPlanner:
         self.agent_svc = planning_svc.get_service('agent_svc')
 
     async def execute(self, phase):
-        for member in operation['host_group']:
-            for l in await self.planning_svc.select_links(operation, member, phase):
+        for member in self.operation['host_group']:
+            for l in await self.planning_svc.select_links(self.operation, member, phase):
                 l.pop('rewards', [])
                 await self.agent_svc.perform_action(l)
-        await self.planning_svc.wait_for_phase(operation)
+        await self.planning_svc.wait_for_phase(self.operation)
