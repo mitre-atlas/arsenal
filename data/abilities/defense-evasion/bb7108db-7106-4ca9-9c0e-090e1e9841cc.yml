@@ -1,0 +1,19 @@
+---
+
+- id: bb7108db-7106-4ca9-9c0e-090e1e9841cc
+  name: Stop Agent
+  description: Stop Agent
+  tactic: defense-evasion
+  technique:
+    attack_id: T1480
+    name: Execution Guardrails
+  platforms:
+    windows:
+      psh,pwsh:
+        command: die
+    darwin:
+      sh:
+        command: die
+    linux:
+      sh:
+        command: die
