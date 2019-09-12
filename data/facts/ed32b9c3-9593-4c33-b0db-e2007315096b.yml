@@ -1,7 +1,7 @@
 ---
 
 id: ed32b9c3-9593-4c33-b0db-e2007315096b
-name: extensions
+name: built-in
 facts:
   - property: file.sensitive.extension
     value: txt
