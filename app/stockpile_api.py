@@ -14,6 +14,7 @@ class StockpileApi:
         ability = dict(await request.json())
         ability_dirs = ['plugins/%s/data/abilities' % p.name.lower() for p in self.services.get('plugin_svc').get_plugins()
                         if os.path.isdir('plugins/%s/data/abilities' % p.name.lower())]
+        ability_dirs.append('data/abilities')
         for d in ability_dirs:
             for filename in Path(d).glob('**/%s.yml' % ability['ability_id']):
                 ability_file = filename.read_text()
