@@ -1,14 +1,16 @@
 ---
 
-id: 725226e0-45b8-4432-84ee-144d3f37ff8d
-description: Move laterally with WinRM and WinRM
-name: Windows Worm (WinRM+WinRM)
+id: ddbd1850-5fd7-41d5-a7a1-1b15dac49090
+name: |
+  Windows Worm #3
+description: Move laterally with SMB and WinRM
+visible: 0
 phases:
   1:
   - 85341c8c-4ecb-4579-8f53-43e3e91d7617 # arp -a
   2:
   - fa4ed735-7006-4451-a578-b516f80e559f # nslookup
   3:
-  - 4908fdc4-74fc-4d7c-8935-26d11ad26a8d # winrm copy
+  - c5e75d70-09ae-469f-8717-621a1b7ef946 # smb copy
   4:
   - 41bb2b7a-75af-49fd-bd15-6c827df25921 # winrm exec

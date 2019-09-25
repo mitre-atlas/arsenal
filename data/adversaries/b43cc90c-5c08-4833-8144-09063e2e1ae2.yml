@@ -1,8 +1,10 @@
 ---
 
 id: b43cc90c-5c08-4833-8144-09063e2e1ae2
-name: Mission 1
+name: |
+  Mission #1
 description: Moves around laterally and then modifies files of interest
+visible: 1
 phases:
   1: # Initial discovery
     - 02de522f-7e0a-4544-8afc-0c195f400f5f # ssh parse

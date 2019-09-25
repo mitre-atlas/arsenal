@@ -1,0 +1,8 @@
+---
+id: de07f52d-9928-4071-9142-cb1d3bd851e8
+name: Hunter
+description: Discover host details and steal sensitive files
+visible: 1
+packs:
+  - 0f4c3c67-845e-49a0-927e-90ed33c044e0
+  - 1a98b8e6-18ce-4617-8cc5-e65a1a9d490e

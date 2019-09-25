@@ -3,6 +3,7 @@
 id: 78e7504d-968f-477d-8806-4d6c04b94431
 name: Worm
 description: Move laterally any way possible
+visible: 1
 phases:
   1: # Initial discovery
     - 02de522f-7e0a-4544-8afc-0c195f400f5f # ssh parse

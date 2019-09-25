@@ -12,3 +12,7 @@
       sh:
         command: |
           dscl . list /Users | grep -v '_'
+    windows:
+      psh:
+        command: |
+          Get-WmiObject -Class Win32_UserAccount

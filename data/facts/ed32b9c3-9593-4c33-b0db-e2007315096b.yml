@@ -9,3 +9,5 @@ facts:
     value: yml
   - property: host.service.modifiable
     value: fax
+  - property: target.org.name
+    value: mitre.org

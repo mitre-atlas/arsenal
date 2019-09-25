@@ -12,3 +12,9 @@
       psh:
         command: |
           gpresult /R
+    darwin:
+      sh:
+        command: groups
+    linux:
+      sh:
+        command: groups

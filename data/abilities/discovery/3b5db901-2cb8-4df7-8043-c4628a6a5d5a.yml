@@ -16,5 +16,15 @@
       sh:
         command: |
           ps aux | grep #{host.user.name}
-
+    windows:
+      psh:
+        command: |
+          $owners = @{}
+          gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user}
+          $ps = get-process | select processname,Id,@{l="Owner";e={$owners[$_.id.tostring()]}}
+          foreach($p in $ps) {
+              if($p.Owner -eq "#{host.user.name}") {
+                  $p
+              }
+          }
 

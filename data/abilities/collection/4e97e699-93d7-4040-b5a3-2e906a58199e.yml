@@ -16,7 +16,3 @@
       sh:
         command: |
           cp "#{host.file.sensitive}" #{host.dir.staged}
-    windows:
-      psh,pwsh:
-        command: |
-          Copy-Item -Path "#{host.file.sensitive}" -Destination #{host.dir.staged} -Force
