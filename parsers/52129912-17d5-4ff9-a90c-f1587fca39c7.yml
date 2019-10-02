@@ -1,5 +1,0 @@
----
-
-id: 52129912-17d5-4ff9-a90c-f1587fca39c7
-name: [line, regex, json]
-class: plugins.stockpile.app.standard_parsers.StandardParsers

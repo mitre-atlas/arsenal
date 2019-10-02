@@ -1,5 +1,0 @@
----
-
-id: df260e5f-c3b9-4781-a2c2-2b469e582c12
-name: mimikatz
-class: plugins.stockpile.app.mimikatz_parser.MimikatzParser
