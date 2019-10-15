@@ -11,3 +11,14 @@ facts:
     value: fax
   - property: target.org.name
     value: mitre.org
+rules:
+  - action: DENY
+    fact: file.sensitive.extension
+    match: .*
+  - action: ALLOW
+    fact: file.sensitive.extension
+    match: txt
+  - action: ALLOW
+    fact: file.sensitive.extension
+    match: yml  
+  
