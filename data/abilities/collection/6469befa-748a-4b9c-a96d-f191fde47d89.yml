@@ -14,27 +14,24 @@
           mkdir -p staged && echo $PWD/staged
         cleanup: |
           rm -rf staged
-        parser:
-          name: line
-          property: host.dir.staged
-          script: ''
+        parsers:
+          plugins.stockpile.data.parsers.p_line:
+            - source: host.dir.staged
     linux:
       sh:
         command: |
           mkdir -p staged && echo $PWD/staged
         cleanup: |
           rm -rf staged
-        parser:
-          name: line
-          property: host.dir.staged
-          script: ''
+        parsers:
+          plugins.stockpile.data.parsers.p_line:
+            - source: host.dir.staged
     windows:
       psh,pwsh:
         command: |
           New-Item -Path "." -Name "staged" -ItemType "directory" -Force | foreach {$_.FullName} | Select-Object
         cleanup: |
           Remove-Item -Path "staged" -recurse
-        parser:
-          name: line
-          property: host.dir.staged
-          script: ''
+        parsers:
+          plugins.stockpile.data.parsers.p_line:
+            - source: host.dir.staged

@@ -13,5 +13,5 @@
         command: |
           Set-MPPreference -DisableRealtimeMonitoring 1
           Start-Sleep -s 10
-        clean-up:
+        cleanup:
           Set-MPPreference -DisableRealtimeMonitoring 0

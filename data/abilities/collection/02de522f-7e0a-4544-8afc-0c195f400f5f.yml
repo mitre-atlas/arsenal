@@ -12,15 +12,7 @@
       sh:
         command: |
           pip install stormssh && storm list
-        parser:
-          name: regex
-          property: remote.ssh.cmd
-          script: '[\w\.-]+@[\w\.-]+'
     linux:
       sh:
         command: |
           pip install stormssh && storm list
-        parser:
-          name: regex
-          property: remote.ssh.cmd
-          script: '[\w\.-]+@[\w\.-]+'

@@ -12,15 +12,13 @@
       sh:
         command: |
           cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
-        parser:
-          name: regex
-          property: host.user.name
-          script: '[a-zA-Z]\w+'
+        parsers:
+          plugins.stockpile.data.parsers.p_line:
+            - source: host.user.name
     linux:
       sh:
         command: |
           cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
-        parser:
-          name: regex
-          property: host.user.name
-          script: '[a-zA-Z]\w+'
+        parsers:
+          plugins.stockpile.data.parsers.p_line:
+            - source: host.user.name
