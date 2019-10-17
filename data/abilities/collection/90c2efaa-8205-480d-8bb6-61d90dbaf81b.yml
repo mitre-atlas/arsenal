@@ -14,7 +14,6 @@
           find /Users -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
         parsers:
           plugins.stockpile.app.parsers.basic:
-            - source: global.file.sensitive
             - source: host.file.sensitive
               edge: has_ext
               target: file.sensitive.extension

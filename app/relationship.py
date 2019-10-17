@@ -8,5 +8,8 @@ class Relationship:
     def get_source(self):
         return self.source
 
-    def get_relationship(self):
-        return dict(source=self.source, edge=self.edge, target=self.target)
+    def get_target(self):
+        return self.target
+
+    def get_edge(self):
+        return self.edge

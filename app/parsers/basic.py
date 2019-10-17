@@ -10,12 +10,13 @@ class Parser(BaseParser):
 
     def parse(self, blob):
         relationships = []
-        for mp in self.mappers:
-            for match in self.line(blob):
+        for match in self.line(blob):
+            for mp in self.mappers:
+                source = self.set_value(mp.get('source'), match, self.used_facts)
+                target = self.set_value(mp.get('target'), match, self.used_facts)
                 relationships.append(
-                    Relationship(source=(mp.get('source'), self.set_value(mp.get('source'), match, self.used_facts)),
+                    Relationship(source=(mp.get('source'), source),
                                  edge=mp.get('edge'),
-                                 target=(mp.get('target'), self.set_value(mp.get('target'), match, self.used_facts)))
+                                 target=(mp.get('target'), target))
                 )
         return relationships
-
