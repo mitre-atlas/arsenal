@@ -1,4 +1,5 @@
-from plugins.stockpile.app.parsers.base_parser import BaseParser, Relationship
+from plugins.stockpile.app.parsers.base_parser import BaseParser
+from plugins.stockpile.app.relationship import Relationship
 
 
 class Parser(BaseParser):
