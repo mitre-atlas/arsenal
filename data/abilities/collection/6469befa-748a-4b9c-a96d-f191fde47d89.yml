@@ -15,7 +15,7 @@
         cleanup: |
           rm -rf staged
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.dir.staged
     linux:
       sh:
@@ -24,7 +24,7 @@
         cleanup: |
           rm -rf staged
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.dir.staged
     windows:
       psh,pwsh:
@@ -33,5 +33,5 @@
         cleanup: |
           Remove-Item -Path "staged" -recurse
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.dir.staged

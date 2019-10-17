@@ -15,7 +15,7 @@
         cleanup: |
           rm #{host.dir.staged}.tar.gz
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.dir.compress
     linux:
       sh:
@@ -24,7 +24,7 @@
         cleanup: |
           rm #{host.dir.staged}.tar.gz
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.dir.compress
     windows:
       psh,pwsh:
@@ -34,5 +34,5 @@
         cleanup: |
           rm #{host.dir.staged}.zip
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.dir.compress

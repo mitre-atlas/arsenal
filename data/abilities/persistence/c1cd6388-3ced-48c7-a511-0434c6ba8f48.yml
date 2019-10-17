@@ -13,12 +13,12 @@
         command: |
           cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.user.name
     linux:
       sh:
         command: |
           cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.user.name

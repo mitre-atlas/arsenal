@@ -13,19 +13,22 @@
         command: |
           find /Users -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
+            - source: global.file.sensitive
             - source: host.file.sensitive
+              edge: has_ext
+              target: file.sensitive.extension
     windows:
       psh,pwsh:
         command: |
           Get-ChildItem C:\Users -Recurse -Include *.#{file.sensitive.extension} | foreach {$_.FullName} | Select-Object -first 5
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.file.sensitive
     linux:
       sh:
         command: |
           find / -name '*.#{file.sensitive.extension}' -type f -not -path '*/\.*' -size -500k 2>/dev/null | head -5
         parsers:
-          plugins.stockpile.data.parsers.p_line:
+          plugins.stockpile.app.parsers.basic:
             - source: host.file.sensitive
