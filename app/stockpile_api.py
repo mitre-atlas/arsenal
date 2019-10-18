@@ -16,7 +16,7 @@ class StockpileApi:
                         if os.path.isdir('plugins/%s/data/abilities' % p.name.lower())]
         ability_dirs.append('data/abilities')
         for d in ability_dirs:
-            for filename in Path(d).glob('**/%s.yml' % ability['ability_id']):
+            for filename in Path(d).rglob('%s.yml' % ability['ability_id']):
                 ability_file = filename.read_text()
                 return web.Response(body=ability_file)
         return web.Response(body='No ability file found!')
