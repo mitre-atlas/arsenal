@@ -11,7 +11,7 @@ class StockpileService:
         name, platform = headers.get('file'), headers.get('platform')
         if which('go') is not None:
             plugin, file_path = await self.file_svc.find_file_path(name)
-            output = 'plugins/%s/payloads/%s-%s' % (plugin, name, platform)
+            output = 'plugins/%s/data/payloads/%s-%s' % (plugin, name, platform)
             self.log.debug('Dynamically compiling %s' % name)
             await self.file_svc.compile_go(platform, output, file_path)
         return '%s-%s' % (name, platform)
