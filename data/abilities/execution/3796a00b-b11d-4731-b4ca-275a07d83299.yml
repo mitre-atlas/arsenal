@@ -12,8 +12,8 @@
       psh:
         command: |
           $job = Start-Job -ScriptBlock {
-            $username = '#{host.user.name}';
-            $password = '#{host.user.password}';
+            $username = '#{comp.user.name}';
+            $password = '#{comp.user.password}';
             $securePassword = ConvertTo-SecureString $password -AsPlainText -Force;
             $credential = New-Object System.Management.Automation.PSCredential $username, $securePassword;
             Start-Process Notepad.exe -NoNewWindow -PassThru -Credential $credential;

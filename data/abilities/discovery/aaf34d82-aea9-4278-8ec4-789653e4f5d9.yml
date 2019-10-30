@@ -16,5 +16,5 @@
         payload: PowerView.ps1
         parser:
           name: json
-          property: host.user.name
+          property: comp.user.name
           script: samaccountname

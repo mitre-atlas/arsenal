@@ -11,11 +11,11 @@
     darwin:
       sh:
         command: |
-          ps aux | grep #{host.user.name}
+          ps aux | grep #{comp.user.name}
     linux:
       sh:
         command: |
-          ps aux | grep #{host.user.name}
+          ps aux | grep #{comp.user.name}
     windows:
       psh:
         command: |
@@ -23,7 +23,7 @@
           gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user}
           $ps = get-process | select processname,Id,@{l="Owner";e={$owners[$_.id.tostring()]}}
           foreach($p in $ps) {
-              if($p.Owner -eq "#{host.user.name}") {
+              if($p.Owner -eq "#{comp.user.name}") {
                   $p
               }
           }

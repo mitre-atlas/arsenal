@@ -13,14 +13,14 @@
         command: whoami
         parser:
           name: line
-          property: host.user.name
+          property: comp.user.name
           script: ''
     linux:
       sh:
         command: whoami
         parser:
           name: line
-          property: host.user.name
+          property: comp.user.name
           script: ''
     windows:
       psh,cmd:

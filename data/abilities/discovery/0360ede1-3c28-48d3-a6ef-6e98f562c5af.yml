@@ -16,5 +16,5 @@
         payload: PowerView.ps1
         parser:
           name: regex
-          property: host.host.fqdn
+          property: comp.host.fqdn
           script: '[\S]+'

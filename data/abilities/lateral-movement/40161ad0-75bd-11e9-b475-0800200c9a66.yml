@@ -11,4 +11,4 @@
     windows:
       psh:
         command: |
-           net use \\#{remote.host.ip}\c$ /user:#{host.user.name} #{host.user.password};
+           net use \\#{remote.host.ip}\c$ /user:#{comp.user.name} #{comp.user.password};

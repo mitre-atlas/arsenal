@@ -14,5 +14,5 @@
           ifconfig | grep broadcast
         parser:
           name: regex
-          property: host.broadcast.ip
+          property: comp.broadcast.ip
           script: '(?<=broadcast ).*'
