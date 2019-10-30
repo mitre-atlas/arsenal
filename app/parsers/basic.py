@@ -4,10 +4,6 @@ from plugins.stockpile.app.relationship import Relationship
 
 class Parser(BaseParser):
 
-    def __init__(self, parser_info):
-        self.mappers = parser_info['mappers']
-        self.used_facts = parser_info['used_facts']
-
     def parse(self, blob):
         relationships = []
         for match in self.line(blob):

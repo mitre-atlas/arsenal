@@ -3,6 +3,10 @@ import re
 
 class BaseParser:
 
+    def __init__(self, parser_info):
+        self.mappers = parser_info['mappers']
+        self.used_facts = parser_info['used_facts']
+
     @staticmethod
     def set_value(search, match, used_facts):
         """
