@@ -21,12 +21,12 @@ class BaseRequirement:
     """ PRIVATE """
 
     def _check_requirement_type(self, source, target):
-        if self.enforcements.get('source') == source.get('property') and self.enforcements.get('target') == \
+        if self.enforcements.source == source.get('property') and self.enforcements.target == \
                 target.get('property'):
             return True
         return False
 
     def _is_valid_relationship(self, source, target):
         relationships = [relationship.get('target') for relationship in source.get('relationships', [])
-                         if self.enforcements.get('edge') == relationship.get('edge')]
+                         if self.enforcements.edge == relationship.get('edge')]
         return next((True for r in relationships if r.get('value') == target.get('value')), False)
