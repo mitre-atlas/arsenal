@@ -64,9 +64,9 @@ class Parser(BaseParser):
                 if self.parse_mode in match.packages:
                     for mp in self.mappers:
                         relationships.append(
-                            Relationship(source=(mp.get('source'), match.packages[self.parse_mode][0]['Username']),
-                                         edge=mp.get('edge'),
-                                         target=(mp.get('target'), match.packages[self.parse_mode][0]['Password']))
+                            Relationship(source=(mp.source, match.packages[self.parse_mode][0]['Username']),
+                                         edge=mp.edge,
+                                         target=(mp.target, match.packages[self.parse_mode][0]['Password']))
                         )
         except Exception as error:
             self.log.warning('Mimikatz parser encountered an error - {}. Continuing...'.format(error))
