@@ -1,5 +1,5 @@
+from app.objects.c_relationship import Relationship
 from plugins.stockpile.app.parsers.base_parser import BaseParser
-from plugins.stockpile.app.relationship import Relationship
 from app.utility.logger import Logger
 
 import re

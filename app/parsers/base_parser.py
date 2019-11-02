@@ -19,8 +19,8 @@ class BaseParser:
         if not search:
             return None
         for uf in used_facts:
-            if search == uf['property']:
-                return uf['value']
+            if search == uf.prop:
+                return uf.value
         return match
 
     @staticmethod
