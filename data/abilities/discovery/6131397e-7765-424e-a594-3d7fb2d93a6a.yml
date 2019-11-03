@@ -14,7 +14,3 @@
           Import-Module .\PowerView.ps1 -Force;
           Get-NetDomain | ConvertTo-Json
         payload: PowerView.ps1
-        parser:
-          name: json
-          property: network.domain
-          script: Forest,Name

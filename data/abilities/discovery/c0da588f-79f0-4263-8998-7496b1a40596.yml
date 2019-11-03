@@ -11,17 +11,15 @@
     darwin:
       sh:
         command: whoami
-        parser:
-          name: line
-          property: comp.user.name
-          script: ''
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: comp.user.name
     linux:
       sh:
         command: whoami
-        parser:
-          name: line
-          property: comp.user.name
-          script: ''
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: comp.user.name
     windows:
       psh,cmd:
         command: whoami

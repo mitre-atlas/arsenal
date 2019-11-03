@@ -11,22 +11,19 @@
     linux:
       sh:
         command: host "#{target.org.domain}" | grep mail | grep -oE '[^ ]+$' | rev | cut -c 2- | rev
-        parser:
-          name: line
-          property: target.org.emailhost
-          script: ''
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: target.org.emailhost
     darwin:
       sh:
         command: host "#{target.org.domain}" | grep mail | grep -oE '[^ ]+$' | rev | cut -c 2- | rev
-        parser:
-          name: line
-          property: target.org.emailhost
-          script: ''
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: target.org.emailhost
     windows:
       psh:
         command: |
           (nslookup -querytype=mx #{target.org.domain}. | Select-String -pattern 'mail' | Out-String).Trim()
-        parser:
-          name: regex
-          property: target.org.emailhost
-          script: '([a-zA-Z0-9_.]+)$'
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: target.org.emailhost

@@ -12,7 +12,3 @@
       psh:
         command: |
           nslookup #{remote.host.ip}
-        parser:
-          name: host
-          property: remote.host.name
-          script: 'Name:\s*([^\r\n\s]+)'

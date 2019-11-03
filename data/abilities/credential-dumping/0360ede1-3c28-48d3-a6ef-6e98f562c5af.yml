@@ -14,7 +14,4 @@
           Import-Module .\PowerView.ps1 -Force;
           Get-NetComputer
         payload: PowerView.ps1
-        parser:
-          name: regex
-          property: comp.host.fqdn
-          script: '[\S]+'
+

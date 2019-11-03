@@ -12,7 +12,3 @@
       psh:
         command: |
           nbtstat -A #{remote.host.ip}
-        parser:
-          name: host
-          property: remote.host.name
-          script: ' \s*([^<\s]+)\s*<00>\s*UNIQUE'
