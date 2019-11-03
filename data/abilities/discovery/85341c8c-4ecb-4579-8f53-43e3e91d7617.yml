@@ -6,7 +6,7 @@
   tactic: discovery
   technique:
     attack_id: T1018
-    name: Remove System Discovery
+    name: Remote System Discovery
   platforms:
     darwin:
       sh:

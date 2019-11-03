@@ -3,7 +3,7 @@
 - id: 2a32e46f-5346-45d3-9475-52b857c05342
   name: Start 54ndc47 (WMI)
   description: Remotely executes 54ndc47 over WMI
-  tactic: lateral-movement
+  tactic: execution
   technique:
     attack_id: T1047
     name: Windows Management Instrumentation

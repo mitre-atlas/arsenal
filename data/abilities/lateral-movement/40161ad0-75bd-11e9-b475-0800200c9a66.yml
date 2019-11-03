@@ -5,7 +5,7 @@
   description: Mounts a network file share on a target computer
   tactic: lateral-movement
   technique:
-    attack_id: T1107
+    attack_id: T1077
     name: Windows Admin Shares
   platforms:
     windows:

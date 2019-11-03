@@ -6,7 +6,7 @@
   tactic: discovery
   technique:
     attack_id: T1003
-    name: discovery
+    name: Credential Dumping
   platforms:
     windows:
       psh:

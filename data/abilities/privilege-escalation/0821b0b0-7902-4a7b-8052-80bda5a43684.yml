@@ -3,7 +3,7 @@
 - id: 0821b0b0-7902-4a7b-8052-80bda5a43684
   name: Shutdown Target System
   description: Force shutdown a target system using Process Injection and raw shellcode
-  tactic: execution
+  tactic: privilege-escalation
   technique:
     attack_id: T1055
     name: Process Injection
