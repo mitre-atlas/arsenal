@@ -24,6 +24,7 @@ class Parser(BaseParser):
         self.used_facts = parser_info['used_facts']
         self.parse_mode = 'wdigest'
         self.log = Logger('parsing_svc')
+        self.hash_check = r'([0-9a-fA-F][0-9a-fA-F] ){3}'
 
     def parse_katz(self, output):
         """
@@ -62,12 +63,14 @@ class Parser(BaseParser):
             parse_data = self.parse_katz(blob)
             for match in parse_data:
                 if self.parse_mode in match.packages:
-                    for mp in self.mappers:
-                        relationships.append(
-                            Relationship(source=(mp.source, match.packages[self.parse_mode][0]['Username']),
-                                         edge=mp.edge,
-                                         target=(mp.target, match.packages[self.parse_mode][0]['Password']))
-                        )
+                    hash_pass = re.match(self.hash_check, match.packages[self.parse_mode][0]['Password'])
+                    if not hash_pass:
+                        for mp in self.mappers:
+                            relationships.append(
+                                Relationship(source=(mp.source, match.packages[self.parse_mode][0]['Username']),
+                                             edge=mp.edge,
+                                             target=(mp.target, match.packages[self.parse_mode][0]['Password']))
+                            )
         except Exception as error:
             self.log.warning('Mimikatz parser encountered an error - {}. Continuing...'.format(error))
         return relationships
