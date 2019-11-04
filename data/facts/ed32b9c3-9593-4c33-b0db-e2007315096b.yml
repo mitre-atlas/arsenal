@@ -3,13 +3,13 @@
 id: ed32b9c3-9593-4c33-b0db-e2007315096b
 name: built-in
 facts:
-  - property: file.sensitive.extension
+  - trait: file.sensitive.extension
     value: txt
-  - property: file.sensitive.extension
+  - trait: file.sensitive.extension
     value: yml
-  - property: comp.service.modifiable
+  - trait: comp.service.modifiable
     value: fax
-  - property: target.org.name
+  - trait: target.org.name
     value: mitre.org
 rules:
   - action: DENY

@@ -19,7 +19,7 @@ class BaseParser:
         if not search:
             return None
         for uf in used_facts:
-            if search == uf.prop:
+            if search == uf.trait:
                 return uf.value
         return match
 

