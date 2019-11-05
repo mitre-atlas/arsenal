@@ -7,7 +7,7 @@ facts:
     value: txt
   - trait: file.sensitive.extension
     value: yml
-  - trait: comp.service.modifiable
+  - trait: host.service.modifiable
     value: fax
   - trait: target.org.name
     value: mitre.org
