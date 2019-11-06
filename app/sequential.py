@@ -5,6 +5,5 @@ class LogicalPlanner:
         self.planning_svc = planning_svc
 
     async def execute(self, phase):
-        for member in self.operation.agents:
-            for link in await self.planning_svc.select_links(self.operation, member, phase):
-                await self.operation.apply(link)
+        for link in await self.planning_svc.get_links(operation=self.operation, phase=phase):
+            await self.operation.apply(link)
