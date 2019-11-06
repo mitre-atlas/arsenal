@@ -11,5 +11,5 @@
     darwin:
       sh:
         command: |
-          for ip in $(seq 190 199); do ping -c 1 $(echo #{comp.broadcast.ip} |
+          for ip in $(seq 190 199); do ping -c 1 $(echo #{domain.broadcast.ip} |
           cut -d. -f-3).$ip -W 1; done

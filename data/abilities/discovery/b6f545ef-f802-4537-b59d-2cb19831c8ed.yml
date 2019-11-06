@@ -14,4 +14,4 @@
           ifconfig | grep broadcast
         parsers:
           plugins.stockpile.app.parsers.broadcastip:
-            - source: comp.broadcast.ip
+            - source: domain.broadcast.ip
