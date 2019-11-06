@@ -13,7 +13,7 @@
       psh:
         command: |
           $username = "#{comp.user.name}";
-          $password = "#{comp.user.password}";
+          $password = "#{domain.user.password}";
           $secstr = New-Object -TypeName System.Security.SecureString;
           $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
           $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
