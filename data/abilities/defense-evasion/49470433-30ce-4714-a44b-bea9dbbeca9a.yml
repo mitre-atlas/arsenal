@@ -12,6 +12,5 @@
       psh:
         command: |
           Set-MPPreference -DisableRealtimeMonitoring 1
-          Start-Sleep -s 10
         cleanup:
           Set-MPPreference -DisableRealtimeMonitoring 0
