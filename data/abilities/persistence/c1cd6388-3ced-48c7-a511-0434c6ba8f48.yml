@@ -14,11 +14,11 @@
           cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
         parsers:
           plugins.stockpile.app.parsers.basic:
-            - source: comp.user.name
+            - source: host.user.name
     linux:
       sh:
         command: |
           cut -d: -f1 /etc/passwd | grep -v '_' | grep -v '#'
         parsers:
           plugins.stockpile.app.parsers.basic:
-            - source: comp.user.name
+            - source: host.user.name

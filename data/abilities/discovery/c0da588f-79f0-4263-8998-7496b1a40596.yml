@@ -13,13 +13,13 @@
         command: whoami
         parsers:
           plugins.stockpile.app.parsers.basic:
-            - source: comp.user.name
+            - source: host.user.name
     linux:
       sh:
         command: whoami
         parsers:
           plugins.stockpile.app.parsers.basic:
-            - source: comp.user.name
+            - source: host.user.name
     windows:
       psh,cmd:
         command: whoami

@@ -12,7 +12,7 @@
       psh,pwsh:
         command: |
           $job = Start-Job -ScriptBlock {
-            $username = "#{comp.user.name}";
+            $username = "#{domain.user.name}";
             $password = "#{domain.user.password}";
             $secstr = New-Object -TypeName System.Security.SecureString;
             $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};

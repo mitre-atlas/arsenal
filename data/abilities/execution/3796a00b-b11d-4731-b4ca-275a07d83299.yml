@@ -12,7 +12,7 @@
       psh:
         command: |
           $job = Start-Job -ScriptBlock {
-            $username = '#{comp.user.name}';
+            $username = '#{host.user.name}';
             $password = '#{host.user.password}';
             $securePassword = ConvertTo-SecureString $password -AsPlainText -Force;
             $credential = New-Object System.Management.Automation.PSCredential $username, $securePassword;

