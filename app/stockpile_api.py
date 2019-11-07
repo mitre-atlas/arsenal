@@ -12,7 +12,8 @@ class StockpileApi:
     async def load_ability(self, request):
         await self.services.get('auth_svc').check_permissions(request)
         ability = dict(await request.json())
-        ability_dirs = ['plugins/%s/data/abilities' % p.name.lower() for p in self.services.get('app_svc').get_plugins()
+        ability_dirs = ['plugins/%s/data/abilities' % p.name.lower()
+                        for p in self.services.get('app_svc').get_plugins()
                         if os.path.isdir('plugins/%s/data/abilities' % p.name.lower())]
         ability_dirs.append('data/abilities')
         stripped_name = str(os.path.join('travesal', ability['ability_id']).split(os.path.sep)[-1]).strip('%')

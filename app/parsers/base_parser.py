@@ -48,4 +48,3 @@ class BaseParser:
     @staticmethod
     def broadcastip(blob):
         return re.findall(r'(?<=broadcast ).*', blob)
-

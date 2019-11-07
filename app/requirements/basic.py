@@ -23,4 +23,3 @@ class Requirement(BaseRequirement):
     @staticmethod
     def _get_fact(fact_list, fact_id):
         return next((f for f in fact_list if f['id'] == fact_id), False)
-
