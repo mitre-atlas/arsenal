@@ -3,23 +3,17 @@ from plugins.stockpile.app.requirements.base_requirement import BaseRequirement
 
 class Requirement(BaseRequirement):
 
-    def enforce(self, potential_fact, used_facts, all_operation_facts):
+    def enforce(self, used_facts, relationships):
         """
-        Given a potential fact, all facts used by the current link and all operation facts, determine if it complies
-        with this fact relationships enforcement mechanism
-        :param potential_fact
+        Given all used facts for a link and all known fact relationships, check if the used fact combination complies
+        with the abilities enforcement mechanism
         :param used_facts
-        :param all_operation_facts
+        :param relationships
         :return: True if it complies, False if it doesn't
         """
         for uf in used_facts:
-            f = self._get_fact(all_operation_facts, uf)
-            if not self.check_source_target(f, potential_fact):
-                return False
-        return True
-
-    """ PRIVATE """
-
-    @staticmethod
-    def _get_fact(fact_list, fact_id):
-        return next((f for f in fact_list if f['id'] == fact_id), False)
+            if self.enforcements.source == uf.trait:
+                for r in self._get_relationships(uf, relationships):
+                    if self.is_valid_relationship([f for f in used_facts if f != uf], r):
+                        return True
+        return False

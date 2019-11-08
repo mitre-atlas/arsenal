@@ -4,29 +4,33 @@ class BaseRequirement:
     def __init__(self, requirement_info):
         self.enforcements = requirement_info['enforcements']
 
-    def check_source_target(self, source, target):
+    def is_valid_relationship(self, used_facts, relationship):
         """
-        Give a source and target fact, return
-        :param source: A fact object
-        :param target: A fact object
-        :return: True if the source and target comply with the enforcement mechanism or if the enforcement mechanism
-        doesn't apply to the parameter facts. False if the parameter facts don't comply
+        Checks if the used facts for a link match with the list of known fact relationships
+        :param used_facts:
+        :param relationship:
+        :return: True if there is a match, False if not
         """
-        if self._check_requirement_type(source, target):
-            if self._is_valid_relationship(source, target):
-                return True
+        if not self._check_edge(relationship.edge):
             return False
-        return True
+        for fact in used_facts:
+            if self._check_target(relationship.target, fact):
+                return True
+        return False
 
     """ PRIVATE """
 
-    def _check_requirement_type(self, source, target):
-        if self.enforcements.source == source.get('trait') and self.enforcements.target == \
-                target.get('trait'):
+    @staticmethod
+    def _get_relationships(uf, relationships):
+        return [r for r in relationships if r.source[0] == uf.trait and r.source[1] == uf.value]
+
+    @staticmethod
+    def _check_target(target, match):
+        if target[0] == match.trait and target[1] == match.value:
             return True
         return False
 
-    def _is_valid_relationship(self, source, target):
-        relationships = [relationship.get('target') for relationship in source.get('relationships', [])
-                         if self.enforcements.edge == relationship.get('edge')]
-        return next((True for r in relationships if r.get('value') == target.get('value')), False)
+    def _check_edge(self, edge):
+        if edge == self.enforcements.edge:
+            return True
+        return False
