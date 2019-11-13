@@ -11,8 +11,10 @@ facts:
     value: fax
   - trait: target.org.name
     value: mitre.org
-  - trait: remote.host.ip
+  - trait: target.org.ip
     value: 127.0.0.1
+  - trait: target.org.ip
+    value: 10.0.0.2
 rules:
   - action: DENY
     fact: file.sensitive.extension

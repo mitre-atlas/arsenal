@@ -16,7 +16,7 @@ class Parser(BaseParser):
                 )
         return relationships
 
-    ''' PRIVATE '''
+    """ PRIVATE """
 
     @staticmethod
     def _get_vm_names(blob):
