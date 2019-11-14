@@ -1,0 +1,16 @@
+---
+
+- id: aa6ec4dd-db09-4925-b9b9-43adeb154686
+  name: Mount Share
+  description: Mount a windows share
+  tactic: Lateral Movement
+  technique:
+    attack_id: T1077
+    name: Windows Admin Shares
+  platforms:
+    windows:
+      psh:
+        command: |
+          net use \\#{remote.host.fqdn}\C$ /user:#{network.domain.name}\#{domain.user.name} #{domain.user.password}
+        cleanup: |
+          net use \\#{remote.host.fqdn}\C$ /delete

