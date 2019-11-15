@@ -1,7 +1,7 @@
 ---
 
 - id: 13379ae1-d20e-4162-91f8-320d78a35e7f
-  name: Powerview Get-DomainComputer (Staged)
+  name: Discover local hosts
   description: Use PowerView to query the Active Directory server for a list of computers in the Domain
   tactic: discovery
   technique:

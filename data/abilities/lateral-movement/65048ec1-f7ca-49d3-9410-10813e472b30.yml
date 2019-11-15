@@ -1,7 +1,7 @@
 ---
 
 - id: 65048ec1-f7ca-49d3-9410-10813e472b30
-  name: Copy 54ndc47 (SMB) (Net_Use)
+  name: Copy 54ndc47 (SMB)
   description: Copy 54ndc47 to remote host (SMB)
   tactic: lateral-movement
   technique:

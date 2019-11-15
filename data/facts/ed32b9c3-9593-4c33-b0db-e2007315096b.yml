@@ -11,9 +11,9 @@ facts:
     value: fax
   - trait: target.org.name
     value: mitre.org
-  - trait: target.org.ip
+  - trait: remote.host.ip
     value: 127.0.0.1
-  - trait: target.org.ip
+  - trait: remote.host.ip
     value: 10.0.0.2
 rules:
   - action: DENY

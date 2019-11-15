@@ -11,9 +11,9 @@
     darwin:
       sh:
         command: |
-          nmap -Pn #{target.org.ip}
+          nmap -Pn #{remote.host.ip}
         parsers:
           plugins.stockpile.app.parsers.nmap:
-            - source: target.org.ip
+            - source: remote.host.ip
               edge: open_port
-              target: target.org.port
+              target: remote.host.port
