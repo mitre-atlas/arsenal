@@ -1,0 +1,5 @@
+---
+
+id: 0ddfce91-6ae4-4e2d-a1b7-ec9d260692c9
+name: HTTP
+module: plugins.stockpile.app.c2.http
