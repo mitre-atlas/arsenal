@@ -7,7 +7,7 @@ address = None
 enabled = True
 
 
-async def initialize(app, services):
+async def enable(app, services):
     file_svc = services.get('file_svc')
     await file_svc.add_special_payload('mission.go', StockpileService(file_svc).dynamically_compile)
 
