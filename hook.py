@@ -4,7 +4,6 @@ from plugins.stockpile.app.stockpile_svc import StockpileService
 name = 'Stockpile'
 description = 'A stockpile of abilities, adversaries, payloads and planners'
 address = None
-enabled = True
 
 
 async def enable(app, services):
