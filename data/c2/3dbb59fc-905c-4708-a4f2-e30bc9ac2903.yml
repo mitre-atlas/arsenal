@@ -1,0 +1,7 @@
+---
+
+id: 3dbb59fc-905c-4708-a4f2-e30bc9ac2903
+name: Gist
+module: plugins.stockpile.app.c2.gist
+config:
+  key: {INSERT HERE}

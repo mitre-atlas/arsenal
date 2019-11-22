@@ -3,7 +3,6 @@ from datetime import datetime
 from urllib.parse import urlparse
 
 from aiohttp import web
-
 from app.objects.c_c2 import C2
 
 
