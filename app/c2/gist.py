@@ -13,6 +13,7 @@ from app.interfaces.c2_active_interface import C2Active
 class Gist(C2, C2Active):
 
     def __init__(self, services, module, config, name):
+        self.name = name
         self.key = config.get('key')
         super().__init__(services, module, config, name)
 
@@ -25,7 +26,7 @@ class Gist(C2, C2Active):
         Returns this C2 objects api key
         :return: GIST api key
         """
-        return 'githubToken', self.key
+        return dict(Name=self.name, Key=self.key)
 
     async def get_results(self):
         """
