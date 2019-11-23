@@ -1,0 +1,22 @@
+---
+
+- id: 5a4cb2be-2684-4801-9355-3a90c91e0004
+  name: Network Service Scanning
+  description: Scans the local network for common open ports
+  tactic: discovery
+  technique:
+    attack_id: T1046
+    name: Network Service Scanning
+  platforms:
+    windows:
+      psh:
+        command: |
+          $local_addr = (Get-NetIPConfiguration | Where-Object {$_.NetAdapter.Status -ne "Disconnected" }).IPv4Address.IPAddress;
+          $temp = $local_addr.split('.')[0..2];
+          $construct = $temp[0] + '.' + $temp[1] + '.' + $temp[2] + "."
+          1..255 | % { $a = $_; write-host "------"; write-host "$construct$a";
+          22,53,80,445 | % { $socket = new-object system.net.sockets.tcpclient;
+          $Connection = $socket.beginconnect("$construct$a", $_, $null, $null);
+          $Connection.AsyncWaitHandle.waitOne(50,$false) | out-null;
+          if ($socket.connected -eq $true) { echo "Port $_ is open!"}
+          $socket.Close | Out-Null; }}

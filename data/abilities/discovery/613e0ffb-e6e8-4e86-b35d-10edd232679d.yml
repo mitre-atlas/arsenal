@@ -1,0 +1,15 @@
+---
+
+- id: 613e0ffb-e6e8-4e86-b35d-10edd232679d
+  name: System Network Connections Discovery
+  description: Enumerates network connections
+  tactic: discovery
+  technique:
+    attack_id: T1049
+    name: System Network Connections Discovery
+  platforms:
+    windows:
+      psh:
+        command: |
+          netstat -ano;
+          Get-NetTCPConnection
