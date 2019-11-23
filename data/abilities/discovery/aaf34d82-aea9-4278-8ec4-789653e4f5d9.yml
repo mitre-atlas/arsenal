@@ -11,6 +11,13 @@
     windows:
       psh:
         command: |
-          Import-Module .\PowerView.ps1 -Force;
-          Get-NetUser | ConvertTo-Json
-        payload: PowerView.ps1
+          Import-Module .\powerview.ps1 -Force;
+          Get-NetUser | ConvertTo-Json -Depth 1
+        payload: powerview.ps1
+        parsers:
+          plugins.stockpile.app.parsers.json:
+            - source: domain.user.name
+              json_key: samaccountname
+              json_type:
+                - str
+
