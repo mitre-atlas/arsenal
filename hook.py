@@ -6,7 +6,8 @@ description = 'A stockpile of abilities, adversaries, payloads and planners'
 address = None
 
 
-async def enable(app, services):
+async def enable(services):
+    app = services.get('app_svc').application
     file_svc = services.get('file_svc')
     await file_svc.add_special_payload('mission.go', StockpileService(file_svc).dynamically_compile)
 
