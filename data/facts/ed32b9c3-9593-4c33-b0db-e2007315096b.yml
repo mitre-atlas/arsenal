@@ -17,12 +17,12 @@ facts:
     value: 10.0.0.2
 rules:
   - action: DENY
-    fact: file.sensitive.extension
+    trait: file.sensitive.extension
     match: .*
   - action: ALLOW
-    fact: file.sensitive.extension
+    trait: file.sensitive.extension
     match: txt
   - action: ALLOW
-    fact: file.sensitive.extension
+    trait: file.sensitive.extension
     match: yml  
   
