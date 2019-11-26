@@ -1,3 +1,4 @@
+from plugins.stockpile.app.http import HTTP
 from plugins.stockpile.app.stockpile_api import StockpileApi
 from plugins.stockpile.app.stockpile_svc import StockpileService
 
@@ -15,3 +16,5 @@ async def enable(services):
     data_svc = services.get('data_svc')
     app.router.add_route('POST', '/stockpile/ability', stockpile_api.load_ability)
     await data_svc.load_data(directory='plugins/stockpile/data')
+
+    await HTTP(services).start()
