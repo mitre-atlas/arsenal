@@ -30,7 +30,7 @@
       psh,pwsh:
         command: |
           Compress-Archive -Path #{host.dir.staged} -DestinationPath #{host.dir.staged}.zip -Force;
-          ls #{host.dir.staged}.zip | foreach {$_.FullName} | select
+          sleep 1; ls #{host.dir.staged}.zip | foreach {$_.FullName} | select
         cleanup: |
           rm #{host.dir.staged}.zip
         parsers:
