@@ -3,7 +3,7 @@
 - id: aa6ec4dd-db09-4925-b9b9-43adeb154686
   name: Mount Share
   description: Mount a windows share
-  tactic: Lateral Movement
+  tactic: lateral-movement
   technique:
     attack_id: T1077
     name: Windows Admin Shares
