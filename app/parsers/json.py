@@ -21,7 +21,6 @@ class Parser(BaseParser):
                     self.log.warning('JSON Parser not given a json_key, not parsing')
                     continue
                 json_type = mp.json_type if 'json_type' in dir(mp) else None
-                print(json_type)
                 for match in self._get_vals_from_json(json_output, mp.json_key, json_type):
                     source = self.set_value(mp.source, match, self.used_facts)
                     target = self.set_value(mp.target, match, self.used_facts)
