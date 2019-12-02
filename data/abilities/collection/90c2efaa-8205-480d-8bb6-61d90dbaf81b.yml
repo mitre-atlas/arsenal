@@ -20,7 +20,8 @@
     windows:
       psh,pwsh:
         command: |
-          Get-ChildItem C:\Users -Recurse -Include *.#{file.sensitive.extension} | foreach {$_.FullName} | Select-Object -first 5
+          Get-ChildItem C:\Users -Recurse -Include *.#{file.sensitive.extension} -ErrorAction 'SilentlyContinue' | foreach {$_.FullName} | Select-Object -first 5;
+          exit 0;
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.file.sensitive
