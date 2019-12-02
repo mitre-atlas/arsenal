@@ -16,3 +16,12 @@
       sh:
         command: |
           cp "#{host.file.sensitive}" #{host.dir.staged}
+    windows:
+      psh:
+        command: |
+          Copy-Item #{host.file.sensitive} #{host.dir.staged}
+      cmd:
+        command: |
+          copy #{host.file.sensitive} #{host.dir.staged}
+
+
