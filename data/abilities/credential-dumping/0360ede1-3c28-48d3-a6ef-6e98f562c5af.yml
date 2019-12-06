@@ -13,5 +13,5 @@
         command: |
           Import-Module .\PowerView.ps1 -Force;
           Get-NetComputer
-        payload: PowerView.ps1
+        payload: powerview.ps1
 
