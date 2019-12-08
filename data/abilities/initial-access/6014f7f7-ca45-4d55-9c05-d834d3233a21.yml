@@ -3,7 +3,7 @@
 - id: 6014f7f7-ca45-4d55-9c05-d834d3233a21
   name: Run NMAP
   description: Looks for open ports through scanning
-  tactic: initial access
+  tactic: initial-access
   technique:
     attack_id: X
     name: X

@@ -2,10 +2,10 @@
 - id: 7049e3ec-b822-4fdf-a4ac-18190f9b66d1
   name: Powerkatz (Staged)
   description: Use Invoke-Mimikatz
-  tactic: discovery
+  tactic: credential-access
   technique:
-    attack_id: T1018
-    name: Remote System Discovery
+    attack_id: T1003
+    name: Credential Dumping
   platforms:
     windows:
       psh:
