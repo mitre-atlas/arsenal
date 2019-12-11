@@ -12,4 +12,4 @@ class StockpileService:
             plugin, file_path = await self.file_svc.find_file_path(name)
             output = 'plugins/%s/data/payloads/%s-%s' % (plugin, name, platform)
             await self.file_svc.compile_go(platform, output, file_path)
-        return '%s-%s' % (name, platform), '%s-%s' % (name, platform)
+        return '%s-%s' % (name, platform)
