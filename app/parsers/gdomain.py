@@ -6,6 +6,7 @@ from app.utility.logger import Logger
 class Parser(BaseParser):
 
     def __init__(self, parser_info):
+        super().__init__(parser_info)
         self.mappers = parser_info['mappers']
         self.used_facts = parser_info['used_facts']
         self.log = Logger('Parser')

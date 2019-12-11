@@ -1,3 +1,4 @@
+from app.objects.c_obfuscator import Obfuscator
 from plugins.stockpile.app.http import HTTP
 from plugins.stockpile.app.stockpile_svc import StockpileService
 
@@ -13,3 +14,6 @@ async def enable(services):
     data_svc = services.get('data_svc')
     await data_svc.load_data(directory='plugins/stockpile/data')
     await services.get('contact_svc').register(HTTP(services))
+    await services.get('data_svc').store(
+        Obfuscator(name='base64', module='plugins.stockpile.app.obfuscators.base64basic')
+    )
