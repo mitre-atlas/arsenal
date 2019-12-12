@@ -1,0 +1,18 @@
+---
+
+id: a5156fde-8910-4240-ac97-335e9b3d5315
+name: Powershell Mania
+description: Run PowerShell cmds to evaluate detection
+visible: 1
+phases:
+  1: 
+
+    - 60f63260-39bb-4136-87a0-b6c2dca799fc
+    - bfff9006-d1fb-46ce-b173-92cb04e9a031 # Powershell iex for calc download
+  2: 
+    - 702bfdd2-9947-4eda-b551-c3a1ea9a59a2 # Powershell cmd dump to C:\
+    - 43b3754c-def4-4699-a673-1d85648fda6a # Clear logs
+    - e5f9de8f-3df1-4e78-ad92-a784e3f6770d # Run powershell commands from non-standard loction
+  3: 
+    - 134b49a3-3f93-41bd-85f4-563eadbb6055 # kill all powershell
+    - ea713bc4-63f0-491c-9a6f-0b01d560b87e

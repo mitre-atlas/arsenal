@@ -1,0 +1,15 @@
+id: af5e8c6c-1d67-45f6-a278-78f071babef1
+name: Power Neighbor
+description: Run Several PowerShell Commands to evaluate Defenses
+visible: 1
+phases:
+  1:
+    - 702bfdd2-9947-4eda-b551-c3a1ea9a59a2 # Powershell command dump to C:\
+    - 55678719-e76e-4df9-92aa-10655bbd1cf4 # net & netstat command triage dump
+  2:
+    - bfff9006-d1fb-46ce-b173-92cb04e9a031 # PowerShell iex for calc download
+    - 7049e3ec-b822-4fdf-a4ac-18190f9b66d1 # Invoke-Mimikat
+    - ccdb8caf-c69e-424b-b930-551969450c57 # Invoke Mimikatz experimental
+  3:
+    - 134b49a3-3f93-41bd-85f4-563eadbb6055 # Kill all powershell processes
+    - ea713bc4-63f0-491c-9a6f-0b01d560b87e # Collect data

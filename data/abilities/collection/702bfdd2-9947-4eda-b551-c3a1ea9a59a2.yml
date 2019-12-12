@@ -1,0 +1,15 @@
+---
+
+- id: 702bfdd2-9947-4eda-b551-c3a1ea9a59a2
+  description: System Information Gathering Script
+  name: PowerShell information gathering
+  tactic: collection
+  technique:
+    attack_id: T1086
+    name: PowerShell
+  platforms:
+    windows:
+      pwsh:
+        command: |
+          powershell.exe -c "Get-WmiObject -class win32_operatingsystem | select -property * | export-csv msdebug.log";
+          powershell.exe -c "get-process" >> C:\Windows\temp\history;
