@@ -1,13 +1,16 @@
 import json
+
+from aiohttp import web
 from datetime import datetime
 from urllib.parse import urlparse
 
-from aiohttp import web
+from app.interfaces.c2_passive_interface import C2Passive
 
 
-class HTTP:
+class HTTP(C2Passive):
 
     def __init__(self, services):
+        super().__init__(name='HTTP')
         self.app = services.get('app_svc').application
         self.contact_svc = services.get('contact_svc')
 
@@ -15,6 +18,11 @@ class HTTP:
         self.app.router.add_route('POST', '/ping', self._ping)
         self.app.router.add_route('POST', '/instructions', self._instructions)
         self.app.router.add_route('POST', '/results', self._results)
+
+    def valid_config(self):
+        if hasattr(self.app, 'router'):
+            return True
+        return False
 
     """ PRIVATE """
 

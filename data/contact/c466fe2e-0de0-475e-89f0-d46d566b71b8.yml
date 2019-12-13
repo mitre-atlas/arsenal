@@ -1,0 +1,8 @@
+---
+
+id: c466fe2e-0de0-475e-89f0-d46d566b71b8
+name: HTTP
+module: plugins.stockpile.app.contact.http
+mode: passive
+enabled: True
+config: {}
