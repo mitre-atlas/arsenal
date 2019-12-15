@@ -2,6 +2,10 @@
 
 id: 3dbb59fc-905c-4708-a4f2-e30bc9ac2903
 name: GIST
+description: |
+  Connects the agents to the server through GitHub. The server posts instructions to a GitHub gist, by using an API
+  key. The agent periodically checks the same account for new gists assigned to it. When it finds one, the agent pulls
+  it down, executes the instruction, then posts the result back up for the server to retrieve.
 module: plugins.stockpile.app.contact.gist
 mode: active
 enabled: True

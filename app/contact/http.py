@@ -9,8 +9,8 @@ from app.interfaces.c2_passive_interface import C2Passive
 
 class HTTP(C2Passive):
 
-    def __init__(self, services):
-        super().__init__(name='HTTP')
+    def __init__(self, services, config):
+        super().__init__(config=config)
         self.app = services.get('app_svc').application
         self.contact_svc = services.get('contact_svc')
 

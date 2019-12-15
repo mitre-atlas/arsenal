@@ -10,7 +10,7 @@ from app.interfaces.c2_active_interface import C2Active
 class GIST(C2Active):
 
     def __init__(self, services, config):
-        super().__init__(name=config['name'], services=services)
+        super().__init__(config=config, services=services)
         self.keys = config['config']['keys']
         self.log = self.file_svc.create_logger('GistService')
 
