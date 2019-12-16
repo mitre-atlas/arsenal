@@ -1,4 +1,4 @@
-description: This adversary consists of several abilities to bypass UAC on an update Windows 10 system
+description: This adversary consists of several abilities to bypass UAC on an updated Windows 10 system
 id: c724545d-a4cc-492e-8075-2ab9a699c847
 name: You Shall (Not) Bypass
 phases:
