@@ -1,8 +1,0 @@
----
-
-id: 2f6f34c2-7a13-418d-9633-610367ebe236
-name: Access
-description: Attempts to gain initial access on remote computers
-visible: 1
-packs:
-  - 0c783008-3cd4-483c-9033-d869b29ee4ed
