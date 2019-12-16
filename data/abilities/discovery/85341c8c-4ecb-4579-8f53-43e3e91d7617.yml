@@ -14,20 +14,28 @@
         parsers:
           plugins.stockpile.app.parsers.ip:
            - source: remote.host.ip
+             whitelist:
+              - private
     linux:
       sh:
         command: arp -a
         parsers:
           plugins.stockpile.app.parsers.ip:
            - source: remote.host.ip
+             whitelist:
+              - private
     windows:
       psh:
         command: arp -a
         parsers:
           plugins.stockpile.app.parsers.ip:
            - source: remote.host.ip
+             whitelist:
+              - private
       cmd:
         command: arp -a
         parsers:
           plugins.stockpile.app.parsers.ip:
            - source: remote.host.ip
+             whitelist:
+              - private
