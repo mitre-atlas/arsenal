@@ -15,6 +15,6 @@
         parsers:
           plugins.stockpile.app.parsers.json:
             - source: host.user.bookmarks
-                json_key: url
-                json_type:
-                  - str
+              json_key: url
+              json_type:
+                - str
