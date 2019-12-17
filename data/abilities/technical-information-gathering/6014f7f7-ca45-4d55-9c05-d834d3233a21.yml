@@ -3,10 +3,10 @@
 - id: 6014f7f7-ca45-4d55-9c05-d834d3233a21
   name: Run NMAP
   description: Looks for open ports through scanning
-  tactic: initial-access
+  tactic: Technical Information Gathering
   technique:
-    attack_id: X
-    name: X
+    attack_id: T1254
+    name: Conduct Active Scanning
   platforms:
     darwin:
       sh:
