@@ -18,3 +18,4 @@ phases:
     - 5c4dd985-89e3-4590-9b57-71fed66ff4e2 #see active user groups
     - 8c06ebf8-bacf-486b-bd77-21ba8c5a5777 #discover firewall
     - ce485320-41a4-42e8-a510-f5a8fe96a644 #find mail server
+    - b007fc38-9eb7-4320-92b3-9a3ad3e6ec25 #find chrome bookmarks
