@@ -3,7 +3,7 @@
 - id: 0ef4cc7b-611c-4237-b20b-db36b6906554
   name: Leverage Procdump for lsass memory
   description: Dump lsass for later use with mimikatz
-  tactic: Credential Dumping
+  tactic: credential-access
   technique:
     attack_id: T1003
     name: Credential Dumping

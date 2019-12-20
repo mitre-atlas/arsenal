@@ -3,7 +3,7 @@
 - id: e5bcefee-262d-4568-a261-e8a20855ec81
   name: Signed Binary Execution - Mavinject
   description: Leverage Mavinject (signed binary) for DLL injection
-  tactic: Process Injection
+  tactic: defense-evasion
   technique:
     attack_id: T1055
     name: Process Injection
