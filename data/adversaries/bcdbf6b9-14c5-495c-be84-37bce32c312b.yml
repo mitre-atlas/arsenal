@@ -1,8 +1,8 @@
 ---
 id: bcdbf6b9-14c5-495c-be84-37bce32c312b
-name:  Singed Binary Proxy Execution
+name:  Signed Binary Proxy Execution
 description: Perform Signed Binary Proxy Execution
-visible: 1
+visible: 0
 phases:
   1:
     - 0ef4cc7b-611c-4237-b20b-db36b6906554 # cred dumping - Procdump via lsass
