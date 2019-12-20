@@ -16,5 +16,8 @@ async def enable(services):
     await stockpile_svc.contact_svc.register(HTTP(services, c2_configs['HTTP']))
     await stockpile_svc.contact_svc.register(GIST(services, c2_configs['GIST']))
     await stockpile_svc.data_svc.store(
+        Obfuscator(name='plain-text', module='plugins.stockpile.app.obfuscators.plain_text')
+    )
+    await stockpile_svc.data_svc.store(
         Obfuscator(name='base64', module='plugins.stockpile.app.obfuscators.base64basic')
     )
