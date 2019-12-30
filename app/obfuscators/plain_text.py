@@ -6,5 +6,5 @@ class Obfuscation(BaseObfuscator):
     def __init__(self, agent):
         self.agent = agent
 
-    def run(self, link):
+    def run(self, link, **kwargs):
         return self.decode_bytes(link.command)
