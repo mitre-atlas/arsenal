@@ -1,22 +1,27 @@
 from base64 import b64encode
 
-from app.utility.base_world import BaseWorld
+from app.utility.base_obfuscator import BaseObfuscator
 
 
-class Obfuscation(BaseWorld):
+class Obfuscation(BaseObfuscator):
+
+    @property
+    def supported_platforms(self):
+        return dict(
+            windows=['psh'],
+            darwin=['sh'],
+            linux=['sh']
+        )
 
     def __init__(self, agent):
         self.agent = agent
 
-    def run(self, link):
-        if self.agent.platform == 'windows':
-            return self.psh(link.command)
-        return self.bash(link.command)
+    """ EXECUTORS """
 
-    def psh(self, code):
-        recoded = b64encode(self.decode_bytes(code).encode('UTF-16LE'))
+    def psh(self, link):
+        recoded = b64encode(self.decode_bytes(link.command).encode('UTF-16LE'))
         return 'powershell -Enc %s' % recoded.decode('utf-8')
 
     @staticmethod
-    def bash(code):
-        return 'eval "$(echo %s | base64 --decode)"' % str(code.encode(), 'utf-8')
+    def sh(link):
+        return 'eval "$(echo %s | base64 --decode)"' % str(link.command.encode(), 'utf-8')

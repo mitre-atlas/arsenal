@@ -1,23 +1,38 @@
 import random
 import string
 
-from app.utility.base_world import BaseWorld
+from base64 import b64encode
+
+from app.utility.base_obfuscator import BaseObfuscator
 
 
-class Obfuscation(BaseWorld):
+class Obfuscation(BaseObfuscator):
+
+    @property
+    def supported_platforms(self):
+        return dict(
+            windows=['psh'],
+            darwin=['sh'],
+            linux=['sh']
+        )
 
     def __init__(self, agent):
         self.agent = agent
 
-    def run(self, link):
+    def run(self, link, **kwargs):
         cmd, extra = self._jumble_command(link.command)
-        if self.agent.platform == 'windows':
-            return self.decode_bytes(cmd)
-        return self.bash(cmd, extra)
+        link.command = cmd
+        return super().run(link, extra=extra)
 
     @staticmethod
-    def bash(code, extra):
-        return 'eval "$(echo %s | rev | cut -c%s- | rev | base64 --decode)"' % (str(code.encode(), 'utf-8'), extra+1)
+    def sh(link, **kwargs):
+        extra_chars = kwargs.get('extra') + 1
+        return 'eval "$(echo %s | rev | cut -c%s- | rev | base64 --decode)"' % (str(link.command.encode(), 'utf-8'), extra_chars)
+
+    def psh(self, link, **kwargs):
+        extra_chars = kwargs.get('extra') + 1
+        recoded = b64encode(self.decode_bytes(link.command).encode('UTF-16LE'))
+        return 'powershell -Enc %s.Substring(0,%s)' % (recoded.decode('utf-8'), len(link.command)-extra_chars)
 
     """ PRIVATE """
 

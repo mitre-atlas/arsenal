@@ -1,7 +1,7 @@
-from app.utility.base_world import BaseWorld
+from app.utility.base_obfuscator import BaseObfuscator
 
 
-class Obfuscation(BaseWorld):
+class Obfuscation(BaseObfuscator):
 
     def __init__(self, agent):
         self.agent = agent
