@@ -25,3 +25,8 @@ async def enable(services):
                    description='Obfuscates commands in base64',
                    module='plugins.stockpile.app.obfuscators.base64_basic')
     )
+    await stockpile_svc.data_svc.store(
+        Obfuscator(name='base64jumble',
+                   description='Obfuscates commands in base64, then adds characters to evade base64 detection',
+                   module='plugins.stockpile.app.obfuscators.base64_jumble')
+    )
