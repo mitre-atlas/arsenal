@@ -8,10 +8,10 @@ class Obfuscation(BaseWorld):
     def __init__(self, agent):
         self.agent = agent
 
-    def run(self, cmd):
+    def run(self, link):
         if self.agent.platform == 'windows':
-            return self.psh(cmd)
-        return self.bash(cmd)
+            return self.psh(link.command)
+        return self.bash(link.command)
 
     def psh(self, code):
         recoded = b64encode(self.decode_bytes(code).encode('UTF-16LE'))

@@ -6,5 +6,5 @@ class Obfuscation(BaseWorld):
     def __init__(self, agent):
         self.agent = agent
 
-    def run(self, cmd):
-        return self.decode_bytes(cmd)
+    def run(self, link):
+        return self.decode_bytes(link.command)

@@ -19,5 +19,5 @@ async def enable(services):
         Obfuscator(name='plain-text', module='plugins.stockpile.app.obfuscators.plain_text')
     )
     await stockpile_svc.data_svc.store(
-        Obfuscator(name='base64', module='plugins.stockpile.app.obfuscators.base64basic')
+        Obfuscator(name='base64', module='plugins.stockpile.app.obfuscators.base64_basic')
     )
