@@ -15,7 +15,7 @@
         cleanup: |
           wmic /node:`"#{remote.host.fqdn}`" /user:#{domain.user.name} /password:#{domain.user.password} process call create "taskkill /f /im s4ndc4t.exe"
   requirements:
-    plugins.stockpile.app.requirements.basic:
+    - plugins.stockpile.app.requirements.basic:
       - source: domain.user.name
         edge: has_password
         target: domain.user.password
