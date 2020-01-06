@@ -38,4 +38,7 @@
 
           $result = $client.PostAsync($url, $content).Result;
           $result.EnsureSuccessStatusCode();
+  requirements:
+    - plugins.stockpile.app.requirements.paw_provenance:
+      - source: host.dir.compress
 

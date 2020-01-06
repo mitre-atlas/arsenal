@@ -12,3 +12,6 @@
       psh:
         command: |
           Get-ChildItem -Path #{host.system.path}
+  requirements:
+    - plugins.stockpile.app.requirements.paw_provenance:
+      - source: host.system.path

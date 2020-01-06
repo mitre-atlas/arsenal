@@ -27,3 +27,6 @@
             Remove-Item $path;
             Move-Item -Path ($path + ".saved") -Destination $path
           }
+  requirements:
+    - plugins.stockpile.app.requirements.paw_provenance:
+      - source: host.service.modifiable
