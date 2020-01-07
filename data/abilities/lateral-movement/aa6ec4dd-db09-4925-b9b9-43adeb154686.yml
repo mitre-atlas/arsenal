@@ -14,3 +14,11 @@
           net use \\#{remote.host.fqdn}\C$ /user:#{network.domain.name}\#{domain.user.name} #{domain.user.password}
         cleanup: |
           net use \\#{remote.host.fqdn}\C$ /delete
+        parsers:
+          plugins.stockpile.app.parsers.share_mounted:
+            - source: remote.host.fqdn
+              edge: has_share
+  requirements:
+    - plugins.stockpile.app.requirements.not_exists:
+        - source: remote.host.fqdn
+          edge: has_share
