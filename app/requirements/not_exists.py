@@ -5,8 +5,8 @@ class Requirement(BaseRequirement):
 
     def enforce(self, link, relationships):
         """
-        Given a link and all known fact relationships, check if the link's used fact combination complies
-        with the abilities enforcement mechanism
+        Given a link and all known fact relationships, ensures that a the link does NOT contain any relationships
+        that align with the enforcement mechanism
         :param link
         :param relationships
         :return: True if it complies, False if it doesn't
@@ -17,4 +17,3 @@ class Requirement(BaseRequirement):
                     if self.is_valid_relationship([f for f in link.used if f != uf], r):
                         return False
         return True
-
