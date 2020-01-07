@@ -14,26 +14,8 @@ class BaseRequirement:
         if not self._check_edge(relationship.edge):
             return False
         for fact in used_facts:
-            if self.check_fact(relationship.target, fact):
+            if self._check_target(relationship.target, fact):
                 return True
-        return False
-
-    def check_source(self, used_facts, relationship):
-        """
-
-        :param used_facts:
-        :param relationship:
-        :return:
-        """
-        for fact in used_facts:
-            if self.check_fact(relationship.target, fact):
-                return True
-        return False
-
-    @staticmethod
-    def check_fact(target, match):
-        if target[0] == match.trait and target[1] == match.value:
-            return True
         return False
 
     """ PRIVATE """
@@ -41,6 +23,12 @@ class BaseRequirement:
     @staticmethod
     def _get_relationships(uf, relationships):
         return [r for r in relationships if r.source[0] == uf.trait and r.source[1] == uf.value]
+
+    @staticmethod
+    def _check_target(target, match):
+        if target[0] == match.trait and target[1] == match.value:
+            return True
+        return False
 
     def _check_edge(self, edge):
         if edge == self.enforcements.edge:

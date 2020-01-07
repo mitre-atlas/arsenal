@@ -19,5 +19,6 @@
             - source: remote.host.fqdn
               edge: has_share
   requirements:
-    - plugins.stockpile.app.requirements.no_mounted_share:
+    - plugins.stockpile.app.requirements.not_exists:
         - source: remote.host.fqdn
+          edge: has_share
