@@ -25,4 +25,7 @@
   requirements:
     - plugins.stockpile.app.requirements.not_exists:
       - source: remote.host.fqdn
-      - edge: has_54ndc47_copy
+        edge: has_54ndc47_copy
+    - plugins.stockpile.app.requirements.basic:
+      - source: remote.host.fqdn
+        edge: has_share
