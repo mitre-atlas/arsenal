@@ -2,7 +2,7 @@
 
 - id: 3b5db901-2cb8-4df7-8043-c4628a6a5d5a
   name: Find user processes
-  description: Get process info for processes running a user
+  description: Get process info for processes running as a user
   tactic: discovery
   technique:
     attack_id: T1057
