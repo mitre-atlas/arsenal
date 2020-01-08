@@ -3,10 +3,10 @@
 - id: c1cd6388-3ced-48c7-a511-0434c6ba8f48
   name: Find local users
   description: Get a list of all local users
-  tactic: persistence
+  tactic: discovery
   technique:
-    attack_id: T1078
-    name: Valid Accounts
+    attack_id: T1087
+    name: Account Discovery
   platforms:
     darwin:
       sh:

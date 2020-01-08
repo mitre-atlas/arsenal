@@ -12,7 +12,7 @@
       psh:
         command: |
           Import-Module .\powerview.ps1 -Force;
-          Get-NetUser | ConvertTo-Json -Depth 1
+          Get-NetUser -AdminCount | ConvertTo-Json -Depth 1
         payload: powerview.ps1
         parsers:
           plugins.stockpile.app.parsers.json:
