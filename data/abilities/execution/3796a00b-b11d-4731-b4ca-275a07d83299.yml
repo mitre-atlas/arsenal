@@ -19,3 +19,10 @@
             Start-Process Notepad.exe -NoNewWindow -PassThru -Credential $credential;
           };
           Receive-Job -Job $job -Wait;
+  requirements:
+    - plugins.stockpile.app.requirements.paw_provenance:
+      - source: host.user.name
+    - plugins.stockpile.app.requirements.basic:
+      - source: host.user.name
+        edge: has_password
+        target: host.user.password

@@ -27,4 +27,7 @@
                   $p
               }
           }
+  requirements:
+    - plugins.stockpile.app.requirements.paw_provenance:
+      - source: host.user.name
 

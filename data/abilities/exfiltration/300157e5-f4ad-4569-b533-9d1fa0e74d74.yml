@@ -36,3 +36,6 @@
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.dir.compress
+  requirements:
+    - plugins.stockpile.app.requirements.paw_provenance:
+      - source: host.dir.staged

@@ -11,7 +11,7 @@
     linux:
       sh:
         command: |
-          vm_list
+          acrnctl list
         parsers:
           plugins.stockpile.app.parsers.acrn:
             - source: hypervisor.vm.name

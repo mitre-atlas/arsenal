@@ -13,10 +13,12 @@ class BaseRequirement:
         """
         if not self._check_edge(relationship.edge):
             return False
-        for fact in used_facts:
-            if self._check_target(relationship.target, fact):
-                return True
-        return False
+        if self.enforcements.target:
+            for fact in used_facts:
+                if self._check_target(relationship.target, fact):
+                    return True
+            return False
+        return True
 
     """ PRIVATE """
 
