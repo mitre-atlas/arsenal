@@ -29,3 +29,5 @@
     - plugins.stockpile.app.requirements.basic:
       - source: remote.host.fqdn
         edge: has_share
+    - plugins.stockpile.app.requirements.no_backwards_movement:
+      - source: remote.host.fqdn

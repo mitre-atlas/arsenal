@@ -22,3 +22,9 @@
     - plugins.stockpile.app.requirements.not_exists:
         - source: remote.host.fqdn
           edge: has_share
+    - plugins.stockpile.app.requirements.basic:
+        - source: domain.user.name
+          edge: has_password
+          target: domain.user.password
+    - plugins.stockpile.app.requirements.no_backwards_movement:
+        - source: remote.host.fqdn
