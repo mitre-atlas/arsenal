@@ -7,7 +7,7 @@ class Parser(BaseParser):
     def parse(self, blob):
         relationships = []
         for match in self.line(blob):
-            if match == 'The command completed successfully.':
+            if 'The command completed successfully.' in match:
                 for mp in self.mappers:
                     relationships.append(
                         Relationship(source=(mp.source, self._get_remote_host(mp.source, self.used_facts)),
