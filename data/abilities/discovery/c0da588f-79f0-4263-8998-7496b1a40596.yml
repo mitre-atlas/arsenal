@@ -21,5 +21,14 @@
           plugins.stockpile.app.parsers.basic:
             - source: host.user.name
     windows:
-      psh,cmd:
-        command: whoami
+      psh:
+        command: |
+          $env:username
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.user.name
+      cmd:
+        command: echo %username%
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.user.name
