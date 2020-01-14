@@ -1,0 +1,17 @@
+---
+
+id: 564ae20d-778d-4965-93dc-b523be2e2ab4
+name: Super Spy
+description: Monitor the active user and navigate through their digital belongings
+visible: 1
+phases:
+  1:
+    - 316251ed-6a28-4013-812b-ddf5b5b007f8 #screen capture
+    - b007fe0c-c6b0-4fda-915c-255bbc070de2 #copy clipboard
+    - b007fc38-9eb7-4320-92b3-9a3ad3e6ec25 #find chrome bookmarks
+    - 78524da1-f347-4fbb-9295-209f1f408330 #record microphone
+  2:
+    - 9a30740d-3aa8-4c23-8efa-d51215e8a5b9 #scan wifi
+    - a0676fe1-cd52-482e-8dde-349b73f9aa69 #find preferred
+packs:
+  - 1a98b8e6-18ce-4617-8cc5-e65a1a9d490e

@@ -11,7 +11,10 @@
     darwin:
       sh:
         command: |
-          screencapture -t png screen.png
+          for i in {1..5}; do screencapture -t png screen-$i.png; sleep 10; done; ls screen*.png;
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+          - source: host.file.sensitive
     windows:
       psh,pwsh:
         command: |
