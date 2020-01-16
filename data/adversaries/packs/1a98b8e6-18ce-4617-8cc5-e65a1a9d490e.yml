@@ -6,7 +6,6 @@ description: An adversary pack to steal sensitive files
 visible: 0
 phases:
   1:
-    - 90c2efaa-8205-480d-8bb6-61d90dbaf81b #find sensitive files
     - 6469befa-748a-4b9c-a96d-f191fde47d89 #create staging dir
   2:
     - 4e97e699-93d7-4040-b5a3-2e906a58199e #stage files

@@ -33,6 +33,15 @@ class BaseParser:
         return re.findall(r'[\w\.-]+@[\w\.-]+', blob)
 
     @staticmethod
+    def filename(blob):
+        """
+        Parse out filenames
+        :param blob:
+        :return:
+        """
+        return re.findall(r'\b\w+\.\w+', blob)
+
+    @staticmethod
     def line(blob):
         """
         Split a blob by line
