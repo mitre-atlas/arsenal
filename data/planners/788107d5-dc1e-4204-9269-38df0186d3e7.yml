@@ -11,3 +11,5 @@ description: |
   will then run to completion and finish the operation.
 module: plugins.stockpile.app.sequential
 params: {}
+ignore_enforcement_modules:
+  - {Insert module name here}
