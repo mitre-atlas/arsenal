@@ -4,16 +4,15 @@
   platforms:
     darwin:
       sh:
-        command: find /Applications/ -maxdepth 2 -iname *.app | grep -io "[a-z ]*\.app"
-          | grep -Ei -- "symantec|norton|bitdefender|kapersky|eset|avast|avira|malwarebytes|sophos|(trend
-          micro)"
+        command: |
+          find /Applications/ -maxdepth 2 -iname *.app | grep -io "[a-z ]*\.app" | grep -Ei -- "symantec|norton|bitdefender|kapersky|eset|avast|avira|malwarebytes|sophos|(trend micro)"
         parsers:
-          plugins.stockpile.app.parsers.basic:
+          plugins.stockpile.app.parsers.antivirus:
             - source: host.installed.av
     windows:
       psh:
-        command: wmic /NAMESPACE:\\root\SecurityCenter2 PATH AntiVirusProduct GET
-          /value
+        command: |
+          wmic /NAMESPACE:\\root\SecurityCenter2 PATH AntiVirusProduct GET /value
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.installed.av
