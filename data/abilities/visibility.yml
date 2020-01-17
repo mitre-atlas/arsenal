@@ -1,17 +1,17 @@
 ---
 
 - 3b5db901-2cb8-4df7-8043-c4628a6a5d5a:
-    visibility: 20
+    score: 20
 - 4e97e699-93d7-4040-b5a3-2e906a58199e:
-    visibility: 50
+    score: 50
 - 638fb6bb-ba39-4285-93d1-7e4775b033a8:
-    visibility: 70
-- 89955f55-529d-4d58-bed4-fed9e42515ec:
-    visibility: 35
+    score: 70
+- 5a39d7ed-45c9-4a79-b581-e5fb99e24f65:
+    score: 35
     adjustments:
-        - host.installed.av:
-            value: sep
-            offset: 50
-        - host.installed.av:
-            value: mcafee
-            offset: 50
+      - host.installed.av:
+          value: symantec
+          offset: 50
+      - host.installed.av:
+          value: mcafee
+          offset: 50
