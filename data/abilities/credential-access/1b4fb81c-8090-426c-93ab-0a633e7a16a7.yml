@@ -32,4 +32,4 @@
               - value: symantec
                 score: 75
               - value: mcafee
-                offset: 75
+                score: 75
