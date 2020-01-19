@@ -15,5 +15,6 @@ phases:
   3:
     - 9a30740d-3aa8-4c23-8efa-d51215e8a5b9 #scan wifi
     - a0676fe1-cd52-482e-8dde-349b73f9aa69 #find preferred
+    - 1b4fb81c-8090-426c-93ab-0a633e7a16a7 #sniff network traffic
 packs:
   - 1a98b8e6-18ce-4617-8cc5-e65a1a9d490e

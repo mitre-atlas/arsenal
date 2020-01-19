@@ -21,3 +21,15 @@
           Remove-NetEventSession -Name "Capture"
           Remove-Item $ENV:UserProfile\Desktop\pcap.etl
           Remove-Item $ENV:UserProfile\Desktop\pcap.cab
+    darwin:
+      sh:
+        command: |
+          tcpdump -i en0 & sleep 5; kill $!
+        visibility:
+          score: 50
+          adjustments:
+            host.installed.av:
+              - value: symantec
+                score: 75
+              - value: mcafee
+                offset: 75

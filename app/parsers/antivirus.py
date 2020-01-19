@@ -12,5 +12,10 @@ class Parser(BaseParser):
             for uniform_match in [av for av in self.ANTIVIRUS if av in match]:
                 for mp in self.mappers:
                     source = self.set_value(mp.source, uniform_match, self.used_facts)
-                    relationships.append(Relationship(source=(mp.source, source)))
+                    target = self.set_value(mp.target, uniform_match, self.used_facts)
+                    relationships.append(
+                        Relationship(source=(mp.source, source),
+                                     edge=mp.edge,
+                                     target=(mp.target, target))
+                    )
         return relationships
