@@ -13,7 +13,6 @@
         command: |
           cp "#{host.file.sensitive}" #{host.dir.staged}
         limits:
-          - host.file.sensitive: 2
           - host.dir.staged: 1
     linux:
       sh:
