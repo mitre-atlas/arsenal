@@ -15,7 +15,7 @@ class Parser(BaseParser):
 
     def parse(self, blob):
         relationships = []
-        json_output = self._load_json(blob)
+        json_output = self.load_json(blob)
         if json_output is not None:
             for mp in self.mappers:
                 if 'json_key' not in dir(mp):
@@ -31,13 +31,6 @@ class Parser(BaseParser):
                                      target=(mp.target, target))
                     )
         return relationships
-
-    def _load_json(self, blob):
-        try:
-            return json.loads(blob)
-        except Exception:
-            self.log.warning('Output not JSON, use a different parser')
-            return None
 
     def _get_vals_from_json(self, json_output, key, json_type):
         """

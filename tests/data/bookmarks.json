@@ -1,0 +1,96 @@
+{
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "0",
+            "guid": "c411d866-44f6-4c9d-9aa1-5b3f72afbbb8",
+            "id": "25",
+            "meta_info": {
+               "last_visited_desktop": "13204926940459349"
+            },
+            "name": "My Home",
+            "type": "url",
+            "url": "http://example.com/"
+         }, {
+            "children": [ {
+               "date_added": "0",
+               "guid": "252d09e8-2424-4f62-b701-32ea859a38a0",
+               "id": "18",
+               "meta_info": {
+                  "last_visited_desktop": "13202396062162253"
+               },
+               "name": "OneDrive",
+               "type": "url",
+               "url": "https://example.com"
+            } ],
+            "date_added": "13201015180389979",
+            "date_modified": "0",
+            "guid": "526bb70c-aed2-4a96-8f4e-9a5d66bb83bc",
+            "id": "17",
+            "name": "space shuttle",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "0",
+               "guid": "ad7db393-43e0-4f65-beaf-75017acf4c71",
+               "id": "49",
+               "name": "ATT&CK™ Navigator",
+               "type": "url",
+               "url": "https://mitre.github.io/attack-navigator/enterprise/"
+            } ],
+            "date_added": "13201015180393848",
+            "date_modified": "0",
+            "guid": "e2203abe-5147-438c-982f-265be97f2fd4",
+            "id": "48",
+            "name": "att&ck",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "13216149801599731",
+               "guid": "25b9f8ba-5a3a-43d2-aa17-aaad891af30a",
+               "id": "73",
+               "name": "AOC",
+               "type": "url",
+               "url": "https://example.com"
+            } ],
+            "date_added": "13201015180391713",
+            "date_modified": "13216996194735831",
+            "guid": "a508dea0-b402-41ef-982f-1f076450dabe",
+            "id": "24",
+            "name": "my stuff",
+            "type": "folder"
+         }, {
+            "children": [ {
+               "date_added": "0",
+               "guid": "5f590780-6cc1-4d35-8bfd-2f01a56d6938",
+               "id": "39",
+               "meta_info": {
+                  "last_visited_desktop": "13204220896087376"
+               },
+               "name": "AWS",
+               "type": "url",
+               "url": "https://us-east-2.console.aws.amazon.com"
+            }],
+            "date_added": "13201015180392770",
+            "date_modified": "13207360985797615",
+            "guid": "3eef56ae-b15f-4694-bf14-1badcd89532e",
+            "id": "37",
+            "name": "project docs",
+            "type": "folder"
+         }, {
+            "date_added": "13207669614811502",
+            "guid": "0e347fa5-5744-456d-9014-89dce661df32",
+            "id": "71",
+            "name": "CALDERA",
+            "type": "url",
+            "url": "http://localhost:8888/login"
+         }],
+         "date_added": "13184423339319305",
+         "date_modified": "13224122104584992",
+         "guid": "00000000-0000-4000-A000-000000000002",
+         "id": "1",
+         "name": "Bookmarks Bar",
+         "type": "folder"
+      }
+   }
+}

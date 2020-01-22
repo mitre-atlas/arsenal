@@ -13,8 +13,7 @@
         command: |
           cat ~/Library/Application\ Support/Google/Chrome/Default/Bookmarks
         parsers:
-          plugins.stockpile.app.parsers.json:
-            - source: host.user.bookmarks
-              json_key: url
-              json_type:
-                - str
+          plugins.stockpile.app.parsers.bookmarks:
+            - source: host.chrome.bookmark_title
+              edge: resolves_to
+              target: host.chrome.bookmark_url

@@ -1,3 +1,4 @@
+import json
 import re
 
 
@@ -57,3 +58,10 @@ class BaseParser:
     @staticmethod
     def broadcastip(blob):
         return re.findall(r'(?<=broadcast ).*', blob)
+
+    @staticmethod
+    def load_json(blob):
+        try:
+            return json.loads(blob)
+        except Exception:
+            return None

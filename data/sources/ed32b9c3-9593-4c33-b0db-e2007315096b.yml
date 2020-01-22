@@ -15,6 +15,8 @@ facts:
     value: 127.0.0.1
   - trait: remote.host.ip
     value: 10.0.0.2
+  - trait: server.malicious.url
+    value: https://example.com
 adjustments:
     1b4fb81c-8090-426c-93ab-0a633e7a16a7:
       host.installed.av:
