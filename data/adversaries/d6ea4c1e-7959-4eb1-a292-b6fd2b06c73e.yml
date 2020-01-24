@@ -2,7 +2,6 @@
 id: d6ea4c1e-7959-4eb1-a292-b6fd2b06c73e
 name:  Enumerator
 description: Enumerate Processes in all the ways
-visible: 1
 phases:
   1:
     - 94f21386-9547-43c4-99df-938ab05d45ce # wmic and dump to disk
