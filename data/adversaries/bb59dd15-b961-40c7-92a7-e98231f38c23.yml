@@ -1,9 +1,0 @@
----
-
-id: bb59dd15-b961-40c7-92a7-e98231f38c23
-name: Stop agents
-description: stop agents
-visible: 1
-phases:
-  1:
-    - bb7108db-7106-4ca9-9c0e-090e1e9841cc
