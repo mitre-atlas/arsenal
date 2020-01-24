@@ -3,7 +3,6 @@
 id: 564ae20d-778d-4965-93dc-b523be2e2ab4
 name: Super Spy
 description: Monitor the active user and navigate through their digital belongings
-visible: 1
 phases:
   1:
     - 316251ed-6a28-4013-812b-ddf5b5b007f8 #screen capture
