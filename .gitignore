@@ -9,6 +9,6 @@
 .idea/*
 .logs/*
 !.logs/.gitkeep
-
+conf/secrets.yml
 # ignore bc av will wipe
 payloads/PowerView.ps1
