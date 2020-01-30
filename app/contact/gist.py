@@ -164,8 +164,8 @@ class Gist:
 
     async def handle_beacons(self, beacons):
         for beacon in beacons:
-            agent = await self.contact_svc.handle_heartbeat(**beacon)
-            await self._send_instructions(agent, beacon, await self.contact_svc.get_instructions(beacon['paw']))
+            agent, instructions = await self.contact_svc.handle_heartbeat(**beacon)
+            await self._send_instructions(agent, beacon, instructions)
 
     async def _send_instructions(self, agent, beacon, instructions):
         payloads = self._get_payloads(instructions)
