@@ -62,15 +62,16 @@ class Parser(BaseParser):
         try:
             parse_data = self.parse_katz(blob)
             for match in parse_data:
-                if self.parse_mode in match.packages:
-                    hash_pass = re.match(self.hash_check, match.packages[self.parse_mode][0]['Password'])
-                    if not hash_pass:
-                        for mp in self.mappers:
-                            relationships.append(
-                                Relationship(source=(mp.source, match.packages[self.parse_mode][0]['Username']),
-                                             edge=mp.edge,
-                                             target=(mp.target, match.packages[self.parse_mode][0]['Password']))
-                            )
+                if match.logon_server != '(null)':
+                    if self.parse_mode in match.packages:
+                        hash_pass = re.match(self.hash_check, match.packages[self.parse_mode][0]['Password'])
+                        if not hash_pass:
+                            for mp in self.mappers:
+                                relationships.append(
+                                    Relationship(source=(mp.source, match.packages[self.parse_mode][0]['Username']),
+                                                 edge=mp.edge,
+                                                 target=(mp.target, match.packages[self.parse_mode][0]['Password']))
+                                )
         except Exception as error:
             self.log.warning('Mimikatz parser encountered an error - {}. Continuing...'.format(error))
         return relationships
