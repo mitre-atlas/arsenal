@@ -11,11 +11,11 @@
     darwin:
       sh:
         command: |
-          > ~/.bash_history && unset HISTFILE
+          > $HOME/.bash_history && unset HISTFILE
     linux:
       sh:
         command: |
-          > ~/.bash_history && unset HISTFILE
+          > $HOME/.bash_history && unset HISTFILE
     windows:
       psh:
         command: Clear-History;Clear
