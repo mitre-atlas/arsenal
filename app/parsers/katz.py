@@ -22,7 +22,7 @@ class Parser(BaseParser):
     def __init__(self, parser_info):
         self.mappers = parser_info['mappers']
         self.used_facts = parser_info['used_facts']
-        self.parse_mode = 'wdigest'
+        self.parse_mode = ['wdigest', 'credman']
         self.log = Logger('parsing_svc')
         self.hash_check = r'([0-9a-fA-F][0-9a-fA-F] ){3}'
 
@@ -62,16 +62,17 @@ class Parser(BaseParser):
         try:
             parse_data = self.parse_katz(blob)
             for match in parse_data:
-                if match.logon_server != '(null)':
-                    if self.parse_mode in match.packages:
-                        hash_pass = re.match(self.hash_check, match.packages[self.parse_mode][0]['Password'])
-                        if not hash_pass:
-                            for mp in self.mappers:
-                                relationships.append(
-                                    Relationship(source=(mp.source, match.packages[self.parse_mode][0]['Username']),
-                                                 edge=mp.edge,
-                                                 target=(mp.target, match.packages[self.parse_mode][0]['Password']))
-                                )
+                if match.logon_server != '(null)' or 'credman' in match.packages:
+                    for pm in self.parse_mode:
+                        if pm in match.packages:
+                            hash_pass = re.match(self.hash_check, match.packages[pm][0]['Password'])
+                            if not hash_pass:
+                                for mp in self.mappers:
+                                    relationships.append(
+                                        Relationship(source=(mp.source, match.packages[pm][0]['Username']),
+                                                     edge=mp.edge,
+                                                     target=(mp.target, match.packages[pm][0]['Password']))
+                                    )
         except Exception as error:
             self.log.warning('Mimikatz parser encountered an error - {}. Continuing...'.format(error))
         return relationships
