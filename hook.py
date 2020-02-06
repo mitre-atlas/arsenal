@@ -1,5 +1,4 @@
 from app.objects.c_obfuscator import Obfuscator
-from plugins.stockpile.app.contact.gist import Gist
 from plugins.stockpile.app.stockpile_svc import StockpileService
 
 name = 'Stockpile'
@@ -9,8 +8,6 @@ address = None
 
 async def enable(services):
     stockpile_svc = StockpileService(services)
-    await services.get('contact_svc').register(Gist(services=services))
-
     await stockpile_svc.data_svc.store(
         Obfuscator(name='plain-text',
                    description='Does no obfuscation to any command, instead running it in plain text',
