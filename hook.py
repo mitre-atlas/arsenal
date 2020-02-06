@@ -9,7 +9,6 @@ address = None
 
 async def enable(services):
     stockpile_svc = StockpileService(services)
-    stockpile_svc.data_svc.data_dirs.add('plugins/stockpile/data')
     await services.get('contact_svc').register(Gist(services=services))
 
     await stockpile_svc.data_svc.store(
