@@ -7,8 +7,6 @@ facts:
     value: txt
   - trait: file.sensitive.extension
     value: yml
-  - trait: server.malicious.url
-    value: http://APP_POST:APP_PORT/drive-by
 adjustments:
     1b4fb81c-8090-426c-93ab-0a633e7a16a7:
       host.installed.av:
@@ -26,4 +24,3 @@ rules:
   - action: ALLOW
     trait: file.sensitive.extension
     match: yml  
-  
