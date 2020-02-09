@@ -1,0 +1,28 @@
+<div id="stockpile" class="section-profile">
+    <div class="row">
+        <div class="topleft duk-icon"><img onclick="removeSection('stockpile')" src="/gui/img/x.png"></div>
+        <div class="column section-border" style="flex:37%;text-align:left;padding:15px;">
+            <h1 style="font-size:70px;margin-top:-20px;">Stockpile</h1>
+            <h2 style="margin-top:-55px">a database of abilities</h2>
+            <p>
+                The stockpile contains a collection of TTPs (abilities), adversary profiles, data sources and
+                planners. These can be used to construct dynamic operations against targeted hosts.
+            </p>
+        </div>
+        <div class="column" style="flex:67%;padding:15px;text-align: left">
+                <div class="row" style="background-color: inherit;margin: -45px -50px -50px;">
+                    <div class="column duk-home" style="flex:33%;border-right: solid white 1px;line-height: 10px;">
+                        <img src="/gui/img/payload.png"/>
+                        <h3><span style="color:lightblue;font-weight: 900;">abilities</span></h3>
+                        <h1>{{ abilities|length }}</h1>
+                    </div>
+                    <div class="column duk-home" style="flex:33%;line-height: 10px;">
+                        <img src="/gui/img/hacker.png"/>
+                        <h3><span style="color:green;font-weight: 900;">adversaries</span></h3>
+                        <h1>{{ adversaries|length }}</h1>
+                    </div>
+                </div>
+            </center>
+        </div>
+    </div>
+</div>
