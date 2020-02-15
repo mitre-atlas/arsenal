@@ -1,4 +1,3 @@
-
 class BaseRequirement:
 
     def __init__(self, requirement_info):

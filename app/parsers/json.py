@@ -1,7 +1,7 @@
 import json
 
 from app.objects.secondclass.c_relationship import Relationship
-from plugins.stockpile.app.parsers.base_parser import BaseParser
+from app.utility.base_parser import BaseParser
 from app.utility.logger import Logger
 
 
