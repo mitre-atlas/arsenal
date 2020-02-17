@@ -3,8 +3,6 @@ import glob
 from shutil import which
 from aiohttp_jinja2 import template
 
-from app.service.auth_svc import red_authorization
-
 
 class StockpileService:
 
@@ -14,7 +12,6 @@ class StockpileService:
         self.data_svc = services.get('data_svc')
         self.contact_svc = services.get('contact_svc')
 
-    @red_authorization
     @template('stockpile.html')
     async def splash(self, request):
         abilities = [a for a in await self.data_svc.locate('abilities') if await a.which_plugin() == 'stockpile']
