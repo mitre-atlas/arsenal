@@ -2,9 +2,7 @@
 
 id: 4f3325d7-e6f2-4413-892a-60066052189d
 name: Alice Filters
-facts:
-adjustments:
-
+facts: {}
 rules:
   - action: DENY # Loopback
     trait: remote.host.ip
@@ -44,8 +42,10 @@ rules:
     match: 239.*
   - action: DENY # Broadcast
     trait: remote.host.ip
-    match: *.255
+    match: |
+        *.255
   - action: DENY
     trait: remote.ssh.ip
-    match: *.255
+    match: |
+        *.255
 
