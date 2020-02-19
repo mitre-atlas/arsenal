@@ -67,6 +67,10 @@ class Parser(BaseParser):
                         if pm in match.packages:
                             hash_pass = re.match(self.hash_check, match.packages[pm][0]['Password'])
                             if not hash_pass:
+                                if pm == 'credman':
+                                    split = match.packages[pm][0]['Username'].split('\\')
+                                    if len(split) > 1:
+                                        match.packages[pm][0]['Username'] = split[1]
                                 for mp in self.mappers:
                                     relationships.append(
                                         Relationship(source=(mp.source, match.packages[pm][0]['Username']),
