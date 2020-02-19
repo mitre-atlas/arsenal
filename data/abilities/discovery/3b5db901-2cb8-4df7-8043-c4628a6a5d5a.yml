@@ -19,12 +19,12 @@
     windows:
       psh:
         command: |
-          $owners = @{}
-          gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user}
-          $ps = get-process | select processname,Id,@{l="Owner";e={$owners[$_.id.tostring()]}}
+          $owners = @{};
+          gwmi win32_process |% {$owners[$_.handle] = $_.getowner().user};
+          $ps = get-process | select processname,Id,@{l="Owner";e={$owners[$_.id.tostring()]}};
           foreach($p in $ps) {
               if($p.Owner -eq "#{host.user.name}") {
-                  $p
+                  $p;
               }
           }
   requirements:
