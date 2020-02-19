@@ -1,6 +1,7 @@
+import logging
+
 from app.objects.secondclass.c_relationship import Relationship
 from app.utility.base_parser import BaseParser
-from app.utility.logger import Logger
 
 
 class Parser(BaseParser):
@@ -9,7 +10,7 @@ class Parser(BaseParser):
         super().__init__(parser_info)
         self.mappers = parser_info['mappers']
         self.used_facts = parser_info['used_facts']
-        self.log = Logger('Parser')
+        self.log = logging.getLogger('Parser')
 
     def gd_parser(self, text):
         results = dict()

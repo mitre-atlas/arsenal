@@ -1,9 +1,9 @@
-from app.objects.secondclass.c_relationship import Relationship
-from app.utility.base_parser import BaseParser
-from app.utility.logger import Logger
-
+import logging
 import re
 from collections import defaultdict
+
+from app.objects.secondclass.c_relationship import Relationship
+from app.utility.base_parser import BaseParser
 
 
 class MimikatzBlock(object):
@@ -23,7 +23,7 @@ class Parser(BaseParser):
         self.mappers = parser_info['mappers']
         self.used_facts = parser_info['used_facts']
         self.parse_mode = ['wdigest', 'credman']
-        self.log = Logger('parsing_svc')
+        self.log = logging.getLogger('parsing_svc')
         self.hash_check = r'([0-9a-fA-F][0-9a-fA-F] ){3}'
 
     def parse_katz(self, output):
