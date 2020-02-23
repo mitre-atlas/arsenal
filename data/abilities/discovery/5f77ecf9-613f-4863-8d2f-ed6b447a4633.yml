@@ -12,13 +12,7 @@
       sh:
         command: |
           cat ~/.ssh/known_hosts
-        parsers:
-          plugins.stockpile.app.parsers.ip:
-           - source: remote.ssh.ip
     linux:
       sh:
         command: |
           cat ~/.ssh/known_hosts
-        parsers:
-          plugins.stockpile.app.parsers.ip:
-           - source: remote.ssh.ip

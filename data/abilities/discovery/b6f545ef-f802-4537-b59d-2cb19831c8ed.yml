@@ -12,6 +12,3 @@
       sh:
         command: |
           ifconfig | grep broadcast
-        parsers:
-          plugins.stockpile.app.parsers.broadcastip:
-            - source: domain.broadcast.ip
