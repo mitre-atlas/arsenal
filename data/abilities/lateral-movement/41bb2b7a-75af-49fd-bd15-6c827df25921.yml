@@ -23,4 +23,12 @@
           Remove-PSSession -Session $session;
         payload: sandcat.go-windows
         cleanup: |
-          Remove-Item C:\Users\Public\svchost.exe -Recurse
+          $username = "#{domain.user.name}";
+          $password = "#{domain.user.password}";
+          $secstr = New-Object -TypeName System.Security.SecureString;
+          $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
+          $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
+          $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
+          Invoke-Command -Session $session -ScriptBlock{start-job -scriptblock{Get-Process cmd | Where-Object Path -eq C:\Users\Public\svchost.exe | Stop-Process}};
+          Start-Sleep -s 5;
+          Remove-PSSession -Session $session;
