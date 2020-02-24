@@ -15,11 +15,11 @@
     linux:
       sh:
         command: |
-          cp "#{host.file.path[technique=T1005,max=3]}" #{host.dir.staged[max=1]}
+          cp "#{host.file.path[filters(technique=T1005,max=3)]}" #{host.dir.staged[filters(max=1)]}
     windows:
       psh:
         command: |
-          Copy-Item #{host.file.path[technique=T1005,max=3]} #{host.dir.staged[max=1]}
+          Copy-Item #{host.file.path[filters(technique=T1005,max=3)]} #{host.dir.staged[filters(max=1)]}
       cmd:
         command: |
           copy #{host.file.path[filters(technique=T1005,max=3)]} #{host.dir.staged[filters(max=1)]
