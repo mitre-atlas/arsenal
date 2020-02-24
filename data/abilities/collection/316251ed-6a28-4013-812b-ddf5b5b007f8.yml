@@ -11,7 +11,7 @@
     darwin:
       sh:
         command: |
-          for i in {1..5}; do screencapture -t png screen-$i.png; sleep 10; done; ls screen*.png;
+          for i in {1..5}; do screencapture -t png screen-$i.png; sleep 10; done; echo "$(cd "$(dirname "$1")"; pwd -P)/$(basename "screen*.png")";
     windows:
       psh,pwsh:
         command: |
