@@ -1,7 +1,7 @@
 ---
 
 - id: 90c2efaa-8205-480d-8bb6-61d90dbaf81b
-  name: Find sensitive files
+  name: Find files
   description: Locate files deemed sensitive
   tactic: collection
   technique:

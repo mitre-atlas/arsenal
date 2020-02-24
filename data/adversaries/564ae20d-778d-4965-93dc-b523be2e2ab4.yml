@@ -9,6 +9,7 @@ phases:
     - b007fe0c-c6b0-4fda-915c-255bbc070de2 #copy clipboard
     - b007fc38-9eb7-4320-92b3-9a3ad3e6ec25 #find chrome bookmarks
     - 78524da1-f347-4fbb-9295-209f1f408330 #record microphone
+    - 90c2efaa-8205-480d-8bb6-61d90dbaf81b #find sensitive files
   2:
     - 2dece965-37a0-4f70-a391-0f30e3331aba #discover antivirus
   3:

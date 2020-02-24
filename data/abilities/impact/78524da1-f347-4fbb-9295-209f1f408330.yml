@@ -13,5 +13,4 @@
         command: |
           brew install sox >/dev/null 2>&1;
           sox -d recording.wav trim 0 15 >/dev/null 2>&1;
-          echo "$(cd "$(dirname "$1")"; pwd -P)/$(basename "recording.wav")"
         timeout: 120
