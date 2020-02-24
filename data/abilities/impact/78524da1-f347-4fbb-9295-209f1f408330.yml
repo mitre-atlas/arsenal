@@ -15,6 +15,3 @@
           sox -d recording.wav trim 0 15 >/dev/null 2>&1;
           ls recording*.wav;
         timeout: 120
-        parsers:
-          plugins.stockpile.app.parsers.basic:
-          - source: host.file.sensitive

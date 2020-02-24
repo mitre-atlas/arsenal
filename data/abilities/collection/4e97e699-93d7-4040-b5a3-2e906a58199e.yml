@@ -11,21 +11,20 @@
     darwin:
       sh:
         command: |
-          cp "#{host.file.sensitive}" #{host.dir.staged[0]}
+          cp "#{host.file.path[filters(technique=T1005,max=3)]}" #{host.dir.staged[filters(max=1)]}
     linux:
       sh:
         command: |
-          cp "#{host.file.sensitive}" #{host.dir.staged}
+          cp "#{host.file.path[technique=T1005,max=3]}" #{host.dir.staged[max=1]}
     windows:
       psh:
         command: |
-          Copy-Item #{host.file.sensitive} #{host.dir.staged}
+          Copy-Item #{host.file.path[technique=T1005,max=3]} #{host.dir.staged[max=1]}
       cmd:
         command: |
-          copy #{host.file.sensitive} #{host.dir.staged}
+          copy #{host.file.path[filters(technique=T1005,max=3)]} #{host.dir.staged[filters(max=1)]
   requirements:
     - plugins.stockpile.app.requirements.paw_provenance:
-      - source: host.file.sensitive
+      - source: host.file.path
     - plugins.stockpile.app.requirements.paw_provenance:
       - source: host.dir.staged
-
