@@ -9,6 +9,8 @@ facts:
     value: yml
   - trait: file.sensitive.extension
     value: png
+  - trait: server.malicious.url
+    value: keyloggedsite.com
 adjustments:
     1b4fb81c-8090-426c-93ab-0a633e7a16a7:
       host.installed.av:

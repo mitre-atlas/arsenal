@@ -11,5 +11,5 @@
     darwin:
       sh:
         command: |
-          osascript bookmark.scpt #{host.chrome.bookmark_title[filters(max=0)]} #{server.malicious.url[filters(max=0)]}
+          osascript bookmark.scpt #{host.chrome.bookmark_title[filters(max=1)]} #{server.malicious.url[filters(max=1)]}
         payload: bookmark.scpt
