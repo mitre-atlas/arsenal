@@ -1,5 +1,6 @@
 import random
 import string
+import binascii
 
 from base64 import b64encode
 
@@ -31,7 +32,10 @@ class Obfuscation(BaseObfuscator):
 
     def psh(self, link, **kwargs):
         extra_chars = kwargs.get('extra') + 1
-        recoded = b64encode(self.decode_bytes(link.command).encode('UTF-16LE'))
+        try:
+            recoded = b64encode(self.decode_bytes(link.command).encode('UTF-16LE'))
+        except binascii.Error:  # Resolve issue where we can't decode our own mangled command internally
+            recoded = b64encode(self.decode_bytes(link.command[:-(extra_chars-1)]).encode('UTF-16LE'))
         return 'powershell -Enc %s.Substring(0,%s)' % (recoded.decode('utf-8'), len(link.command)-extra_chars)
 
     """ PRIVATE """
