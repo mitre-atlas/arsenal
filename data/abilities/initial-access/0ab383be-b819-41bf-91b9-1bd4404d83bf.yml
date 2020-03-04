@@ -1,6 +1,6 @@
 - id: 0ab383be-b819-41bf-91b9-1bd4404d83bf
-  name: Deploy Ragdoll
-  description: Ragdoll is a Python agent which communicates via the HTML contact
+  name: Ragdoll
+  description: A Python agent which communicates via the HTML contact
   tactic: initial-access
   technique:
     attack_id: T1199
