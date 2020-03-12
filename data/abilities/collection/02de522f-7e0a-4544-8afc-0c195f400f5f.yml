@@ -12,7 +12,13 @@
       sh:
         command: |
           pip install stormssh && storm list
+        parsers:
+          plugins.stockpile.app.parsers.ssh:
+            - source: remote.ssh.cmd
     linux:
       sh:
         command: |
           pip install stormssh && storm list
+        parsers:
+          plugins.stockpile.app.parsers.ssh:
+            - source: remote.ssh.cmd
