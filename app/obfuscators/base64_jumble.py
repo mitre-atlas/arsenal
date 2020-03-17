@@ -17,9 +17,6 @@ class Obfuscation(BaseObfuscator):
             linux=['sh']
         )
 
-    def __init__(self, agent):
-        self.agent = agent
-
     def run(self, link, **kwargs):
         cmd, extra = self._jumble_command(link.command)
         link.command = cmd

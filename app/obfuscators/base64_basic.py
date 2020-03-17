@@ -13,9 +13,6 @@ class Obfuscation(BaseObfuscator):
             linux=['sh']
         )
 
-    def __init__(self, agent):
-        self.agent = agent
-
     """ EXECUTORS """
 
     def psh(self, link):
