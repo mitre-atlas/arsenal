@@ -10,7 +10,13 @@
   platforms:
     darwin:
       sh:
-        command: cat ~/.bash_history
+        command: find ~/.bash_sessions -name '*' -exec cat {} \; 2>/dev/null
+        parsers:
+          plugins.stockpile.app.parsers.ssh:
+            - source: remote.ssh.cmd
     linux:
       sh:
         command: cat ~/.bash_history
+        parsers:
+          plugins.stockpile.app.parsers.ssh:
+              - source: remote.ssh.cmd
