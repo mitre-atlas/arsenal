@@ -28,6 +28,12 @@ async def enable(services):
                    module='plugins.stockpile.app.obfuscators.base64_jumble')
     )
     await stockpile_svc.data_svc.store(
+        Obfuscator(name='caesar cipher',
+                   description='Obfuscates commands through a caesar cipher algorithm, which uses a randomly selected '
+                               'shift value.',
+                   module='plugins.stockpile.app.obfuscators.caesar_cipher')
+    )
+    await stockpile_svc.data_svc.store(
         Obfuscator(name='base64noPadding',
                    description='Obfuscates commands in base64, then removes padding',
                    module='plugins.stockpile.app.obfuscators.base64_no_padding')

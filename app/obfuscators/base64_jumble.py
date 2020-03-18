@@ -24,8 +24,8 @@ class Obfuscation(BaseObfuscator):
 
     @staticmethod
     def sh(link, **kwargs):
-        extra_chars = kwargs.get('extra') + 1
-        return 'eval "$(echo %s | rev | cut -c%s- | rev | base64 --decode)"' % (str(link.command.encode(), 'utf-8'), extra_chars)
+        extra_chars = kwargs.get('extra')
+        return 'eval "$(echo %s | rev | cut -c%s- | rev | base64 --decode)"' % (link.command, extra_chars)
 
     def psh(self, link, **kwargs):
         extra_chars = kwargs.get('extra') + 1
