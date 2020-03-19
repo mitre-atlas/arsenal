@@ -22,6 +22,7 @@
           -server $server -v" } -ComputerName #{remote.host.name} -ArgumentList $startServer,
           $sharePath, $name, $server'
         payload: sandcat.go-windows
+        cleanup: del sandcat.go-windows; Invoke-Command -ComputerName #{remote.host.name} -ScriptBlock { del C:\Users\Public\sandcat.go-windows }
   tactic: lateral-movement
   technique:
     attack_id: T1105
