@@ -12,4 +12,4 @@
       psh:
         command: |
             tasklist /m  >> $env:APPDATA\vmtool.log;
-            cat $env:APPDATA\vmtools.log
+            cat $env:APPDATA\vmtool.log
