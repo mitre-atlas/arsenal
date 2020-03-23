@@ -22,9 +22,14 @@ class Parser(BaseParser):
     def __init__(self, parser_info):
         self.mappers = parser_info['mappers']
         self.used_facts = parser_info['used_facts']
-        self.parse_mode = ['wdigest', 'credman']
+        self.parse_mode = ['wdigest', 'credman', 'msv']
         self.log = logging.getLogger('parsing_svc')
         self.hash_check = r'([0-9a-fA-F][0-9a-fA-F] ){3}'
+        self.target_mapping = {'password': 'Password',
+                               'ntlm': 'NTLM',
+                               'sha1': 'SHA1',
+                               '_default': 'Password'
+                               }
 
     def parse_katz(self, output):
         """
@@ -65,18 +70,20 @@ class Parser(BaseParser):
                 if match.logon_server != '(null)' or 'credman' in match.packages:
                     for pm in self.parse_mode:
                         if pm in match.packages:
-                            hash_pass = re.match(self.hash_check, match.packages[pm][0]['Password'])
+                            hash_pass = re.match(self.hash_check, match.packages[pm][0].get('Password', ''))
                             if not hash_pass:
                                 if pm == 'credman':
                                     split = match.packages[pm][0]['Username'].split('\\')
                                     if len(split) > 1:
                                         match.packages[pm][0]['Username'] = split[1]
                                 for mp in self.mappers:
-                                    relationships.append(
-                                        Relationship(source=(mp.source, match.packages[pm][0]['Username']),
-                                                     edge=mp.edge,
-                                                     target=(mp.target, match.packages[pm][0]['Password']))
-                                    )
+                                    target_index = self.target_mapping.get(mp.target.split('.')[2], self.target_mapping['_default'])
+                                    if target_index in match.packages[pm][0]:
+                                        relationships.append(
+                                            Relationship(source=(mp.source, match.packages[pm][0]['Username']),
+                                                         edge=mp.edge,
+                                                         target=(mp.target, match.packages[pm][0][target_index]))
+                                        )
         except Exception as error:
             self.log.warning('Mimikatz parser encountered an error - {}. Continuing...'.format(error))
         return relationships

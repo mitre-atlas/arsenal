@@ -18,3 +18,9 @@
             - source: domain.user.name
               edge: has_password
               target: domain.user.password
+            - source: domain.user.name
+              edge: has_hash
+              target: domain.user.ntlm
+            - source: domain.user.name
+              edge: has_hash
+              target: domain.user.sha1
