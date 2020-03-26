@@ -1,5 +1,3 @@
----
-
 - id: 55f9600a-756f-496b-b27f-682052dc429c
   name: File Hunter Mission
   description: Hunts for files of a certain extension and inserts a message
@@ -12,20 +10,24 @@
       sh:
         command: |
           ./mission.go -duration 60 -extension .caldera -dir '/'
-        payload: mission.go
+        payloads:
+        - mission.go
     darwin:
       sh:
         command: |
           ./mission.go -duration 60 -extension .caldera -dir '/'
-        payload: mission.go
+        payloads:
+        - mission.go
     windows:
       psh:
         command: |
-           mv mission.go mission.exe;
-           .\mission.exe -duration 60 -extension .caldera -dir 'C:\';
-        payload: mission.go
+          mv mission.go mission.exe;
+          .\mission.exe -duration 60 -extension .caldera -dir 'C:\';
+        payloads:
+        - mission.go
       cmd:
         command: |
           copy mission.go mission.exe &&
           mission.exe -duration 60 -extension .caldera -dir C:\
-        payload: mission.go
+        payloads:
+        - mission.go

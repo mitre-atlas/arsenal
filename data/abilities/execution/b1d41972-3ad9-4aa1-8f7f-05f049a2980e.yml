@@ -1,5 +1,3 @@
----
-
 - id: b1d41972-3ad9-4aa1-8f7f-05f049a2980e
   name: Start 54ndc47
   description: Start a new 54ndc47 agent in background
@@ -14,11 +12,13 @@
           nohup ./sandcat.go -server #{server} &
         cleanup: |
           pkill -f sandcat
-        payload: sandcat.go
+        payloads:
+        - sandcat.go
     linux:
       sh:
         command: |
           nohup ./sandcat.go -server #{server} &
         cleanup: |
           pkill -f sandcat
-        payload: sandcat.go
+        payloads:
+        - sandcat.go

