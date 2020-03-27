@@ -9,18 +9,18 @@
     darwin:
       sh:
         command: |
-          ./wifi.sh scan
+          ./#{payload:9f639067-370a-40ba-b7ac-6f1c15d5a158} scan
         payloads:
-        - wifi.sh
+        - 9f639067-370a-40ba-b7ac-6f1c15d5a158
     linux:
       sh:
         command: |
-          ./wifi.sh scan
+          ./#{payload:9f639067-370a-40ba-b7ac-6f1c15d5a158} scan
         payloads:
-        - wifi.sh
+        - 9f639067-370a-40ba-b7ac-6f1c15d5a158
     windows:
       psh:
         command: |
-          .\wifi.ps1 -Scan
+          .\#{payload:28f9bf43-4f14-4965-9bd9-b70fd6993d8e} -Scan
         payloads:
-        - wifi.ps1
+        - 28f9bf43-4f14-4965-9bd9-b70fd6993d8e
