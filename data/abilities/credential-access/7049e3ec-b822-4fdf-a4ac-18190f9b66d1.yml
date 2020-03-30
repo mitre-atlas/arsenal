@@ -2,6 +2,7 @@
   name: Powerkatz (Staged)
   description: Use Invoke-Mimikatz
   tactic: credential-access
+  privilege: Elevated
   technique:
     attack_id: T1003
     name: Credential Dumping
