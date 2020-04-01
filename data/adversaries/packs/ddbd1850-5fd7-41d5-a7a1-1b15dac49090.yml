@@ -10,6 +10,8 @@ phases:
   2:
   - fa4ed735-7006-4451-a578-b516f80e559f # nslookup
   3:
-  - c5e75d70-09ae-469f-8717-621a1b7ef946 # smb copy
+  - deeac480-5c2a-42b5-90bb-41675ee53c7e # view remote shares
   4:
+  - 65048ec1-f7ca-49d3-9410-10813e472b30 # smb copy
+  5:
   - 41bb2b7a-75af-49fd-bd15-6c827df25921 # winrm exec
