@@ -3,10 +3,10 @@
 - id: 47d08617-5ce1-424a-8cc5-c9c978ce6bf9
   name: Leave note
   description: Create a text file for the user to find
-  tactic: command-and-control
+  tactic: impact
   technique:
-    attack_id: T1105
-    name: Remote File Copy
+    attack_id: T1491
+    name: Defacement
   platforms:
     darwin:
       sh:
