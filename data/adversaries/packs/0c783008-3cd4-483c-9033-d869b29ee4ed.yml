@@ -1,8 +1,0 @@
----
-
-id: 0c783008-3cd4-483c-9033-d869b29ee4ed
-name: Port scanning
-description: Attempt recon through port scanning techniques
-phases:
-  1:
-    - 6014f7f7-ca45-4d55-9c05-d834d3233a21
