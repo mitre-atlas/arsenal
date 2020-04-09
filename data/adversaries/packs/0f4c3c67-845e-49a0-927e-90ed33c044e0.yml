@@ -2,13 +2,11 @@
 
 id: 0f4c3c67-845e-49a0-927e-90ed33c044e0
 name: Discovery
-description: A discovery adversary pack
-phases:
-  1:
+description: A discovery adversary
+atomic_ordering:
     - c0da588f-79f0-4263-8998-7496b1a40596 #active user
     - c1cd6388-3ced-48c7-a511-0434c6ba8f48 #local users
     - feaced8f-f43f-452a-9500-a5219488abb8 #local users
-  2:
     - b6f545ef-f802-4537-b59d-2cb19831c8ed #broadcast IP
     - 3b5db901-2cb8-4df7-8043-c4628a6a5d5a #processes per user
     - 530e47c6-8592-42bf-91df-c59ffbd8541b #shared drives
