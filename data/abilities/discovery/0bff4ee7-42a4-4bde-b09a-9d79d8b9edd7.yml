@@ -20,4 +20,30 @@
               json_key: Id
               json_type:
                 - int
+      cmd:
+        build_target: GetLsass.exe
+        language: csharp
+        code: |
+          using System;
+          using System.Diagnostics;
+          using System.ComponentModel;
+
+          namespace ProcessDump
+          {
+              class MyProcess
+              {
+                  void GrabLsassProcess()
+                  {
+                      Process[] allProc = Process.GetProcessesByName("lsass");
+                      foreach(Process proc in allProc){
+                          Console.WriteLine("Process: {0} -> PID: {1}", proc.ProcessName, proc.Id);
+                      }
+                  }
+                  static void Main(string[] args)
+                  {
+                      MyProcess myProc = new MyProcess();
+                      myProc.GrabLsassProcess();
+                  }
+              }
+          }
 

@@ -13,6 +13,32 @@
         command: Get-Process
       cmd:
         command: tasklist
+      donut:
+        build_target: ProcessDump.exe
+        language: csharp
+        code: |
+          using System;
+          using System.Diagnostics;
+          using System.ComponentModel;
+
+          namespace ProcessDump
+          {
+              class MyProcess
+              {
+                  void GrabAllProcesses()
+                  {
+                      Process[] allProc = Process.GetProcesses();
+                      foreach(Process proc in allProc){
+                          Console.WriteLine("Process: {0} -> PID: {1}", proc.ProcessName, proc.Id);
+                      }
+                  }
+                  static void Main(string[] args)
+                  {
+                      MyProcess myProc = new MyProcess();
+                      myProc.GrabAllProcesses();
+                  }
+              }
+          }
     darwin:
       sh:
         command: ps aux
