@@ -2,10 +2,10 @@
   name: Powerkatz (Staged)
   description: Use Invoke-Mimikatz
   tactic: credential-access
-  privilege: Elevated
   technique:
     attack_id: T1003
     name: Credential Dumping
+  privilege: Elevated
   platforms:
     windows:
       psh:
@@ -24,4 +24,5 @@
             edge: has_hash
             target: domain.user.sha1
         payloads:
-        - invoke-mimi.ps1
+        - invoke-mimi.ps1.xored
+        cleanup: Remove-Item -Force -Path "invoke-mimi.ps1"
