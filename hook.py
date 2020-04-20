@@ -11,6 +11,7 @@ access = BaseWorld.Access.RED
 async def enable(services):
     stockpile_svc = StockpileService(services)
     services.get('app_svc').application.router.add_route('GET', '/plugin/stockpile/gui', stockpile_svc.splash)
+    await services.get('file_svc').add_special_payload('.donut', 'plugins.stockpile.app.donut.donut_handler')
     await stockpile_svc.data_svc.store(
         Obfuscator(name='plain-text',
                    description='Does no obfuscation to any command, instead running it in plain text',
