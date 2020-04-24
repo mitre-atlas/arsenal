@@ -13,8 +13,8 @@
         command: Get-Process
       cmd:
         command: tasklist
-      donut:
-        build_target: ProcessDump.exe
+      donut_amd64:
+        build_target: ProcessDump.donut
         language: csharp
         code: |
           using System;

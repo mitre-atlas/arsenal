@@ -75,4 +75,5 @@ special_payloads:
     id: f9403e41-7b9a-416b-95eb-138cf1519668
     service: stockpile_svc
     function: dynamically_compile
-extensions: {}
+extensions:
+  .donut: plugins.stockpile.app.donut.donut_handler
