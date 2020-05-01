@@ -9,6 +9,6 @@
     name: Account Discovery
   platforms:
     windows:
-      cmd:
+      cmd,psh:
         command: |
           net user #{domain.user.name} /domain

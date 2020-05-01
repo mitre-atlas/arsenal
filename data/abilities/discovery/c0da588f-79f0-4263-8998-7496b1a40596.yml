@@ -14,12 +14,14 @@
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.user.name
+            - source: domain.user.name
     linux:
       sh:
         command: whoami
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.user.name
+            - source: domain.user.name
     windows:
       psh:
         command: |
@@ -27,8 +29,10 @@
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.user.name
+            - source: domain.user.name
       cmd:
         command: echo %username%
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.user.name
+            - source: domain.user.name

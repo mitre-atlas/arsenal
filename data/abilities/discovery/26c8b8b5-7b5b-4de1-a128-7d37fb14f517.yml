@@ -9,6 +9,9 @@
     name: Remote System Discovery
   platforms:
     windows:
+      cmd:
+        command: |
+          nltest /dsgetdc:%USERDOMAIN%
       psh:
         command: |
-          nltest /dclist:%USERDOMAIN%
+          nltest /dsgetdc:$env:USERDOMAIN
