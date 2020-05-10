@@ -18,7 +18,7 @@
     linux:
       sh:
         command: |
-          pip install stormssh && storm list
+          pip install -q stormssh 2> /dev/null && storm list | sed 's/\x1b\[[0-9;]*m//g'
         parsers:
           plugins.stockpile.app.parsers.ssh:
             - source: remote.ssh.cmd
