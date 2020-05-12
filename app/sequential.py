@@ -14,7 +14,7 @@ class LogicalPlanner:
     async def sequential(self):
         links = await self._get_links()
         while links:
-            link_ids = [await self.operation.apply(l) for l in links]
+            link_ids = [await self.operation.apply(link) for link in links]
             await self.operation.wait_for_links_completion(link_ids)
             # new links may be available now (e.g. requirements met)
             links = await self._get_links()
