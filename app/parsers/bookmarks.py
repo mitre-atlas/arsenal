@@ -1,3 +1,4 @@
+from app.objects.secondclass.c_fact import Fact
 from app.objects.secondclass.c_relationship import Relationship
 from app.utility.base_parser import BaseParser
 
@@ -24,7 +25,7 @@ class Parser(BaseParser):
                 if child.get('meta_info', dict()).get('last_visited_desktop'):
                     if int(child['meta_info']['last_visited_desktop']) > score:
                         score += 1
-                relationships.append(Relationship(source=(mapper.source, source),
+                relationships.append(Relationship(source=Fact(mapper.source, source),
                                                   edge=mapper.edge,
-                                                  target=(mapper.target, target),
+                                                  target=Fact(mapper.target, target),
                                                   score=score))

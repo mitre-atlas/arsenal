@@ -1,4 +1,5 @@
 from app.utility.base_parser import BaseParser
+from app.objects.secondclass.c_fact import Fact
 from app.objects.secondclass.c_relationship import Relationship
 
 
@@ -10,9 +11,9 @@ class Parser(BaseParser):
         for name in vm_names:
             for mp in self.mappers:
                 relationships.append(
-                    Relationship(source=(mp.source, name),
+                    Relationship(source=Fact(mp.source, name),
                                  edge=mp.edge,
-                                 target=(mp.target, None))
+                                 target=Fact(mp.target, None))
                 )
         return relationships
 

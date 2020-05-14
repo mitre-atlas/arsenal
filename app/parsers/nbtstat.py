@@ -1,3 +1,4 @@
+from app.objects.secondclass.c_fact import Fact
 from app.objects.secondclass.c_relationship import Relationship
 from app.utility.base_parser import BaseParser
 
@@ -24,9 +25,9 @@ class Parser(BaseParser):
             for match in parse_data:
                 for mp in self.mappers:
                     relationships.append(
-                        Relationship(source=(mp.source, match),
+                        Relationship(source=Fact(mp.source, match),
                                      edge=mp.edge,
-                                     target=(mp.target, None)
+                                     target=Fact(mp.target, None)
                                      )
                     )
         except Exception:

@@ -2,6 +2,7 @@ import logging
 import re
 from collections import defaultdict
 
+from app.objects.secondclass.c_fact import Fact
 from app.objects.secondclass.c_relationship import Relationship
 from app.utility.base_parser import BaseParser
 
@@ -80,9 +81,9 @@ class Parser(BaseParser):
                                     target_index = self.target_mapping.get(mp.target.split('.')[2], self.target_mapping['_default'])
                                     if target_index in match.packages[pm][0]:
                                         relationships.append(
-                                            Relationship(source=(mp.source, match.packages[pm][0]['Username']),
+                                            Relationship(source=Fact(mp.source, match.packages[pm][0]['Username']),
                                                          edge=mp.edge,
-                                                         target=(mp.target, match.packages[pm][0][target_index]))
+                                                         target=Fact(mp.target, match.packages[pm][0][target_index]))
                                         )
         except Exception as error:
             self.log.warning('Mimikatz parser encountered an error - {}. Continuing...'.format(error))

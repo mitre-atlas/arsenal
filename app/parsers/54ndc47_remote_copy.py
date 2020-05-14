@@ -1,4 +1,5 @@
 from app.objects.secondclass.c_relationship import Relationship
+from app.objects.secondclass.c_fact import Fact
 from app.utility.base_parser import BaseParser
 
 
@@ -12,9 +13,9 @@ class Parser(BaseParser):
             if self.ABILITY_SUCCESS_FLAG in match:
                 for mp in self.mappers:
                     relationships.append(
-                        Relationship(source=(mp.source, self._get_remote_host(mp.source, self.used_facts)),
+                        Relationship(source=Fact(mp.source, self._get_remote_host(mp.source, self.used_facts)),
                                      edge=mp.edge,
-                                     target=(mp.target, None))
+                                     target=Fact(mp.target, None))
                     )
                 # we can only have one resulting relationship in this parser type. return immediately
                 return relationships
