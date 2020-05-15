@@ -14,7 +14,7 @@ class Requirement(BaseRequirement):
         """
         all_hostnames = [agent.host.lower() for agent in await operation.active_agents()]
         for uf in link.used:
-            if self.enforcements.source == uf.trait:
+            if self.enforcements['source'] == uf.trait:
                 target_name = uf.value.split('.')[0].lower()
                 if target_name in all_hostnames or any(target_name in h for h in all_hostnames):
                     return False
