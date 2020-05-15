@@ -5,13 +5,13 @@ class LogicalPlanner:
         self.planning_svc = planning_svc
         self.stopping_conditions = stopping_conditions
         self.stopping_condition_met = False
-        self.state_machine = ['sequential']
-        self.next_bucket = 'sequential'   # set first (and only) bucket to execute
+        self.state_machine = ['batch']
+        self.next_bucket = 'batch'   # set first (and only) bucket to execute
 
     async def execute(self):
         await self.planning_svc.execute_planner(self)
 
-    async def sequential(self):
+    async def batch(self):
         links = await self._get_links()
         while links:
             link_ids = [await self.operation.apply(link) for link in links]
