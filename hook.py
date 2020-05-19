@@ -40,7 +40,7 @@ async def enable(services):
                    module='plugins.stockpile.app.obfuscators.base64_no_padding')
     )
     await stockpile_svc.data_svc.store(
-        Obfuscator(name='stenography',
-                   description='Obfuscates commands through image-based stenography',
-                   module='plugins.stockpile.app.obfuscators.stenography')
+        Obfuscator(name='steganography',
+                   description='Obfuscates commands through image-based steganography',
+                   module='plugins.stockpile.app.obfuscators.steganography')
     )
