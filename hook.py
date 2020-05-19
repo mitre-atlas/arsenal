@@ -39,3 +39,8 @@ async def enable(services):
                    description='Obfuscates commands in base64, then removes padding',
                    module='plugins.stockpile.app.obfuscators.base64_no_padding')
     )
+    await stockpile_svc.data_svc.store(
+        Obfuscator(name='stenography',
+                   description='Obfuscates commands through image-based stenography',
+                   module='plugins.stockpile.app.obfuscators.stenography')
+    )
