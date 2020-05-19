@@ -21,6 +21,4 @@ class LogicalPlanner:
         self.next_bucket = None
 
     async def _get_links(self):
-        return await self.planning_svc.get_links(operation=self.operation,
-                                                 stopping_conditions=self.stopping_conditions,
-                                                 planner=self)
+        return await self.planning_svc.get_links(operation=self.operation, planner=self)
