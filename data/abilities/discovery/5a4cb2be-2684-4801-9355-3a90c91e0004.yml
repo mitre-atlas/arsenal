@@ -11,12 +11,13 @@
     windows:
       psh:
         command: |
-          $local_addr = (Get-NetIPConfiguration | Where-Object {$_.NetAdapter.Status -ne "Disconnected" }).IPv4Address.IPAddress;
-          $temp = $local_addr.split('.')[0..2];
-          $construct = $temp[0] + '.' + $temp[1] + '.' + $temp[2] + ".";
-          1..255 | % { $a = $_; write-host "------"; write-host "$construct$a";
-          22,53,80,445 | % { $socket = new-object system.net.sockets.tcpclient;
-          $Connection = $socket.beginconnect("$construct$a", $_, $null, $null);
-          $Connection.AsyncWaitHandle.waitOne(50,$false) | out-null;
-          if ($socket.connected -eq $true) { echo "Port $_ is open!"};
-          $socket.Close | Out-Null; }}
+          Import-Module ./basic_port_scanner.ps1;
+          $ports = @(22, 53, 80, 445);
+          Get-NetIPConfiguration | ?{$_.NetAdapter.Status -ne "Disconnected"} | Get-NetIPaddress -AddressFamily IPv4 | %{
+              $ipv4 = $_.IPAddress;
+              $prefixLength = $_.PrefixLength;
+              Scan-Netrange -ipv4 $ipv4 -prefixLength $prefixLength -ports $ports;
+          };
+        payloads:
+          - basic_port_scanner.ps1
+        timeout: 180
