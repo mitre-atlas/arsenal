@@ -11,7 +11,7 @@
     windows:
       psh:
         command: |
-          Import-Module ./basic_port_scanner.ps1;
+          Import-Module ./basic_scanner.ps1;
           $ports = @(22, 53, 80, 445);
           Get-NetIPConfiguration | ?{$_.NetAdapter.Status -ne "Disconnected"} | Get-NetIPaddress -AddressFamily IPv4 | %{
               $ipv4 = $_.IPAddress;
@@ -19,5 +19,5 @@
               Scan-Netrange -ipv4 $ipv4 -prefixLength $prefixLength -ports $ports;
           };
         payloads:
-          - basic_port_scanner.ps1
+          - basic_scanner.ps1
         timeout: 180
