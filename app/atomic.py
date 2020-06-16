@@ -6,30 +6,27 @@ class LogicalPlanner:
         self.stopping_conditions = stopping_conditions
         self.stopping_condition_met = False
         self.state_machine = ['atomic']
-        self.next_bucket = 'atomic'   # set first (and only) bucket to execute
+        self.next_bucket = 'atomic'   # repeat this bucket until we run out of links.
 
     async def execute(self):
         await self.planning_svc.execute_planner(self)
 
     async def atomic(self):
-        done = False
-        while not done:
-            links_to_use = []
+        links_to_use = []
 
-            # Get the first available link for each agent (make sure we maintain the order).
-            for agent in self.operation.agents:
-                possible_agent_links = await self._get_links(agent=agent)
-                next_link = await self._get_next_atomic_link(possible_agent_links)
-                if next_link:
-                    links_to_use.append(await self.operation.apply(next_link))
+        # Get the first available link for each agent (make sure we maintain the order).
+        for agent in self.operation.agents:
+            possible_agent_links = await self._get_links(agent=agent)
+            next_link = await self._get_next_atomic_link(possible_agent_links)
+            if next_link:
+                links_to_use.append(await self.operation.apply(next_link))
 
-            if links_to_use:
-                # Each agent will run the next available step.
-                await self.operation.wait_for_links_completion(links_to_use)
-            else:
-                # No more links to run.
-                done = True
-        self.next_bucket = None
+        if links_to_use:
+            # Each agent will run the next available step.
+            await self.operation.wait_for_links_completion(links_to_use)
+        else:
+            # No more links to run.
+            self.next_bucket = None
 
     async def _get_links(self, agent=None):
         return await self.planning_svc.get_links(operation=self.operation, agent=agent, planner=self)
