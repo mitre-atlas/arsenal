@@ -6,7 +6,7 @@
   tactic: collection
   technique:
     attack_id: T1086
-    name: PowerShell Collection
+    name: PowerShell
   platforms:
     windows:
       psh,pwsh:
