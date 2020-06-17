@@ -32,7 +32,7 @@ class LogicalPlanner:
         self.next_bucket = None
 
     async def _get_links(self, agent=None):
-        return await self.planning_svc.get_links(operation=self.operation, agent=agent, planner=self)
+        return await self.planning_svc.get_links(operation=self.operation, agent=agent)
 
     # Given list of links, returns the link that appears first in the adversary's atomic ordering.
     async def _get_next_atomic_link(self, links):
