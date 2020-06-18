@@ -11,9 +11,18 @@
     darwin:
       sh:
         command: arp -a
+        parsers:
+          plugins.stockpile.app.parsers.ipaddr:
+            - source: remote.host.ip
     linux:
       sh:
         command: arp -a
+        parsers:
+          plugins.stockpile.app.parsers.ipaddr:
+            - source: remote.host.ip
     windows:
       psh,cmd:
         command: arp -a
+        parsers:
+          plugins.stockpile.app.parsers.ipaddr:
+            - source: remote.host.ip
