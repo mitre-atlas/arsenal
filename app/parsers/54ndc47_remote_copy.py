@@ -5,7 +5,7 @@ from app.utility.base_parser import BaseParser
 
 class Parser(BaseParser):
 
-    ABILITY_SUCCESS_FLAG = 'VERBOSE: Performing the operation "Copy File" on target'
+    ABILITY_SUCCESS_FLAG = 'VERBOSE: Performing the operation "Copy'
 
     def parse(self, blob):
         relationships = []
