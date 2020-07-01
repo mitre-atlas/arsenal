@@ -12,10 +12,15 @@
       sh:
         command: |
           for i in {1..5}; do screencapture -t png screen-$i.png; echo "$(cd "$(dirname "$1")"; pwd -P)/$(basename "screen-$i.png")"; sleep 5; done;
+        cleanup:
+          for i in {1..5}; do /bin/rm screen-$i.png; done;
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.screenshot.png
     windows:
       psh,pwsh:
         command: |
-          [Reflection.Assembly]::LoadWithPartialName("System.Drawing");
+          $loadResult = [Reflection.Assembly]::LoadWithPartialName("System.Drawing");
           function screenshot([Drawing.Rectangle]$bounds, $path) {
              $bmp = New-Object Drawing.Bitmap $bounds.width, $bounds.height;
              $graphics = [Drawing.Graphics]::FromImage($bmp);
@@ -24,5 +29,20 @@
              $graphics.Dispose();
              $bmp.Dispose();
           }
-          $bounds = [Drawing.Rectangle]::FromLTRB(0, 0, 1000, 900);
-          screenshot $bounds "$HOME\Desktop\screenshot.png";
+          if ($loadResult) {
+            $bounds = [Drawing.Rectangle]::FromLTRB(0, 0, 1000, 900);
+            $dest = "$HOME\Desktop\screenshot.png";
+            screenshot $bounds $dest;
+            if (Test-Path -Path $dest) {
+              $dest;
+              exit 0;
+            };
+          };
+          exit 1;
+        cleanup:
+          $filePath = "$HOME\Desktop\screenshot.png";
+          if (Test-Path -Path $filePath) {
+            del $filePath;
+          };
+        plugins.stockpile.app.parsers.basic:
+          - source: host.screenshot.png
