@@ -44,5 +44,6 @@
           if (Test-Path -Path $filePath) {
             del $filePath;
           };
-        plugins.stockpile.app.parsers.basic:
-          - source: host.screenshot.png
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.screenshot.png
