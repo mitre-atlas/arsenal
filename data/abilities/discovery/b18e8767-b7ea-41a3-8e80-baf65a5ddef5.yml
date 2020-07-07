@@ -1,0 +1,18 @@
+---
+
+- id: b18e8767-b7ea-41a3-8e80-baf65a5ddef5 
+  name: Check Python
+  description: Check to see what version of python is installed
+  tactic: discovery
+  technique:
+    attack_id: 
+    name: 
+  platforms:
+    darwin:
+      sh:
+        command: |
+          python3 --version
+    linux:
+      sh:
+        command: |
+          python3 --version
