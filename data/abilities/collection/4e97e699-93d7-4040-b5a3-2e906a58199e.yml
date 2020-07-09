@@ -22,7 +22,7 @@
           Copy-Item #{host.file.path[filters(technique=T1005,max=3)]} #{host.dir.staged[filters(max=1)]}
       cmd:
         command: |
-          copy #{host.file.path[filters(technique=T1005,max=3)]} #{host.dir.staged[filters(max=1)]
+          copy #{host.file.path[filters(technique=T1005,max=3)]} #{host.dir.staged[filters(max=1)]}
   requirements:
     - plugins.stockpile.app.requirements.paw_provenance:
       - source: host.file.path
