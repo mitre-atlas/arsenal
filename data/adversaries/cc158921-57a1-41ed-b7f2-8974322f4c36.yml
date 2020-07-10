@@ -1,6 +1,0 @@
-description: 'Adversary that kills running tendermint blockchain node processes'
-id: cc158921-57a1-41ed-b7f2-8974322f4c36
-name: BTC Slasher
-atomic_ordering:
-  - 85f9bf3d-4259-4cf6-b158-d6ddc349f7c2 #find node processes then kill
-  
