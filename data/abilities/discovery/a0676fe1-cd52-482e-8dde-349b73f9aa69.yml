@@ -12,15 +12,24 @@
           ./wifi.sh pref
         payloads:
         - wifi.sh
+        parsers:
+          plugins.stockpile.app.parsers.wifipref:
+            - source: wifi.network.ssid
     linux:
       sh:
         command: |
           ./wifi.sh pref
         payloads:
         - wifi.sh
+        parsers:
+          plugins.stockpile.app.parsers.wifipref:
+            - source: wifi.network.ssid
     windows:
       psh:
         command: |
           .\wifi.ps1 -Pref
         payloads:
         - wifi.ps1
+        parsers:
+          plugins.stockpile.app.parsers.wifipref:
+            - source: wifi.network.ssid
