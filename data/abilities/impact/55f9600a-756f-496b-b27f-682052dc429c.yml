@@ -25,5 +25,5 @@
         - mission.go
   tactic: impact
   technique:
-    attack_id: T1492
-    name: Stored Data Manipulation
+    attack_id: T1565.001
+    name: "Data Manipulation: Stored Data Manipulation"

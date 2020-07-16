@@ -5,8 +5,8 @@
   description: Determine if the system is virtualized or physical
   tactic: discovery
   technique:
-    attack_id: T1497
-    name: Virtualization Sandbox Evasion
+    attack_id: T1497.001
+    name: "Virtualization/Sandbox Evasion: System Checks"
   platforms:
     windows:
       psh:

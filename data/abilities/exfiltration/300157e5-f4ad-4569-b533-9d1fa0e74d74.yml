@@ -5,8 +5,8 @@
   description: Compress a directory on the file system
   tactic: exfiltration
   technique:
-    attack_id: T1002
-    name: Data Compressed
+    attack_id: T1560.001
+    name: "Archive Collected Data: Archive via Utility"
   platforms:
     darwin:
       sh:

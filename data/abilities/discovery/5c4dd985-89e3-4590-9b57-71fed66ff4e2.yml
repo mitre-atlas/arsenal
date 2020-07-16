@@ -5,8 +5,8 @@
   description: Summary of permission and security groups
   tactic: discovery
   technique:
-    attack_id: T1069
-    name: Permission Groups Discovery
+    attack_id: T1069.001
+    name: "Permission Groups Discovery: Local Groups"
   platforms:
     windows:
       psh:

@@ -10,5 +10,5 @@
         - Akagi64.exe
   tactic: privilege-escalation
   technique:
-    attack_id: T1088
-    name: Bypass User Account Control
+    attack_id: T1548.002
+    name: "Abuse Elevation Control Mechanism: Bypass User Access Control"

@@ -5,8 +5,8 @@
   description: Dump lsass for later use with mimikatz
   tactic: credential-access
   technique:
-    attack_id: T1003
-    name: Credential Dumping
+    attack_id: T1003.001
+    name: "OS Credential Dumping: LSASS Memory"
   platforms:
     windows:
       psh:

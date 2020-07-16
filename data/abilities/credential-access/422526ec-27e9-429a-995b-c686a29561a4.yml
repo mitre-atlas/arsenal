@@ -5,8 +5,8 @@
   description: Get contents of bash history
   tactic: credential-access
   technique:
-    attack_id: T1139
-    name: Bash History
+    attack_id: T1552.003
+    name: "Unsecured Credentials: Bash History"
   platforms:
     darwin:
       sh:

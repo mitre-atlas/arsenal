@@ -5,8 +5,8 @@
   description: Identify all local users
   tactic: discovery
   technique:
-    attack_id: T1069
-    name: Permission Groups Discovery
+    attack_id: T1087.001
+    name: "Account Discovery: Local Account"
   platforms:
     darwin:
       sh:

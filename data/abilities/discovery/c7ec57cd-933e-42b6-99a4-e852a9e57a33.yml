@@ -5,8 +5,8 @@
   description: The net utility is executed via cmd to enumerate domain user accounts.
   tactic: discovery
   technique:
-    attack_id: T1087
-    name: Account Discovery
+    attack_id: T1087.002
+    name: "Account Discovery: Domain Account"
   platforms:
     windows:
       cmd:

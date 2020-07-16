@@ -8,5 +8,5 @@
           New-ItemProperty -Path HKLM:Software\Microsoft\Windows\CurrentVersion\policies\system -Name EnableLUA -PropertyType DWord -Value 0 -Force
   tactic: privilege-escalation
   technique:
-    attack_id: T1088
-    name: Bypass User Account Control
+    attack_id: T1548.002
+    name: "Abuse Elevation Control Mechanism: Bypass User Access Control"

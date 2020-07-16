@@ -3,8 +3,8 @@
   description: Copy 54ndc47 to remote host (SMB)
   tactic: lateral-movement
   technique:
-    attack_id: T1105
-    name: Remote File Copy
+    attack_id: T1021.002
+    name: "Remote Services: SMB/Windows Admin Shares"
   platforms:
     windows:
       psh:

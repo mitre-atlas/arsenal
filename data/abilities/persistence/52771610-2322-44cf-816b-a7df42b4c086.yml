@@ -8,8 +8,8 @@
     host.service.modifiable this ability can damage the target system.
   tactic: persistence
   technique:
-    attack_id: T1031
-    name: Modify Existing Service
+    attack_id: T1543.003
+    name: "Create or Modify System Process: Windows Service"
   platforms:
     windows:
       psh:

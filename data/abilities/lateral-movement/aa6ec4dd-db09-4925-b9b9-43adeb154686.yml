@@ -5,8 +5,8 @@
   description: Mount a windows share
   tactic: lateral-movement
   technique:
-    attack_id: T1077
-    name: Windows Admin Shares
+    attack_id: T1021.002
+    name: "Remote Services: SMB/Windows Admin Shares"
   platforms:
     windows:
       psh:

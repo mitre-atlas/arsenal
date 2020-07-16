@@ -4,7 +4,7 @@
   description: Copy powershell to non-standard location and perform triage commands
   tactic: defense-evasion
   technique:
-    attack_id: T1086
+    attack_id: T1059.001
     name: PowerShell
   platforms:
     windows:

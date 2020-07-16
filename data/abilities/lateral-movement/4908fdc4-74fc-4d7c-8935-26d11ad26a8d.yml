@@ -3,8 +3,8 @@
   description: Copy 54ndc47 to remote host (powershell 5 or newer only) or SCP
   tactic: lateral-movement
   technique:
-    attack_id: T1105
-    name: Remote File Copy
+    attack_id: T1570
+    name: Lateral Tool Transfer
   platforms:
     windows:
       psh,pwsh:

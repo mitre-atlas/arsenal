@@ -3,8 +3,8 @@
   description: Start Agent using WinRM (WinRM)
   tactic: lateral-movement
   technique:
-    attack_id: T1021
-    name: Remote Services
+    attack_id: T1021.006
+    name: "Remote Services: Windows Remote Management"
   platforms:
     windows:
       psh:

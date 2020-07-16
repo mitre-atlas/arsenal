@@ -5,8 +5,8 @@
   description: Leverage odbcconf for DLL injection
   tactic: defense-evasion
   technique:
-    attack_id: T1055
-    name: Process Injection
+    attack_id: T1055.001
+    name: "Process Injection: Dynamic-link Library Injection"
   platforms:
     windows:
       psh:

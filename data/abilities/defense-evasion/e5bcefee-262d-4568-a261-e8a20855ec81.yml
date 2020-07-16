@@ -5,8 +5,8 @@
   description: Leverage Mavinject (signed binary) for DLL injection
   tactic: defense-evasion
   technique:
-    attack_id: T1055
-    name: Process Injection
+    attack_id: T1055.002
+    name: "Process Injection: Portable Executable Injection"
   platforms:
     windows:
       psh:

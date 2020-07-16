@@ -3,8 +3,8 @@
   description: Copy 54ndc47 to remote host and start it, assumes target uses SSH keys and passwordless authentication
   tactic: lateral-movement
   technique:
-    attack_id: T1184
-    name: SSH Hijacking
+    attack_id: T1021.004
+    name: "Remote Services: SSH"
   platforms:
     darwin:
       sh:

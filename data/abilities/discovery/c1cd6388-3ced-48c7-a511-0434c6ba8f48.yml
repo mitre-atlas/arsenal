@@ -5,8 +5,8 @@
   description: Get a list of all local users
   tactic: discovery
   technique:
-    attack_id: T1087
-    name: Account Discovery
+    attack_id: T1087.001
+    name: "Account Discovery: Local Account"
   platforms:
     darwin:
       sh:

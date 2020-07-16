@@ -3,10 +3,10 @@
 - id: 60f63260-39bb-4136-87a0-b6c2dca799fc
   name: Install PowerShell Core 6
   description: Download, install and start new process under PowerShell Core 6
-  tactic: execution
+  tactic: command-and-control
   technique:
-    attack_id: T1072
-    name: Third-party Software
+    attack_id: T1105
+    name: "Ingress Tool Transfer"
   platforms:
     windows:
       psh:

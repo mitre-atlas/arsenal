@@ -3,8 +3,8 @@
   name: Copy Sandcat File using PsExec on CMD
   tactic: lateral-movement
   technique:
-    attack_id: T1105
-    name: Remote File Copy
+    attack_id: T1570
+    name: Lateral Tool Transfer
   platforms:
     windows:
       cmd:

@@ -5,8 +5,8 @@
   description: Find private keys on the file system
   tactic: credential-access
   technique:
-    attack_id: T1145
-    name: Private Keys
+    attack_id: T1552.004
+    name: "Unsecured Credentials: Private Keys"
   platforms:
     windows:
       psh:

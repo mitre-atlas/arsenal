@@ -6,7 +6,7 @@
   tactic: exfiltration
   technique:
     attack_id: T1041
-    name: Exfiltration Over Command and Control Channel
+    name: Exfiltration Over C2 Chan
   platforms:
     darwin:
       sh:

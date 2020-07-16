@@ -3,8 +3,8 @@
   description: Use Invoke-Mimikatz
   tactic: credential-access
   technique:
-    attack_id: T1003
-    name: Credential Dumping
+    attack_id: T1003.001
+    name: "OS Credential Dumping: LSASS Memory"
   privilege: Elevated
   platforms:
     windows:

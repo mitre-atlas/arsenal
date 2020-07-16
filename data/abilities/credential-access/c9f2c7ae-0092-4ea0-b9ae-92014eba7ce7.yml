@@ -5,8 +5,8 @@
   description: Injects cred dumper exe into an available process
   tactic: credential-access
   technique:
-    attack_id: T1055
-    name: Process Injection
+    attack_id: T1055.002
+    name: "Process Injection: Portable Executable Injection"
   platforms:
     windows:
       psh:

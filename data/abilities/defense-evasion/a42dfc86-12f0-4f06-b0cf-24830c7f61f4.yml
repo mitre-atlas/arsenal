@@ -3,10 +3,10 @@
 - id: a42dfc86-12f0-4f06-b0cf-24830c7f61f4
   name: Spawn calculator (shellcode)
   description: Start a new calculator process
-  tactic: execution
+  tactic: defense-evasion
   technique:
-    attack_id: T1059
-    name: Command-Line Interface
+    attack_id: T1055
+    name: Process Injection
   platforms:
     windows:
       shellcode_amd64:

@@ -5,8 +5,8 @@
   description: Use powerkatz to execute mimikatz and attempt to grab plaintext and/or hashed passwords
   tactic: credential-access
   technique:
-    attack_id: T1003
-    name: Credential Dumping
+    attack_id: T1003.001
+    name: "OS Credential Dumping: LSASS Memory"
   platforms:
     windows:
       psh:

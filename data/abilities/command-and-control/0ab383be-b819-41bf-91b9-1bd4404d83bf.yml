@@ -4,7 +4,7 @@
   tactic: command-and-control
   technique:
     attack_id: T1071
-    name: Standard Application Layer Protocol
+    name: Application Layer Protocol
   platforms:
     darwin:
       sh:

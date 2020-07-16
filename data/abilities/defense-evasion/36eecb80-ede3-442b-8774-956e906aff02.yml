@@ -5,8 +5,8 @@
   description: Pause all operations to avoid making noise
   tactic: defense-evasion
   technique:
-    attack_id: T1108
-    name: Redundant Access
+    attack_id: T1497.003
+    name: "Virtualization/Sandbox Evasion: Time Based Evasion"
   platforms:
     darwin:
       sh:

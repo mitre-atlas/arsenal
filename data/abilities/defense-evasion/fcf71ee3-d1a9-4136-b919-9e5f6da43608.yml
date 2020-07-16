@@ -5,8 +5,8 @@
   description: Clear Sysmon logs [intended to trigger CAR-2016-04-002]
   tactic: defense-evasion
   technique:
-    attack_id: T1070
-    name: Indicator Removal on Host
+    attack_id: T1070.001
+    name: "Indicator Removal on Host: Clear Windows Event Logs"
   privilege: Elevated
   platforms:
     windows:

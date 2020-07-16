@@ -5,8 +5,8 @@
   description: Disable Windows Defender Real-Time Protection
   tactic: defense-evasion
   technique:
-    attack_id: T1089
-    name: Disabling Security Tools
+    attack_id: T1562.001
+    name: "Impair Defenses: Disable or Modify Tools"
   privilege: Elevated
   platforms:
     windows:

@@ -5,8 +5,8 @@
   description: Run an application as a different user
   tactic: execution
   technique:
-    attack_id: T1064
-    name: Scripting
+    attack_id: T1059.001
+    name: "Command and Scripting Interpreter: PowerShell"
   platforms:
     windows:
       psh:

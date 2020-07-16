@@ -3,8 +3,8 @@
   description: Locate and infect files with weak but executable perms
   tactic: privilege-escalation
   technique:
-    attack_id: T1044
-    name: File System Permissions Weakness
+    attack_id: T1574.010
+    name: "Hijack Execution Flow: Services File Permissions Weakness"
   platforms:
     darwin:
       sh:

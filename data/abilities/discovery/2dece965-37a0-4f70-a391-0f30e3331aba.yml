@@ -18,5 +18,5 @@
             - source: host.installed.av
   tactic: discovery
   technique:
-    attack_id: T1063
-    name: Security Software Discovery
+    attack_id: T1518.001
+    name: "Software Discovery: Security Software Discovery"

@@ -3,8 +3,8 @@
   name: Copy Sandcat File using Powershell
   tactic: lateral-movement
   technique:
-    attack_id: T1105
-    name: Remote File Copy
+    attack_id: T1021.006
+    name: "Remote Services: Windows Remote Management"
   platforms:
     windows:
       psh:
