@@ -5,8 +5,8 @@
   description: Check to see if GoLang is installed
   tactic: discovery
   technique:
-    attack_id: 
-    name: 
+    attack_id: T1518
+    name: Software Discovery
   platforms:
     darwin:
       sh:
