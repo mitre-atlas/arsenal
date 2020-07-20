@@ -5,8 +5,8 @@
   description: View network configuration info for host
   tactic: discovery
   technique:
-    attack_id: 
-    name: 
+    attack_id: T1016
+    name: System Network Configuration Discovery
   platforms:
     darwin:
       sh:
