@@ -5,8 +5,8 @@
   description: Print the current working directory on the system
   tactic: discovery
   technique:
-    attack_id: 
-    name: 
+    attack_id: T1083
+    name: File and Directory Discovery
   platforms:
     darwin:
       sh:

@@ -5,8 +5,8 @@
   description: Obtain user from current session
   tactic: discovery
   technique:
-    attack_id: 
-    name: 
+    attack_id: T1033
+    name: System Owner/User Discovery
   platforms:
     darwin:
       sh:

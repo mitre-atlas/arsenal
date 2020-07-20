@@ -5,8 +5,8 @@
   description: Display information about current system processes 
   tactic: discovery
   technique:
-    attack_id: 
-    name: 
+    attack_id: T1057
+    name: Process Discovery
   platforms:
     darwin:
       sh:
