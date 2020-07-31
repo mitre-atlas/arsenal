@@ -1,6 +1,7 @@
 import donut
 import os
 import base64
+import shlex
 
 
 async def donut_handler(services, args):
@@ -45,14 +46,18 @@ async def _get_parameters(data_svc, file_name):
     """Generate command line parameters from latest matching link
 
     Parameters are everything after the first instance of the payload
-    (donut file name) in the ability command
+    (donut file name) in the ability command.
+
+    Note: In donut 0.9.2, the parameters are based using a comma or
+    semi-colon split. Any parameters containing a comma may break this
+    parsing.
 
     :param data_svc: Data service to collect operations
     :type data_svc: DataService
     :return: Donut parameters
     :rtype: string
     """
-    parameters = ''
+    parameters = []
     operations = await data_svc.locate('operations', match=dict(state='running'))
     potential_links = [chain for operation in operations for chain in operation.chain
                        if not chain.finish and chain.ability.executor.startswith('donut')
@@ -63,7 +68,8 @@ async def _get_parameters(data_svc, file_name):
         if operation.obfuscator == 'plain-text':
             decoded_command = base64.b64decode(link.command).decode('utf-8')
             if file_name in decoded_command:
-                parameters = ''.join(decoded_command.split(file_name)[1:])
+                param_string = ''.join(decoded_command.split(file_name)[1:])
             else:
-                parameters = decoded_command
-    return parameters
+                param_string = decoded_command
+            parameters = shlex.split(param_string)
+    return ','.join(parameters)
