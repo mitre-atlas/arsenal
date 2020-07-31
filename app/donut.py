@@ -15,7 +15,7 @@ async def donut_handler(services, args):
     """
     _, donut_path = await services.get('file_svc').find_file_path(args.get('file'), location='payloads')
     donut_dir, donut_file = os.path.split(donut_path)
-    exe_path = os.path.join(donut_dir, '%s.exe' % donut_file.split('.')[0])
+    exe_path = os.path.join(donut_dir, '{}.exe'.format(donut_file))
     os.replace(src=donut_path, dst=exe_path)
     parameters = await _get_parameters(services.get('data_svc'), args.get('file'))
     shellcode = donut.create(file=exe_path, params=parameters)
