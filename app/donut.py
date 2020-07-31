@@ -7,6 +7,9 @@ import shlex
 async def donut_handler(services, args):
     """Handle donut special payloads
 
+    Creates .donut files from the .donut.exe files created by the
+    builder plugin
+
     :param services: CALDERA services
     :type services: dict
     :param args: HTTP request arguments
@@ -14,15 +17,15 @@ async def donut_handler(services, args):
     :return: Payload, display name
     :rtype: string, string
     """
-    _, donut_path = await services.get('file_svc').find_file_path(args.get('file'), location='payloads')
-    donut_dir, donut_file = os.path.split(donut_path)
-    exe_path = os.path.join(donut_dir, '{}.exe'.format(donut_file))
-    os.replace(src=donut_path, dst=exe_path)
+    donut_file = args.get('file')
+    exe_file = '{}.exe'.format(donut_file)
+    _, exe_path = await services.get('file_svc').find_file_path(exe_file, location='payloads')
+    donut_dir, _ = os.path.split(exe_path)
+    donut_path = os.path.join(donut_dir, donut_file)
     parameters = await _get_parameters(services.get('data_svc'), args.get('file'))
     shellcode = donut.create(file=exe_path, params=parameters)
-    _write_shellcode_to_file(shellcode, exe_path)
-    os.replace(src=exe_path, dst=donut_path)
-    return donut_file, donut_file  # payload, display_name
+    _write_shellcode_to_file(shellcode, donut_path)
+
 
 """ PRIVATE """
 
