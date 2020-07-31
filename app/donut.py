@@ -49,6 +49,10 @@ def _write_shellcode_to_file(shellcode, file_path):
 async def _get_parameters(data_svc, file_name):
     """Generate command line parameters from latest matching link
 
+    Links are matched based on the earliest started matching ability.
+
+    This will only work with the plain-text obfuscator.
+
     Parameters are everything after the first instance of the payload
     (donut file name) in the ability command.
 
@@ -74,5 +78,8 @@ async def _get_parameters(data_svc, file_name):
             if file_name in decoded_command:
                 parameters = shlex.split(''.join(decoded_command.split(file_name)[1:]))
             else:
+                print('[!] Donut file name missing from command in ability "{}". Prepend "{}"'.format(link.ability.name,
+                                                                                                      file_name))
+                print('[!] {} may need to be deleted from the remote machine.'.format(file_name))
                 parameters = shlex.split(decoded_command)
     return ','.join(parameters)
