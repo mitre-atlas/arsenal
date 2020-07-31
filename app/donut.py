@@ -22,9 +22,10 @@ async def donut_handler(services, args):
     _, exe_path = await services.get('file_svc').find_file_path(exe_file, location='payloads')
     donut_dir, _ = os.path.split(exe_path)
     donut_path = os.path.join(donut_dir, donut_file)
-    parameters = await _get_parameters(services.get('data_svc'), args.get('file'))
+    parameters = await _get_parameters(services.get('data_svc'), donut_file)
     shellcode = donut.create(file=exe_path, params=parameters)
     _write_shellcode_to_file(shellcode, donut_path)
+    return donut_file, donut_file
 
 
 """ PRIVATE """
@@ -71,8 +72,7 @@ async def _get_parameters(data_svc, file_name):
         if operation.obfuscator == 'plain-text':
             decoded_command = base64.b64decode(link.command).decode('utf-8')
             if file_name in decoded_command:
-                param_string = ''.join(decoded_command.split(file_name)[1:])
+                parameters = shlex.split(''.join(decoded_command.split(file_name)[1:]))
             else:
-                param_string = decoded_command
-            parameters = shlex.split(param_string)
+                parameters = shlex.split(decoded_command)
     return ','.join(parameters)
