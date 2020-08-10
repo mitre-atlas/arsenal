@@ -17,9 +17,9 @@
         parsers:
           plugins.stockpile.app.parsers.json:
             - source: host.process.id
-              json_key: Id
-              json_type:
-                - int
+              custom_parser_vals:
+                json_key: Id
+                json_type: int
       cmd:
         build_target: GetLsass.exe
         language: csharp

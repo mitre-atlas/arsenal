@@ -14,8 +14,8 @@
         parsers:
           plugins.stockpile.app.parsers.json:
           - source: domain.user.name
-            json_key: samaccountname
-            json_type:
-            - str
+            custom_parser_vals:
+              json_key: samaccountname
+              json_type: str
         payloads:
         - powerview.ps1

@@ -14,6 +14,6 @@
         parsers:
           plugins.stockpile.app.parsers.json:
             - source: domain.smb.share
-              json_key: Path
-              json_type:
-                - str
+              custom_parser_vals:
+                json_key: Path
+                json_type: str
