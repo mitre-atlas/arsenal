@@ -64,6 +64,9 @@ standard_payloads:
     id: 9f639067-370a-40ba-b7ac-6f1c15d5a158
     obfuscation_name:
       - obfuscated_payload.sh
+  sshpass:
+    description: Automatically pass password to ssh
+    id: df945533-2200-451a-a1a9-801b35ae21a9
 special_payloads:
   minidump.go:
     description: LSASS memory dump script
