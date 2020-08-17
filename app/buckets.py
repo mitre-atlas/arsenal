@@ -18,7 +18,7 @@ class LogicalPlanner:
         await self.planning_svc.execute_planner(self)
 
     async def do_bucket(self, bucket):
-        await self.planning_svc.exhaust_bucket(self, [bucket], self.operation)
+        await self.planning_svc.exhaust_bucket(self, bucket, self.operation)
 
     async def initial_access(self):
         await self.do_bucket('initial-access')
