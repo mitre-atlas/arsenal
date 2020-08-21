@@ -18,17 +18,48 @@ async def donut_handler(services, args):
     :rtype: string, string
     """
     donut_file = args.get('file')
-    exe_file = '{}.exe'.format(donut_file)
-    _, exe_path = await services.get('file_svc').find_file_path(exe_file, location='payloads')
-    donut_dir, _ = os.path.split(exe_path)
-    donut_path = os.path.join(donut_dir, donut_file)
-    parameters = await _get_parameters(services.get('data_svc'), donut_file)
-    shellcode = donut.create(file=exe_path, params=parameters)
-    _write_shellcode_to_file(shellcode, donut_path)
+    exe_path = await _get_exe_path(services, donut_file)
+    if exe_path:
+        donut_dir, _ = os.path.split(exe_path)
+        donut_path = os.path.join(donut_dir, donut_file)
+        parameters = await _get_parameters(services.get('data_svc'), donut_file)
+        shellcode = donut.create(file=exe_path, params=parameters)
+        _write_shellcode_to_file(shellcode, donut_path)
+    else:
+        print('[!] No executable found for donut payload: {}'.format(donut_file))
+
     return donut_file, donut_file
 
 
 """ PRIVATE """
+
+
+async def _get_exe_path(services, donut_file):
+    """Get executable path for payload
+
+    Example:
+        donut_file = 'Rubeus.donut'
+        Search for:
+            1. 'Rubeus.donut.exe'
+            2. 'Rubeus.exe'
+
+    :param services: CALDERA services
+    :type services: dict
+    :param donut_file: Donut filename
+    :type donut_file: string
+    :return: Full path to executable
+    :rtype: string
+    """
+    base_name = os.path.splitext(donut_file)[0]
+    exe_files = [
+        '{}.exe'.format(donut_file),
+        '{}.exe'.format(base_name)
+    ]
+    for exe_file in exe_files:
+        _, exe_path = await services.get('file_svc').find_file_path(exe_file, location='payloads')
+        if exe_path:
+            break
+    return exe_path
 
 
 def _write_shellcode_to_file(shellcode, file_path):
