@@ -27,16 +27,16 @@ class OperationLoop:
         """
         self.profile['results'] = []
         print('[*] Sending beacon for %s' % self.profile.get('paw', 'unknown'))
-        try:
-            while True:
+        while True:
+            try:
                 beacon = self._send_beacon()
                 self.profile['results'].clear()
                 instructions = self._next_instructions(beacon=beacon)
                 sleep = self._handle_instructions(instructions)
                 time.sleep(sleep)
-        except Exception as e:
-            print('[-] Operation loop error: %s' % e)
-            time.sleep(30)
+            except Exception as e:
+                print('[-] Operation loop error: %s' % e)
+                time.sleep(30)
 
     """ PRIVATE """
 
@@ -62,7 +62,10 @@ class OperationLoop:
     def _execute_instruction(self, i):
         print('[+] Running instruction: %s' % i['id'])
         cmd = self._decode_bytes(i['command'])
-        output = subprocess.check_output(cmd, shell=True, timeout=i['timeout'])
+        try:
+            output = subprocess.check_output(cmd, shell=True, timeout=i['timeout'])
+        except subprocess.CalledProcessError as e:
+            output = e.output
         return dict(output=self._encode_string(output.decode('utf-8', errors='ignore')), pid=os.getpid(), status=0, id=i['id']), i['sleep']
 
     def _download_payloads(self, payloads):
