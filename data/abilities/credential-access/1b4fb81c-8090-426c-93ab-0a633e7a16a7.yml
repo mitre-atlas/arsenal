@@ -7,20 +7,28 @@
   technique:
     attack_id: T1040
     name: Network Sniffing
+  privilege: Elevated
   platforms:
     windows:
       psh:
+        timeout: 80
         command: |
-          New-NetEventSession -Name "PCAP" -CaptureMode SaveToFile -LocalFilePath "$ENV:UserProfile\Desktop\pcap.etl" -MaxFileSize 0
-          Add-NetEventPacketCaptureProvider -SessionName "PCAP"
-          Start-NetEventSession -Name "PCAP"
-          Start-Sleep -s 60
-          Stop-NetEventSession -Name "PCAP"
-          Get-Content "$ENV:UserProfile\Desktop\pcap.etl"
+          $path = "$ENV:UserProfile\Desktop\pcap.etl";
+          New-NetEventSession -Name "PCAP" -CaptureMode SaveToFile -LocalFilePath $path;
+          Add-NetEventProvider -Name "Microsoft-Windows-TCPIP" -SessionName "PCAP";
+          Start-NetEventSession -Name "PCAP";
+          Start-Sleep -s 60;
+          Stop-NetEventSession -Name "PCAP";
+          if (Test-Path $path) {
+            echo $path;
+            exit 0;
+          } else {
+            echo "Failed to generate PCAP file.";
+            exit 1;
+          };
         cleanup: |
-          Remove-NetEventSession -Name "Capture"
-          Remove-Item $ENV:UserProfile\Desktop\pcap.etl
-          Remove-Item $ENV:UserProfile\Desktop\pcap.cab
+          Remove-NetEventSession -Name "PCAP";
+          Remove-Item $ENV:UserProfile\Desktop\pcap.etl;
     darwin:
       sh:
         command: |

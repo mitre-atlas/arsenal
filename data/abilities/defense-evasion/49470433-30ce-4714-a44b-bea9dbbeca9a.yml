@@ -12,6 +12,28 @@
     windows:
       psh:
         command: |
-          Set-MPPreference -DisableRealtimeMonitoring 1
+          if (Get-Command "Set-MPPreference" -ErrorAction SilentlyContinue) {
+            Set-MPPreference -DisableRealtimeMonitoring 1;
+          } else {
+            $service = Get-Service WinDefend -ErrorAction SilentlyContinue;
+            if ($service) {
+              if ($service.Status -eq "Running") {
+                Stop-Service WinDefend;
+              }
+            } else {
+              echo "Windows Defender service not found.";
+              exit 1;
+            };
+          };
         cleanup:
-          Set-MPPreference -DisableRealtimeMonitoring 0
+          if (Get-Command "Set-MPPreference" -ErrorAction SilentlyContinue) {
+            Set-MPPreference -DisableRealtimeMonitoring 0;
+          } else {
+            $service = Get-Service WinDefend -ErrorAction SilentlyContinue;
+            if ($service) {
+              Start-Service WinDefend;
+            } else {
+              echo "Windows Defender service not found.";
+              exit 1;
+            };
+          };
