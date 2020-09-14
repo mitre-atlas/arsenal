@@ -12,6 +12,10 @@
           .\totallylegit.exe #{host.process.id} C:\Users\Public\creds.dmp
         payloads:
         - totallylegit.exe
+        cleanup: |
+          if (Test-Path "C:\Users\Public\creds.dmp") {
+            rm "C:\Users\Public\creds.dmp" -Force;
+          };
   requirements:
   - plugins.stockpile.app.requirements.paw_provenance:
     - source: host.process.id
