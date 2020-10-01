@@ -6,7 +6,7 @@
   tactic: credential-access
   technique:
     attack_id: T1552.002
-    name: "OS Credential Dumping: Credentials in Registry"
+    name: "Unsecured Credentials: Credentials in Registry"
   platforms:
     windows:
       psh:
