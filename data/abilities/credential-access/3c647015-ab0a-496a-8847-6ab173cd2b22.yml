@@ -4,7 +4,7 @@
   tactic: credential-access
   technique:
     attack_id: T1003
-    name: Credential Dumping
+    name: OS Credential Dumping
   platforms:
     windows:
       psh:
