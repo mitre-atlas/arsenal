@@ -11,7 +11,7 @@
         command: |
           $path = "sandcat.go-windows";
           $drive = "\\#{remote.host.fqdn}\C$";
-          Copy-Item -v -Path $path -Destination $drive"\Users\Public\svchost.exe";
+          Copy-Item -v -Path $path -Destination $drive"\Users\Public\s4ndc4t.exe";
         cleanup: |
           $drive = "\\#{remote.host.fqdn}\C$";
           Remove-Item -Path $drive"\Users\Public\svchost.exe" -Force;
