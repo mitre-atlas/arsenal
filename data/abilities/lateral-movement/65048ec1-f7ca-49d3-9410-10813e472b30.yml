@@ -14,7 +14,7 @@
           Copy-Item -v -Path $path -Destination $drive"\Users\Public\s4ndc4t.exe";
         cleanup: |
           $drive = "\\#{remote.host.fqdn}\C$";
-          Remove-Item -Path $drive"\Users\Public\svchost.exe" -Force;
+          Remove-Item -Path $drive"\Users\Public\s4ndc4t.exe" -Force;
         parsers:
           plugins.stockpile.app.parsers.54ndc47_remote_copy:
           - source: remote.host.fqdn
