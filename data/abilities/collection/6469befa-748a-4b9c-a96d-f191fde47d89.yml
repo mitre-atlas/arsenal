@@ -5,8 +5,8 @@
   description: create a directory for exfil staging
   tactic: collection
   technique:
-    attack_id: T1074
-    name: Data Staged
+    attack_id: T1074.001
+    name: Data Staged: Local Data Staging
   platforms:
     darwin:
       sh:
