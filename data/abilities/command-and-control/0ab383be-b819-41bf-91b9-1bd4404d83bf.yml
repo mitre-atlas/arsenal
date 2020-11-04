@@ -4,7 +4,7 @@
   tactic: command-and-control
   technique:
     attack_id: T1071.001
-    name: Application Layer Protocol: Web Protocols
+    name: "Application Layer Protocol: Web Protocols"
   platforms:
     darwin:
       sh:

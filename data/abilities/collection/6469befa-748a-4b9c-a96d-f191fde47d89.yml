@@ -6,7 +6,7 @@
   tactic: collection
   technique:
     attack_id: T1074.001
-    name: Data Staged: Local Data Staging
+    name: "Data Staged: Local Data Staging"
   platforms:
     darwin:
       sh:
