@@ -11,7 +11,7 @@ class Parser(BaseParser):
         relationships = []
         for share in re.findall(r'^(.+?)\s+(Disk|IPC)', blob, re.MULTILINE):
             for mp in self.mappers:
-                all_facts = self.used_facts
+                all_facts = self.used_facts.copy()
                 all_facts.extend(self.source_facts)
                 fqdn = [f.value for f in all_facts if f.trait == mp.source].pop()
                 source = self.set_value(mp.source, fqdn, self.used_facts)
