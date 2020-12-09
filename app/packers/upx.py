@@ -5,7 +5,8 @@ name = 'upx'
 
 
 async def check_dependencies(app_svc):
-    return await app_svc.validate_requirement('upx', dict(type='installed_program', command='upx --version', version='0.0.0'))
+    return await app_svc.validate_requirement('upx', dict(type='installed_program', command='upx --version',
+                                                           version='0.0.0', optional=True))
 
 
 class Packer:
