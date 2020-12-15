@@ -22,7 +22,7 @@ async def donut_handler(services, args):
     if exe_path:
         donut_dir, _ = os.path.split(exe_path)
         donut_path = os.path.join(donut_dir, donut_file)
-        parameters = await _get_parameters(services.get('data_svc'), donut_file)
+        parameters = await _get_parameters(services.get('data_svc'), donut_file, args.get('X-Link-Id'))
         shellcode = donut.create(file=exe_path, params=parameters)
         _write_shellcode_to_file(shellcode, donut_path)
     else:
@@ -77,10 +77,11 @@ def _write_shellcode_to_file(shellcode, file_path):
         print(ex)
 
 
-async def _get_parameters(data_svc, file_name):
-    """Generate command line parameters from latest matching link
+async def _get_parameters(data_svc, file_name, link_id=None):
+    """Generate command line parameters link or best guess
 
-    Links are matched based on the earliest started matching ability.
+    Links are matched based on the earliest started matching ability if
+    `link_id` is not defined
 
     This will only work with the plain-text obfuscator.
 
@@ -93,14 +94,22 @@ async def _get_parameters(data_svc, file_name):
 
     :param data_svc: Data service to collect operations
     :type data_svc: DataService
+    :param file_name: Donut filename
+    :type file_name: str
+    :param link_id: Link ID for command
+    :type link_id: str
     :return: Donut parameters
     :rtype: string
     """
     parameters = []
     operations = await data_svc.locate('operations', match=dict(state='running'))
-    potential_links = [chain for operation in operations for chain in operation.chain
-                       if not chain.finish and chain.ability.executor.startswith('donut')
-                       and file_name in chain.ability.payloads]
+    if link_id:
+        potential_links = [chain for operation in operations for chain in operation.chain
+                           if chain.id == int(link_id)]
+    else:
+        potential_links = [chain for operation in operations for chain in operation.chain
+                           if not chain.finish and chain.ability.executor.startswith('donut')
+                           and file_name in chain.ability.payloads]
     if potential_links:
         link = sorted(potential_links, key=lambda l: l.decide)[0]
         operation = [operation for operation in operations if operation.has_link(link.id)][0]
