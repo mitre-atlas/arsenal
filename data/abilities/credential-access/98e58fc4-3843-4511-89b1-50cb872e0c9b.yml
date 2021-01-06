@@ -1,7 +1,7 @@
 ---
 
 - id: 98e58fc4-3843-4511-89b1-50cb872e0c9b
-  name: Credentials in Registry
+  name: Credentials in Registry - HKLM
   description: Search for possible credentials stored in the HKLM Hive
   tactic: credential-access
   technique:
