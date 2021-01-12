@@ -11,8 +11,12 @@
     darwin:
       sh:
         command: |
-          python3 --version
+          python3 --version;python2 --version;python --version
     linux:
       sh:
         command: |
-          python3 --version
+          python3 --version;python2 --version;python --version
+    windows:
+      cmd:
+        command: |
+          python3 --version&python2 --version&python --version
