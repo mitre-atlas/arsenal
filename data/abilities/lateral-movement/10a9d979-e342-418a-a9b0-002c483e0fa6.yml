@@ -24,3 +24,4 @@
           ssh -o ConnectTimeout=3 -o StrictHostKeyChecking=no #{remote.ssh.cmd} 'pkill -f sandcat & rm -f ~/sandcat.go'
         payloads:
         - sandcat.go-linux
+  singleton: True

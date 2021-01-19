@@ -18,6 +18,7 @@
           plugins.stockpile.app.parsers.share_mounted:
             - source: remote.host.fqdn
               edge: has_share
+  singleton: True
   requirements:
     - plugins.stockpile.app.requirements.not_exists:
         - source: remote.host.fqdn

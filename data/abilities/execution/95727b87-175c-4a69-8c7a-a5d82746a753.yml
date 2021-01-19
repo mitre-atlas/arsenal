@@ -18,3 +18,4 @@
           sc.exe \\#{remote.host.fqdn} start sandsvc;
           Start-Sleep -s 15;
           Get-Process -ComputerName #{remote.host.fqdn} s4ndc4t;
+  singleton: True

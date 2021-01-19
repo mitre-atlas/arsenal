@@ -14,3 +14,4 @@
            net use \\#{remote.host.ip}\c$ /user:#{domain.user.name} #{domain.user.password};
         cleanup: |
            net use \\#{remote.host.ip}\c$ /delete;
+  singleton: True

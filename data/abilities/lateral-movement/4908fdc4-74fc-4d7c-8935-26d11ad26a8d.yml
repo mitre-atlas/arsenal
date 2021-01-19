@@ -54,3 +54,4 @@
           ssh -o ConnectTimeout=3 -o StrictHostKeyChecking=no #{remote.ssh.cmd} 'rm -f sandcat.go'
         payloads:
         - sandcat.go-linux
+  singleton: True

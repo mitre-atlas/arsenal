@@ -15,3 +15,4 @@
           cmd /c start C:\Users\Public\sandcat.go-windows -server #{server} -v
         payloads:
         - sandcat.go-windows
+  singleton: True

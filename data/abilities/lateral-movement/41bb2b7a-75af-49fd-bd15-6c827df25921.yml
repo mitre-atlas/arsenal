@@ -30,3 +30,4 @@
           Remove-PSSession -Session $session;
         payloads:
         - sandcat.go-windows
+  singleton: True

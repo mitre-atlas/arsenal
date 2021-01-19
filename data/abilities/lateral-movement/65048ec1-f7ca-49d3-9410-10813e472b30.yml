@@ -21,6 +21,7 @@
             edge: has_54ndc47_copy
         payloads:
         - sandcat.go-windows
+  singleton: True
   requirements:
   - plugins.stockpile.app.requirements.not_exists:
     - source: remote.host.fqdn

@@ -22,3 +22,4 @@
           pkill -f sandcat
         payloads:
         - sandcat.go
+  singleton: True
