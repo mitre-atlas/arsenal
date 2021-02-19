@@ -11,3 +11,4 @@ description: |
 module: plugins.stockpile.app.buckets
 params: {}
 ignore_enforcement_modules: []
+allow_repeatable_abilities: False

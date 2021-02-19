@@ -12,3 +12,4 @@ description: |
 module: plugins.stockpile.app.batch
 params: {}
 ignore_enforcement_modules: []
+allow_repeatable_abilities: True
