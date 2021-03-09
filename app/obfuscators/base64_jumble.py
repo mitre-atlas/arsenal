@@ -28,12 +28,12 @@ class Obfuscation(BaseObfuscator):
         return 'eval "$(echo %s | rev | cut -c%s- | rev | base64 --decode)"' % (link.command, extra_chars)
 
     def psh(self, link, **kwargs):
-        extra_chars = kwargs.get('extra') + 1
+        extra_chars = kwargs.get('extra')
         try:
             recoded = b64encode(self.decode_bytes(link.command).encode('UTF-16LE'))
         except binascii.Error:  # Resolve issue where we can't decode our own mangled command internally
-            recoded = b64encode(self.decode_bytes(link.command[:-(extra_chars-1)]).encode('UTF-16LE'))
-        return 'powershell -Enc %s.Substring(0,%s)' % (recoded.decode('utf-8'), len(link.command)-extra_chars)
+            recoded = b64encode(self.decode_bytes(link.command[:-extra_chars]).encode('UTF-16LE'))
+        return 'powershell -Enc %s' % recoded.decode('utf-8')
 
     """ PRIVATE """
 
