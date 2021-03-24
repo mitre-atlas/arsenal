@@ -104,12 +104,12 @@ async def _get_parameters(data_svc, file_name, link_id=None):
     parameters = []
     operations = await data_svc.locate('operations', match=dict(state='running'))
     if link_id:
-        potential_links = [chain for operation in operations for chain in operation.chain
-                           if chain.id == link_id]
+        potential_links = [link for operation in operations for link in operation.chain
+                           if link.id == link_id]
     else:
-        potential_links = [chain for operation in operations for chain in operation.chain
-                           if not chain.finish and chain.ability.executor.startswith('donut')
-                           and file_name in chain.ability.payloads]
+        potential_links = [link for operation in operations for link in operation.chain
+                           if not link.finish and link.ability.executor.startswith('donut')
+                           and file_name in link.ability.payloads]
     if potential_links:
         link = sorted(potential_links, key=lambda l: l.decide)[0]
         operation = [operation for operation in operations if operation.has_link(link.id)][0]
