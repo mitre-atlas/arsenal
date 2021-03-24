@@ -105,7 +105,7 @@ async def _get_parameters(data_svc, file_name, link_id=None):
     operations = await data_svc.locate('operations', match=dict(state='running'))
     if link_id:
         potential_links = [chain for operation in operations for chain in operation.chain
-                           if chain.id == int(link_id)]
+                           if chain.id == link_id]
     else:
         potential_links = [chain for operation in operations for chain in operation.chain
                            if not chain.finish and chain.ability.executor.startswith('donut')
