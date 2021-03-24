@@ -1,5 +1,3 @@
-from base64 import b64encode
-
 from app.utility.base_obfuscator import BaseObfuscator
 
 
