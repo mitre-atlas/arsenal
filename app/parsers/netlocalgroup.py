@@ -16,7 +16,8 @@ class Parser(BaseParser):
         try:
             users = []
             skip = text.find("ComputerName")
-            safe = text[skip:]
+            skip2 = text.find("WARNING", 1)
+            safe = text[skip:skip2]
             for block in safe.split("\r\n\r\n"):
                 lines = block.splitlines()
                 parsed_block = {}

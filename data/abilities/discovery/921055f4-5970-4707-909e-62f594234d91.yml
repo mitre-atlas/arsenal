@@ -16,4 +16,7 @@
           plugins.stockpile.app.parsers.firewallping:
             - source: remote.host.fqdn
               edge: isAccessibleFrom
-              target: remote.host.fqdn
+  requirements:
+    - plugins.stockpile.app.requirements.not_exists:
+        - source: remote.host.fqdn
+          edge: isAccessibleFrom
