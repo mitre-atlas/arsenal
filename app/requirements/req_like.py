@@ -42,7 +42,7 @@ class Requirement(BaseRequirement):
                 return True
             t1 = target.value.split('\\')
             m1 = match.value.split('\\')
-            if len(t1) == len(m1) and len(m1) is 2:
+            if len(t1) == len(m1) and len(m1) == 2:
                 if (t1[0] in match.value and t1[1] in match.value) or (m1[0] in target.value and m1[1] in target.value):
                     return True
         return False

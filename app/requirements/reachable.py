@@ -17,6 +17,6 @@ class Requirement(BaseRequirement):
                     links = [x for x in operation.chain if r in x.relationships]
                     host = links[0].host
                     if r.source.value == uf.value:
-                        if link.host == host: # running on the host that created this relationship
+                        if link.host == host:  # running on the host that created this relationship
                             return True
         return False
