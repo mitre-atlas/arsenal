@@ -7,6 +7,7 @@ class Parser(BaseParser):
     def parse(self, blob):
         relationships = []
         for match in self.line(blob):
+            # Ignore this row if it's a heading or doesn't contain queued document info
             first_char = match[0]
             if not first_char.isnumeric():
                 continue
