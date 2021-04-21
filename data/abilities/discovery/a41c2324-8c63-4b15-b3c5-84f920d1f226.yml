@@ -12,3 +12,9 @@
         parsers:
           plugins.stockpile.app.parsers.basic:
           - source: host.system.path
+    darwin:
+      sh:
+        command: 'find ~ -type f -name #{host.print.file} 2>/dev/null'
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+          - source: host.system.path
