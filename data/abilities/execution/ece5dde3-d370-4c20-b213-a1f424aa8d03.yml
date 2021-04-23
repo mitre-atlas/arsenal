@@ -23,9 +23,12 @@
     - plugins.stockpile.app.requirements.basic:
       - source: remote.host.fqdn
         edge: has_54ndc47_copy
-    - plugins.stockpile.app.requirements.basic:
+    - plugins.stockpile.app.requirements.req_like:
       - source: remote.host.fqdn
         edge: has_admin
         target: domain.user.name
     - plugins.stockpile.app.requirements.no_backwards_movement:
        - source: remote.host.fqdn
+    - plugins.stockpile.app.requirements.reachable:
+        - source: remote.host.fqdn
+          edge: isAccessibleFrom
