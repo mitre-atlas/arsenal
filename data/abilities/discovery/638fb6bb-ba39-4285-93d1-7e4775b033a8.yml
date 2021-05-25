@@ -10,12 +10,13 @@
     darwin:
       sh:
         command: |
-          netstat -ant
+          netstat -anto
     linux:
       sh:
         command: |
-          netstat -ant
+          netstat -anto
     windows:
       psh:
         command: |
+          netstat -anto;
           Get-NetTCPConnection
