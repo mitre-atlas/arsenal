@@ -14,4 +14,4 @@ atomic_ordering:
 # Copy remotely
   - 65048ec1-f7ca-49d3-9410-10813e472b30 # SMB copy
 # Remote exec
-  - 2a32e46f-5346-45d3-9475-52b857c05342 # WMI exec
+  - ece5dde3-d370-4c20-b213-a1f424aa8d03 # WMI exec

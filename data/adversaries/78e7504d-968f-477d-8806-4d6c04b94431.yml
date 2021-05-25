@@ -17,6 +17,6 @@ atomic_ordering:
   - 65048ec1-f7ca-49d3-9410-10813e472b30 # SMB copy
   - 4908fdc4-74fc-4d7c-8935-26d11ad26a8d # WinRM and SCP
 # Remote exec
-  - 2a32e46f-5346-45d3-9475-52b857c05342 # WMI exec
+  - ece5dde3-d370-4c20-b213-a1f424aa8d03 # WMI exec
   - 41bb2b7a-75af-49fd-bd15-6c827df25921 # WinRM start
   - 10a9d979-e342-418a-a9b0-002c483e0fa6 # SSH remote
