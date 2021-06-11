@@ -11,7 +11,7 @@ class Requirement(BaseRequirement):
         :param operation
         :return: True if it complies, False if it doesn't
         """
-        relationships = operation.all_relationships()
+        relationships = await operation.all_relationships()
         for uf in link.used:
             if self.enforcements['source'] == uf.trait:
                 for r in self._get_relationships(uf, relationships):

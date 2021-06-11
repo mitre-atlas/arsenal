@@ -3,6 +3,7 @@ from app.objects.secondclass.c_relationship import Relationship
 from app.utility.base_parser import BaseParser
 import re
 
+
 class Parser(BaseParser):
     def parse(self, blob):
         relationships = []
