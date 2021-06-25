@@ -19,3 +19,6 @@
           Start-Sleep -s 15;
           Get-Process -ComputerName #{remote.host.fqdn} s4ndc4t;
   singleton: True
+  requirements:
+    - plugins.stockpile.app.requirements.no_backwards_movement:
+        - source: remote.host.fqdn
