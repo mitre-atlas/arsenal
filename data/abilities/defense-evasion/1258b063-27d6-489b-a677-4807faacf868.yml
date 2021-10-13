@@ -11,7 +11,7 @@
     windows:
       psh,pwsh:
         command: |
-          $sercurityServices = @(
+          $securityServices = @(
               "msmpeng",
               "windefend",
               "mssense",
@@ -75,7 +75,7 @@
 
           $currentServices = Get-Service | Select-Object -Property Name;
           foreach ($svc in $currentServices) {
-              foreach ($secSvc in $sercurityServices) {
+              foreach ($secSvc in $securityServices) {
                   if ($svc.Name -like $secSvc) {
                       $svcDetails = Get-Service -name $svc.Name | Select-Object -Property Name, DisplayName, Status;
                       Write-Host "[!] Security service found:";
