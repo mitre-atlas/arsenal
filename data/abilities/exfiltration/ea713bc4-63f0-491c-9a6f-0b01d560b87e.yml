@@ -21,8 +21,8 @@
         # REF: https://stackoverflow.com/a/45409728
         command: |
           $ErrorActionPreference = 'Stop';
-          $fieldName = '#{host.dir.compress}';
-          $filePath = '#{host.dir.compress}';
+          $fieldName = "#{host.dir.compress}";
+          $filePath = "#{host.dir.compress}";
           $url = "#{server}/file/upload";
 
           Add-Type -AssemblyName 'System.Net.Http';
@@ -41,4 +41,3 @@
   requirements:
     - plugins.stockpile.app.requirements.paw_provenance:
       - source: host.dir.compress
-
