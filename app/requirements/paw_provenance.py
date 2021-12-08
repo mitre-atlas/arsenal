@@ -11,7 +11,6 @@ class Requirement(BaseRequirement):
         :return: True if it complies, False if it doesn't
         """
         for uf in link.used:
-            if self.enforcements['source'] == uf.trait:
-                if link.paw == uf.collected_by:
-                    return True
+            if self.enforcements['source'] == uf.trait and link.paw in uf.collected_by:
+                return True
         return False
