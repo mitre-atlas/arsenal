@@ -1,76 +1,33 @@
+---
+
 id: ed32b9c3-9593-4c33-b0db-e2007315096b
 name: basic
 facts:
-- value: wav
-  unique: file.sensitive.extensionwav
-  score: 1
-  links: []
-  created: '2021-11-10T14:35:24Z'
-  technique_id: null
-  source: ed32b9c3-9593-4c33-b0db-e2007315096b
-  origin_type: IMPORTED
-  limit_count: -1
-  collected_by: null
-  trait: file.sensitive.extension
-  relationships: []
-  name: file.sensitive.extension
-- value: yml
-  unique: file.sensitive.extensionyml
-  score: 1
-  links: []
-  created: '2021-11-10T14:35:24Z'
-  technique_id: null
-  source: ed32b9c3-9593-4c33-b0db-e2007315096b
-  origin_type: IMPORTED
-  limit_count: -1
-  collected_by: null
-  trait: file.sensitive.extension
-  relationships: []
-  name: file.sensitive.extension
-- value: png
-  unique: file.sensitive.extensionpng
-  score: 1
-  links: []
-  created: '2021-11-10T14:35:24Z'
-  technique_id: null
-  source: ed32b9c3-9593-4c33-b0db-e2007315096b
-  origin_type: IMPORTED
-  limit_count: -1
-  collected_by: null
-  trait: file.sensitive.extension
-  relationships: []
-  name: file.sensitive.extension
-- value: keyloggedsite.com
-  unique: server.malicious.urlkeyloggedsite.com
-  score: 1
-  links: []
-  created: '2021-11-10T14:35:24Z'
-  technique_id: null
-  source: ed32b9c3-9593-4c33-b0db-e2007315096b
-  origin_type: IMPORTED
-  limit_count: -1
-  collected_by: null
-  trait: server.malicious.url
-  relationships: []
-  name: server.malicious.url
+  - trait: file.sensitive.extension
+    value: wav
+  - trait: file.sensitive.extension
+    value: yml
+  - trait: file.sensitive.extension
+    value: png
+  - trait: server.malicious.url
+    value: keyloggedsite.com
 adjustments:
-  1b4fb81c-8090-426c-93ab-0a633e7a16a7:
-    host.installed.av:
-    - value: symantec
-      offset: 3
-    - value: mcafee
-      offset: 3
+    1b4fb81c-8090-426c-93ab-0a633e7a16a7:
+      host.installed.av:
+        - value: symantec
+          offset: 3
+        - value: mcafee
+          offset: 3
 rules:
-- action: DENY
-  trait: file.sensitive.extension
-  match: .*
-- action: ALLOW
-  trait: file.sensitive.extension
-  match: png
-- action: ALLOW
-  trait: file.sensitive.extension
-  match: yml
-- action: ALLOW
-  trait: file.sensitive.extension
-  match: wav
-relationships: []
+  - action: DENY
+    trait: file.sensitive.extension
+    match: .*
+  - action: ALLOW
+    trait: file.sensitive.extension
+    match: png
+  - action: ALLOW
+    trait: file.sensitive.extension
+    match: yml  
+  - action: ALLOW
+    trait: file.sensitive.extension
+    match: wav
