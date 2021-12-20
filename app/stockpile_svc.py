@@ -17,9 +17,7 @@ class StockpileService(BaseService):
 
     @template('stockpile.html')
     async def splash(self, request):
-        abilities = [a for a in await self.data_svc.locate('abilities') if await a.which_plugin() == 'stockpile']
-        adversaries = [a for a in await self.data_svc.locate('adversaries') if await a.which_plugin() == 'stockpile']
-        return dict(abilities=abilities, adversaries=adversaries)
+        return dict()
 
     async def dynamically_compile(self, headers):
         name, platform = headers.get('file'), headers.get('platform')
