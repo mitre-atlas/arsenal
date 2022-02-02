@@ -25,7 +25,11 @@
         payloads:
         - file_search.ps1
         cleanup: |
-          if (Test-Path -Path '.\file_search.ps1) {Remove-Item -Force -Path 'file_search.ps1'}
+          if ('#{windows.staging.location}' -match "recycle[``|\s]+bin") {
+                 $sid = ([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value;
+                 $StageDir = "C:\`$Recycle.Bin\$sid\s";
+          } else { $StageDir = '#{windows.staging.location}\s'; };
+          if (Test-Path -Path $StageDir) {Remove-Item -Force -Recurse $StageDir};
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.dir.staged
@@ -40,7 +44,7 @@
         payloads:
           - file_search.sh
         cleanup: |
-          if [-f ./file_search.sh ]; then rm -f ./file_search.sh; fi
+          if [ -d '#{linux.staging.location}' ]; then rm -rf '#{linux.staging.location}/.s'; fi;
         parsers:
           plugins.stockpile.app.parsers.basic:
             - source: host.dir.staged
