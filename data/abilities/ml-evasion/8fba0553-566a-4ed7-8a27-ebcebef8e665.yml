@@ -1,0 +1,30 @@
+- executors:
+  - parsers: []
+    payloads: []
+    timeout: 60
+    command: curl --silent -X POST -F image=@/nfs/cv/users/cbusho/caldera/mmdet-serve/test_images/VIRAT_S_050301_03_000933_001046_960.result.png
+      http://127.0.0.1:8000/predict | python3 -m json.tool
+    additional_info: {}
+    code: null
+    variations: []
+    platform: linux
+    language: null
+    uploads: []
+    name: sh
+    cleanup: []
+    build_target: null
+  tactic: impact
+  access: {}
+  technique_name: Evade ML Model
+  singleton: true
+  additional_info:
+    cleanup: '[]'
+  technique_id: AML.T0015
+  privilege: ''
+  plugin: ''
+  name: Evade ML Model
+  description: Evade a machine learning model with a perturbed image through misclassification. 
+  buckets: []
+  requirements: []
+  repeatable: false
+  id: 8fba0553-566a-4ed7-8a27-ebcebef8e665
