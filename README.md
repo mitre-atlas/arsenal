@@ -14,6 +14,7 @@ To `fetch` new changes to the original stockpile repo:
 # If you want, add the original repo as remote to fetch (potential) future changes. 
 # Make sure you also disable push on the remote (as you are not allowed to push to it anyway)
 
+git checkout master
 git remote add upstream https://github.com/mitre/stockpile.git
 git remote set-url --push upstream DISABLE
 
