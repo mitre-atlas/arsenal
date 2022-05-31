@@ -4,10 +4,39 @@
 ### This plugin will help store and create adversarial TTPs defined in [`ATLAS`](https://atlas.mitre.org/) to interfeace with [`CALDERA`](https://github.com/mitre/caldera). It can be used in conjuction with the plugin [`Almanac`](https://gitlab.mitre.org/advml/almanac/-/tree/develop). This is a mirror of the public repo: [`stockpile`](https://github.com/mitre/stockpile/tree/master) on its `master` branch
 
 
-## **Do NOT push any code to `master`, this branch is reserved for pulling changes from the `stockpile` repo**  
+- ## Do **NOT** push any code to `master` branch, this branch is reserved for pulling changes from the `stockpile` repo
 
-**All code relevant to `atlas-stockpile` that is not a development branch should be pushed to `main`**
+- **All code relevant to `atlas-stockpile` that is not a development branch should be pushed to `main`**
 
+# Developers
+## Installation with CALDERA app
+
+- follow guide for setting up the `atlas-stockpile` repo
+
+### It is recommended to edit your `.bashrc` to instantiate a docker container with the `atlas-stockpile` plugin mounted to CALDERA container
+
+To do so, run the following bash script, which will:
+
+- install tmux
+- edit `.bashrc` with the docker run command inside a persistent `tmux` session named "caldera"
+- edit `.bashrc` with the docker run command inside a persistent `tmux` session named "mmdetect"
+
+```code 
+script.sh
+```
+## Mounting a different/additional plugin
+### Mounting to the CALDERA docker container allows for dynamic changes to the plugin in the container to be seen.
+### Be sure to clone the repo of the plugin you want to include into `/home/username/`
+
+To mount other plugins not shipped with the CALDERA codebase simply add the following to the bash script and re-run:
+
+```
+-v /path/to/plugin:/usr/src/app/plugins/plugin
+```
+
+**Currently only the atlas-stckpile and almanac plugins are supported** 
+
+# ATLAS-Stockpile Setup Help
 To `fetch` new changes to the original stockpile repo:
 
 ```
