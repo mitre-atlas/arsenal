@@ -74,6 +74,10 @@ upstream        DISABLE (push)
 
  ```
 
+ Overview of how this code base works:
+![overview](images/overview.png)
+
+
 # CALDERA plugin: Stockpile
 
 A plugin supplying CALDERA with TTPs and adversary profiles.
