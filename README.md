@@ -11,7 +11,33 @@
 # Developers
 ## Installation with CALDERA app
 
-- follow guide for setting up the `atlas-stockpile` repo
+- follow guide for setting up the `atlas-stockpile` repo in SETUP Help
+
+## HARBOR: docker images
+We recommend using the container-manager resources for development, which includes a host of pre-built docker images. The images most used with this plugin will be:
+ - caldera-dev:latest
+ - mmdet-serve:retinet
+
+To request access to Harbor, navigate to: `butler.mitre.org/harbor`
+
+ - Use your MITRE SUI and password to login
+ - Navigate to the `ATLAS` project page (you must be given access first)
+    
+Use the ```PULL``` tab to copy the command or pull directly using the `TAG`:
+
+```
+docker pull butler.mitre.org/atlas/<container-name>:<TAG>
+```
+
+You must periodically login into Harbor to pull new images and push new images (only certain users will be able to push to the atlas folder for obvious reasons). To login, in your terminal:
+
+```code
+
+docker login butler.mitre.org
+ >>> MITRE SUI
+ >>> MITRE Password
+
+```
 
 ### It is recommended to edit your `.bashrc` to instantiate a docker container with the `atlas-stockpile` plugin mounted to CALDERA container
 
