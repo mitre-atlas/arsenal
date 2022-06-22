@@ -42,13 +42,16 @@ docker login butler.mitre.org
 ### It is recommended to edit your `.bashrc` to instantiate a docker container with the `atlas-stockpile` plugin mounted to CALDERA container
 
 To do so, run the following bash script, which will:
+```code 
+script.sh
+```
 
 - install tmux
 - edit `.bashrc` with the docker run command inside a persistent `tmux` session named "caldera"
-- edit `.bashrc` with the docker run command inside a persistent `tmux` session named "mmdetect"
 
-```code 
-script.sh
+### Run the MMDETECTION (or Target) Model:
+```
+docker run -d -p 8000:8000 butler.mitre.org/atlas/mmdet-serve:retinanet
 ```
 ## Mounting a different/additional plugin
 ### Mounting to the CALDERA docker container allows for dynamic changes to the plugin in the container to be seen.
