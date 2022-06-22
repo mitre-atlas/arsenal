@@ -1,0 +1,29 @@
+git clone --bare --no-tags --single-branch --branch master https://github.com/mitre/stockpile.git
+cd stockpile.git
+
+# ON GITLAB:
+1. make a new branch `master`
+2. Set default branch to `master`
+
+git push --mirror git@gitlab.mitre.org:advml/atlas-stockpile.git
+cd ~/<new-repo>
+git clone git@gitlab.nitre.org:<path/to/repo>/<new_repo>.git
+
+# This will delete the old `main` branch
+
+# ON GITLAB:
+1. make a new branch `main`
+2. Set default branch to `main`
+
+# Set rules for pulling/pushing
+git remote add upstream https://github.com/mitre/stockpile.git
+git remote set-url --push upstream DISABLE
+
+git remote -v
+
+Should return:
+
+origin	git@github.com:<your_username>/easytrace.git (fetch)
+origin	git@github.com:<your_username>/easytrace.git (push)
+upstream	git@github.com:usi-systems/easytrace.git (fetch)
+upstream	DISABLE (push)
