@@ -31,7 +31,7 @@ objects.planners.default: atomic
 plugins:
 - access
 - almanac
-- atlas-stockpile
+- arsenal
 - atomic
 - compass
 - debrief
