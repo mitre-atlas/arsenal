@@ -31,7 +31,7 @@ objects.planners.default: atomic
 plugins:
 - access
 - almanac
-- atlas-stockpile
+- arsenal
 - atomic
 - compass
 - debrief
@@ -39,7 +39,6 @@ plugins:
 - manx
 - response
 - sandcat
-- stockpile
 - training
 port: 8888
 reports_dir: /tmp

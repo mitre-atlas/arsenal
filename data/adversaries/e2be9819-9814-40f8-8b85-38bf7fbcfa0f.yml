@@ -1,7 +1,8 @@
 adversary_id: e2be9819-9814-40f8-8b85-38bf7fbcfa0f
-name: Evader
-description: Evades ML hosted model
+name: Evade ML Model
+description: Evade a machine learning model with a perturbed image through misclassification. 
 atomic_ordering:
+- 47abe1f5-55a5-46cc-8cad-506dac8ea6d9 # scan for port
 - 8fba0553-566a-4ed7-8a27-ebcebef8e665 # send pre-computed adversarial image
 objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
 tags: []

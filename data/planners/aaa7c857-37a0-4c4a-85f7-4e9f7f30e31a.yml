@@ -10,7 +10,7 @@ description: |
   The abilities are processed in the order set by each agent's atomic ordering.
   For instance, if agent A has atomic ordering (A1, A2, A3) and agent B has atomic ordering (B1, B2, B3), then
   the planner would send (A1, B1) in the first phase, then (A2, B2), etc.
-module: plugins.stockpile.app.atomic
+module: plugins.arsenal.app.atomic
 params: {}
 ignore_enforcement_modules: []
 allow_repeatable_abilities: False

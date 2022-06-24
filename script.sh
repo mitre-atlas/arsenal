@@ -7,5 +7,5 @@ dir=~
 echo 'if ! tmux has-session -t caldera' >> ~/.bashrc
 echo 'then' >> ~/.bashrc
 echo '\t''tmux new -s caldera -d' >> ~/.bashrc
-echo 'tmux send -t caldera "docker run -p 8888:8888  -v '$dir'/atlas-stockpile:/usr/src/app/plugins/atlas-stockpile/ -v '$dir'/almanac/:/usr/src/app/plugins/almanac/ -v '$dir'/atlas-stockpile/default.yml:/usr/src/app/conf/local.yml butler.mitre.org/atlas/caldera-dev:latest" Enter'  >> ~/.bashrc
+echo 'tmux send -t caldera "docker run -p 8888:8888  -v /home/mdotter/arsenal/:/usr/src/app/plugins/arsenal/ -v /home/mdotter/almanac/:/usr/src/app/plugins/almanac/ -v /home/mdotter/arsenal/default.yml:/usr/src/app/conf/local.yml butler.mitre.org/atlas/caldera-dev:latest" Enter'  >> ~/.bashrc
 echo 'fi' >> ~/.bashrc
