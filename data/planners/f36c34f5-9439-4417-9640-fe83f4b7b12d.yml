@@ -8,7 +8,7 @@ description: |
   default, with the option of non-default mappings remaining possible. This planner simply loops through all
   abilities available to the provided adversary, in the order of tactics provided in the ATT&CK matrix, looping if
   more things can be done.
-module: plugins.stockpile.app.buckets
+module: plugins.arsenal.app.buckets
 params: {}
 ignore_enforcement_modules: []
 allow_repeatable_abilities: False

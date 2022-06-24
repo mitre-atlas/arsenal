@@ -10,7 +10,7 @@ class LogicalPlanner:
         self.stopping_condition_met = False
         self.state_machine = ['initial_access', 'defense_evasion', 'command_and_control', 'discovery', 'execution',
                               'credential_access', 'privilege_escalation', 'persistence', 'lateral_movement',
-                              'collection', 'exfiltration', 'impact']
+                              'collection', 'exfiltration', 'impact', 'ml_evasion']
         self.next_bucket = 'initial_access'   # set first, bucket to execute
         self.current_length = 0
 
@@ -63,6 +63,10 @@ class LogicalPlanner:
     async def exfiltration(self):
         await self.do_bucket('exfiltration')
         self.next_bucket = await self.planning_svc.default_next_bucket('exfiltration', self.state_machine)
+
+    async def exfiltration(self):
+        await self.do_bucket('ml_evasion')
+        self.next_bucket = await self.planning_svc.default_next_bucket('ml_evasion', self.state_machine)
 
     async def impact(self):
         await self.do_bucket('impact')

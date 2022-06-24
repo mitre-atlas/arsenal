@@ -39,7 +39,6 @@ plugins:
 - manx
 - response
 - sandcat
-- stockpile
 - training
 port: 8888
 reports_dir: /tmp
