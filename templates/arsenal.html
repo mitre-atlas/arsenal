@@ -42,9 +42,8 @@
 
             initPage() {
                 apiV2('GET', 'api/v2/abilities').then((abilities) => {
-                    console.log('ABILITIES', abilities)
                     this.numAbilities = abilities.filter((ability) => ability.plugin === 'arsenal').length;
-                    console.log('ARSENAL', this.numAbilities)
+                    console.log('ABILITIES', this.numAbilities)
                     return apiV2('GET', 'api/v2/adversaries');
                 }).then((profiles) => {
                     this.numAdversaries = profiles.filter((profile) => profile.plugin === 'arsenal').length;

@@ -11,7 +11,6 @@ access = BaseWorld.Access.APP
 async def enable(services):
     svc = ArsenalService(services)
     services.get('app_svc').application.router.add_route('GET', address, svc.splash)
-    # services.get('app_svc').application.router.add_route('GET', '/get/abilities', svc.get_abilities)
     await services.get('file_svc').add_special_payload('.donut', 'plugins.arsenal.app.donut.donut_handler')
     # await arsenal_svc.data_svc.store(
     #     Obfuscator(name='plain-text',

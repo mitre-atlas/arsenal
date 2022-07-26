@@ -3,7 +3,7 @@
   description: Evade a machine learning model with a perturbed image through misclassification. 
   tactic: impact
   technique_id: AML.T0015
-  technique_name: Evasion Attack
+  technique_name: Evade ML Model
   platforms:
     linux:
       sh:
