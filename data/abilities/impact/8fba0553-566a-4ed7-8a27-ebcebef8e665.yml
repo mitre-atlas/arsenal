@@ -1,7 +1,7 @@
 - id: 8fba0553-566a-4ed7-8a27-ebcebef8e665
   name: Evade ML Model
   description: Evade a machine learning model with a perturbed image through misclassification. 
-  tactic: ml-evasion
+  tactic: impact
   technique_id: AML.T0015
   technique_name: Evasion Attack
   platforms:

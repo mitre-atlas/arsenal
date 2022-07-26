@@ -1,4 +1,4 @@
-from plugins.stockpile.app.requirements.base_requirement import BaseRequirement
+from plugins.arsenal.app.requirements.base_requirement import BaseRequirement
 
 
 class Requirement(BaseRequirement):

@@ -5,7 +5,6 @@ from aiohttp_jinja2 import template
 
 from app.utility.base_service import BaseService
 
-
 class ArsenalService(BaseService):
 
     def __init__(self, services):
@@ -18,6 +17,12 @@ class ArsenalService(BaseService):
     @template('arsenal.html')
     async def splash(self, request):
         return dict()
+    #     abilities = await self.services.get('data_svc').locate('abilities')
+    #     return(dict(abilities=[a.display for a in abilities]))
+
+    # async def get_abilities(self, request):
+    #     abilities = await self.services.get('data_svc').locate('abilities')
+    #     return web.json_response(dict(abilities=[a.display for a in abilities]))
 
     async def dynamically_compile(self, headers):
         name, platform = headers.get('file'), headers.get('platform')

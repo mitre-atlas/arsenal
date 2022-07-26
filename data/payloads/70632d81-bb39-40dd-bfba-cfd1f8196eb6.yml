@@ -2,10 +2,6 @@
 
 id: 70632d81-bb39-40dd-bfba-cfd1f8196eb6
 name: Arsenal Payloads
-standard_payloads:
-  scanner.py:
-    description: Python port scanner
-    id: 4318470d-715b-4355-aa1c-11c489d4c10e
 special_payloads:
   minidump.go:
     description: LSASS memory dump script
