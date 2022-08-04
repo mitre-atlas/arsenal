@@ -1,4 +1,3 @@
-
 # ATLAS plugin: **Arsenal**
 
 ### This plugin will help store and create adversarial TTPs defined in [`ATLAS`](https://atlas.mitre.org/) to interfeace with [`CALDERA`](https://github.com/mitre/caldera). It can be used in conjuction with the plugin [`Almanac`](https://gitlab.mitre.org/advml/almanac/-/tree/develop). This is a mirror of the public repo: [`stockpile`](https://github.com/mitre/stockpile/tree/master) on its `master` branch
@@ -26,7 +25,7 @@ To request access to Harbor, navigate to: `butler.mitre.org/harbor`
 Use the ```PULL``` tab to copy the command or pull directly using the `TAG`:
 
 ```
-docker pull butler.mitre.org/atlas/<container-name>:<TAG>
+docker pull butler.mitre.org/atlas/<IMAGE>:<TAG>
 ```
 
 You must periodically login into Harbor to pull new images and push new images (only certain users will be able to push to the atlas folder for obvious reasons). To login, in your terminal:
