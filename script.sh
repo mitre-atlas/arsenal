@@ -2,7 +2,7 @@
 
 dir=~
 
-# apt-get install tmux
+sudo apt-get install tmux
 
 echo 'if ! tmux has-session -t caldera' >> ~/.bashrc
 echo 'then' >> ~/.bashrc
