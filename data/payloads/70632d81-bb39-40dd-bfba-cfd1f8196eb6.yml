@@ -1,17 +1,17 @@
 ---
 
-id: 70632d81-bb39-40dd-bfba-cfd1f8196eb6
-name: Arsenal Payloads
-special_payloads:
-  minidump.go:
-    description: LSASS memory dump script
-    id: 734a5566-6e92-4d39-a37d-59f88ed906e2
-    service: arsenal_svc
-    function: dynamically_compile
-  mission.go:
-    description: Unknown
-    id: f9403e41-7b9a-416b-95eb-138cf1519668
-    service: arsenal_svc
-    function: dynamically_compile
-extensions:
-  .donut: plugins.arsenal.app.donut.donut_handler
+# id: 70632d81-bb39-40dd-bfba-cfd1f8196eb6
+# name: Arsenal Payloads
+# special_payloads:
+#   minidump.go:
+#     description: LSASS memory dump script
+#     id: 734a5566-6e92-4d39-a37d-59f88ed906e2
+#     service: arsenal_svc
+#     function: dynamically_compile
+#   mission.go:
+#     description: Unknown
+#     id: f9403e41-7b9a-416b-95eb-138cf1519668
+#     service: arsenal_svc
+#     function: dynamically_compile
+# extensions:
+#   .donut: plugins.arsenal.app.donut.donut_handler

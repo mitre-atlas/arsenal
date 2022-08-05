@@ -44,7 +44,7 @@
                 apiV2('GET', 'api/v2/abilities').then((abilities) => {
                     this.numAbilities = abilities.filter((ability) => ability.plugin === 'arsenal').length;
                     console.log('abilities', this.numAbilities)
-                    // return apiV2('GET', 'api/v2/abilities');
+                    return apiV2('GET', 'api/v2/abilities');
                     return apiV2('GET', 'api/v2/adversaries');
                 }).then((profiles) => {
                     this.numAdversaries = profiles.filter((profile) => profile.plugin === 'arsenal').length;
