@@ -19,6 +19,10 @@ class LogicalPlanner:
     async def do_bucket(self, bucket):
         await self.planning_svc.exhaust_bucket(self, bucket, self.operation)
 
+    async def initial_access(self):
+        await self.do_bucket('initial-access')
+        self.next_bucket = await self.planning_svc.default_next_bucket('initial_access', self.state_machine)
+
     async def reconnaissance(self):
         await self.do_bucket('reconnaissance')
         self.next_bucket = await self.planning_svc.default_next_bucket('reconnaissance', self.state_machine)
@@ -28,10 +32,6 @@ class LogicalPlanner:
         self.next_bucket = await self.planning_svc.default_next_bucket('resource_development', self.state_machine)
 
     async def ml_model_access(self):
-        await self.do_bucket('resource-development')
-        self.next_bucket = await self.planning_svc.default_next_bucket('resource_development', self.state_machine)
-
-    async def initial_access(self):
         await self.do_bucket('ml-model-access')
         self.next_bucket = await self.planning_svc.default_next_bucket('ml_model_access', self.state_machine)
 
@@ -42,6 +42,22 @@ class LogicalPlanner:
     async def collection(self):
         await self.do_bucket('collection')
         self.next_bucket = await self.planning_svc.default_next_bucket('collection', self.state_machine)
+
+    async def persistence(self):
+        await self.do_bucket('persistence')
+        self.next_bucket = await self.planning_svc.default_next_bucket('persistence', self.state_machine)
+
+    async def defense_evasion(self):
+        await self.do_bucket('defense-evasion')
+        self.next_bucket = await self.planning_svc.default_next_bucket('defense_evasion', self.state_machine)
+
+    async def discovery(self):
+        await self.do_bucket('discovery')
+        self.next_bucket = await self.planning_svc.default_next_bucket('discovery', self.state_machine)
+
+    async def exfiltration(self):
+        await self.do_bucket('exfiltration')
+        self.next_bucket = await self.planning_svc.default_next_bucket('exfiltration', self.state_machine)
 
     async def impact(self):
         await self.do_bucket('impact')
