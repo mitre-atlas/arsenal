@@ -1,6 +1,6 @@
 ---
 
-id: f36c34f5-9439-4417-9640-fe83f4b7b12d
+id: f36c34f5-9439-4417-9640-fe83f4b7b12a
 name: buckets
 description: |
   The buckets planner is a variant of the batch planner that makes use of the new bucket features within Caldera.

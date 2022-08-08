@@ -7,7 +7,9 @@ class LogicalPlanner:
         self.planning_svc = planning_svc
         self.stopping_conditions = stopping_conditions
         self.stopping_condition_met = False
-        self.state_machine = ['impact', 'initial_access', 'collection', 'ml-model-access']
+        self.state_machine = ['reconnaissance','resource_development', 'ml_model_access', 'initial_access', 'collection', 
+                                'ml_model_staging', 'impact', 'execution', 'persistence', 'defence_evasion', 
+                                'discovery', 'exfiltration']
         self.next_bucket = 'initial_access'   # set first, bucket to execute
         self.current_length = 0
 
@@ -17,9 +19,21 @@ class LogicalPlanner:
     async def do_bucket(self, bucket):
         await self.planning_svc.exhaust_bucket(self, bucket, self.operation)
 
+    async def reconnaissance(self):
+        await self.do_bucket('reconnaissance')
+        self.next_bucket = await self.planning_svc.default_next_bucket('reconnaissance', self.state_machine)
+
+    async def resource_development(self):
+        await self.do_bucket('resource-development')
+        self.next_bucket = await self.planning_svc.default_next_bucket('resource_development', self.state_machine)
+
+    async def ml_model_access(self):
+        await self.do_bucket('resource-development')
+        self.next_bucket = await self.planning_svc.default_next_bucket('resource_development', self.state_machine)
+
     async def initial_access(self):
-        await self.do_bucket('initial-access')
-        self.next_bucket = await self.planning_svc.default_next_bucket('initial_access', self.state_machine)
+        await self.do_bucket('ml-model-access')
+        self.next_bucket = await self.planning_svc.default_next_bucket('ml_model_access', self.state_machine)
 
     async def ml_model_staging(self):
         await self.do_bucket('ml-model-staging')

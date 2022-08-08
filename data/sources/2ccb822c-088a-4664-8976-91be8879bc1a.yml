@@ -1,6 +1,4 @@
----
-
-id: 2ccb822c-088a-4664-8976-91be8879bc1d
+id: 2ccb822c-088a-4664-8976-91be8879bc1a
 name: Exfil Operation
 facts:
   # These facts apply to various exfiltration related abilities. The facts for the exfiltration abilities themselves are

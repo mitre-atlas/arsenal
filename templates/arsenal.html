@@ -13,7 +13,7 @@
         <div class="is-flex is-flex-direction-row">
             <div class="is-flex is-flex-direction-column is-align-items-center m-4">
                 <h1 class="has-text-info is-size-1 mb-0" x-text="numAbilities || '---'"></h1>
-                <p>abilties</p>
+                <p>abilities</p>
                 <a class="button is-primary is-small"
                     x-on:click="addTab('abilities', '/campaign/abilities', 'plugin=arsenal')">
                     <span>Abilities</span>
@@ -43,12 +43,9 @@
             initPage() {
                 apiV2('GET', 'api/v2/abilities').then((abilities) => {
                     this.numAbilities = abilities.filter((ability) => ability.plugin === 'arsenal').length;
-                    console.log('abilities', this.numAbilities)
-                    return apiV2('GET', 'api/v2/abilities');
                     return apiV2('GET', 'api/v2/adversaries');
                 }).then((profiles) => {
                     this.numAdversaries = profiles.filter((profile) => profile.plugin === 'arsenal').length;
-                    console.log('adversaries', this.numAdversaries)
                 }).catch((error) => {
                     toast('Error loading page', false);
                     console.error(error);

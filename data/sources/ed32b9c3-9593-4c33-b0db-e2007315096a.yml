@@ -1,6 +1,4 @@
----
-
-id: ed32b9c3-9593-4c33-b0db-e2007315096b
+id: ed32b9c3-9593-4c33-b0db-e2007315096a
 name: basic
 facts:
   - trait: file.sensitive.extension

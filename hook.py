@@ -7,7 +7,6 @@ description = 'A plugin of abilities, adversaries, payloads and planners for the
 address = '/plugin/arsenal/gui'
 access = BaseWorld.Access.APP
 
-
 async def enable(services):
     arsenal_svc = ArsenalService(services)
     services.get('app_svc').application.router.add_route('GET', '/plugin/arsenal/gui', arsenal_svc.splash)
