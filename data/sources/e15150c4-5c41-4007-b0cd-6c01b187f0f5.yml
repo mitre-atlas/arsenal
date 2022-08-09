@@ -1,0 +1,35 @@
+relationships: []
+rules: []
+plugin: 'arsenal'
+id: e15150c4-5c41-4007-b0cd-6c01b187f0f5
+facts:
+- technique_id: null
+  origin_type: IMPORTED
+  score: 1
+  relationships: []
+  value: satelliteimages
+  source: e15150c4-5c41-4007-b0cd-6c01b187f0f5
+  collected_by: []
+  links: []
+  unique: atlas.model.targetsatelliteimages
+  trait: atlas.model.target
+  limit_count: -1
+  name: atlas.model.target
+  created: '2022-08-09T17:02:51Z'
+- technique_id: null
+  origin_type: IMPORTED
+  score: 1
+  relationships: []
+  value: art
+  source: e15150c4-5c41-4007-b0cd-6c01b187f0f5
+  collected_by: []
+  links: []
+  unique: atlas.model.frameworkart
+  trait: atlas.model.framework
+  limit_count: -1
+  name: atlas.model.framework
+  created: '2022-08-09T17:02:51Z'
+- trait: file.sensitive.extension
+  value: pth, torchmodel, h5, pkl
+  score: 1
+name: counterfit
