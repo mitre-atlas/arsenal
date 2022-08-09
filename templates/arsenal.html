@@ -2,9 +2,10 @@
     <div>
         <h2>Arsenal</h2>
         <p>
-            The Arsenal plugin contains a collection of TTPs (abilities), adversary profiles, data sources and
+            The Arsenal plugin contains a collection of TTPs (tactics, techniques, and procedures), adversary profiles,
+            data sources and
             planners. These can be used to construct dynamic operations against targeted hosts for Machine Learning
-            Systems.
+            Systems in conjunction with other CALDERA plugins.
         </p>
     </div>
     <hr>
@@ -12,7 +13,7 @@
         <div class="is-flex is-flex-direction-row">
             <div class="is-flex is-flex-direction-column is-align-items-center m-4">
                 <h1 class="has-text-info is-size-1 mb-0" x-text="numAbilities || '---'"></h1>
-                <p>abilties</p>
+                <p>abilities</p>
                 <a class="button is-primary is-small"
                     x-on:click="addTab('abilities', '/campaign/abilities', 'plugin=arsenal')">
                     <span>Abilities</span>
@@ -39,11 +40,9 @@
         return {
             numAbilities: 0,
             numAdversaries: 0,
-
             initPage() {
                 apiV2('GET', 'api/v2/abilities').then((abilities) => {
                     this.numAbilities = abilities.filter((ability) => ability.plugin === 'arsenal').length;
-                    console.log('ABILITIES', this.numAbilities)
                     return apiV2('GET', 'api/v2/adversaries');
                 }).then((profiles) => {
                     this.numAdversaries = profiles.filter((profile) => profile.plugin === 'arsenal').length;

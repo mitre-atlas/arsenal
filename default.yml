@@ -1,4 +1,4 @@
-ability_refresh: 60
+ability_refresh: 1
 api_key_blue: BLUEADMIN123
 api_key_red: ADMIN123
 app.contact.dns.domain: mycaldera.caldera
@@ -30,8 +30,8 @@ host: 0.0.0.0
 objects.planners.default: atomic
 plugins:
 - access
-- almanac
 - arsenal
+- almanac
 - atomic
 - compass
 - debrief

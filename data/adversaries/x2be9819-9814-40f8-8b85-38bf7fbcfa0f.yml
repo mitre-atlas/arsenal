@@ -1,0 +1,5 @@
+id: x2be9819-9814-40f8-8b85-38bf7fbcfa0f
+name: ML Attack Staging
+description: Stage an attack on a machine learning model
+atomic_ordering:
+  - 6d1cb1ac-1674-4d0c-a40a-e88affdd8f2e

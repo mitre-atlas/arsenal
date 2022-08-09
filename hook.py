@@ -3,15 +3,14 @@ from app.utility.base_world import BaseWorld
 from plugins.arsenal.app.arsenal_svc import ArsenalService
 
 name = 'Arsenal'
-description = 'An Arsenal-Stockpile hybrid plugin of abilities, adversaries, payloads and planners'
+description = 'A plugin of abilities, adversaries, payloads and planners for the ATLAS framework'
 address = '/plugin/arsenal/gui'
 access = BaseWorld.Access.APP
 
-
 async def enable(services):
-    svc = ArsenalService(services)
-    services.get('app_svc').application.router.add_route('GET', address, svc.splash)
-    await services.get('file_svc').add_special_payload('.donut', 'plugins.arsenal.app.donut.donut_handler')
+    arsenal_svc = ArsenalService(services)
+    services.get('app_svc').application.router.add_route('GET', '/plugin/arsenal/gui', arsenal_svc.splash)
+    # await services.get('file_svc').add_special_payload('.donut', 'plugins.arsenal.app.donut.donut_handler')
     # await arsenal_svc.data_svc.store(
     #     Obfuscator(name='plain-text',
     #                description='Does no obfuscation to any command, instead running it in plain text',

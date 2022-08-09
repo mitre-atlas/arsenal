@@ -16,13 +16,15 @@ class ArsenalService(BaseService):
 
     @template('arsenal.html')
     async def splash(self, request):
+        # adversaries = [a.display for a in await self.data_svc.locate('adversaries')]
+        # return dict(adversaries=sorted(adversaries, key=lambda a: a['name']))
         return dict()
 
     async def dynamically_compile(self, headers):
         name, platform = headers.get('file'), headers.get('platform')
         if which('go') is not None:
             plugin, file_path = await self.file_svc.find_file_path(name)
-            output = 'plugins/%s/data/payloads/%s-%s' % (plugin, name, platform)
+            output = ' /%s/data/payloads/%s-%s' % (plugin, name, platform)
             await self.file_svc.compile_go(platform, output, file_path)
         return '%s-%s' % (name, platform), '%s-%s' % (name, platform)
 
