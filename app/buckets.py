@@ -8,7 +8,7 @@ class LogicalPlanner:
         self.stopping_conditions = stopping_conditions
         self.stopping_condition_met = False
         self.state_machine = ['reconnaissance','resource_development', 'ml_model_access', 'initial_access', 'collection', 
-                                'ml_model_staging', 'impact', 'execution', 'persistence', 'defence_evasion', 
+                                'ml_attack_staging', 'impact', 'execution', 'persistence', 'defense_evasion', 
                                 'discovery', 'exfiltration']
         self.next_bucket = 'initial_access'   # set first, bucket to execute
         self.current_length = 0
@@ -35,9 +35,9 @@ class LogicalPlanner:
         await self.do_bucket('ml-model-access')
         self.next_bucket = await self.planning_svc.default_next_bucket('ml_model_access', self.state_machine)
 
-    async def ml_model_staging(self):
-        await self.do_bucket('ml-model-staging')
-        self.next_bucket = await self.planning_svc.default_next_bucket('ml-model-staging', self.state_machine)
+    async def ml_attack_staging(self):
+        await self.do_bucket('ml-attack-staging')
+        self.next_bucket = await self.planning_svc.default_next_bucket('ml_attack_staging', self.state_machine)
 
     async def collection(self):
         await self.do_bucket('collection')

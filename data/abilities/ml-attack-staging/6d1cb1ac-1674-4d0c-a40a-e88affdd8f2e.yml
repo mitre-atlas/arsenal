@@ -14,7 +14,7 @@
   technique_name: ml attack staging
   additional_info: {}
   buckets:
-  - ml_attack_staging
+  - ml-attack-staging
   access: {}
   singleton: false
   privilege: ''
