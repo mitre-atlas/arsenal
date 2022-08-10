@@ -22,7 +22,7 @@ git clone git@gitlab.mitre.org:advml/almanac.git
 ## HARBOR: docker images
 We recommend using the container-manager resources for development, which includes a host of pre-built docker images. The images most used with this plugin will be:
 
- - caldera-dev:latest
+ - caldera-dev:4.0.0
  - mmdet-serve:retinanet
 
 To request access to Harbor, navigate to: `butler.mitre.org/harbor`
