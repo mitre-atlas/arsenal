@@ -1,0 +1,37 @@
+- privilege: ''
+  repeatable: false
+  technique_name: craft-adversarial-data
+  tactic: ml-attack-staging
+  executors:
+  - language: null
+    uploads: []
+    payloads:
+    - counterfit.tar
+    build_target: null
+    additional_info: {}
+    code: null
+    command: 'tar -xvf counterfit.tar;
+
+      cd counterfit;
+
+      . /nfs/cv/users/cbusho/venv/counterfit/bin/activate;
+
+      echo -e "load #{atlas.model.framework}\ninteract #{atlas.model.target}\nscan -n 1 -a hop_skip_jump" | python3 counterfit.py'
+    platform: linux
+    variations: []
+    name: sh
+    parsers: []
+    timeout: 60
+    cleanup:
+    - rm counterfit.tar
+  technique_id: craft-adversarial-data
+  requirements: []
+  buckets: []
+  additional_info:
+    cleanup: '[]'
+  singleton: true
+  plugin: ''
+  name: Counterfit HSJ Attack
+  description: Perform HSJ attack
+  access: {}
+  id: 5e437f42-cd5f-400f-b65d-d78821f31c69
