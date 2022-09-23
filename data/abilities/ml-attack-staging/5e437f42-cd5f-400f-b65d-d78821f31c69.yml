@@ -6,24 +6,24 @@
   - language: null
     uploads: []
     payloads:
-    - counterfit.tar
+    - counterfit-internal.tar
     build_target: null
     additional_info: {}
     code: null
-    command: 'tar -xvf counterfit.tar;
+    command: 'tar -xvf counterfit-internal.tar;
 
-      cd counterfit;
+      cd counterfit-internal;
 
-      . /nfs/cv/users/cbusho/venv/counterfit/bin/activate;
+      . localpythonenv/bin/activate;
 
-      echo -e "load #{atlas.model.framework}\ninteract #{atlas.model.target}\nscan -n 1 -a hop_skip_jump" | python3 counterfit.py'
+      python3 evade.py
     platform: linux
     variations: []
     name: sh
     parsers: []
-    timeout: 60
+    timeout: 180
     cleanup:
-    - rm counterfit.tar
+    - rm counterfit-internal.tar
   technique_id: craft-adversarial-data
   requirements: []
   buckets: []
@@ -31,7 +31,7 @@
     cleanup: '[]'
   singleton: true
   plugin: ''
-  name: Counterfit HSJ Attack
-  description: Perform HSJ attack
+  name: Evasion Attacks
+  description: Perform evasion attacks
   access: {}
   id: 5e437f42-cd5f-400f-b65d-d78821f31c69
