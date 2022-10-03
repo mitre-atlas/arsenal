@@ -16,8 +16,6 @@ class ArsenalService(BaseService):
 
     @template('arsenal.html')
     async def splash(self, request):
-        # adversaries = [a.display for a in await self.data_svc.locate('adversaries')]
-        # return dict(adversaries=sorted(adversaries, key=lambda a: a['name']))
         return dict()
 
     async def dynamically_compile(self, headers):
