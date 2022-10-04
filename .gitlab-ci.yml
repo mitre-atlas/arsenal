@@ -18,7 +18,7 @@ stages:
 
 test-pages:
   stage: Documentation
-    tags:
+  tags:
     - docker
   extends: .pages
   needs: []
@@ -32,7 +32,7 @@ test-pages:
 
 pages:
   stage: Documentation
-    tags:
+  tags:
     - docker
     - pages
   extends: .pages
