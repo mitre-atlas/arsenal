@@ -19,7 +19,7 @@ stages:
 test-pages:
   stage: Documentation
   tags:
-    - docker
+    - cm-docker-runner
   extends: .pages
   needs: []
   artifacts:
@@ -33,7 +33,7 @@ test-pages:
 pages:
   stage: Documentation
   tags:
-    - docker
+    - cm-docker-runner
     - pages
   extends: .pages
   artifacts:
