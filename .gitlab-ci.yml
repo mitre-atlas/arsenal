@@ -33,14 +33,11 @@ test-pages:
 pages:
   stage: Documentation
   tags:
-    - docker
     - pages
   extends: .pages
   artifacts:
     paths:
       - public
-  only:
-    - tags
 
 #########
 # Tests #
