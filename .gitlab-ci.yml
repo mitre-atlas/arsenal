@@ -11,7 +11,7 @@ stages:
 ################
 .pages:
   script:
-    - pip install -U sphinx sphinx-autoapi sphinx-rtd-theme myst-parser
+    - pip install -U sphinx sphinx-autoapi sphinx-rtd-theme myst-parser furo
     - sphinx-build -d docs/build/doctrees docs/source docs/build/html
     - mv docs/build/html public/
 

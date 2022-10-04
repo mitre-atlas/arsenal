@@ -83,4 +83,4 @@ html_theme_options = {
 html_static_path = ["_static"]
 
 # favicon location
-# html_favicon = "../assets/icons/favicon.ico"
+html_favicon = "../assets/arsenal_logo.png"
