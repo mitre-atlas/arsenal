@@ -8,11 +8,11 @@
 - **All code relevant to `arsenal` that is not a development branch should be pushed to `main`**
 
 # Developers
-## Installation with CALDERA app
+## Installation with CALDERA app, please visit our [`documentation`](https://advml.pages.mitre.org/arsenal/dev.html)
 
 - follow guide for setting up the `arsenal` repo in SETUP Help
 
-### CLone the Almanac repo
+### Clone the Almanac repo
 
 ```
 git clone git@gitlab.mitre.org:advml/almanac.git

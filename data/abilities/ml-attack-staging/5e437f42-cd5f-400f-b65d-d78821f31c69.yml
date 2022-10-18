@@ -16,7 +16,7 @@
 
       . localpythonenv/bin/activate;
 
-      python3 evade.py
+      python3 evade.py'
     platform: linux
     variations: []
     name: sh

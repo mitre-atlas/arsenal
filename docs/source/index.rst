@@ -2,7 +2,7 @@ Welcome to Arsenal
 ==============================================
 
 Running Arsenal with CALDERA
----------------------------
+-----------------------------
 :doc:`intro`
    Introduction to Arsenal and instructions on installing the repo and using it with CALDERA.
 
