@@ -3,8 +3,8 @@ image: "python:3.9"
 
 stages:
   # - Static Analysis
-  # - Tests
   - Documentation
+  - Tests
   # - Release
 
 # GitLab Pages #
