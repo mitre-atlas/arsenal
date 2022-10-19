@@ -46,7 +46,7 @@ pages:
   script:
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
     - eval $(ssh-agent -s)
-    - echo "${CI_IDENTITY_FILE}" | tr -d '\r' | ssh-add -
+    - echo "${CI_IDENTITY_FILE}" | ssh-add -
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
 
@@ -59,9 +59,10 @@ unittests:
     - >
       ssh arsenal-test@hemingway.mitre.org
       "docker login butler.mitre.org -u ${BUTLER_LOGIN_USERNAME} -p ${BUTLER_LOGIN_PASSWORD} &&
-      cd arsenal &&
-      git checkout ${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME} &&
-      cd .. &&
-      docker build -t . caldera-dev:4.1.0 &&
-      docker run -v ./arsenal/default.yml:/usr/src/app/conf/local.yml
-      docker exec caldera-dev:4.1.0 python3 -m unittest discover -p 'test_*.py'"
+        cd arsenal &&
+        git checkout ${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME} &&
+        cd .. &&
+        docker build -t . caldera-dev:test &&
+        docker run -v ./arsenal/default.yml:/usr/src/app/conf/local.yml
+        docker exec caldera-dev:test python3 -m unittest discover -p 'test_*.py'
+      "
