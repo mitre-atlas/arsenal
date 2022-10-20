@@ -58,10 +58,3 @@ unittests:
     - !reference [.set-up-auth, script]
     - >
       ssh arsenal-test@hemingway.mitre.org
-      "cd arsenal &&
-        git checkout ${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME} &&
-        cd .. &&
-        docker build -t . caldera-dev:test &&
-        docker run -v ./arsenal/default.yml:/usr/src/app/conf/local.yml
-        docker exec caldera-dev:test python3 -m unittest discover -p 'test_*.py'
-      "
