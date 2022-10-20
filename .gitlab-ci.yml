@@ -58,3 +58,4 @@ unittests:
     - !reference [.set-up-auth, script]
     - >
       ssh arsenal-test@hemingway.mitre.org
+      "cd arsenal/ "
