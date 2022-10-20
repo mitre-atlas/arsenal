@@ -57,5 +57,5 @@ unittests:
   script:
     - !reference [.set-up-auth, script]
     - >
-      ssh arsenal-test@hemingway.mitre.org
+      ssh arsenal-test@hemingway
       "cd arsenal/ "
