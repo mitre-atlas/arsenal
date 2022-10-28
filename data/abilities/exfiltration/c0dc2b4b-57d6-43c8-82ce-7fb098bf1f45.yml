@@ -1,0 +1,31 @@
+- privilege: ''
+  repeatable: false
+  delete_payload: true
+  tactic: exfiltration
+  requirements: []
+  additional_info: {}
+  buckets:
+  - exfiltration
+  executors:
+  - timeout: 60
+    platform: linux
+    parsers: []
+    language: null
+    code: null
+    payloads: 
+    - exfil_ports.sh
+    additional_info: {}
+    name: sh
+    build_target: null
+    uploads: []
+    cleanup: []
+    command: './exfil_ports.sh '
+    variations: []
+  name: Exfiltrate via Cyber Means
+  description: Exfiltrate a victim's model and/or data from the host machine
+  singleton: false
+  technique_id: AML.T0025
+  plugin: arsenal
+  technique_name: Exfiltration
+  access: {}
+  id: c0dc2b4b-57d6-43c8-82ce-7fb098bf1f45
