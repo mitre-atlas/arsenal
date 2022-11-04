@@ -72,7 +72,7 @@ exclude_patterns = ["**/_tests"]
 # a list of builtin themes.
 #
 html_theme = "furo"
-html_logo = "../assets/arsenal_logo.png"
+html_logo = "../assets/A.png"
 html_theme_options = {
     "logo_only": False,
     "display_version": True,
