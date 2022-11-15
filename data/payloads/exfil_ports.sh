@@ -1,4 +1,4 @@
 #!/bin/bash
 
-ips=$(ip addr | grep inet | grep -v "inet6" | awk '{print $2 " " $8}')
-echo $ips
+ips=$(ip addr| grep scope.global | awk '{print $2 " " $8}')
+timeout 30s nmap -oN '/tmp/nmap_scan.txt' -sn $ips
