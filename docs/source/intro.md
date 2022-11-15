@@ -35,6 +35,6 @@ The following diagram illustrates the basic usage of the Arsenal plugin within C
 
 ---
 
-If you are a developer and looking to contribute to `ARSENAL` or modify it for your needs, please navigate to the [`developers page`]().
+If you are a developer and looking to contribute to `ARSENAL` or modify it for your needs, please navigate to the [`developers page`](https://advml.pages.mitre.org/arsenal/dev.html).
 
 Currently, `ARSENAL` is not a default plugin within `CALDERA`, and therefore additional setup to integrate with the app is required.
