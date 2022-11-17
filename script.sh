@@ -3,32 +3,45 @@
 dir=~
 
 # update container and install a gnome-terminal
-# sudo apt-get update
-# sudo apt-get install gnome-terminal
-# sudo python3 -m pip install --upgrade pip
+sudo apt-get update
+sudo apt-get install gnome-terminal
+sudo apt-get install tmux
+sudo apt-get install gcc
 
 # clone almanac
-cd ~/almanac git pull || git clone https://gitlab.mitre.org/advml/almanac.git
+cd ~ && git clone https://gitlab.mitre.org/advml/almanac.git
 
 # clone caldera
-cd ~/caldera && git checkout tags/4.1.0 || git clone https://github.com/mitre/caldera.git --recursive
-cd ~/caldera 
-pip3 install -r requirements.txt && cd ~
+cd ~ && git clone https://github.com/mitre/caldera.git --recursive
+cd ~/caldera && pip install -r requirements.txt && cd ~
 
-# clone ml-vulhub
-cd ~/ml-vulhub git pull && cd ~ || git clone https://gitlab.mitre.org/advml/ml-vulhub.git
+# # clone ml-vulhub
+cd ~ && git clone https://gitlab.mitre.org/advml/ml-vulhub.git
 
-# automate launching ml-vulhub docker images -- port specified by example docker-compose file
-gnome-terminal --tab -- bash -c "cd ~/ml-vulhub/envs/example-00-ml-dev/ && ~./init.sh && docker-compose up &"
+# # automate launching ml-vulhub docker images -- port specified by example docker-compose file
+if ! tmux has-session -t ml_vulhub
+then
+    tmux new-session -d -s ml_vulhub
+    tmux send -t ml_vulhub "cd ~/ml-vulhub/envs/example-00-ml-dev/" ENTER
+    tmux send -t ml_vulhub "sudo ./init.sh" ENTER
+    tmux send -t ml_vulhub "sudo docker-compose up" ENTER  
+fi
+tmux send -t ml_vulhub "cd ~/ml-vulhub/envs/example-00-ml-dev/" ENTER
+tmux send -t ml_vulhub "sudo ./init.sh" ENTER
+tmux send -t ml_vulhub "sudo docker-compose up" ENTER
+
 
 # put `arsenal` and `almanac` in `caldera` plugins dir via symlink
-ln -s ./arsenal ~/caldera/plugins/
-ln -s ./arsenal/default.yml ~/caldera/conf/local.yml
-ln -s ./almanac ~/caldera/plugins/
+ln -s ~/arsenal ~/caldera/plugins/
+ln -s ~/arsenal/default.yml ~/caldera/conf/local.yml
+ln -s ~/almanac ~/caldera/plugins/
 
-# start server.py
-gnome-terminal --tab -- bash -c "cd ~/caldera && python3 server.py --insecure"
-
-
-
-
+# # start server.py
+if ! tmux has-session -t caldera
+then
+    tmux new-session -d -s caldera
+    tmux send -t caldera "cd ~/caldera" ENTER
+    tmux send -t caldera "python3 server.py" ENTER   
+fi
+tmux send -t caldera "cd ~/caldera" ENTER
+tmux send -t caldera "python3 server.py" ENTER
