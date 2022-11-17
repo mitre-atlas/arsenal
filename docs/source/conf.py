@@ -41,10 +41,8 @@ extensions = [
     "autoapi.extension",
     "myst_parser",
     "sphinx.ext.intersphinx",
-    'rst2pdf.pdfbuilder',
 ]
 
-pdf_documents = [('index', u'arsenal_documentation', u'arsenal documentation', u'Marissa Dotter'),]
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/", None),
