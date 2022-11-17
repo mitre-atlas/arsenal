@@ -21,7 +21,7 @@ from datetime import date
 project = "Arsenal"
 copyright = f"{date.today().year}, ATLAS"
 author = (
-    "Marissa Dotter, Keith Manville, Colin Busho*, Aidan Fennelly"
+    "Marissa Dotter, Keith Manville, Aidan Fennelly"
 )
 
 # The full version, including alpha/beta/rc tags
@@ -42,6 +42,7 @@ extensions = [
     "myst_parser",
     "sphinx.ext.intersphinx",
 ]
+
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/", None),
