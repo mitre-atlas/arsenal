@@ -1,74 +1,51 @@
 # Developers
 
-There are multiple ways to run the Arsenal plugin within CALDERA. The recommended way is mounting the plugin as a *volume* in a Docker container, which allows for active development and modification of hte plugin without restarting the CALDERA server.
+There are multiple ways to run the `ARSENAL` plugin within `CALDERA`. The recommended way is mounting the plugin as a *volume* in a Docker container, which allows for active development and modification of the plugin without restarting the CALDERA server.
 
-*For more information on the Adversary or the Victim services, navigate to those pages.*
+Alternative deployment requires re-starting the `CALDERA` server when changes to the plugin are made.
 
-## 1. Clone Arsenal repo and Almanac repo:
 
-**Arsenal**: MITRE ATLAS TTPs
+## 1. Clone ARSENAL repo:
 
-```
+**ARSENAL**: MITRE ATLAS TTPs
+
+```code
 git clone git@gitlab.mitre.org:advml/arsenal.git
 ```
 
-**Almanac**: repo containing MITRE ATLAS and ability to create adversary profiles that can be loaded via `Arsenal` (coming).
-```
-git clone git@gitlab.mitre.org:advml/almanac.git
+## 2. Run CALDERA + ARSENAL and setting up a Victim system:
 
-```
+*Recommended:
 
+Run the bash script which will:
 
-## 2. HARBOR: Docker images
-We recommend using the container-manager resources for development, which includes a host of pre-built docker images. The images most used with this plugin will be:
-
- - caldera-dev:4.0.0
- - caldera-dev:4.1.0
-
-To request access to Harbor, navigate to: `butler.mitre.org/harbor`
-
- - Use your MITRE SUI and password to login
- - Navigate to the `ATLAS` project page (you must be given access first)
-    
-Use the ```PULL``` tab to copy the command or pull directly using the `TAG`:
-
-```
-docker pull butler.mitre.org/atlas/<IMAGE>:<TAG>
-```
-
-You must periodically login into Harbor to pull new images and push new images (only certain users will be able to push to the atlas folder for obvious reasons). To login, in your terminal:
+- clone the necessary repos: `caldera`, `alamanc`, `ml-vulhub` and install any dependencies
+- install tmux
+- run the necessary docker commands to build `caldera`
+- edit the .bashrc to automatically start the `caldera` server and mount `arsenal` to the correct mount point in a persistent tmux session
+- deploy a vulnerable environment via `ml-vulhub`
 
 ```code
+# Run the script proved in the `arsenal` repo
 
-docker login butler.mitre.org
- >>> MITRE SUI
- >>> MITRE Password
-
+docker_script.sh
 ```
 
-## 3. Automatically Run CALDERA + Arsenal:
-### It is recommended to edit your `.bashrc` to instantiate a docker container with the `arsenal` and `almanac` plugins mounted to a running CALDERA container
+Alternatively, users can also choose to run CALDERA and the Arsenal plugin by symlinking the Arsenal directory to CLADERA's plugin directory. This allows for active development of `arsenal` whilie keeping the repos separated. However, this will require users to restart the `caldera` server when changes are made to the `arsenal` plugin.  
 
 To do so, run the following bash script, which will:
+- clone the necessary repos: `caldera`, `alamanc`, `ml-vulhub` and install any dependencies
+- deploy a vulnerable environment via `ml-vulhub`
+- symlink `almanac` and `arsenal` to CALDERA's plugin directory
+- start the `caldera` server
 
-- install tmux
-- edit `.bashrc` with the docker run command inside a persistent `tmux` session named "caldera"
 
-```code 
+```code
+# Run the script proved in the `arsenal` repo
+
 script.sh
 ```
 
-## 4. Setup a "Victim" System
+*For more information on the Adversary or the Victim services, navigate to those pages.*
 
-Arsenal abilities, adversaries, and operations require a victim system to be running on another system that can be accessed via an API (Rest) or via SSH (curl) commands.
-
- To setup the basic `mmdet-serve`, a pytorch model trained for object detection, pull the latest docker image hosted on Harbor:
-
- ```
-docker pull butler.mitre.org/atlas/mmdet-serve:retinanet
-
-docker run -d -p <port>:<port> butler.mitre.org/atlas/mmdet-serve:retinanet
-```
-
-You can also choose to use [`ml-vulhub`](git@gitlab.mitre.org:advml/ml-vulhub.git) (**recommended**) which is an open-source collection of pre-built vulnerable docker environments running services:
-
+**this requires docker to be installed on your machine*

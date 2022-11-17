@@ -1,11 +1,7 @@
-# image: "butler.mitre.org/atlas/caldera-dev:4.0.0"
 image: "python:3.9"
 
 stages:
-  # - Static Analysis
   - Documentation
-  - Tests
-  # - Release
 
 # GitLab Pages #
 ################
@@ -14,7 +10,6 @@ stages:
     - pip install -U sphinx sphinx-autoapi sphinx-rtd-theme myst-parser furo
     - sphinx-build -d docs/build/doctrees docs/source docs/build/html
     - mv docs/build/html public/
-
 
 test-pages:
   stage: Documentation
@@ -38,30 +33,3 @@ pages:
   artifacts:
     paths:
       - public
-
-#########
-# Tests #
-#########
-.set-up-auth:
-  script:
-    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-    - eval $(ssh-agent -s)
-    - echo "${CI_IDENTITY_FILE}" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-
-unittests:
-  stage: Tests
-  tags:
-    - docker
-  script:
-    - !reference [.set-up-auth, script]
-    - >
-      ssh arsenal-test@hemingway.mitre.org
-      "docker login butler.mitre.org -u ${BUTLER_LOGIN_USERNAME} -p ${BUTLER_LOGIN_PASSWORD} &&
-      cd arsenal &&
-      git checkout ${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME} &&
-      cd .. &&
-      docker build -t . caldera-dev:4.1.0 &&
-      docker run -v ./arsenal/default.yml:/usr/src/app/conf/local.yml
-      docker exec caldera-dev:4.1.0 python3 -m unittest discover -p 'test_*.py'"

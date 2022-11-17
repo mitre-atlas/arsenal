@@ -11,7 +11,7 @@
     parsers: []
     command: 'ls #{file.sensitive.extension}'
   technique_id: AML.T0043
-  technique_name: ml attack staging
+  technique_name: ml-attack-staging
   additional_info: {}
   buckets:
   - ml-attack-staging
