@@ -10,8 +10,7 @@
     build_target: null
     additional_info: {}
     code: null
-    command: 'source ml-env/bin/activate;
-               python3 counterfit_evade.py'
+    command: ls
     platform: linux
     variations: []
     name: sh

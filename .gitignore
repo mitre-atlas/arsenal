@@ -10,5 +10,3 @@
 .logs/*
 !.logs/.gitkeep
 conf/secrets.yml
-
-
