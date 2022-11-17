@@ -4,11 +4,16 @@
 
 We recommend that you navigate to our [`DOCUMENTATION`](https://advml.pages.mitre.org/arsenal/intro.html#arsenal) for further details of the plugin and its purpose.
 
+
+
 # Developers
+
+## system requirements: **Ubuntu 18.04** or **20.04** and **Python versions 3.7+**
+
 ## Installation with CALDERA app
  *`arsenal` is not yet a default CALDERA plugin, therefore there are additional steps to include this plugin into the app.*
 
- 1. Install using **docker** (must have docker installed)
+ 1. Install using **docker** (must have docker installed and be in the `sudo` user group)
  ```code
  # run the following bash script
 
@@ -17,9 +22,10 @@ docker_script.sh
 
  - this will install all necessary repos: `caldera`, `almanac`, `ml-vulhub` 
  - build any/all docker containers to run the `caldera` app and start the server in a `tmux` session
+ - mount plugins at runtime of the docker container: `arsenal` , `almanac`
  - build any/all docker containers to run and set up an initial "victim" using `ml-vulhub`
 
-2. Install using a **linux** terminal and python 3.7+ (must have docker installed)
+2. Install using a **linux** terminal and python 3.7+ (must have docker installed and be in the `sudo` user group)
 
  ```code
  # run the following bash script
@@ -28,7 +34,18 @@ script.sh
  ```
   - this will install all necessary repos: `caldera`, `almanac`, `ml-vulhub` 
  - symlink all necessary repos to the caldera plugin directory so nesting repos is not required: `arsenal`, `almanac`
- - build any/all docker containers to run and set up an initial "victim" using `ml-vulhub`
+ - build any/all docker containers to run and set up an initial "victim" using `ml-vulhub` in a persistent tmux session
+
+
+ ### Only run script once and then use:
+ ```code 
+ tmux attach -t ml_vulhub
+
+# or
+
+tmux attach -t caldera
+```
+### to start and restart the services, and examine outputs
 
  ## Navigate to the UI
  To navigate to the UI proceed to `localhost:8888` and you will be prompted to login into the `caldera` app. 
