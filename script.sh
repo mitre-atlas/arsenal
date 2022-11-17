@@ -18,18 +18,18 @@ cd ~/caldera && pip install -r requirements.txt && cd ~
 # # clone ml-vulhub
 cd ~ && git clone https://gitlab.mitre.org/advml/ml-vulhub.git
 
-# # automate launching ml-vulhub docker images -- port specified by example docker-compose file
+# automate launching ml-vulhub docker images -- port specified by example docker-compose file
+# make sure you are added to the `sudo` user group for docker
 if ! tmux has-session -t ml_vulhub
 then
     tmux new-session -d -s ml_vulhub
     tmux send -t ml_vulhub "cd ~/ml-vulhub/envs/example-00-ml-dev/" ENTER
-    tmux send -t ml_vulhub "sudo ./init.sh" ENTER
-    tmux send -t ml_vulhub "sudo docker-compose up" ENTER  
+    tmux send -t ml_vulhub "./init.sh" ENTER
+    tmux send -t ml_vulhub "docker-compose up" ENTER  
 fi
 tmux send -t ml_vulhub "cd ~/ml-vulhub/envs/example-00-ml-dev/" ENTER
-tmux send -t ml_vulhub "sudo ./init.sh" ENTER
-tmux send -t ml_vulhub "sudo docker-compose up" ENTER
-
+tmux send -t ml_vulhub "./init.sh" ENTER
+tmux send -t ml_vulhub "docker-compose up" ENTER
 
 # put `arsenal` and `almanac` in `caldera` plugins dir via symlink
 ln -s ~/arsenal ~/caldera/plugins/
