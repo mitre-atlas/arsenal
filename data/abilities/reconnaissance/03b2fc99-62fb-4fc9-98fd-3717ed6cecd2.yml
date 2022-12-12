@@ -1,0 +1,27 @@
+- id: 03b2fc99-62fb-4fc9-98fd-3717ed6cecd2
+  name: Gather Information for Protocol Addresses
+  description: FIXME the below description needs to be updated. Reminder to mention
+    why proto_addr_info.sh script filters in the way that it does.
+    Gathers the IP address and netmask (in CIDR notation) for each IP address
+    available on the machine. Only IPs with "scope global" (valid everywhere) are
+    considered.
+  tactic: reconnaissance
+  technique_name: Active Scanning
+  technique_id: AML.T0006
+  executors:
+  - platform: linux
+    name: sh
+    command: |
+      chmod +x proto_addr_info.sh && ./proto_addr_info.sh
+    parsers:
+    - module: plugins.arsenal.app.parsers.ipaddr
+      parserconfigs:
+      - source: host.network_interface.name
+        edge: has_IPv4_address
+        target: host.network_interface.IPv4_address
+      - source: host.network_interface.name
+        edge: has_IPv4_network
+        target: host.network_interface.IPv4_network  
+    payloads: [proto_addr_info.sh]
+    cleanup: [rm proto_addr_info.sh]
+  singleton: true
