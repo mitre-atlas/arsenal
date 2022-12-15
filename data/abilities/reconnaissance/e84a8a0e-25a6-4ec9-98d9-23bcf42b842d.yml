@@ -1,0 +1,16 @@
+- id: e84a8a0e-25a6-4ec9-98d9-23bcf42b842d
+  name: List Network Interfaces
+  description: Uses the "kernel and system information virtual filesystem" (/sys)
+    to quickly list the available (physical or virtual) network interfaces.
+  tactic: reconnaissance
+  technique_name: Active Scanning
+  technique_id: AML.T0006
+  executors:
+  - platform: linux
+    name: sh
+    command: ls -1 /sys/class/net 2> /dev/null
+    parsers:
+    - module: plugins.stockpile.app.parsers.basic
+      parserconfigs:
+      - source: host.network_interface.name
+  singleton: true
