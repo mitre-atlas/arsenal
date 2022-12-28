@@ -11,7 +11,11 @@
   - platform: linux
     name: sh
     command: |
-      chmod +x socket_info.sh && ./socket_info.sh
+      echo #{host.network_interface.IPv4_address} &> /dev/null && chmod +x socket_info.sh && ./socket_info.sh
+    parsers:
+    - module: plugins.arsenal.app.parsers.ss
+      parserconfigs:
+      - source: target.api.binding_address
     payloads: [socket_info.sh]
     cleanup: [rm socket_info.sh]
   requirements:
