@@ -35,7 +35,8 @@ class Parser(BaseParser):
                     addr_obj = ip_address(addr)
                 except ValueError as e:
                     # TODO how to handle the exception?
-                    raise e
+                    # raise e <-- this will cause parsing to STOP...
+                    continue
                 else: 
                     # perform IPv4 check
                     if addr_obj.version == 4:
