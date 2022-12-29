@@ -55,7 +55,10 @@ class Parser(BaseParser):
                 
                 # create fact (s) for discovered binding_address
                 for fact in bind_addr:
-                    r = Relationship(source=Fact(mp.source, fact))
-                    relationships.append(r)
-
+                    relationships.append(
+                        Relationship(source=Fact(mp.source, fact),
+                                     edge=mp.edge,
+                                     target=Fact(mp.target, None))
+                    )
+                    
         return relationships
