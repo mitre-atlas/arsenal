@@ -26,7 +26,7 @@ class Parser(BaseParser):
                 # only creation of target.api.binding_address fact is supported
                 if 'binding_address' not in mp.source:
                     raise NotImplementedError
-                # check that addr is a valid (IPv4) address
+                # check that addr is a valid (IPv4 or IPv6) address
                 try:
                     addr_obj = ip_address(addr)
                 except ValueError as e:
@@ -37,6 +37,7 @@ class Parser(BaseParser):
                         bind_addr = [':'.join([addr, port]) for addr in addr_facts]
                 else: 
                     # perform IPv4 check
+                    # NOTE: If IPv6 is allowed, enclose addr in '[' and ']'
                     if addr_obj.version == 4:
                         # loopback ex: localhost, 127.0.0.1
                         if addr_obj.is_loopback:
