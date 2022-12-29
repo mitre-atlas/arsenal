@@ -26,17 +26,15 @@ class Parser(BaseParser):
                 # only creation of target.api.binding_address fact is supported
                 if 'binding_address' not in mp.source:
                     raise NotImplementedError
-                # server listening on all devs, so use host.network_interface.IPv4_addr
-                if addr == "*":
-                    bind_addr = [':'.join([addr, port]) for addr in addr_facts]
-                    continue
                 # check that addr is a valid (IPv4) address
                 try:
                     addr_obj = ip_address(addr)
                 except ValueError as e:
                     # TODO how to handle the exception?
                     # raise e <-- this will cause parsing to STOP...
-                    continue
+                    # server listening on all devs, so use host.network_interface.IPv4_addr
+                    if addr == "*":
+                        bind_addr = [':'.join([addr, port]) for addr in addr_facts]
                 else: 
                     # perform IPv4 check
                     if addr_obj.version == 4:
@@ -52,13 +50,15 @@ class Parser(BaseParser):
                         # FIXME: decide how to handle above conditions
                         # For now, if addr is valid IPv4, use it
                         bind_addr = [':'.join([addr, port])]
-                
-                # create fact (s) for discovered binding_address
-                for fact in bind_addr:
-                    relationships.append(
-                        Relationship(source=Fact(mp.source, fact),
-                                     edge=mp.edge,
-                                     target=Fact(mp.target, None))
-                    )
+                finally: 
+                    # create fact (s) for any discovered binding_address
+                    if len(bind_addr) > 0:
+                        for fact in bind_addr:
+                            # self.logger.info('fact on line 66: %s', fact)
+                            relationships.append(
+                                Relationship(source=Fact(mp.source, fact),
+                                             edge=mp.edge,
+                                             target=Fact(mp.target, None))
+                            )
                     
         return relationships
