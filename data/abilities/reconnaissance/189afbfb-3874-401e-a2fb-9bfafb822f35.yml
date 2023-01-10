@@ -7,7 +7,7 @@
   technique_id: AML.T0006
   technique_name: Active Scanning
   executors:
-    platform: linux
+  - platform: linux
     name: sh
     command: |
       chmod +x network_svc_info.sh && ./network_svc_info.sh #{host.network_interface.IPv4_network}
