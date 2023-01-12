@@ -11,10 +11,10 @@
     name: sh
     command: |
       chmod +x network_svc_info.sh && ./network_svc_info.sh #{host.network_interface.IPv4_network}
-    # parsers:
-    # - module: plugins.arsenal.app.parsers.nmap
-    #   parserconfigs:
-    #   - source: target.api.binding_address
+    parsers:
+    - module: plugins.arsenal.app.parsers.nmap
+      parserconfigs:
+      - source: target.api.binding_address
     payloads: [network_svc_info.sh]
     cleanup: [rm network_svc_info.sh]
     timeout: '600' # setting timeout to 10minutes for now (scan may take time)
