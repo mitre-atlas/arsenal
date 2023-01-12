@@ -5,6 +5,8 @@ from app.utility.base_parser import BaseParser
 import re
 
 class Parser(BaseParser):
+    # specify ports to exclude from API endpoint discovery
+    exclude = ['21', '22', '23', '25', '53', '139', '445']
 
     def parse(self, blob):
         # parser expects output to be in Nmap's so-called "grepable format" !!
@@ -27,8 +29,9 @@ class Parser(BaseParser):
                     # assume that len(port_info) == 4; else, incorrect usage of parser
                     # NOTE: proto and svc are NOT used (currently) to create any facts
                     port, state, proto, svc = port_info
-                    # only use port_info for ports with STATE == "open" 
-                # only use port_info for ports with STATE == "open" 
+                    
+                    if port in self.exclude:
+                        continue
                     # only use port_info for ports with STATE == "open" 
                     # NOTE: there are six "port states" recognized by Nmap
                     #   - see https://nmap.org/book/man-port-scanning-basics.html

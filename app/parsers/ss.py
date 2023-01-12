@@ -8,6 +8,9 @@ from ipaddress import ip_address
 class Parser(BaseParser):
     """TODO add docstring
     """
+    # specify ports to exclude from API endpoint discovery
+    exclude = ['21', '22', '23', '25', '53', '139', '445']
+
     def parse(self, blob):
         relationships = []
         # retrieve collected IPv4 address
@@ -21,6 +24,8 @@ class Parser(BaseParser):
             sock, proc = line.split()
             # split the <Local Address:Port> into <Local Address> <Port>
             addr, port = sock.rsplit(':', 1)
+            if port in self.exclude:
+                continue
             for mp in self.mappers:
                 bind_addr = []
                 # only creation of target.api.binding_address fact is supported
