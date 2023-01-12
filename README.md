@@ -13,12 +13,15 @@ We recommend that you navigate to our [`DOCUMENTATION`](https://advml.pages.mitr
 
  1. Navigate to [`caldera-atlas`](https://github.com/mitre-atlas/caldera-atlas) repository and follow steps for installation and setup.
 
- 2. Navigate to the UI: proceed to `localhost:8888` and you will be prompted to login into the `caldera` app. 
+ 2. Navigate to the UI: `localhost:8888`
 
- Use the following credentials:
+*JAN 2023 included abilities:*
 
- Username: admin
-
- Password: admin
+- discover remote services
+- discover local services
+- discover available network services
+- discover ML specific services
+- evade ML model using [`counterfit`](https://github.com/Azure/counterfit) library
 
 ![overview](docs/assets/A.png)
+
