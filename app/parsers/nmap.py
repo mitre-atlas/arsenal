@@ -11,6 +11,8 @@ class Parser(BaseParser):
     def parse(self, blob):
         # parser expects output to be in Nmap's so-called "grepable format" !!
         relationships = []
+        # store list of binding addresses
+        bind_addr_list = []
         for line in self.line(blob):
             # "Host" info displayed 1st and "Ports" info displayed 2nd
             host_data, ports_data = line.split('\t')[:2]
@@ -42,10 +44,11 @@ class Parser(BaseParser):
                             if 'binding_address' not in mp.source:
                                 raise NotImplementedError
                             # create fact for the discovered binding_address
-                            relationships.append(
-                                Relationship(source=Fact(mp.source, bind_addr),
-                                            edge=mp.edge,
-                                            target=Fact(mp.target, None))
-                            )
+                            bind_addr_list.append(bind_addr)
 
+        relationships.append(
+            Relationship(source=Fact(mp.source, bind_addr_list),
+                         edge=mp.edge,
+                         target=Fact(mp.target, None))
+        )
         return relationships

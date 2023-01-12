@@ -13,6 +13,8 @@ class Parser(BaseParser):
 
     def parse(self, blob):
         relationships = []
+        # store list of binding addresses
+        bind_addr_list = []
         # retrieve collected IPv4 address
         addr_facts = []
         for used_fact in self.used_facts:
@@ -60,11 +62,12 @@ class Parser(BaseParser):
                     # create fact (s) for any discovered binding_address
                     if len(bind_addr) > 0:
                         for fact in bind_addr:
-                            # self.logger.info('fact on line 66: %s', fact)
-                            relationships.append(
-                                Relationship(source=Fact(mp.source, fact),
-                                             edge=mp.edge,
-                                             target=Fact(mp.target, None))
-                            )
-                    
+                            # create fact for the discovered binding_address
+                            bind_addr_list.append(fact)
+        
+        relationships.append(
+            Relationship(source=Fact(mp.source, bind_addr_list),
+                         edge=mp.edge,
+                         target=Fact(mp.target, None))
+        )           
         return relationships

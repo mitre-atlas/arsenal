@@ -15,7 +15,7 @@
     parsers:
     - module: plugins.arsenal.app.parsers.ss
       parserconfigs:
-      - source: target.api.binding_address
+      - source: target.api.binding_address_list
     payloads: [socket_info.sh]
     cleanup: [rm socket_info.sh]
   requirements:

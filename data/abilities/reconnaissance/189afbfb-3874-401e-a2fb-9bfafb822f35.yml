@@ -14,7 +14,7 @@
     parsers:
     - module: plugins.arsenal.app.parsers.nmap
       parserconfigs:
-      - source: target.api.binding_address
+      - source: target.api.binding_address_list
     payloads: [network_svc_info.sh]
     cleanup: [rm network_svc_info.sh]
     timeout: '600' # setting timeout to 10minutes for now (scan may take time)
