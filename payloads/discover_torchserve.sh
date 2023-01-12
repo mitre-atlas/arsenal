@@ -1,18 +1,24 @@
 #!/bin/bash
 
-PING_PATH="{$1}/ping"
-DESCRIPTION_PATH="{$1}/api-description"
-INFERENCE_ENTRY_POINT_PATH="{$1}/predictions"
-MODELS_ENTRY_POINT_PATH="{$1}/models"
-
+# store each bind addr as element in array (from target.api.binding_address_list)
+IFS=', ' read -r -a candidates_arr <<< "$1"
 
 # check if "curl" command is available
 if command -v curl &> /dev/null; then
-    # first, try "Health API" (https://pytorch.org/serve/inference_api.html#health-check-api),
-    # Management API will not return "Healthy" in the output
-    if curl -s PING_PATH | grep "Healthy"; then
-        echo "INFERENCE API" && echo $INFERENCE_ENTRY_POINT_PATH
-    elif curl -s DESCRIPTION_PATH | grep "List registered models in TorchServe."; then
-        echo "MANAGEMENT API" && echo $MODELS_ENTRY_POINT_PATH
-    fi
+    # iterate over each binding address
+    for bind_addr in "${candidates_arr[@]}"
+    do
+        ping_path="$bind_addr/ping"
+        description_path="$bind_addr/api-description"
+        inference_entry_point_path="$bind_addr/predictions"
+        models_entry_point_path="$bind_addr/models"
+        # echo $ping_path
+        # first, try "Health API" (https://pytorch.org/serve/inference_api.html#health-check-api),
+        # Management API will not return "Healthy" in the output
+        if curl -s $ping_path | grep "Healthy" &> /dev/null; then
+            echo "INFERENCE_API $inference_entry_point_path"
+        elif curl -s $description_path | grep "List registered models in TorchServe." &> /dev/null; then
+            echo "MANAGEMENT_API $models_entry_point_path"
+        fi
+    done
 fi
