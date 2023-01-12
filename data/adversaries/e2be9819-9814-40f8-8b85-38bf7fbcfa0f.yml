@@ -1,6 +1,0 @@
-id: e2be9819-9814-40f8-8b85-38bf7fbcfa0f
-name: Evade Detection
-description: Evade a machine learning model with a perturbed image through mis-detection. 
-atomic_ordering:
-  - 8fba0553-566a-4ed7-8a27-ebcebef8e665 # send pre-computed adversarial image
-

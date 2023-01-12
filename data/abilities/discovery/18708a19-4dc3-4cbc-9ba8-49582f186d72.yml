@@ -9,15 +9,6 @@
     name: sh
     command: |
       chmod +x discover_torchserve.sh && ./discover_torchserve.sh #{target.api.binding_address}
-    parsers:
-    - module: plugins.arsenal.app.parsers.api
-      parserconfigs:
-      - source: target.api.binding_address
-        edge: has_ml_service
-        target: target.api.ml_service
-      - source: target.api.binding_address
-        edge: has_management_service
-        target: target.api.ml_model
     payloads: [discover_torchserve.sh]
     cleanup: [rm discover_torchserve.sh]
     timeout: 300
