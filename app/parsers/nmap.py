@@ -27,21 +27,22 @@ class Parser(BaseParser):
                     # assume that len(port_info) == 4; else, incorrect usage of parser
                     # NOTE: proto and svc are NOT used (currently) to create any facts
                     port, state, proto, svc = port_info
-
+                    # only use port_info for ports with STATE == "open" 
                 # only use port_info for ports with STATE == "open" 
-                # NOTE: there are six "port states" recognized by Nmap
-                #   - see https://nmap.org/book/man-port-scanning-basics.html
-                if state == 'open':
-                    bind_addr = ':'.join([host_ip_addr, port])
-                    for mp in self.mappers:
-                        # only creation of target.api.binding_address fact is supported
-                        if 'binding_address' not in mp.source:
-                            raise NotImplementedError
-                         # create fact for the discovered binding_address
-                        relationships.append(
-                            Relationship(source=Fact(mp.source, bind_addr),
-                                         edge=mp.edge,
-                                         target=Fact(mp.target, None))
-                        )
+                    # only use port_info for ports with STATE == "open" 
+                    # NOTE: there are six "port states" recognized by Nmap
+                    #   - see https://nmap.org/book/man-port-scanning-basics.html
+                    if state == 'open':
+                        bind_addr = ':'.join([host_ip_addr, port])
+                        for mp in self.mappers:
+                            # only creation of target.api.binding_address fact is supported
+                            if 'binding_address' not in mp.source:
+                                raise NotImplementedError
+                            # create fact for the discovered binding_address
+                            relationships.append(
+                                Relationship(source=Fact(mp.source, bind_addr),
+                                            edge=mp.edge,
+                                            target=Fact(mp.target, None))
+                            )
 
         return relationships
