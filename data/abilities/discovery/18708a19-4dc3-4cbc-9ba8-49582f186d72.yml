@@ -12,13 +12,14 @@
     command: | 
      curl --silent "#{target.api.binding_address}/#{target.api.ml_service_endpoint}
     parsers:
-      plugins.arsenal.app.parsers.api:
-        - source: target.api.binding_address
-          edge: has_ml_service
-          target: target.api.ml_service
-        - source: target.api.binding_address
-          edge: has_management_service
-          target: target.api.ml_model
+    - module: plugins.arsenal.app.parsers.api
+      parserconfigs:
+      - source: target.api.binding_address
+        edge: has_ml_service
+        target: target.api.ml_service
+      - source: target.api.binding_address
+        edge: has_management_service
+        target: target.api.ml_model
   technique_id: AML.T0007 
   technique_name: Discover ML Artifacts
   additional_info: {}
