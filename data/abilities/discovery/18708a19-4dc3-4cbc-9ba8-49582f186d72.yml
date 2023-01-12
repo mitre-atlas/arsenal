@@ -1,16 +1,14 @@
-- tactic: discovery
-  repeatable: false
-  plugin: arsenal
-  requirements: []
-  delete_payload: true
+- id: 18708a19-4dc3-4cbc-9ba8-49582f186d72
+  name: Discover TorchServe API
+  description: FILL ME IN
+  tactic: discovery
+  technique_id: AML.T0007 
+  technique_name: Discover ML Artifacts
   executors:
-  - payloads: []
-    platform: linux
+  - platform: linux
     name: sh
-    cleanup: []
-    parsers: []
-    command: | 
-     curl --silent "#{target.api.binding_address}/#{target.api.ml_service_endpoint}
+    command: |
+      chmod +x discover_torchserve.sh && ./discover_torchserve.sh #{target.api.binding_address}
     parsers:
     - module: plugins.arsenal.app.parsers.api
       parserconfigs:
@@ -20,14 +18,7 @@
       - source: target.api.binding_address
         edge: has_management_service
         target: target.api.ml_model
-  technique_id: AML.T0007 
-  technique_name: Discover ML Artifacts
-  additional_info: {}
-  buckets:
-  - discovery
-  access: {}
-  singleton: false
-  privilege: ''
-  description: 
-  name: Discover TorchServe API
-  id: 18708a19-4dc3-4cbc-9ba8-49582f186d72
+    payloads: [discover_torchserve.sh]
+    cleanup: [rm discover_torchserve.sh]
+    timeout: 300
+  repeatable: true
