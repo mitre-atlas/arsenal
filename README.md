@@ -21,6 +21,7 @@ We recommend that you navigate to our [`DOCUMENTATION`](https://advml.pages.mitr
 - discover local services
 - discover available network services
 - discover ML specific services
+- exfiltrate ML model
 - evade ML model using [`counterfit`](https://github.com/Azure/counterfit) library
 
 ![overview](docs/assets/A.png)
