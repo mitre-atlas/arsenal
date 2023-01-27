@@ -10,3 +10,4 @@
 .logs/*
 !.logs/.gitkeep
 conf/secrets.yml
+*/api.py

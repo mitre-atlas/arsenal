@@ -1,4 +1,3 @@
-import re
 
 from app.objects.secondclass.c_fact import Fact
 from app.objects.secondclass.c_relationship import Relationship
@@ -11,7 +10,9 @@ class Parser(BaseParser):
         
     Parse Fact store for #{target.api.binding_address} and link facts with found
         API endpoints that contain what is being searched for.
-    
+        
+    NOTE: regexs pre-defined.
+
     Arguments:
         None
         
@@ -20,18 +21,16 @@ class Parser(BaseParser):
 
     """
     def parse(self, blob):
-        
-        # TODO: include tensorflow::serving
-        search_space = ['TorchServe']
-        inferenceAPIs = []
-        for api in search_space:
-            api_lib = re.compile(r'\b{}\b'.format(api), re.IGNORECASE|re.MULTILINE)
-            match = re.search(api_lib, blob['metrics']['get']['description'])
-            if match is not None:
-                inferenceAPIs.append(Relationship(source=Fact(mp.source, api),
-                                             edge=mp.edge,
-                                             target=Fact(mp.target, None)))
-                
-        
-        
+        relationships = []
+        for line in self.line(blob):
+            # split line for API and IP
+            endpoint, ip = line.split(' ')
+            for mp in self.mappers:
+                relationships.append(
+                    Relationship(source=Fact(mp.source, endpoint),
+                                edge=ip,
+                                target=Fact(mp.target, None))
+                )
+        return relationships
+
         
