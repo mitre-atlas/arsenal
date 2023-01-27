@@ -6,7 +6,7 @@
 HOST_DISC_OPTS="-PS443 -PA80" 
 # define input options to improve scan time
 #   - intuition on selected values: https://nmap.org/book/man-performance.html
-TIME_OPTS="-T4 --max-rtt-timeout 100ms --max-retries 0 --min-parallelism 10"
+TIME_OPTS="-T4 --max-rtt-timeout 100ms --max-retries 0 --min-parallelism 100"
 # assume first arg passed will always contain an IPv4 network address
 TRG=$1
 
