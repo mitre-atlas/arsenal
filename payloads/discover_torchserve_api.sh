@@ -12,7 +12,6 @@ if command -v curl &> /dev/null; then
         description_path="$bind_addr/api-description"
         inference_entry_point_path="$bind_addr/predictions"
         models_entry_point_path="$bind_addr/models"
-        # echo $ping_path
         # first, try "Health API" (https://pytorch.org/serve/inference_api.html#health-check-api),
         # Management API will not return "Healthy" in the output
         if curl -s $ping_path | grep "Healthy" &> /dev/null; then
