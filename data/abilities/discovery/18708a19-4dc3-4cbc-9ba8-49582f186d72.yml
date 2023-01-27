@@ -8,14 +8,14 @@
   - platform: linux
     name: sh
     command: |
-      chmod +x discover_torchserve.sh && ./discover_torchserve.sh #{target.api.binding_address_list}
+      chmod +x discover_torchserve_api.sh && ./discover_torchserve_api.sh "#{target.api.binding_address_list}"
     parsers:
     - parserconfigs:
       - source: target.model_server.framework
         target: ''
         edge: ''
       module: arsenal.parsers.api
-    payloads: [discover_torchserve.sh]
-    cleanup: [rm discover_torchserve.sh]
+    payloads: [discover_torchserve_api.sh]
+    cleanup: [rm discover_torchserve_api.sh]
     timeout: 300
   repeatable: true
