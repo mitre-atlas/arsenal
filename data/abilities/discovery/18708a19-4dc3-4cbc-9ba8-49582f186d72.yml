@@ -15,7 +15,7 @@
       - source: target.model_server.framework
         target: has_inference_api_endpoint
         edge: target.model_server.inference_api_endpoint # or target.model_server.inference_address ?
-        - parserconfigs:
+    - parserconfigs:
       - source: target.model_server.framework
         target: has_inference_api_endpoint
         edge: target.model_server.models_api_endpoint # or target.model_server.models_address ?
