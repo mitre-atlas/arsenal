@@ -14,17 +14,26 @@ class Parser(BaseParser):
     # logger = logging.getLogger('ss_parser')
 
     def parse(self, blob):
-        # self.logger.info("ENTERING PARSER")
-        relationships = []
-        # store "list" of binding addresses (but with type == str)
-        disc_bind_addrs = ''
         # retrieve collected IPv4 address
         addr_facts = []
         for used_fact in self.used_facts:
             if 'IPv4_address' in used_fact.name:
                 addr_facts.append(used_fact.value)
-
+        
+        # only allow one IPv4_address fact to be passed to the ability
+        # - ie the command (currently) executed within the ability file is:
+        # echo #{host.network_interface.IPv4_address} >/dev/null 2>&1 && chmod +x socket_info.sh && ./socket_info.sh
+        # - indicates that the parser must be updated if ability command is modified, etc.
+        if len(addr_facts) > 1:
+            raise NotImplementedError
+        
+        relationships = []
+        # store "list" of binding addresses (but with type == str)
+        disc_bind_addrs = ''
+        # stores the collected IPv4 address, if available
+        collected_addr = addr_facts[0] if len(addr_facts) == 1 else None
         for line in self.line(blob):
+            bind_addr = ''
             # parser expects "<Local Address:Port> <Process>"
             sock, proc = line.split()
             # split the <Local Address:Port> into <Local Address> <Port>
@@ -32,7 +41,6 @@ class Parser(BaseParser):
             if port in self.exclude:
                 continue
             for mp in self.mappers:
-                bind_addr_list = []
                 # only creation of target.api.binding_address fact is supported
                 if 'binding_address' not in mp.source:
                     raise NotImplementedError
@@ -43,10 +51,9 @@ class Parser(BaseParser):
                     # TODO how to handle the exception?
                     # raise e <-- this will cause parsing to STOP...
                     # server listening on all devs, so use host.network_interface.IPv4_addr
-                    if local_addr == "*":
-                        # ex: if addr_facts has ['10.X.Y.Z', '172.X.Y.Z'], then
-                        # bind_addr == ['10.X.Y.Z:<port>', '172.X.Y.Z:<port>']
-                        bind_addr_list = [':'.join([addr, port]) for addr in addr_facts]
+                    if local_addr == "*" and collected_addr:
+                        # create fact for the disc binding_address
+                        bind_addr = ':'.join([collected_addr, port])
                 else: 
                     # perform IPv4 check
                     # NOTE: If IPv6 is allowed, enclose addr in '[' and ']'
@@ -55,27 +62,22 @@ class Parser(BaseParser):
                         if addr_obj.is_loopback:
                             pass
                         # unspecified ex: 0.0.0.0
-                        elif addr_obj.is_unspecified:
+                        elif addr_obj.is_unspecified and collected_addr:
                             # for now, handle "unspecified" case similar to "*" case
-                            bind_addr_list = [':'.join([addr, port]) for addr in addr_facts]
+                            # create fact for the disc binding_address
+                            bind_addr = ':'.join([collected_addr, port])
                         # FIXME: decide how to handle above conditions
                         # any other conditions to add?
                         else: 
                             # For now, if addr is valid IPv4, use it
-                            bind_addr_list = [':'.join([local_addr, port])]
+                            bind_addr = ':'.join([local_addr, port])
                 finally: 
                     # create fact (s) for any disc binding_address
-                    if len(bind_addr_list) > 0:
-                        for bind_addr in bind_addr_list:
-                            # create fact for the disc binding_address
-                            if disc_bind_addrs == '':
-                                # initialize "list" with first bind_addr
-                                disc_bind_addrs = bind_addr
-                            else: 
-                                disc_bind_addrs = ', '.join([
-                                    disc_bind_addrs, bind_addr
-                                ])
-                    # self.logger.info("current state of disc_bind_addrs: {}", str(disc_bind_addrs))
+                    if bind_addr:
+                        # initialize "list" with first discovered bind_addr, if needed
+                        disc_bind_addrs = ', '.join([
+                            disc_bind_addrs, bind_addr
+                        ]) if disc_bind_addrs else bind_addr
         
         # remove the trailing ', '
         disc_bind_addrs = disc_bind_addrs.strip(', ')
