@@ -12,7 +12,7 @@ class Parser(BaseParser):
         # parser expects output to be in Nmap's so-called "grepable format" !!
         relationships = []
         # store "list" of binding addresses (but with type == str)
-        bind_addr_list = ''
+        disc_bind_addrs = ''
         for line in self.line(blob):
             # "Host" info displayed 1st and "Ports" info displayed 2nd
             host_data, ports_data = line.split('\t')[:2]
@@ -39,22 +39,26 @@ class Parser(BaseParser):
                     #   - see https://nmap.org/book/man-port-scanning-basics.html
                     if state == 'open':
                         bind_addr = ':'.join([host_ip_addr, port])
+                        # create fact (s) for any disc binding_address
+                        if bind_addr:
+                            # initialize "list" with first discovered bind_addr, if needed
+                            disc_bind_addrs = ', '.join([
+                                disc_bind_addrs, bind_addr
+                            ]) if disc_bind_addrs else bind_addr
                         for mp in self.mappers:
                             # only creation of target.api.binding_address fact is supported
                             if 'binding_address' not in mp.source:
                                 raise NotImplementedError
-                            # create fact for the discovered binding_address
-                            if bind_addr_list == '':
-                                # initialize "list" with first bind_addr
-                                bind_addr_list = bind_addr
-                            else: 
-                                bind_addr_list = ', '.join([bind_addr_list, bind_addr])
         
         # remove the trailing ', '
-        bind_addr_list = bind_addr_list.strip(', ')
-        relationships.append(
-            Relationship(source=Fact(mp.source, bind_addr_list),
-                         edge=mp.edge,
-                         target=Fact(mp.target, None))
-        )
+        disc_bind_addrs = disc_bind_addrs.strip(', ')
+        for mp in self.mappers:
+            # only creation of target.api.binding_address fact is supported
+            if 'binding_address' not in mp.source:
+                raise NotImplementedError
+            relationships.append(
+                Relationship(source=Fact(mp.source, disc_bind_addrs),
+                             edge=mp.edge,
+                             target=Fact(mp.target, None))
+            )     
         return relationships
