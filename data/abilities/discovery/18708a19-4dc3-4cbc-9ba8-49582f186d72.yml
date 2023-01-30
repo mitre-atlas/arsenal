@@ -10,8 +10,8 @@
     command: |
       chmod +x discover_torchserve_api.sh && ./discover_torchserve_api.sh "#{target.api.binding_address_list}"
     parsers:
-    - module: plugins.arsenal.app.parsers.api
-    - parserconfigs:
+    - module: plugins.arsenal.app.parsers.torchserve_api
+      parserconfigs:
       - source: target.model_server.framework
         target: has_inference_api_endpoint
         edge: target.model_server.inference_api_endpoint # or target.model_server.inference_address ?
