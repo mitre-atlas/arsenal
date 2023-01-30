@@ -13,12 +13,11 @@
     - module: plugins.arsenal.app.parsers.torchserve_api
       parserconfigs:
       - source: target.model_server.framework
-        target: has_inference_api_endpoint
-        edge: target.model_server.inference_api_endpoint # or target.model_server.inference_address ?
-    - parserconfigs:
+        edge: has_inference_address
+        target: target.model_server.inference_address
       - source: target.model_server.framework
-        target: has_inference_api_endpoint
-        edge: target.model_server.models_api_endpoint # or target.model_server.models_address ?
+        edge: has_management_address
+        target: target.model_server.management_address
     payloads: [discover_torchserve_api.sh]
     cleanup: [rm discover_torchserve_api.sh]
     timeout: 300
