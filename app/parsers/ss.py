@@ -10,7 +10,7 @@ class Parser(BaseParser):
     """TODO add docstring
     """
     # specify ports to exclude from API endpoint discovery
-    exclude = ['21', '22', '23', '25', '53', '139', '445']
+    exclude = ['21', '22', '23', '25', '53', '111', '139', '445']
     # logger = logging.getLogger('ss_parser')
 
     def parse(self, blob):

@@ -6,7 +6,7 @@ import re
 
 class Parser(BaseParser):
     # specify ports to exclude from API endpoint discovery
-    exclude = ['21', '22', '23', '25', '53', '139', '445']
+    exclude = ['21', '22', '23', '25', '53', '111', '139', '445']
 
     def parse(self, blob):
         # parser expects output to be in Nmap's so-called "grepable format" !!
