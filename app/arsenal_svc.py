@@ -80,7 +80,7 @@ class ArsenalService(BaseService):
                 assert out_dict['version'] == '1.1.0'
                 assert out_dict['name'] == 'counterfit'
             else:
-                cf_branch = 'cf-internal-v1.1'
+                cf_branch = 'main'
                 cf_extras = 'dev'
                 await self._pip_install_modules(
                     env_name=env_name, 
