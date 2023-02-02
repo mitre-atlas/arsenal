@@ -23,7 +23,7 @@ class Parser(BaseParser):
                 if 'model_server.framework' not in mp.source:
                     raise NotImplementedError
                 # use BaseParse.used_facts to get associated inference_api
-                if model_name is not 'null':
+                if model_name != 'null':
                     pred_endpoint = bind_addr + '/predictions/' + model_name
                     relationships.append(
                         Relationship(source=Fact(mp.source, 'TorchServe'),
