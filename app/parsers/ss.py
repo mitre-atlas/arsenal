@@ -3,16 +3,20 @@ from app.objects.secondclass.c_relationship import Relationship
 from app.utility.base_parser import BaseParser
 
 from ipaddress import ip_address
-# import logging
 
 
 class Parser(BaseParser):
-    """TODO add docstring
+    """
+    
+    Functionality to parse incoming IPv4 addresses and create Fact Sources
+        for binding addresses and associated IPv4 addresses if valid.
+        
+    Excludes common ports from endpoint discovery.
+    
     """
     # specify ports to exclude from API endpoint discovery
     exclude = ['21', '22', '23', '25', '53', '111', '139', '445']
-    # logger = logging.getLogger('ss_parser')
-
+    
     def parse(self, blob):
         # retrieve collected IPv4 address
         addr_facts = []

@@ -10,14 +10,6 @@ class Parser(BaseParser):
         
     Parse Fact store for #{target.api.binding_address} and link facts with found
         API endpoints that contain what is being searched for.
-        
-    NOTE: regexs pre-defined.
-
-    Arguments:
-        None
-        
-    Returns:
-        Fact
 
     """
 

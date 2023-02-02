@@ -1,6 +1,6 @@
 - id: 18708a19-4dc3-4cbc-9ba8-49582f186d72
   name: Discover TorchServe API
-  description: FILL ME IN
+  description: discover TorchServe API Inference and Management Endpoints
   tactic: discovery
   technique_name: Discover ML Artifacts
   technique_id: AML.T0007 
@@ -21,4 +21,4 @@
     payloads: [discover_torchserve_api.sh]
     cleanup: [rm discover_torchserve_api.sh]
     timeout: 300
-  repeatable: true
+  repeatable: false

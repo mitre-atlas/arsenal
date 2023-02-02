@@ -5,6 +5,14 @@ from app.utility.base_parser import BaseParser
 import re
 
 class Parser(BaseParser):
+    """
+        
+    Functionality to parse incoming IPv4 addresses and create Fact Sources
+        for binding addresses and associated IPv4 addresses if valid.
+        
+    Excludes common ports from endpoint discovery.
+    
+    """
     # specify ports to exclude from API endpoint discovery
     exclude = ['21', '22', '23', '25', '53', '111', '139', '445']
 
