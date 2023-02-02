@@ -10,3 +10,6 @@ access = BaseWorld.Access.APP
 async def enable(services):
     arsenal_svc = ArsenalService(services)
     services.get('app_svc').application.router.add_route('GET', '/plugin/arsenal/gui', arsenal_svc.splash)
+
+    # create python venv and populate it with the counterfit v1.1 module
+    await arsenal_svc.populate_venv(env_name='cf_venv', with_counterfit=True)
