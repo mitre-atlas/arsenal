@@ -1,5 +1,6 @@
 import argparse
 import sys
+import os
 import json
 import requests
 
@@ -42,12 +43,52 @@ def setup_args():
     parser.add_argument("--endpoint", help=help_s, required=True, type=str)
     help_s, choices = "The type of data the target model uses.", ["tabular", "text", "images"]
     parser.add_argument("--data-type", help=help_s, choices=choices, default="images", type=str)
-    help_s = "This is used to uniquely identify a target model within Counterfit."
-    parser.add_argument("--target-name", help=help_s, required=True, type=str)
+    # help_s = "This is used to uniquely identify a target model within Counterfit."
+    # parser.add_argument("--target-name", help=help_s, required=True, type=str)
     if len(sys.argv) == 1:
         parser.print_help()
         sys.exit(1)
     return parser.parse_args()
+
+
+def get_model_type(arch_map, model_name):
+    pass
+    
+
+
+# class BaseTargetForImageDataType(CFTarget):
+#     target_data_type = "image"
+#     target_name = "torchserve-imagenet-classifer"
+#     target_endpoint = "http://{}:{}/predictions/{}".format(
+#         _DISCOVERED_IP,
+#         _DISCOVERED_PORT,
+#         _MODEL
+#     )
+    
+#     # self.image_file_path 
+#     def load(self):
+#         # FIXME 
+#         with open(self.image_file_path) as f:
+#             catmap = json.load(f)
+
+#         self.catmap = catmap
+#         self.target_output_classes = len(catmap)
+
+#     def predict(self, x):
+#         for xx in x:
+#             img = Image.fromarray(xx)
+
+#             tmp = BytesIO()
+#             img.save(tmp, format="PNG")
+#             bytes = tmp.getvalue()
+
+#             result = requests.post(self.target_endpoint, files={"data": bytes}).json()
+
+#             scores = np.zeros((self.target_output_classes,))
+#             for cat, score in result.items():
+#                 scores[self.catmap[cat]] = score
+                
+#             return scores.tolist()
 def main():
     args = setup_args()
     # TODO(afennelly) error checks for correct usage, ie handle bad endpoint
