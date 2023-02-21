@@ -19,6 +19,21 @@ import logging
 # - 
 # step 4: 
 
+MODEL_ARCHITECTURES_MAP = {
+    "alexnet": "Image Classification",
+    "densenet": "Image Classification",
+    "resnet": "Image Classification",
+    "vgg": "Image Classification",
+    "mobilenet": "Image Classification",
+    "squeezenet": "Image Classification",
+    "rcnn": "Object Detection",
+    "faster": "Object Detection",
+    "fastrcnn": "Object Detection",
+    "maskrcnn": "Object Detection",
+    "yolo": "Object Detection",
+    "deeplab": "Image Segmentaion"
+}
+
 
 def setup_args():
     """Parse command line options (mode and config)."""
@@ -34,7 +49,29 @@ def setup_args():
         sys.exit(1)
     return parser.parse_args()
 def main():
-    print(counterfit.__version__)
+    args = setup_args()
+    # TODO(afennelly) error checks for correct usage, ie handle bad endpoint
+    # NOTE: below will break for Windows OS
+    path_list = args.endpoint.split('/')
+    # fetch model name and sloppily handle case of the version being specified (/predictions/{model_name}/{version})
+    model_name = ''
+    if path_list[-2] == 'predictions':
+        model_name = path_list[-1]
+    elif path_list [-3] == 'predictions':
+        model_name = path_list[2]
+
+    model_type = ""
+    for name, type in MODEL_ARCHITECTURES_MAP.items():
+        # choose first element; no intuition behind this, just choosing convention
+        if model_name and name in model_name:
+            model_type = type
+            break
+    
+    if model_name:
+        print(model_name)
+        print(model_type)
+        model_type = get_model_type(arch_map=MODEL_ARCHITECTURES_MAP, model_name=model_name)
+
 
 if __name__ == "__main__":
     main()
