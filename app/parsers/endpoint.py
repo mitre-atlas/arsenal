@@ -22,7 +22,7 @@ class Parser(BaseParser):
             log_msg = "fact value: {}".format(used_fact.value)
             self.logs.info(log_msg)
             
-            if 'address' in used_fact.name:
+            if 'inference' in used_fact.name:
                 endpoint_facts.append(used_fact.value)
    
         if len(endpoint_facts) > 1:
