@@ -12,9 +12,7 @@
     parsers:
     - module: plugins.arsenal.app.parsers.endpoint
       parserconfigs:
-      - source: target.model_server.framework
-        edge: has_prediction_endpoint
-        target: target.model_server.prediction_endpoint
+      - source: target.model_server.prediction_endpoint
     payloads: [discover_prediction_endpoint.sh]
     cleanup: [rm discover_prediction_endpoint.sh]
     timeout: 300
