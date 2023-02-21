@@ -10,12 +10,14 @@ class Parser(BaseParser):
 
     """
     def __init__(self, parser_info):
+        super().__init__(parser_info)
         self.logs = logging.getLogger('ENDPOINT')
     
     def parse(self, blob):
         relationships = []
         # retrieve collected endpoint addresses
         endpoint_facts = []
+        self.logs.info(self.used_facts)
         for used_fact in self.used_facts:
             log_msg = "fact name: {}".format(used_fact.name)
             self.logs.info(log_msg)
