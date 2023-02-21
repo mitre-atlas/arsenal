@@ -24,8 +24,10 @@ class Parser(BaseParser):
             log_msg = "fact value: {}".format(used_fact.value)
             self.logs.info(log_msg)
             
-            if 'inference' in used_fact.name:
+            if 'inference' in used_fact.name.split('.')[-1]:
+                self.logs.info(used_fact.name)
                 endpoint_facts.append(used_fact.value)
+                self.logs.info(len(endpoint_facts))
    
         if len(endpoint_facts) > 1:
             raise NotImplementedError
@@ -37,14 +39,13 @@ class Parser(BaseParser):
             _, model_name = line.split(' ')
             for mp in self.mappers:
                 # only creation of target.model_server.framework fact is supported ("source" fact of "Relationship")
-                if 'model_server.framework' not in mp.source:
+                if 'prediction_endpoint' not in mp.source:
                     raise NotImplementedError
                 # use BaseParse.used_facts to get associated inference_api
                 if model_name != 'null':
+                    self.logs.info('inf_bind_addr')
                     pred_endpoint = inf_bind_addr + '/predictions/' + model_name
                     relationships.append(
-                        Relationship(source=Fact(mp.source, 'TorchServe'),
-                                        edge=mp.edge,
-                                        target=Fact(mp.target, pred_endpoint))
+                        Relationship(source=Fact(mp.source, pred_endpoint))
                     )
         return relationships
