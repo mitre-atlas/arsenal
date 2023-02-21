@@ -11,7 +11,7 @@
   - platform: linux
     name: sh
     command: |
-      $HOME/venv/cf_venv/bin/python counterfit_target_builder.py
+      $HOME/venv/cf_venv/bin/python counterfit_target_builder.py --endpoint #{target.model_server.prediction_endpoint}
     # FIXME uncomment below to include build_target.py parser (naming convention not final)
     # parsers: 
     # - module: plugins.arsenal.app.parsers.build_cf_target
