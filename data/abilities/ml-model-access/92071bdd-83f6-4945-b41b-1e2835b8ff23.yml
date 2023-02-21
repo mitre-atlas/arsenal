@@ -18,4 +18,11 @@
     payloads: [discover_prediction_endpoint.sh]
     cleanup: [rm discover_prediction_endpoint.sh]
     timeout: 300
-  repeatable: true
+  # repeatable: true
+  requirements:
+  - module: plugins.stockpile.app.requirements.paw_provenance
+    relationship_match:
+    - source: target.model_server.inference_address
+  - module: plugins.stockpile.app.requirements.paw_provenance
+    relationship_match:
+    - source: target.model_server.management_address
