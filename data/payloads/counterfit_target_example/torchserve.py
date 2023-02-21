@@ -11,7 +11,7 @@ from counterfit.core.targets import CFTarget
 _DISCOVERED_IP = "172.22.0.5"
 # use the http-proxy port fact source here
 _DISCOVERED_PORT = "8080"
-# use the user-selected model here
+# use the discovered model here
 _MODEL = "resnet-18"
 
 class TorchServeImageNetClassifier(CFTarget):
@@ -24,7 +24,7 @@ class TorchServeImageNetClassifier(CFTarget):
     )
 
     def load(self):
-        with open("/home/afennelly/arsenal/data/payloads/cfit/imagenet-catmap.json", "r") as f:
+        with open("/data/payloads/counterfit_target_example/imagenet-catmap.json", "r") as f:
             catmap = json.load(f)
 
         self.catmap = catmap

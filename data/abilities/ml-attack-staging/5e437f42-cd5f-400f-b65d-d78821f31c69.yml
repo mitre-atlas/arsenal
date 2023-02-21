@@ -14,7 +14,7 @@
       $HOME/venv/cf_venv/bin/python counterfit_target_builder.py
     # FIXME uncomment below to include build_target.py parser (naming convention not final)
     # parsers: 
-    # - module: plugins.arsenal.app.parsers.build_target
+    # - module: plugins.arsenal.app.parsers.build_cf_target
     #   parserconfigs:
     #   - source: <FILL ME IN>
     #     edge: <FILL ME IN>

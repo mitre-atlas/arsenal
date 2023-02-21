@@ -20,5 +20,5 @@
         target: target.model_server.management_address
     payloads: [discover_torchserve_api.sh]
     cleanup: [rm discover_torchserve_api.sh]
-    timeout: 300
+    timeout: 60
   repeatable: false
