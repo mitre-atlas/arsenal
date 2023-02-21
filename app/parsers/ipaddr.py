@@ -1,13 +1,20 @@
-from ipaddress import ip_address, ip_interface
-
 from app.objects.secondclass.c_fact import Fact
 from app.objects.secondclass.c_relationship import Relationship
 from app.utility.base_parser import BaseParser
 
+from ipaddress import ip_address, ip_interface
+
 
 class Parser(BaseParser):
+    """
+    Functionality that parses network and IP addresses and stores the pairs as a fact
+        if they are valid address.
+    
+    
+    # TODO: remove the '.1' subnet once there is another method to parse dev 'docker0'
+    """
+    
     exclude = ['0.0.0.0', '127.0.0.1']
-    # FIXME remove the '.1' subnet once there is another method to parse dev 'docker0'
     subnet_exclude = ['.255', '.0', '.1']
 
     def parse(self, blob):

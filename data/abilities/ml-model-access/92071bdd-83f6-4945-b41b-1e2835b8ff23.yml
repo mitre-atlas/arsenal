@@ -1,0 +1,26 @@
+- id: 92071bdd-83f6-4945-b41b-1e2835b8ff23
+  name: ML Model Inference API Access
+  description: Gain access to TorchServe prediction endpoint
+  tactic: ml-model-access
+  technique_name: ML Model Inference API Access
+  technique_id: AML.T0040
+  executors:
+  - platform: linux
+    name: sh
+    command: |
+      echo #{target.model_server.inference_address} >/dev/null 2>&1 && chmod +x discover_prediction_endpoint.sh && ./discover_prediction_endpoint.sh "#{target.model_server.management_address}"
+    parsers:
+    - module: plugins.arsenal.app.parsers.endpoint
+      parserconfigs:
+      - source: target.model_server.prediction_endpoint
+    payloads: [discover_prediction_endpoint.sh]
+    cleanup: [rm discover_prediction_endpoint.sh]
+    timeout: 300
+  # repeatable: true
+  requirements:
+  - module: plugins.stockpile.app.requirements.paw_provenance
+    relationship_match:
+    - source: target.model_server.inference_address
+  - module: plugins.stockpile.app.requirements.paw_provenance
+    relationship_match:
+    - source: target.model_server.management_address

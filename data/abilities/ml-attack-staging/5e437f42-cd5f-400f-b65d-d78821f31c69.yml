@@ -1,28 +1,27 @@
-- privilege: ''
-  repeatable: false
-  technique_name: craft-adversarial-data
+- id: 5e437f42-cd5f-400f-b65d-d78821f31c69
+  name: Build Custom CFTarget
+  description: Creates an interface between a target model and the attacks included in
+    a framework. This is done by creating a sub-class of counterfit.core.targets.CFTarget,
+    where the collected target.model_server.prediction_endpoint fact will be used to 
+    specify the target_endpoint.
   tactic: ml-attack-staging
+  technique_name: craft-adversarial-data
+  technique_id: AML.T0043
   executors:
-  - language: null
-    uploads: []
-    payloads:
-    - ml-env
-    build_target: null
-    additional_info: {}
-    code: null
-    command: ls
-    platform: linux
-    variations: []
+  - platform: linux
     name: sh
-    parsers: []
-    timeout: 180
-    cleanup: []
-  technique_id: craft-adversarial-data
-  requirements: []
-  buckets: []
-  singleton: true
-  plugin: ''
-  name: Craft Adversarial Data
-  description: Craft adversarial data and perform an Evasion attack
-  access: {}
-  id: 5e437f42-cd5f-400f-b65d-d78821f31c69
+    command: |
+      $HOME/venv/cf_venv/bin/python counterfit_target_builder.py --endpoint #{target.model_server.prediction_endpoint}
+    # FIXME uncomment below to include build_target.py parser (naming convention not final)
+    # parsers: 
+    # - module: plugins.arsenal.app.parsers.build__cf_target
+    #   parserconfigs:
+    #   - source: <FILL ME IN>
+    #     edge: <FILL ME IN>
+    #     target: <FILL ME IN>
+    payloads: [counterfit_target_builder.py, model_architectures.json]
+    cleanup: [rm counterfit_target_builder.py, model_architectures.json]
+  requirements:
+  - module: plugins.stockpile.app.requirements.paw_provenance
+    relationship_match:
+    - source: target.model_server.prediction_endpoint

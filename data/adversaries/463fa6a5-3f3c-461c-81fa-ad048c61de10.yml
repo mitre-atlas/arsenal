@@ -1,0 +1,16 @@
+adversary_id: 463fa6a5-3f3c-461c-81fa-ad048c61de10
+name: ML Model Evader
+description: The adversary's end goal is to evade a downstream task where machine
+  learning is utilized. The adversary will attempt to discover any endpoint (s) that
+  provide legitimate access to the ML Model Inference API by simultaneously performing
+  remote service discovery (on victim's network) and local service discovery (on victim's
+  host).
+atomic_ordering:
+- 03b2fc99-62fb-4fc9-98fd-3717ed6cecd2
+- 8316e1bf-9158-4604-aa91-007c74d13b6e
+- 189afbfb-3874-401e-a2fb-9bfafb822f35
+- 18708a19-4dc3-4cbc-9ba8-49582f186d72
+- 92071bdd-83f6-4945-b41b-1e2835b8ff23
+- 5e437f42-cd5f-400f-b65d-d78821f31c69
+objective: 495a9828-cab1-44dd-a0ca-66e58177d8cc
+tags: []

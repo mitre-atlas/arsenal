@@ -1,0 +1,24 @@
+- id: 189afbfb-3874-401e-a2fb-9bfafb822f35
+  name: Gather Information for Remote Services
+  description: Gathers information on the status ("Up", "Down", etc.) of other hosts on the victim's 
+    network by executing a "ping scan". Then, a "port scan" is executed on "Up" hosts to gather 
+    information for remote services and collect values for the target.api.binding_address fact.
+  tactic: reconnaissance
+  technique_id: AML.T0006
+  technique_name: Active Scanning
+  executors:
+  - platform: linux
+    name: sh
+    command: |
+      chmod +x network_svc_info.sh && ./network_svc_info.sh #{host.network_interface.IPv4_network}
+    parsers:
+    - module: plugins.arsenal.app.parsers.nmap
+      parserconfigs:
+      - source: target.api.binding_address_list
+    payloads: [network_svc_info.sh]
+    cleanup: [rm network_svc_info.sh]
+    timeout: '600' # setting timeout to 10minutes for now (scan may take time)
+  requirements:
+  - module: plugins.stockpile.app.requirements.paw_provenance
+    relationship_match:
+    - source: host.network_interface.IPv4_network
