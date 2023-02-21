@@ -10,9 +10,8 @@
   executors:
   - platform: linux
     name: sh
-    # FIXME change command
     command: |
-      tar -xvf counterfit-internal.tar && cd counterfit-internal && . localpythonenv/bin/activate && python3 evade.py
+      $HOME/venv/cf_venv/bin/python counterfit_target_builder.py
     # FIXME uncomment below to include build_target.py parser (naming convention not final)
     # parsers: 
     # - module: plugins.arsenal.app.parsers.build_target
@@ -20,6 +19,10 @@
     #   - source: <FILL ME IN>
     #     edge: <FILL ME IN>
     #     target: <FILL ME IN>
-    payloads: [counterfit-internal.tar] # FIXME update payload name
-    cleanup: [rm counterfit-internal.tar] # FIXME update payload name
-  repeatable: true
+    payloads: [counterfit_target_builder.py]
+    cleanup: [rm counterfit_target_builder.py]
+  # requirements:
+  # - module: plugins.stockpile.app.requirements.paw_provenance
+  #   relationship_match:
+  #   - source: host.network_interface.IPv4_address
+  # repeatable: true
