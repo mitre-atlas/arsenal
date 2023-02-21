@@ -21,4 +21,7 @@
     payloads: [discover_torchserve_api.sh]
     cleanup: [rm discover_torchserve_api.sh]
     timeout: 60
-  repeatable: false
+  requirements:
+    - module: plugins.stockpile.app.requirements.paw_provenance
+      relationship_match:
+      - source: target.api.binding_address_list
