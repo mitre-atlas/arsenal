@@ -1,7 +1,7 @@
 - id: 92071bdd-83f6-4945-b41b-1e2835b8ff23
   name: ML Model Inference API Access
   description: Gain access to TorchServe prediction endpoint
-  tactic: ML Model Access
+  tactic: ml-model-access
   technique_name: ML Model Inference API Access
   technique_id: AML.T0040
   executors:
