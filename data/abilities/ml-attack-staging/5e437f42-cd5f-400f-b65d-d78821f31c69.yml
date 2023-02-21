@@ -19,10 +19,5 @@
     #   - source: <FILL ME IN>
     #     edge: <FILL ME IN>
     #     target: <FILL ME IN>
-    payloads: [counterfit_target_builder.py]
-    cleanup: [rm counterfit_target_builder.py]
-  # requirements:
-  # - module: plugins.stockpile.app.requirements.paw_provenance
-  #   relationship_match:
-  #   - source: host.network_interface.IPv4_address
-  # repeatable: true
+    payloads: [counterfit_target_builder.py, model_architectures.json]
+    cleanup: [rm counterfit_target_builder.py, model_architectures.json]
