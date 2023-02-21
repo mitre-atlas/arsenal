@@ -21,8 +21,10 @@ class ArsenalService(BaseService):
         self.contact_svc = services.get('contact_svc')
         self.log = self.add_service('arsenal_svc', self)
         self.arsenal_dir = os.path.join('plugins', 'arsenal')
+        # TODO(afennelly) store venv (s) within 'payloads' dir
         # indicates location of python virtual environments
-        self.venv_dir = os.path.join(self.arsenal_dir, 'payloads', 'venv')
+        # self.venv_dir = os.path.join(self.arsenal_dir, 'payloads', 'venv')
+        self.venv_dir = os.path.join(os.environ['HOME'], 'venv')
 
     @template('arsenal.html')
     async def splash(self, request):
