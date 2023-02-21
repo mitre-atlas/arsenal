@@ -1,0 +1,12 @@
+{
+    “alexnet”: “Image Classification”,
+    “densenet”: “Image Classification”,
+    “resnet”: “Image Classification”,
+    “vgg”: “Image Classification”,
+    “mobilenet”: “Image Classification”,
+    “squeezenet”: “Image Classification”,
+    “fasterrcnn”: “Object Detection”,
+    “maskrcnn”: “Object Detection”,
+    “yolo”: “Object Detection”,
+    “deeplab”: “Image Segmentaion”
+}
