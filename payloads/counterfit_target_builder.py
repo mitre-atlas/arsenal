@@ -98,23 +98,30 @@ def get_model_type(arch_map, model_name):
                 
 #             return scores.tolist()
 def main():
+    # TODO(afennelly) refactor the sub tasks below to separate methods
     args = setup_args()
     # TODO(afennelly) error checks for correct usage, ie handle bad endpoint
     # NOTE: below will break for Windows OS
     path_list = args.endpoint.split('/')
-    # fetch model name and sloppily handle case of the version being specified (/predictions/{model_name}/{version})
-    model_name = ''
-    if path_list[-2] == 'predictions':
+
+    # retrieve "model name" from passed in args.endpoint
+    model_name = ""
+    # NOTE: below is (sloppily) handling case where model version is specified
+    if path_list[-2] == "predictions":
+        # args.endpoint == "<binding_addr>/predictions/{model_name}"
         model_name = path_list[-1]
-    elif path_list [-3] == 'predictions':
+    elif path_list[-3] == "predictions":
+        # args.endpoint == "<binding_addr>/predictions/{model_name}/{version}"
         model_name = path_list[2]
 
+    # (attempt) to retrieve the model architecture "type" ("intended task")
     model_type = ""
-    for name, type in MODEL_ARCHITECTURES_MAP.items():
-        # choose first element; no intuition behind this, just choosing convention
-        if model_name and name in model_name:
-            model_type = type
-            break
+    if model_name:
+        for name, type in MODEL_ARCHITECTURES_MAP.items():
+            # choose first element (by convention; no intuition behind this convention)
+            if name in model_name:
+                model_type = type
+                break
     
     if model_name:
         print(model_name)
