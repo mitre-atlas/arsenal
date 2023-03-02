@@ -19,8 +19,8 @@
     #   - source: <FILL ME IN>
     #     edge: <FILL ME IN>
     #     target: <FILL ME IN>
-    payloads: [counterfit_target_builder.py, model_architectures.json]
-    cleanup: [rm counterfit_target_builder.py, model_architectures.json]
+    payloads: [counterfit_target_builder.py, kitten.jpg, persons.jpg]
+    cleanup: [rm counterfit_target_builder.py kitten.jpg persons.jpg]
   requirements:
   - module: plugins.stockpile.app.requirements.paw_provenance
     relationship_match:
