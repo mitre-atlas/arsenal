@@ -20,6 +20,7 @@ import logging
 # - 
 # step 4: 
 
+# Map (common) DL model architecture to (typical) task "type"
 MODEL_ARCHITECTURES_MAP = {
     "alexnet": "Image Classification",
     "densenet": "Image Classification",
@@ -33,6 +34,13 @@ MODEL_ARCHITECTURES_MAP = {
     "maskrcnn": "Object Detection",
     "yolo": "Object Detection",
     "deeplab": "Image Segmentation"
+}
+
+# Map (common) DL task to (typical) benchmark dataset
+DEFAULT_DATASET_MAP = {
+    "Image Classification": "ImageNet",
+    "Object Detection": "COCO", 
+    "Image Segmentation": "COCO"
 }
 
 
