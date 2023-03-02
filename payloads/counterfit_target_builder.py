@@ -32,7 +32,7 @@ MODEL_ARCHITECTURES_MAP = {
     "fastrcnn": "Object Detection",
     "maskrcnn": "Object Detection",
     "yolo": "Object Detection",
-    "deeplab": "Image Segmentaion"
+    "deeplab": "Image Segmentation"
 }
 
 
