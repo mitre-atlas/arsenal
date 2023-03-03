@@ -8,17 +8,8 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 
-import counterfit
-# from counterfit.core.targets import CFTarget
-
-import logging
-# step 1: retrieve "model name" from passed in args.endpoint
-# step 2: for each key in model_arch dict, check if key in "model name". if found, store in arch_type
-# step 3: map arch_type to BaseTargetFor<arch_type>DataType 
-# ASIDE on differences for each created ImageDataType target:
-# - image_file_path
-# - 
-# step 4: 
+from counterfit.core.targets import CFTarget
+from counterfit.core import Counterfit
 
 # Map (common) DL model architecture to (typical) task "type"
 MODEL_ARCHITECTURES_MAP = {
@@ -59,60 +50,53 @@ def setup_args():
     return parser.parse_args()
 
 
-def get_model_type(arch_map, model_name):
-    pass
+class BaseTargetForImageDataType(CFTarget):
+    target_data_type = "image"
+    target_name = "" # "torchserve-imagenet-classifer"
+    target_endpoint = ""
     
+    def load(self):
+        # FIXME 
+        with open(self.image_file_path) as f:
+            catmap = json.load(f)
 
+        self.catmap = catmap
+        self.target_output_classes = len(catmap)
 
-# class BaseTargetForImageDataType(CFTarget):
-#     target_data_type = "image"
-#     target_name = "torchserve-imagenet-classifer"
-#     target_endpoint = "http://{}:{}/predictions/{}".format(
-#         _DISCOVERED_IP,
-#         _DISCOVERED_PORT,
-#         _MODEL
-#     )
-    
-#     # self.image_file_path 
-#     def load(self):
-#         # FIXME 
-#         with open(self.image_file_path) as f:
-#             catmap = json.load(f)
+    def predict(self, x):
+        for xx in x:
+            img = Image.fromarray(xx)
 
-#         self.catmap = catmap
-#         self.target_output_classes = len(catmap)
+            tmp = BytesIO()
+            img.save(tmp, format="PNG")
+            bytes = tmp.getvalue()
 
-#     def predict(self, x):
-#         for xx in x:
-#             img = Image.fromarray(xx)
+            result = requests.post(self.target_endpoint, files={"data": bytes}).json()
 
-#             tmp = BytesIO()
-#             img.save(tmp, format="PNG")
-#             bytes = tmp.getvalue()
-
-#             result = requests.post(self.target_endpoint, files={"data": bytes}).json()
-
-#             scores = np.zeros((self.target_output_classes,))
-#             for cat, score in result.items():
-#                 scores[self.catmap[cat]] = score
+            scores = np.zeros((self.target_output_classes,))
+            for cat, score in result.items():
+                scores[self.catmap[cat]] = score
                 
-#             return scores.tolist()
+            return scores.tolist()
+        
+
 def main():
     # TODO(afennelly) refactor the sub tasks below to separate methods
     args = setup_args()
     # TODO(afennelly) error checks for correct usage, ie handle bad endpoint
     # NOTE: below will break for Windows OS
-    path_list = args.endpoint.split('/')
+    pred_endpoint = args.endpoint
+    pred_path_list = pred_endpoint.split('/')
 
     # retrieve "model name" from passed in args.endpoint
     model_name = ""
     # NOTE: below is (sloppily) handling case where model version is specified
-    if path_list[-2] == "predictions":
+    if pred_path_list[-2] == "predictions":
         # args.endpoint == "<binding_addr>/predictions/{model_name}"
-        model_name = path_list[-1]
-    elif path_list[-3] == "predictions":
+        model_name = pred_path_list[-1]
+    elif pred_path_list[-3] == "predictions":
         # args.endpoint == "<binding_addr>/predictions/{model_name}/{version}"
-        model_name = path_list[2]
+        model_name = pred_path_list[2]
 
     # (attempt) to retrieve the model architecture "type" ("intended task")
     model_type = ""
@@ -123,7 +107,13 @@ def main():
                 model_type = type
                 break
     
-    if model_name:
+    # check if the model architecture "type" has been set
+    if model_type:
+        target = Counterfit.build_target(
+            data_type="image", 
+            endpoint=pred_endpoint,
+            output_classes=[],
+        )
         print(model_name)
         print(model_type)
         model_type = get_model_type(arch_map=MODEL_ARCHITECTURES_MAP, model_name=model_name)
