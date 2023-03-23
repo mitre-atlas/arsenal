@@ -1,7 +1,6 @@
 - id: 03b2fc99-62fb-4fc9-98fd-3717ed6cecd2
   name: Gather Information for Protocol Addresses
-  description: FIXME the below description needs to be updated. Reminder to mention
-    why proto_addr_info.sh script filters in the way that it does.
+  description:
     Gathers the IP address and netmask (in CIDR notation) for each IP address
     available on the machine. Only IPs with "scope global" (valid everywhere) are
     considered.
