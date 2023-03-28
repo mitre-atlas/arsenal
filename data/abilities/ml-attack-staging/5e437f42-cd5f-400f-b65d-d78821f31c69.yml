@@ -1,9 +1,10 @@
 - id: 5e437f42-cd5f-400f-b65d-d78821f31c69
-  name: Build Custom CFTarget
+  name: Build and Attack a Custom CFTarget
   description: Creates an interface between a target model and the attacks included in
     a framework. This is done by creating a sub-class of counterfit.core.targets.CFTarget,
     where the collected target.model_server.prediction_endpoint fact will be used to 
-    specify the target_endpoint.
+    specify the target_endpoint. Once the respective target is built, the attack is
+    executed against the target.
   tactic: ml-attack-staging
   technique_name: craft-adversarial-data
   technique_id: AML.T0043
@@ -11,7 +12,9 @@
   - platform: linux
     name: sh
     command: |
-      $HOME/venv/cf_venv/bin/python counterfit_target_builder.py --endpoint #{target.model_server.prediction_endpoint}
+      $HOME/venv/cf_venv/bin/python build_and_attack_counterfit_target.py \
+      --endpoint #{target.model_server.prediction_endpoint}
+    # --attack-name boundary
     # FIXME uncomment below to include build_target.py parser (naming convention not final)
     # parsers: 
     # - module: plugins.arsenal.app.parsers.build__cf_target
@@ -19,8 +22,21 @@
     #   - source: <FILL ME IN>
     #     edge: <FILL ME IN>
     #     target: <FILL ME IN>
-    payloads: [counterfit_target_builder.py, model_architectures.json]
-    cleanup: [rm counterfit_target_builder.py, model_architectures.json]
+    payloads: [
+      build_and_attack_counterfit_target.py, 
+      kitten.jpg, 
+      persons.jpg,
+      imagenet_name_to_index.json,
+      coco_index_to_name.json
+    ]
+    cleanup: [rm build_and_attack_counterfit_target.py \
+      kitten.jpg \
+      persons.jpg \
+      imagenet_name_to_index.json \
+      coco_index_to_name.json
+    ]
+    # setting timeout to be 45 minutes; just in case the attack takes a while
+    timeout: 2400 
   requirements:
   - module: plugins.stockpile.app.requirements.paw_provenance
     relationship_match:
