@@ -23,24 +23,11 @@ class ArsenalService(BaseService):
         self.arsenal_dir = os.path.join('plugins', 'arsenal')
         self.venv_dir = os.path.join(os.environ['HOME'], 'venv')
 
+
     @template('arsenal.html')
     async def splash(self, request):
         return dict()
 
-    # async def dynamically_compile(self, headers):
-    #     name, platform = headers.get('file'), headers.get('platform')
-    #     if which('go') is not None:
-    #         plugin, file_path = await self.file_svc.find_file_path(name)
-    #         output = ' /%s/data/payloads/%s-%s' % (plugin, name, platform)
-    #         await self.file_svc.compile_go(platform, output, file_path)
-    #     return '%s-%s' % (name, platform), '%s-%s' % (name, platform)
-
-    # async def load_c2_config(self, directory):
-    #     c2_configs = {}
-    #     for filename in glob.iglob('%s/*.yml' % directory, recursive=False):
-    #         for c2 in self.data_svc.strip_yml(filename):
-    #             c2_configs[c2['name']] = c2
-    #     return c2_configs
 
     async def populate_venv(self, env_name: str='ml_venv',
                             with_counterfit: bool=True) -> None:
@@ -69,7 +56,8 @@ class ArsenalService(BaseService):
         # of .../plugins/arsenal dir; resolve later
         if with_counterfit:
             await self._install_counterfit(env_name)
-                
+
+    
     async def _install_counterfit(self, env_name: str) -> None:
         """
         Functionality to check if counterfit module exists in specified virtual
@@ -100,6 +88,7 @@ class ArsenalService(BaseService):
                 modules=[
                     f'counterfit[{COUNTERFIT_EXTRAS}] @ git+https://github.com/Azure/counterfit.git@{COUNTERFIT_BRANCH}'
                     ])
+
 
     async def _create_venv(self, 
                            env_name: str = 'arsenal_venv',
@@ -161,6 +150,7 @@ class ArsenalService(BaseService):
                                             modules=core_venv_deps, 
                                             upgrade=upgrade_core_deps
                                             )
+
 
     async def _pip_install_modules(self, 
                                    env_name: str = 'ml_venv',
