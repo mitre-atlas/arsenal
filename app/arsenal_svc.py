@@ -29,7 +29,7 @@ class ArsenalService(BaseService):
         return dict()
 
 
-    async def populate_venv(self, env_name: str='ml_venv',
+    async def populate_venv(self, env_name: str='arsenal_venv',
                             with_counterfit: bool=True) -> None:
         """
         Functionality to create and populates a virtual environment with specified name.
