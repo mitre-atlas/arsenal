@@ -1,9 +1,8 @@
 - id: 8316e1bf-9158-4604-aa91-007c74d13b6e 
   name: Gather Information for TCP Sockets
-  description: FIXME - the below description needs to be updated. Reminder to mention
-    why socket_info.sh script filters in the way that it does.
-    Show TCP connections (-t) in listening (-l) state, w/o resolving the IP addresses 
-    and the port number (-n). Output format is <"Local Address:Port" "Process">. 
+  description:
+    Show TCP connections (-t) in listening (-l) state, without resolving the IP addresses 
+    and the port number (-n).
   tactic: reconnaissance
   technique_name: Active Scanning
   technique_id: AML.T0006
