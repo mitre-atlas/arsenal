@@ -8,6 +8,8 @@ We recommend that you navigate to our [`DOCUMENTATION`](https://advml.pages.mitr
 
 ## System requirements: **Ubuntu 18.04** or **20.04** and **Python versions 3.7+**
 
+## NOTE: Comment on counterfit dependency for certain abilities.
+
 ## Installation with CALDERA app
  *`arsenal` is not yet a default CALDERA plugin, therefore there are additional steps to include this plugin into the app.*
 

@@ -19,23 +19,31 @@ class Parser(BaseParser):
 
     def parse(self, blob):
         relationships = []
+
         # create multiple fact mappings for each network dev-ipaddr pair
         for line in self.line(blob):
             # parser expects "<dev_name> <dev_IPv4_CIDR_range>" (ex: eth0 10.X.Y.Y/16)
             dev, dev_cidr_range = line.split()
-            # remove the prefixlen, if necessary
+
             dev_raw_ip = dev_cidr_range
             if "/" in dev_cidr_range:
-                dev_raw_ip = dev_cidr_range.split("/")[0]
-            # ensure IP is "valid" before storing as a fact
+                dev_raw_ip = dev_raw_ip.split("/")[0]
+
             if self._is_valid_ip(dev_raw_ip):
-                for mp in self.mappers:
-                    # Proper usage of parser should yield: 
-                    #   match == ("IPv4_address" | "IPv4_network")
-                    match = self.parse_opts[mp.target.split('.').pop()](dev_cidr_range)
-                    relationships.append(Relationship(source=Fact(mp.source, dev),
-                                                      edge=mp.edge,
-                                                      target=Fact(mp.target, match)))
+                relationships.extend(self._apply_mappers(
+                    dev=dev,
+                    dev_cidr_range=dev_cidr_range
+                ))
+
+        return relationships
+
+    def _apply_mappers(self, dev: str, dev_cidr_range: str):
+        relationships = [Relationship(
+            source=Fact(mp.source, dev),
+            edge=mp.edge,
+            target=Fact(mp.target, self.parse_opts[mp.target.split('.').pop()](dev_cidr_range))
+        ) for mp in self.mappers]
+
         return relationships
 
     @property

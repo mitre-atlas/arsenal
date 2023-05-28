@@ -11,9 +11,19 @@ import numpy as np
 from io import BytesIO
 from PIL import Image
 
-from counterfit.core.targets import CFTarget
-from counterfit.core import Counterfit
-from counterfit.core.output import CFPrint
+try:
+    from counterfit.core.targets import CFTarget
+    from counterfit.core import Counterfit
+    from counterfit.core.output import CFPrint
+except ImportError as e:
+    import pip
+
+    pip.main(['install', '--user', 'counterfit[dev] @ git+https://github.com/Azure/counterfit.git@{main}'])
+
+    from counterfit.core.targets import CFTarget
+    from counterfit.core import Counterfit
+    from counterfit.core.output import CFPrint
+
 
 # Map (common) DL model architecture to (typical) task "type"
 MODEL_ARCHITECTURES_MAP = {

@@ -29,9 +29,11 @@ class Parser(BaseParser):
                 target_type = self._map_target_type(mp)
                 if target_type in api_type.lower():
                     relationships.append(
-                        Relationship(source=Fact(mp.source, 'TorchServe'),
-                                     edge=mp.edge,
-                                     target=Fact(mp.target, bind_addr))
+                        Relationship(
+                            source=Fact(mp.source, 'TorchServe'),
+                            edge=mp.edge,
+                            target=Fact(mp.target, bind_addr)
+                        )
                     )
         return relationships
 
