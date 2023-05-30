@@ -2,7 +2,7 @@
 
 ### This plugin will help store and create adversarial TTPs defined in [`ATLAS`](https://atlas.mitre.org/) to interfeace with [`CALDERA`](https://github.com/mitre/caldera). It can be used in conjuction with the plugin [`Almanac`](https://github.com/mitre-atlas/almanac).
 
-We recommend that you navigate to our [`DOCUMENTATION`](https://advml.pages.mitre.org/arsenal/intro.html#arsenal) for further details of the plugin and how to use it for adversary emulation.
+We recommend that you navigate to our [`DOCUMENTATION`](https://mitre-atlas.github.io/arsenal/intro.html#arsenal) for further details of the plugin and how to use it for adversary emulation.
 
 # Developers
 
