@@ -1,0 +1,100 @@
+:py:mod:`conf`
+==============
+
+.. py:module:: conf
+
+
+Module Contents
+---------------
+
+.. py:data:: project
+   :value: 'Arsenal'
+
+   
+
+.. py:data:: copyright
+
+   
+
+.. py:data:: author
+   :value: 'Marissa Dotter, Keith Manville, Aidan Fennelly'
+
+   
+
+.. py:data:: release
+
+   
+
+.. py:data:: extensions
+   :value: ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'autoapi.extension', 'myst_parser',...
+
+   
+
+.. py:data:: intersphinx_mapping
+
+   
+
+.. py:data:: tls_verify
+   :value: False
+
+   
+
+.. py:data:: autodoc_typehints
+   :value: 'description'
+
+   
+
+.. py:data:: autoapi_options
+   :value: ['members', 'undoc-members', 'show-inheritance', 'show-module-summary']
+
+   
+
+.. py:data:: autoapi_python_class_content
+   :value: 'both'
+
+   
+
+.. py:data:: autoapi_type
+   :value: 'python'
+
+   
+
+.. py:data:: autoapi_dirs
+   :value: ['../']
+
+   
+
+.. py:data:: templates_path
+   :value: ['_templates']
+
+   
+
+.. py:data:: exclude_patterns
+   :value: ['**/_tests']
+
+   
+
+.. py:data:: html_theme
+   :value: 'furo'
+
+   
+
+.. py:data:: html_logo
+   :value: '../assets/A.png'
+
+   
+
+.. py:data:: html_theme_options
+
+   
+
+.. py:data:: html_static_path
+   :value: ['_static']
+
+   
+
+.. py:data:: html_favicon
+   :value: '../assets/A.png'
+
+   
+
