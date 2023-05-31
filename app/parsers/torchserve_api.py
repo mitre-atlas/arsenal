@@ -23,9 +23,8 @@ class Parser(BaseParser):
         for line in self.line(blob):
             api_type, bind_addr = line.split()
             for mp in self.mappers:
-                # only creation of target.model_server.framework fact is supported
                 if 'model_server.framework' not in mp.source:
-                    raise NotImplementedError
+                    raise NotImplementedError('only creation of target.model_server.framework fact is supported')
                 target_type = self._map_target_type(mp)
                 if target_type in api_type.lower():
                     relationships.append(

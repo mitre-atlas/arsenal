@@ -4,6 +4,7 @@ from app.utility.base_parser import BaseParser
 
 import re
 
+
 class Parser(BaseParser):
     """
     Functionality to parse incoming IPv4 addresses and create Fact Sources

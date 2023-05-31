@@ -4,6 +4,7 @@ from app.utility.base_parser import BaseParser
 
 import logging
 
+
 class Parser(BaseParser):
     """
     Parser that will connect the binding address to the prediction endpoint.
