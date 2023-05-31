@@ -1,0 +1,31 @@
+---
+
+- id: 8bbada08-d5ae-4000-bc22-92c1e35820c1
+  name: Discover GPUs present
+  description: Discover GPUs present
+  tactic: discovery
+  technique:
+    attack_id: T1082
+    name: System Information Discovery
+  platforms:
+    windows:
+      psh:
+        command: |
+          (Get-WmiObject Win32_VideoController).Name
+        parsers:
+          plugins.stockpile.app.parsers.json:
+            - source: host.gpu.name
+    darwin:
+      sh:
+        command: |
+          system_profiler SPDisplaysDataType
+        parsers:
+          plugins.stockpile.app.parsers.system_profiler_spdisplaysdatatype:
+            - source: host.gpu.name
+    linux:
+      sh:
+        command: |
+          lspci | grep VGA
+        parsers:
+          plugins.stockpile.app.parsers.lspci:
+            - source: host.gpu.name

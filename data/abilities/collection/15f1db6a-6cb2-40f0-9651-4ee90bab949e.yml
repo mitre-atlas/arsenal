@@ -1,0 +1,22 @@
+---
+
+- id: 15f1db6a-6cb2-40f0-9651-4ee90bab949e
+  name: Find Tensorflow model checkpoint files
+  description: Locate Tensorflow model checkpoint files
+  tactic: collection
+  technique:
+    attack_id: T1005
+    name: Data from Local System
+  platforms:
+    darwin:
+      sh:
+        command: |
+          find /Users -name '*.ckpt.*' -type f -not -path '*/\.*' 2>&1 | grep -v "Permission denied" | grep -v "Operation not permitted"
+        parsers:
+          plugins.stockpile.app.parsers.find:
+            - source: host.file.path
+              edge: tensorflow
+    linux:
+      sh:
+        command: |
+          find /home -name '*.ckpt.*' -type f -not -path '*/\.*' 2>&1 | grep -v "Permission denied" | grep -v "Operation not permitted"
