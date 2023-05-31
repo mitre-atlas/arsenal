@@ -12,16 +12,8 @@
   - platform: linux
     name: sh
     command: |
-      $HOME/venv/cf_venv/bin/python build_and_attack_counterfit_target.py \
+      conda activate cfit; python build_and_attack_counterfit_target.py \
       --endpoint #{target.model_server.prediction_endpoint}
-    # --attack-name boundary
-    # FIXME uncomment below to include build_target.py parser (naming convention not final)
-    # parsers: 
-    # - module: plugins.arsenal.app.parsers.build__cf_target
-    #   parserconfigs:
-    #   - source: <FILL ME IN>
-    #     edge: <FILL ME IN>
-    #     target: <FILL ME IN>
     payloads: [
       build_and_attack_counterfit_target.py, 
       kitten.jpg, 
@@ -35,9 +27,11 @@
       imagenet_name_to_index.json \
       coco_index_to_name.json
     ]
-    # setting timeout to be 45 minutes; just in case the attack takes a while
-    timeout: 2400 
+    timeout: 2400   # setting timeout to be 45 minutes; just in case the attack takes a while 
   requirements:
   - module: plugins.stockpile.app.requirements.paw_provenance
     relationship_match:
     - source: target.model_server.prediction_endpoint
+  - module: plugins.stockpile.app.requirements.existential
+    relationship_match:
+    - source: host.install.counterfit

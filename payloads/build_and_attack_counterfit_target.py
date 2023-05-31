@@ -5,8 +5,9 @@ import os
 import json
 import requests
 
-# FIXME remove when we don't have threading errors
+# FIXME: Added to 
 os.environ['OPENBLAS_NUM_THREADS'] = '1'
+
 import numpy as np
 from io import BytesIO
 from PIL import Image
@@ -18,7 +19,7 @@ try:
 except ImportError as e:
     import pip
 
-    pip.main(['install', '--user', 'counterfit[dev] @ git+https://github.com/Azure/counterfit.git@{main}'])
+    pip.main(['install', '--user', 'counterfit[dev] @ git+https://github.com/Azure/counterfit.git@main'])
 
     from counterfit.core.targets import CFTarget
     from counterfit.core import Counterfit

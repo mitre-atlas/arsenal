@@ -18,72 +18,69 @@ class Parser(BaseParser):
     exclude = ['21', '22', '23', '25', '53', '111', '139', '445']
     
     def parse(self, blob):
-        # retrieve collected IPv4 address
-        address_facts = []
-        for used_fact in self.used_facts:
-            if 'IPv4_address' in used_fact.name:
-                address_facts.append(used_fact.value)
         
-        # only allow one IPv4_address fact to be passed to the ability
-        if len(address_facts) > 1:
-            raise NotImplementedError
-        
+        collected_address = self._get_collected_address()
+        binding_addresses = self._parse_to_binding_addresses(blob, collected_address)
+
         relationships = []
-        # store "list" of binding addresses (but with type == str)
-        disc_binding_addresses = ''
-        # stores the collected IPv4 address, if available
+        for mp in self.mappers:
+            if 'binding_address' not in mp.source:
+                raise NotImplementedError('only creation of target.api.binding_address fact is supported')
+            relationships.append(
+                Relationship(
+                    source=Fact(mp.source, binding_addresses),
+                    edge=mp.edge,
+                    target=Fact(mp.target, None)
+                )
+            )     
+        return relationships
+
+    def _get_collected_address(self) -> str:
+        """
+        Retrieves IP addresses from facts used in execution of the ability.
+        """
+        address_facts = [used_fact.value for used_fact in self.used_facts if 'IPv4_address' in used_fact.name]
+
+        if len(address_facts) > 1:
+            raise NotImplementedError(f"Only allow one IPv4_address fact to be passed to the ability: {address_facts}")
+
         collected_address = address_facts[0] if len(address_facts) == 1 else None
+
+        return collected_address
+
+    def _parse_to_binding_addresses(self, blob: str, collected_address: str) -> str:
+        """
+        Main parsing method. Turns the text blob into a single string containing binding addresses.
+        """
+        disc_binding_addresses = ''
         for line in self.line(blob):
-            binding_address = ''
-            # parser expects "<Local Address:Port> <Process>"
-            sock, _ = line.split()
-            # split the <Local Address:Port> into <Local Address> <Port>
-            local_address, port = sock.rsplit(':', 1)
+
+            sock, _ = line.split()  # parser expects "<Local Address:Port> <Process>"
+            local_address, port = sock.rsplit(':', 1)   # split the <Local Address:Port> into <Local Address> <Port>
             if port in self.exclude:
                 continue
-            # check that addr is a valid (IPv4 or IPv6) address
+
+            bind_address = None
+
             try:
                 local_address_obj = ip_address(local_address)
             except:
                 local_address_obj = None
-                # server listening on all devs, so use host.network_interface.IPv4_addr
-                if local_address == "*" and collected_address:
-                    # create fact for the disc binding_address
-                    binding_address = ':'.join([collected_address, port])
-            else: 
-                # perform IPv4 check
-                # NOTE: If IPv6 is allowed, enclose addr in '[' and ']'
-                if local_address_obj and local_address_obj.version == 4:
-                    # loopback ex: localhost, 127.0.0.1
-                    if local_address_obj.is_loopback:
-                        pass
-                    # unspecified ex: 0.0.0.0
-                    elif local_address_obj.is_unspecified and collected_address:
-                        # for now, handle "unspecified" case similar to "*" case
-                        # create fact for the disc binding_address
-                        binding_address = ':'.join([collected_address, port])
-                    # any other conditions to add?
-                    else: 
-                        # For now, if addr is valid IPv4, use it
-                        binding_address = ':'.join([local_address, port])
-            finally: 
-                # create fact (s) for any disc binding_address
-                if binding_address:
-                    # initialize "list" with first discovered binding_address, if needed
-                    disc_binding_addresses = ', '.join([
-                        disc_binding_addresses, binding_address
-                    ]) if disc_binding_addresses else binding_address
 
-        # remove the trailing ', '
+            if local_address_obj and local_address_obj.version == 4 and not local_address_obj.is_loopback:
+                if local_address_obj.is_unspecified:
+                    bind_address = collected_address
+                else:
+                    bind_address = local_address
+            elif local_address_obj is None:
+                if local_address == '*':
+                    bind_address = collected_address
+
+            if bind_address is not None:
+                bind_address = ':'.join([bind_address, port])
+                disc_bind_addresses = ', '.join([
+                    disc_bind_addresses, bind_address
+                ]) if disc_bind_addresses else bind_address
+
         disc_binding_addresses = disc_binding_addresses.strip(', ')
-        for mp in self.mappers:
-            # only creation of target.api.binding_address fact is supported
-            if 'binding_address' not in mp.source:
-                raise NotImplementedError
-            relationships.append(
-                Relationship(source=Fact(mp.source, disc_binding_addresses),
-                             edge=mp.edge,
-                             target=Fact(mp.target, None))
-            )     
-        return relationships
-
+        return disc_binding_addresses

@@ -1,1 +1,1 @@
-counterfit[dev] @ git+https://github.com/Azure/counterfit.git@{main}
+counterfit[dev] @ git+https://github.com/Azure/counterfit.git@main
