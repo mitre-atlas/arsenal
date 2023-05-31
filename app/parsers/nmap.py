@@ -38,7 +38,7 @@ class Parser(BaseParser):
                     port_info = re.split('/{1,3}', port_info)[:-1]
                     # assume that len(port_info) == 4; else, incorrect usage of parser
                     # NOTE: proto and svc are NOT used (currently) to create any facts
-                    port, state, proto, svc = port_info
+                    port, state, _, _ = port_info
                     
                     if port in self.exclude:
                         continue
@@ -53,10 +53,6 @@ class Parser(BaseParser):
                             disc_bind_addrs = ', '.join([
                                 disc_bind_addrs, bind_addr
                             ]) if disc_bind_addrs else bind_addr
-                        for mp in self.mappers:
-                            # only creation of target.api.binding_address fact is supported
-                            if 'binding_address' not in mp.source:
-                                raise NotImplementedError
         
         # remove the trailing ', '
         disc_bind_addrs = disc_bind_addrs.strip(', ')

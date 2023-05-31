@@ -49,8 +49,6 @@ class TestSSParser():
     def test_parse_0(self, parser, blob):
         relationships = parser.parse(blob)
 
-        print(relationships[0].source.value)
-
         assert len(relationships) == 1
         assert relationships[0].source.name == 'target.api.binding_address_list'
         assert relationships[0].source.value == 'bind_address:3001, bind_address:3005, 10.2.4.1:3006'
