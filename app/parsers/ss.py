@@ -78,9 +78,9 @@ class Parser(BaseParser):
 
             if bind_address is not None:
                 bind_address = ':'.join([bind_address, port])
-                disc_bind_addresses = ', '.join([
-                    disc_bind_addresses, bind_address
-                ]) if disc_bind_addresses else bind_address
+                disc_binding_addresses = ', '.join([
+                    disc_binding_addresses, bind_address
+                ]) if disc_binding_addresses else bind_address
 
         disc_binding_addresses = disc_binding_addresses.strip(', ')
         return disc_binding_addresses

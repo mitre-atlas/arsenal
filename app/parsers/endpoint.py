@@ -7,8 +7,8 @@ import logging
 class Parser(BaseParser):
     """
     Parser that will connect the binding address to the prediction endpoint.
-
     """
+
     def __init__(self, parser_info):
         super().__init__(parser_info)
         self.logs = logging.getLogger('ENDPOINT')
