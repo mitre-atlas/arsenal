@@ -1,0 +1,45 @@
+---
+
+- id: 7491aaeb-284c-4f1d-ad1e-db73d539071d
+  name: CNN Image Classifier
+  description: Searches for images and applies an image classifier 
+  tactic: collection
+  technique:
+    attack_id: T1074.001
+    name: "Data Staged: Local Data Staging"
+  platforms:
+    windows:
+      psh:
+        command: |
+          python ./image_classifier.py --dir C:/Users --stage '#{host.dir.staged}'
+        timeout: 180
+        payloads:
+          - image_classifier.py
+        parsers:
+          plugins.stockpile.app.parsers.tensorflow_filter_out:
+            - source: host.dir.staged
+    darwin:
+      sh:
+        command: |
+          python ./image_classifier.py --dir /Users  --stage '#{host.dir.staged}'
+        timeout: 180
+        payloads:
+          - image_classifier.py
+        parsers:
+          plugins.stockpile.app.parsers.tensorflow_filter_out:
+            - source: host.dir.staged
+    linux:
+      sh:
+        command: |
+          python3 ./image_classifier.py --dir /home --stage '#{host.dir.staged}'
+        timeout: 180
+        payloads:
+          - image_classifier.py
+        parsers:
+          plugins.stockpile.app.parsers.tensorflow_filter_out:
+            - source: host.dir.staged
+  requirements:
+    - plugins.stockpile.app.requirements.existential:
+      - source: host.install.python
+    - plugins.stockpile.app.requirements.existential:
+      - source: host.install.tensorflow
