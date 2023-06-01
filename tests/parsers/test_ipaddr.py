@@ -21,10 +21,10 @@ def parser():
         'used_facts': [],
         'source_facts': []
     }
-    ss = Parser(
+    ipaddr = Parser(
         parser_info=parser_info
     )
-    return ss
+    return ipaddr
 
 
 @pytest.fixture
@@ -38,9 +38,6 @@ def blob():
 class TestIPAddrParser():
     def test_parse_0(self, parser, blob):
         relationships = parser.parse(blob)
-
-        print(relationships[1].source.value)
-        print(relationships[1].target.value)
 
         assert len(relationships) == 2
         assert relationships[0].source.name == 'host.network_interface.name'

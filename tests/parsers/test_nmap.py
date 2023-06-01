@@ -20,10 +20,10 @@ def parser():
         'used_facts': [],
         'source_facts': []
     }
-    ss = Parser(
+    nmap = Parser(
         parser_info=parser_info
     )
-    return ss
+    return nmap
 
 
 @pytest.fixture
@@ -35,8 +35,6 @@ def blob():
 class TestNmapParser():
     def test_parse_0(self, parser, blob):
         relationships = parser.parse(blob)
-
-        print(relationships[0].source.value)
 
         assert len(relationships) == 1
         assert relationships[0].source.name == 'target.api.binding_address_list'

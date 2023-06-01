@@ -43,4 +43,3 @@
       - source: host.gpu.name
     - plugins.stockpile.app.requirements.existential:
       - source: host.install.python
-        count: 1

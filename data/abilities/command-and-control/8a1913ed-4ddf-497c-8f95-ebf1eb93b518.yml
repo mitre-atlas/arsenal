@@ -1,4 +1,4 @@
-- id: 5e437f42-cd5f-400f-b65d-d78821f31c69
+- id: 8a1913ed-4ddf-497c-8f95-ebf1eb93b518
   name: Install Counterfit
   description: Creates a conda virtual environment and installs counterfit into it.
   tactic: command-and-control

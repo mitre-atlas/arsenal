@@ -45,5 +45,3 @@ class Parser(BaseParser):
         target_type = targets.split('_')[0]
         
         return target_type
-        
-        

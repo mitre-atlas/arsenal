@@ -8,6 +8,8 @@ import logging
 class Parser(BaseParser):
     """
     Parser that will connect the binding address to the prediction endpoint.
+
+    Parser expects <api endpoint> <model-name> (ex. 10.X.X.X resnet-18, fasterrcnn)
     """
 
     def __init__(self, parser_info):
@@ -16,34 +18,36 @@ class Parser(BaseParser):
     
     def parse(self, blob):
 
-        # retrieve collected endpoint addresses
-        endpoint_facts = [
-            used_fact.value for used_fact in self.used_facts
-            if 'inference' in used_fact.name.split('.')[-1]
-        ]
-   
-        if len(endpoint_facts) > 1:
-            raise NotImplementedError
-        else:
-            inf_bind_addr = endpoint_facts[0]
+        inference_address = self._get_inference_address()
 
         relationships = []
-        for model_name in self.line(blob):
-            # parser expects api endpoint, <model-name> (ex. 10.X.X.X resnet-18, fasterrcnn)
-            # _, model_name = line.split(' ')
-            # TRY THIS: parser expects <model-name> on each line
-            self.logs.info(f"model_name: {model_name}")
+        for line in self.line(blob):
+
+            _, model_name = line.split(' ')
+            if model_name == 'null':
+                continue
+
             for mp in self.mappers:
-                # only creation of target.model_server.framework fact is supported ("source" fact of "Relationship")
                 if 'prediction_endpoint' not in mp.source:
-                    raise NotImplementedError
-                # use BaseParse.used_facts to get associated inference_api
-                if model_name != 'null':
-                    pred_endpoint = inf_bind_addr + '/predictions/' + model_name
-                    self.logs.info(f"pred_endpoint: {pred_endpoint}")
-                    relationships.append(
-                        Relationship(source=Fact(mp.source, pred_endpoint),
-                                     edge=mp.edge,
-                                     target=Fact(mp.target, None))
-                        )
+                    raise NotImplementedError('only creation of target.model_server.framework fact is supported')
+
+                pred_endpoint = inference_address + '/predictions/' + model_name
+                relationships.append(
+                    Relationship(
+                        source=Fact(mp.source, pred_endpoint)
+                    )
+                )
         return relationships
+
+    def _get_inference_address(self) -> str:
+        """
+        Retrieves IP addresses from facts used in execution of the ability.
+        """
+        address_facts = [used_fact.value for used_fact in self.used_facts if 'inference' in used_fact.name.split('.')[-1]]
+
+        if len(address_facts) != 1:
+            raise NotImplementedError(f"Only allow one inference fact to be passed to the ability: {address_facts}")
+
+        inference_address = address_facts[0] if len(address_facts) == 1 else None
+
+        return inference_address
