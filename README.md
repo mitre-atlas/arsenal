@@ -24,7 +24,7 @@ For ml-attack-staging and ml-model-access abilities (see list below), additional
  - **Python version 3.7+**
 
     ### Plugin Dependencies:
-     - [`Caldera Stockpile`](https://github.com/mitre/stockpile):  Some Arsenal abilities and adversaries require addition TTPs and requirements include in the Caldera Stockpile. A version more recent than this commit is required for these capabilities: --.
+     - [`Caldera Stockpile`](https://github.com/mitre/stockpile):  Some Arsenal abilities and adversaries require addition TTPs and requirements include in the Caldera Stockpile. A version more recent than this commit is required for these capabilities: [Stockpile](https://github.com/mitre/stockpile/tree/d128da223aa93f71841bb160ccb09fb9cb590345).
      - [`Microsoft Counterfit`](https://github.com/Azure/counterfit):  a required dependency to create and run adversarial machine learning attacks. This dependency is used by the [`Build and Attack a Custom CFTarget`](data/abilities/ml-attack-staging/5e437f42-cd5f-400f-b65d-d78821f31c69.yml) ability and its [payload](./payloads/build_and_attack_counterfit_target.py). This dependency can be installed locally using the `requirements.txt` located in this repository or installed on remote machines using the [`Install Counterfit`](data/abilities/command-and-control/8a1913ed-4ddf-497c-8f95-ebf1eb93b518.yml) ability.
 
 ## Installation with CALDERA*:
