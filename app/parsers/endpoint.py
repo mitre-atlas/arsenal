@@ -21,9 +21,8 @@ class Parser(BaseParser):
         inference_address = self._get_inference_address()
 
         relationships = []
-        for line in self.line(blob):
+        for model_name in self.line(blob):
 
-            _, model_name = line.split(' ')
             if model_name == 'null':
                 continue
 

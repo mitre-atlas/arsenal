@@ -34,7 +34,7 @@ def parser():
 
 @pytest.fixture
 def blob():
-    cmd_output = """10.10.10.10 resnet-18"""
+    cmd_output = """resnet-18"""
     return cmd_output
 
 
