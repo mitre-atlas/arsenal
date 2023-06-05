@@ -1,30 +1,17 @@
 #!/bin/bash
 
-shopt -s expand_aliases
-alias conda=./miniconda3/bin/conda
-
-# install conda if needed
-if [ ! -f "./miniconda3/bin/conda" ]; then
-	curl -s https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O
-	bash Miniconda3-latest-Linux-x86_64.sh -b
+if [ ! -d "$HOME/venv/cf_venv" ]; then
+	if [ ! -d "$HOME/venv" ]; then
+		mkdir $HOME/venv/
+	fi
+	python -m venv $HOME/venv/cf_venv
 fi
 
-source ./miniconda3/bin/activate
- 
-# setup conda env if needed
-if ! { conda env list | grep 'cfit'; } >/dev/null 2>&1; then
-	conda create -y python=3.8 -n cfit > /dev/null
-	conda activate cfit
-	conda install -c conda-forge gcc
+if ! { $HOME/venv/cf_venv/bin/pip list counterfit | grep 'counterfit'; } >/dev/null 2>&1; then
+	$HOME/venv/cf_venv/bin/python -m pip install -U pip wheel setuptools >/dev/null
+	$HOME/venv/cf_venv/bin/python -m pip install git+https://github.com/Azure/counterfit.git >/dev/null
 fi
 
-conda activate cfit
-
-# install counterfit if needed
-if ! {  pip list counterfit | grep 'counterfit'; } >/dev/null 2>&1; then
-	pip install -U pip
-	pip install git+https://github.com/Azure/counterfit.git
+if [ -e $HOME/venv/cf_venv/bin/python ]; then
+	echo "$HOME/venv/cf_venv/bin/python";
 fi
-
-# call our counterfit script here
-python -c "import counterfit; print(counterfit.__path__)"

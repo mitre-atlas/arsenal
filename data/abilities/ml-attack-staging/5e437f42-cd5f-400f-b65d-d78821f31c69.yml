@@ -12,7 +12,7 @@
   - platform: linux
     name: sh
     command: |
-      conda activate cfit; python build_and_attack_counterfit_target.py \
+      $HOME/venv/cf_venv/bin/python build_and_attack_counterfit_target.py \
       --endpoint #{target.model_server.prediction_endpoint}
     payloads: [
       build_and_attack_counterfit_target.py, 
