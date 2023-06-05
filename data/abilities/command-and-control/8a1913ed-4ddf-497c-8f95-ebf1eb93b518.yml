@@ -1,19 +1,20 @@
+---
+
 - id: 8a1913ed-4ddf-497c-8f95-ebf1eb93b518
   name: Install Counterfit
-  description: Creates a conda virtual environment and installs counterfit into it.
+  description: Creates a virtual environment and installs counterfit into it.
   tactic: command-and-control
-  technique_name: Ingress Tool Transfer
-  technique_id: T1105
-  executors:
-  - platform: linux
-    name: sh
-    command: |
-      chmod +x ./counterfit_install.sh; ./counterfit_install.sh
-    payloads: [
-      counterfit_install.sh
-    ]
-    parsers:
-      plugins.stockpile.app.parsers.basic:
-        - source: host.install.counterfit
-    cleanup: [rm counterfit_install.sh]
-    timeout: 2400   # setting timeout to be 45 minutes; just in case the attack takes a while
+  technique:
+    attack_id: T1105
+    name: "Ingress Tool Transfer"
+  platforms:
+    linux:
+      sh:
+        command: |
+          chmod +x ./counterfit_install.sh; ./counterfit_install.sh
+        payloads:
+          - counterfit_install.sh
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.install.counterfit
+        timeout: 2400
