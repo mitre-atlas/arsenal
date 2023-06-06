@@ -4,14 +4,16 @@ if [ ! -d "$HOME/venv/cf_venv" ]; then
 	if [ ! -d "$HOME/venv" ]; then
 		mkdir $HOME/venv/
 	fi
-	python -m venv $HOME/venv/cf_venv
+	python3 -m venv $HOME/venv/cf_venv
+fi
+if ! { $HOME/venv/cf_venv/bin/pip list CounterFit | grep 'CounterFit'; } >/dev/null 2>&1; then
+	$HOME/venv/cf_venv/bin/python3 -m pip install -U pip wheel setuptools >/dev/null
+	$HOME/venv/cf_venv/bin/python3 -m pip install git+https://github.com/Azure/counterfit.git@main >/dev/null
+	$HOME/venv/cf_venv/bin/python3 -m pip install counterfit[dev] >/dev/null
 fi
 
-if ! { $HOME/venv/cf_venv/bin/pip list counterfit | grep 'counterfit'; } >/dev/null 2>&1; then
-	$HOME/venv/cf_venv/bin/python -m pip install -U pip wheel setuptools >/dev/null
-	$HOME/venv/cf_venv/bin/python -m pip install git+https://github.com/Azure/counterfit.git >/dev/null
-fi
 
-if [ -e $HOME/venv/cf_venv/bin/python ]; then
-	echo "$HOME/venv/cf_venv/bin/python";
+
+if ! [ -e $HOME/venv/cf_venv/bin/python3 ]; then
+	echo "$HOME/venv/cf_venv/bin/python3";
 fi
