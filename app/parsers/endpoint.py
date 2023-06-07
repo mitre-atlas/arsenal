@@ -2,8 +2,6 @@ from app.objects.secondclass.c_fact import Fact
 from app.objects.secondclass.c_relationship import Relationship
 from app.utility.base_parser import BaseParser
 
-import logging
-
 
 class Parser(BaseParser):
     """
@@ -11,10 +9,6 @@ class Parser(BaseParser):
 
     Parser expects <api endpoint> <model-name> (ex. 10.X.X.X resnet-18, fasterrcnn)
     """
-
-    def __init__(self, parser_info):
-        super().__init__(parser_info)
-        self.logs = logging.getLogger('ENDPOINT')
     
     def parse(self, blob):
 
