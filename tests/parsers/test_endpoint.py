@@ -34,7 +34,8 @@ def parser():
 
 @pytest.fixture
 def blob():
-    cmd_output = """resnet-18"""
+    cmd_output = """resnet-18
+    other-model"""
     return cmd_output
 
 
@@ -42,6 +43,8 @@ class TestEndpointParser():
     def test_parse_0(self, parser, blob):
         relationships = parser.parse(blob)
 
-        assert len(relationships) == 1
+        assert len(relationships) == 2
         assert relationships[0].source.name == 'target.model_server.prediction_endpoint'
         assert relationships[0].source.value == 'bind_address/predictions/resnet-18'
+        assert relationships[1].source.name == 'target.model_server.prediction_endpoint'
+        assert relationships[1].source.value == 'bind_address/predictions/other-model'

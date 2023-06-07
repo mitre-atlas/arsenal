@@ -22,7 +22,8 @@ class Parser(BaseParser):
 
         relationships = []
         for model_name in self.line(blob):
-
+            
+            model_name = model_name.strip()
             if model_name == 'null':
                 continue
 
