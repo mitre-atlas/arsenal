@@ -5,9 +5,7 @@ if command -v curl &> /dev/null; then
     # echo $models_endpoint
     # this is only tested for one model in ip_addr/models
     if curl -s $models_endpoint | grep "modelName" >> /dev/null; then
-        model_name="$(curl -s $models_endpoint | grep "modelName" | awk -F '"' '{print $4}')"
+        model_name="$(curl -s $models_endpoint | grep "modelName" | awk -F '"' '{print $4}' | awk 'BEGIN{ORS=", "} {print $0}' )"
         echo "$model_name"
-    # else
-    #     echo "$1 null"
     fi
 fi
