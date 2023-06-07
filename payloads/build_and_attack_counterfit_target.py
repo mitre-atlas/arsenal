@@ -29,11 +29,16 @@ except ImportError as e:
 # Map (common) DL model architecture to (typical) task "type"
 MODEL_ARCHITECTURES_MAP = {
     "alexnet": "Image Classification",
-    "densenet": "Image Classification",
+    "densenet161": "Image Classification",
     "resnet": "Image Classification",
-    "vgg": "Image Classification",
+    "resnet-18": "Image Classification",
+    "resnet-50": "Image Classification",
+    "resnet-101": "Image Classification",
+    "resnet-152-batch_v2": "Image Classification",
+    "vgg16": "Image Classification",
+    "vgg19": "Image Classification",
     "mobilenet": "Image Classification",
-    "squeezenet": "Image Classification",
+    "squeezenet1_1": "Image Classification",
     "rcnn": "Object Detection",
     "faster": "Object Detection",
     "fastrcnn": "Object Detection",
@@ -114,6 +119,7 @@ def get_model_name_from_endpoint(endpoint):
 
 
 def get_model_type_from_model_name(model_name):
+    print(model_name)
     for name, task_type in MODEL_ARCHITECTURES_MAP.items():
         # choose first element (by convention; no intuition behind this convention)
         if name in model_name:
