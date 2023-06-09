@@ -27,9 +27,9 @@ class Parser(BaseParser):
 
                 pred_endpoint = inference_address + '/predictions/' + model_name
                 relationships.append(
-                    Relationship(
-                        source=Fact(mp.source, pred_endpoint)
-                    )
+                    Relationship(source=Fact(mp.source, pred_endpoint),
+                                 edge=mp.edge,
+                                 target=Fact(mp.target, None))
                 )
         return relationships
 
