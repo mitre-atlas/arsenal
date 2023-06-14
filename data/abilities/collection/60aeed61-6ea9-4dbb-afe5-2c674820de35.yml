@@ -4,9 +4,8 @@
   name: Search and Stage Tensorflow model files
   description: Searches for Tensorflow directories and checkpoint files, and then stages
   tactic: collection
-  technique:
-    attack_id: T1119
-    name: Automated Collection
+  technique_id: AML.T0035
+  technique_name: ML Artifact Collection
   platforms:
     darwin:
       sh:

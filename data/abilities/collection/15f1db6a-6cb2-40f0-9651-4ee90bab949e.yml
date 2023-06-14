@@ -4,9 +4,8 @@
   name: Find Tensorflow model checkpoint files
   description: Locate Tensorflow model checkpoint files
   tactic: collection
-  technique:
-    attack_id: T1005
-    name: Data from Local System
+  technique_name: Data from local system
+  technique_id: AML.T0037
   platforms:
     darwin:
       sh:
