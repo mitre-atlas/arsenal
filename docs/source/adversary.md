@@ -62,3 +62,11 @@ An adversary profile to evade correction classification or detection of a machin
     - This ability maps the algorithms hosted via the Torchserve Management API to the prediction endpoint for the Torchserve Inference API.
 7. Build and Attack a Custom CFTarget (Counterfit Target)
     - This ability creates Counterfit Targets from any and all found algorithms and API endpoints. From these targets, users can choose which endpoints and data (images) they would like to use to generate Adversarial Attacks using the Counterfit library. Current imagery attacks that are autonomously generated are the black-box optimizers: hop-skip-jump, boundary, and copycat-cnn.
+
+    - **If you are using the [`ML-Vulhub Example-01`](https://github.com/mitre-atlas/ml-vulhub/tree/main/envs/example-01-ml-dev) example environment, you will need to **manuall** add this ability to select which found model you would like to craft adversarial data for. You can run this ability multiple times, selecting new models for each new Link Command, as shown here:**
+
+        ![ml_attack_staging](../assets/ml_attack_staging_new_potential_link.png)
+
+        An example output of Adding this potential Link Command is:
+
+        ![ml_attack_staging_2](../assets/ml_attack_staging_example_output.png)
