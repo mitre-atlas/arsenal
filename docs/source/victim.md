@@ -1,8 +1,8 @@
 # Arsenal: Victim
 
-Arsenal requires a victim system to attack (preferrably) hosting a machine learning algorithm.
+Arsenal requires a victim system to Red Team (preferrably) hosting a Machine Learning algorithm or API endpoint.
 
-However, hosting an algorithm is not required, an adversary may be interested in discovering hardware/compute capabilities of an adversary, exfiltrating data hosted on the system, etc. regardless of a hosted algorithm.
+However, hosting an algorithm is not required, an adversary may be interested in other AI-realted artifacts such as discovering hardware/compute capabilities of an adversary, exfiltrating data hosted on the system, etc. regardless of a hosted algorithm.
 
 ---
 
