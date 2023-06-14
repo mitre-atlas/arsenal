@@ -80,11 +80,11 @@ Implemented Abilities
 ---
 Implemented Autonoumous Adversaries
 ---
-For implemented autonomous adversaries, navigate to our [`page`](https://advml.pages.mitre.org/arsenal/adversary.html) for more details!
+For implemented autonomous adversaries, navigate to our [`page`](https://mitre-atlas.github.io/arsenal/adversary.html) for more details!
 
 ---
 ## Developers
 
-If you are a developer and looking to contribute to `arsenal` or modify it for your needs, please navigate to the [`developers page`](hhttps://advml.pages.mitre.org/arsenal/dev.html).
+If you are a developer and looking to contribute to `arsenal` or modify it for your needs, please navigate to the [`developers page`](https://mitre-atlas.github.io/arsenal/dev.html).
 
 *Currently, `arsenal` is not a default plugin within `caldera`, and therefore additional setup to integrate with the app is required.*

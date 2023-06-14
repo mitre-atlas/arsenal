@@ -43,7 +43,7 @@ An adversary profile to find any hosted ML algorithms with file extensions match
     - exfiltrate over the C2 channel
 
 # ML Model Evader
-An adversary profile to evade correction classification or detection of a machine learning algorithm using the Microsoft Counterfit library. It is recommended to use the [`ML-Vulhub`](https://github.com/mitre-atlas/ml-vulhub/tree/main/envs/example-00-ml-dev) example environment in conjuction with this adversary profile. The set-up of this example vulnerable environment is detailed in [`calder-atlas`](https://github.com/mitre-atlas/caldera-atlas).
+An adversary profile to evade correction classification or detection of a machine learning algorithm using the Microsoft Counterfit library. It is recommended to use the [`ML-Vulhub Example-00`](https://github.com/mitre-atlas/ml-vulhub/tree/main/envs/example-00-ml-dev) or the [`ML-Vulhub Example-01`](https://github.com/mitre-atlas/ml-vulhub/tree/main/envs/example-01-ml-dev) example environments in conjuction with this adversary profile. The set-up of this example vulnerable environment is detailed in [`caldera-atlas`](https://github.com/mitre-atlas/caldera-atlas).
 
 *Abilities*:
 
