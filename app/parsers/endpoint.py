@@ -7,7 +7,9 @@ class Parser(BaseParser):
     """
     Parser that will connect the binding address to the prediction endpoint.
 
-    Parser expects <api endpoint> <model-name> (ex. 10.X.X.X resnet-18, fasterrcnn)
+    Parser expects a newline-seperated list: resnet-18
+                                             fasterrcnn
+                                             densenet
     """
     
     def parse(self, blob):
