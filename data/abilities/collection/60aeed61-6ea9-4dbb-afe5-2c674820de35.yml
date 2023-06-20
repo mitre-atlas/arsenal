@@ -1,0 +1,33 @@
+---
+
+- id: 60aeed61-6ea9-4dbb-afe5-2c674820de35
+  name: Search and Stage Tensorflow model files
+  description: Searches for Tensorflow directories and checkpoint files, and then stages
+  tactic: collection
+  technique_id: AML.T0035
+  technique_name: ML Artifact Collection
+  platforms:
+    darwin:
+      sh:
+        command: |
+          chmod +x ./tensorflow_file_search.sh; ./tensorflow_file_search.sh /Users '#{host.dir.staged}'
+        timeout: 180
+        payloads:
+          - tensorflow_file_search.sh
+        cleanup: |
+          if [ -d '#{host.dir.staged}' ]; then rm -rf '#{host.dir.staged}/.s'; fi;
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.dir.staged
+    linux:
+      sh:
+        command: |
+          chmod +x ./tensorflow_file_search.sh; ./tensorflow_file_search.sh /home '#{host.dir.staged}'
+        timeout: 180
+        payloads:
+          - tensorflow_file_search.sh
+        cleanup: |
+          if [ -d '#{host.dir.staged}' ]; then rm -rf '#{host.dir.staged}/.s'; fi;
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.dir.staged

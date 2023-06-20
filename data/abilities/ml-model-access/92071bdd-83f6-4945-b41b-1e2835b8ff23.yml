@@ -10,17 +10,17 @@
     command: |
       echo #{target.model_server.inference_address} >/dev/null 2>&1 && chmod +x discover_prediction_endpoint.sh && ./discover_prediction_endpoint.sh "#{target.model_server.management_address}"
     parsers:
-    - module: plugins.arsenal.app.parsers.endpoint
-      parserconfigs:
-      - source: target.model_server.prediction_endpoint
+      - module: plugins.arsenal.app.parsers.endpoint
+        parserconfigs:
+          - source: target.model_server.prediction_endpoint
     payloads: [discover_prediction_endpoint.sh]
     cleanup: [rm discover_prediction_endpoint.sh]
     timeout: 300
-  # repeatable: true
+    repeatable: false
   requirements:
-  - module: plugins.stockpile.app.requirements.paw_provenance
-    relationship_match:
-    - source: target.model_server.inference_address
-  - module: plugins.stockpile.app.requirements.paw_provenance
-    relationship_match:
-    - source: target.model_server.management_address
+    - module: plugins.stockpile.app.requirements.paw_provenance
+      relationship_match:
+        - source: target.model_server.inference_address
+    - module: plugins.stockpile.app.requirements.paw_provenance
+      relationship_match:
+        - source: target.model_server.management_address

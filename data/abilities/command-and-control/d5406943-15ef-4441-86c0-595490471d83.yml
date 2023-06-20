@@ -1,0 +1,45 @@
+---
+
+- id: d5406943-15ef-4441-86c0-595490471d83
+  name: PIP Install Tensorflow-GPU
+  description: Use pip to install Tensorflow-GPU
+  tactic: command-and-control
+  technique:
+    attack_id: T1105
+    name: "Ingress Tool Transfer"
+  platforms:
+    windows:
+      psh:
+        command: |
+          python -m pip install tensorflow<2.11 --quiet --exists-action ignore;
+          if ($LASTEXITCODE -eq 0) {
+            echo "gpu";
+          }
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.install.tensorflow
+    darwin:
+      sh:
+        command: |
+          python -m pip install tensorflow --quiet --exists-action i;
+          if [[ $LASTEXITCODE -eq 0 ]]; then
+            echo "gpu";
+          fi
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.install.tensorflow
+    linux:
+      sh:
+        command: |
+          python3 -m pip install tensorflow --quiet --exists-action i;
+          if [ $? -eq 0 ]; then
+            echo "gpu";
+          fi
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.install.tensorflow
+  requirements:
+    - plugins.stockpile.app.requirements.existential:
+      - source: host.gpu.name
+    - plugins.stockpile.app.requirements.existential:
+      - source: host.install.python

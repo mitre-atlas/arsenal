@@ -7,7 +7,5 @@ if command -v curl &> /dev/null; then
     if curl -s $models_endpoint | grep "modelName" >> /dev/null; then
         model_name="$(curl -s $models_endpoint | grep "modelName" | awk -F '"' '{print $4}')"
         echo "$model_name"
-    # else
-    #     echo "$1 null"
     fi
 fi

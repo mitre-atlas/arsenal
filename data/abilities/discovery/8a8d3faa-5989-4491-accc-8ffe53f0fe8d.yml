@@ -1,0 +1,28 @@
+---
+
+- id: 8a8d3faa-5989-4491-accc-8ffe53f0fe8d
+  name: Determine Python3 version
+  description: Determine Python3 is installed and version
+  tactic: discovery
+  technique:
+    attack_id: T1518
+    name: "Software Discovery"
+  platforms:
+    windows:
+      psh:
+        command: python --version
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.install.python
+    linux:
+      sh:
+        command: python3 --version
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.install.python
+    darwin:
+      sh:
+        command: python --version
+        parsers:
+          plugins.stockpile.app.parsers.basic:
+            - source: host.install.python

@@ -6,6 +6,7 @@ description: The adversary's end goal is to evade a downstream task where machin
   remote service discovery (on victim's network) and local service discovery (on victim's
   host).
 atomic_ordering:
+- 8a1913ed-4ddf-497c-8f95-ebf1eb93b518
 - 03b2fc99-62fb-4fc9-98fd-3717ed6cecd2
 - 8316e1bf-9158-4604-aa91-007c74d13b6e
 - 189afbfb-3874-401e-a2fb-9bfafb822f35

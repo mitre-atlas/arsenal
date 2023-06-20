@@ -1,0 +1,17 @@
+---
+
+id: 869ffd59-31f7-479d-a59d-1d8aadf9042b
+name: Tensormancer
+description: Adversary used for demoing Tensorflow neural network abilities
+atomic_ordering:
+  - 6469befa-748a-4b9c-a96d-f191fde47d89 # Create staging directory
+  - 8bbada08-d5ae-4000-bc22-92c1e35820c1 # Find GPU
+  - 15f1db6a-6cb2-40f0-9651-4ee90bab949e # Locate Tensorflow checkpoint files
+  - 60aeed61-6ea9-4dbb-afe5-2c674820de35 # Find Tensorflow model and checkpoint files, and stage
+  - 4aa55a9e-b37d-4e41-9a4d-f67415d03e34 # Install Python
+  - 8a8d3faa-5989-4491-accc-8ffe53f0fe8d # Determine Python version (for MacOS and Linux as python is already installed)
+  - d5406943-15ef-4441-86c0-595490471d83 # Install Tensorflow-GPU
+  - 244d2f34-7b6f-4c46-8555-3038f483936f # Install Tensorflow-CPU
+  - 7491aaeb-284c-4f1d-ad1e-db73d539071d # Classify images with CNN, stage matches
+  - 300157e5-f4ad-4569-b533-9d1fa0e74d74 # Compress stage directory
+  - ea713bc4-63f0-491c-9a6f-0b01d560b87e # Exfil staged directory
