@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
 
     <link rel="shortcut icon" href="_static/A.png"/><!-- Generated with Sphinx 6.2.1 and Furo 2023.05.20 -->
-        <title>Adversary: Arsenal - Arsenal latest documentation</title>
+        <title>Autonomous Adversary Profiles - Arsenal latest documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?digest=e6660623a769aa55fea372102b9bf3151b292993" />
     <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
@@ -191,17 +191,124 @@
           </label>
         </div>
         <article role="main">
-          <section id="adversary-arsenal">
-<h1>Adversary: Arsenal<a class="headerlink" href="#adversary-arsenal" title="Permalink to this heading">#</a></h1>
-<p>The adversary and victim relationship used in Arsenal with CALDERA can be used in many different ways:</p>
+          <section id="autonomous-adversary-profiles">
+<h1>Autonomous Adversary Profiles<a class="headerlink" href="#autonomous-adversary-profiles" title="Permalink to this heading">#</a></h1>
+<p>This plugin focuses on using <strong>both</strong> traditional cybersecurity TTPs with AI/ML specific TTPs to Red-Team a system that is AI-enabled. It is our collected understanding that AI/ML algorithms and artifacts are rarely stand-alone, and adversaries in-the-wild will use traditional cybersecurity tactics and techniques alongside AI/ML tactics and techniques in order to achieve their goals. For more examples of these attacks on real-workd systems, please navigate to the <a class="reference external" href="https://atlas.mitre.org/studies"><code class="docutils literal notranslate"><span class="pre">MITRE</span> <span class="pre">ATLAS</span> <span class="pre">Case</span> <span class="pre">Studies</span></code></a> page.</p>
+<p>All <code class="docutils literal notranslate"><span class="pre">arsenal</span></code> adversaries use a combination of TTPs from MITRE ATT&amp;CK (plugin: <a class="reference external" href="https://github.com/mitre/stockpile"><code class="docutils literal notranslate"><span class="pre">stockpile</span></code></a>) and MITRE ATLAS (plugin: arsenal).</p>
+<p>Below is a description and example of the current autonomous adversary profiles currently implemented:</p>
+</section>
+<section id="tensormancer">
+<h1>Tensormancer<a class="headerlink" href="#tensormancer" title="Permalink to this heading">#</a></h1>
+<p>An adversary profile to demo neural network abilities using the Tensorflow library.</p>
+<p><em>Abilities</em>:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/mitre/stockpile/blob/master/data/abilities/collection/6469befa-748a-4b9c-a96d-f191fde47d89.yml"><code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">staging</span> <span class="pre">directory</span></code></a> for exfiltration.</p></li>
+<li><p>Discover GPUs present</p></li>
+<li><p>Find Tensorflow model checkpoint files with the extension: <code class="docutils literal notranslate"><span class="pre">.ckpt</span></code></p></li>
+<li><p>Search and Stage Tensorflow model files</p>
 <ul class="simple">
-<li><p>Red Teaming effort</p></li>
-<li><p>Blue Teaming effort</p></li>
-<li><p>Forensic analysis of ML algorithms and subsequent software underlying the algorithm</p></li>
+<li><p>Searches for Tensorflow directories and checkpoint files, and then stages for exfiltration.</p></li>
 </ul>
-<p>This plugin focuses on using <strong>both</strong> traditional cybersecurity TTPs with modern ML TTPs to attack a hosted victim system. It is our collected understanding that ML algorithms are rarely stand-alone, and adversaries in-the-wild will use traditional cybersecurity attacks alongside ML attacks in order to achieve their goals.</p>
-<p><strong>Arsenal</strong> has been developed for the Cybersecurity Engineer/Researcher, but will also benefit ML/MLOps Engineers in better understanding the entire end-to-end software stack that ML is deployed into.</p>
-<p>This plugin is not designed for creating new adversarial attacks/defenses, but as a way to red-team or blue-team your current operational models against a myriad of cybersecurity and ML vulnerabilities described in <a class="reference external" href="https://attack.mitre.org/"><code class="docutils literal notranslate"><span class="pre">MITRE</span> <span class="pre">ATT&amp;CK</span></code></a> and <a class="reference external" href="https://atlas.mitre.org/"><code class="docutils literal notranslate"><span class="pre">MITRE</span> <span class="pre">ATLAS</span></code></a>.</p>
+</li>
+<li><p>Install Python</p>
+<ul class="simple">
+<li><p>Download and install Python and it’s dependencies (<code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.7+</span></code>) where the agent is deployed.</p></li>
+</ul>
+</li>
+<li><p>Determine Python3 version</p>
+<ul class="simple">
+<li><p>Determine Python3 is installed and version (<code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.7+</span></code>) where the agent is deployed.</p></li>
+</ul>
+</li>
+<li><p>PIP Install Tensorflow-GPU</p>
+<ul class="simple">
+<li><p>Use pip to install Tensorflow-GPU</p></li>
+</ul>
+</li>
+<li><p>PIP Install Tensorflow-CPU</p>
+<ul class="simple">
+<li><p>Use pip to install Tensorflow-CPU</p></li>
+</ul>
+</li>
+<li><p>CNN Image Classifier</p>
+<ul class="simple">
+<li><p>Searches for images and applies an image classifier</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/mitre/stockpile/blob/master/data/abilities/exfiltration/300157e5-f4ad-4569-b533-9d1fa0e74d74.yml"><code class="docutils literal notranslate"><span class="pre">Compress</span> <span class="pre">staged</span> <span class="pre">directory</span></code></a></p>
+<ul class="simple">
+<li><p>Compress a directory on the file system</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/mitre/stockpile/blob/master/data/abilities/exfiltration/ea713bc4-63f0-491c-9a6f-0b01d560b87e.yml"><code class="docutils literal notranslate"><span class="pre">Exfil</span> <span class="pre">staged</span> <span class="pre">directory</span></code></a></p>
+<ul class="simple">
+<li><p>exfiltrate over the C2 channel</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="ml-model-thief">
+<h1>ML Model Thief<a class="headerlink" href="#ml-model-thief" title="Permalink to this heading">#</a></h1>
+<p>An adversary profile to find any hosted ML algorithms with file extensions matching: <code class="docutils literal notranslate"><span class="pre">.mar</span></code>, <code class="docutils literal notranslate"><span class="pre">.pth</span></code>, <code class="docutils literal notranslate"><span class="pre">.pt</span></code>, <code class="docutils literal notranslate"><span class="pre">.onnx</span></code>, <code class="docutils literal notranslate"><span class="pre">.pkl</span></code>, <code class="docutils literal notranslate"><span class="pre">.tflite</span></code>, <code class="docutils literal notranslate"><span class="pre">.pb</span></code>, <code class="docutils literal notranslate"><span class="pre">.hdf5</span></code> and exfiltrate the algorithm back to the C2 server.</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/mitre/stockpile/blob/master/data/abilities/collection/90c2efaa-8205-480d-8bb6-61d90dbaf81b.yml"><code class="docutils literal notranslate"><span class="pre">Find</span> <span class="pre">Files</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/mitre/stockpile/blob/master/data/abilities/collection/6469befa-748a-4b9c-a96d-f191fde47d89.yml"><code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">staging</span> <span class="pre">directory</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/mitre/stockpile/blob/master/data/abilities/collection/4e97e699-93d7-4040-b5a3-2e906a58199e.yml"><code class="docutils literal notranslate"><span class="pre">Stage</span> <span class="pre">sensitive</span> <span class="pre">files</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/mitre/stockpile/blob/master/data/abilities/exfiltration/300157e5-f4ad-4569-b533-9d1fa0e74d74.yml"><code class="docutils literal notranslate"><span class="pre">Compress</span> <span class="pre">staged</span> <span class="pre">directory</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/mitre/stockpile/blob/master/data/abilities/exfiltration/ea713bc4-63f0-491c-9a6f-0b01d560b87e.yml"><code class="docutils literal notranslate"><span class="pre">Exfil</span> <span class="pre">staged</span> <span class="pre">directory</span></code></a></p>
+<ul class="simple">
+<li><p>exfiltrate over the C2 channel</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="ml-model-evader">
+<h1>ML Model Evader<a class="headerlink" href="#ml-model-evader" title="Permalink to this heading">#</a></h1>
+<p>An adversary profile to evade correction classification or detection of a machine learning algorithm using the Microsoft Counterfit library. It is recommended to use the <a class="reference external" href="https://github.com/mitre-atlas/ml-vulhub/tree/main/envs/example-00-ml-dev"><code class="docutils literal notranslate"><span class="pre">ML-Vulhub</span> <span class="pre">Example-00</span></code></a> or the <a class="reference external" href="https://github.com/mitre-atlas/ml-vulhub/tree/main/envs/example-01-ml-dev"><code class="docutils literal notranslate"><span class="pre">ML-Vulhub</span> <span class="pre">Example-01</span></code></a> example environments in conjuction with this adversary profile. The set-up of this example vulnerable environment is detailed in <a class="reference external" href="https://github.com/mitre-atlas/caldera-atlas"><code class="docutils literal notranslate"><span class="pre">caldera-atlas</span></code></a>.</p>
+<p><em>Abilities</em>:</p>
+<ol class="arabic">
+<li><p>Find or Install Microsoft Counterfit package</p>
+<ul class="simple">
+<li><p>This package is installed as a python-venv within the C2 server at installation via <a class="reference external" href="https://github.com/mitre-atlas/caldera-atlas"><code class="docutils literal notranslate"><span class="pre">caldera-atlas</span></code></a>, this ability checks for the virtual environment and packages installed, and if not found will install the necessary dependencies. This is esspecially useful for installation on a victim system for processing externally to the C2 server.</p></li>
+</ul>
+</li>
+<li><p>Gather Information for Protocol Addresses</p>
+<ul class="simple">
+<li><p>Gathers the IP address and netmask (in CIDR notation) for each IP address
+available on system where the agent is deployed. Only IPs with “scope global” (valid everywhere) are considered.</p></li>
+</ul>
+</li>
+<li><p>Gather Information for TCP sockets</p>
+<ul class="simple">
+<li><p>Show TCP connections (-t) in listening (-l) state, without resolving the IP addresses and the port number (-n).</p></li>
+</ul>
+</li>
+<li><p>Gather Information for Remote Services</p>
+<ul class="simple">
+<li><p>Gathers information on the status (“Up”, “Down”, etc.) of other hosts on the network where the agent is deployed by executing a “ping scan”. Then, a “port scan” is executed on “Up” hosts to gather information for remote services.</p></li>
+</ul>
+</li>
+<li><p>Discover Torchserve API</p>
+<ul class="simple">
+<li><p>This ability specifically looks for any Torshserve API endpoints that may be hosting models. If found, it will create Facts with the API endpoint and algorithm for future API access. Torchserve has two API endpoints, an Inference API and a Management API, both are needed information for gaining information about hosted algorithms and sending data for inference. A single API may host multiple algorithms.</p></li>
+</ul>
+</li>
+<li><p>ML Model Inference API Access</p>
+<ul class="simple">
+<li><p>This ability maps the algorithms hosted via the Torchserve Management API to the prediction endpoint for the Torchserve Inference API.</p></li>
+</ul>
+</li>
+<li><p>Build and Attack a Custom CFTarget (Counterfit Target)</p>
+<ul>
+<li><p>This ability creates Counterfit Targets from any and all found algorithms and API endpoints. From these targets, users can choose which endpoints and data (images) they would like to use to generate Adversarial Attacks using the Counterfit library. Current imagery attacks that are autonomously generated are the black-box optimizers: hop-skip-jump, boundary, and copycat-cnn.</p></li>
+<li><p><strong>If you are using the <a class="reference external" href="https://github.com/mitre-atlas/ml-vulhub/tree/main/envs/example-01-ml-dev"><code class="docutils literal notranslate"><span class="pre">ML-Vulhub</span> <span class="pre">Example-01</span></code></a> example environment, you will need to <strong>manuall</strong> add this ability to select which found model you would like to craft adversarial data for. You can run this ability multiple times, selecting new models for each new Link Command, as shown here:</strong></p>
+<p><img alt="ml_attack_staging" src="_images/ml_attack_staging_new_potential_link.png" /></p>
+<p>An example output of Adding this potential Link Command is:</p>
+<p><img alt="ml_attack_staging_2" src="_images/ml_attack_staging_example_output.png" /></p>
+</li>
+</ul>
+</li>
+</ol>
 </section>
 
         </article>

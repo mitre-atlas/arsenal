@@ -200,8 +200,8 @@
 <section id="included-ml-libraries">
 <h2>Included ML Libraries<a class="headerlink" href="#included-ml-libraries" title="Permalink to this heading">#</a></h2>
 <hr class="docutils" />
-<section id="arsenal-implements-the-following-libraries-for-emulating-ml-adversarial-behavior">
-<h3>Arsenal implements the following libraries for emulating ML adversarial behavior:<a class="headerlink" href="#arsenal-implements-the-following-libraries-for-emulating-ml-adversarial-behavior" title="Permalink to this heading">#</a></h3>
+<section id="arsenal-implements-the-following-libraries-for-emulating-ai-ml-adversarial-behavior">
+<h3>Arsenal implements the following libraries for emulating AI/ML adversarial behavior:<a class="headerlink" href="#arsenal-implements-the-following-libraries-for-emulating-ai-ml-adversarial-behavior" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/Azure/counterfit"><code class="docutils literal notranslate"><span class="pre">Counterfit</span></code></a> - which wraps <a class="reference external" href="https://github.com/Trusted-AI/adversarial-robustness-toolbox"><code class="docutils literal notranslate"><span class="pre">Adversarial</span> <span class="pre">Robustness</span> <span class="pre">Toolbox</span> <span class="pre">(ART)</span></code></a>, <a class="reference external" href="https://github.com/QData/TextAttack"><code class="docutils literal notranslate"><span class="pre">TextAttack</span></code></a>, and <a class="reference external" href="https://github.com/facebookresearch/AugLy"><code class="docutils literal notranslate"><span class="pre">Augly</span></code></a></p></li>
 <li><p><a class="reference external" href="https://github.com/vulhub/vulhub"><code class="docutils literal notranslate"><span class="pre">Vulhub</span></code></a> in conjunction with <a class="reference external" href="https://github.com/mitre-atlas/ml-vulhub"><code class="docutils literal notranslate"><span class="pre">ML-Vulhub</span></code></a> - deploy vulnerable environments via docker</p></li>
@@ -209,43 +209,60 @@
 <li><p><a class="reference external" href="https://github.com/minio/minio"><code class="docutils literal notranslate"><span class="pre">MinIO</span></code></a> - deploy object stores and S3 buckets to immitate a victim system hosting data and/or models</p></li>
 <li><p><a class="reference external" href="https://github.com/mitre-atlas/almanac"><code class="docutils literal notranslate"><span class="pre">Almanac</span></code></a> - generate adversary layers (sequences of operations) based on MITRE ATLAS TTPs.</p></li>
 </ul>
+</section>
+</section>
 <hr class="docutils" />
-<!-- ## Emulation Diagram -->
-</section>
-</section>
 <section id="implemented-abilities">
 <h2>Implemented Abilities<a class="headerlink" href="#implemented-abilities" title="Permalink to this heading">#</a></h2>
 <ul>
-<li><p><strong>Reconnaissance: Remote Services</strong></p>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0006"><code class="docutils literal notranslate"><span class="pre">Reconnaissance:</span> <span class="pre">Remote</span> <span class="pre">Services</span></code></a></p>
 <p>This ability enables users to first scan a vicitm’s system and collect information about IP addresses that are in use</p>
 </li>
-<li><p><strong>Reconnaissance: List Network Interfaces</strong></p>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0006"><code class="docutils literal notranslate"><span class="pre">Reconnaissance:</span> <span class="pre">List</span> <span class="pre">Network</span> <span class="pre">Interfaces</span></code></a></p>
 <p>This ability allows users to list available (physical or virtual) network interfaces</p>
 </li>
-<li><p><strong>Discovery: Discover TorchServe API</strong></p>
-<p>This ability allows a user to discover IP address that host ML services (PyTorchServe) and the model file they are serving.</p>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0006"><code class="docutils literal notranslate"><span class="pre">Reconnaissance:</span> <span class="pre">Gather</span> <span class="pre">Information</span> <span class="pre">for</span> <span class="pre">Protocol</span> <span class="pre">Addresses</span></code></a></p>
+<p>This ability allows users gather the IP address and netmask (in CIDR notation) for each IP address available on the machine. Only IPs with “scope global” (valid everywhere) are
+considered.</p>
 </li>
-<li><p><strong>Evasion: Evade ML Model</strong></p>
-<p>This ability allows users to evade a ML model from correctly classifying an image by using the <code class="docutils literal notranslate"><span class="pre">counterfit</span></code> library to implement a broad range of ML image attacks.</p>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0006"><code class="docutils literal notranslate"><span class="pre">Reconnaissance:</span> <span class="pre">Gather</span> <span class="pre">Information</span> <span class="pre">for</span> <span class="pre">TCP</span> <span class="pre">Sockets</span></code></a></p>
+<p>Show TCP connections in listening state, without resolving the IP addresses and the port number.</p>
+</li>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0037"><code class="docutils literal notranslate"><span class="pre">Collection:</span> <span class="pre">Find</span> <span class="pre">Tensorflow</span> <span class="pre">model</span> <span class="pre">checkpoint</span> <span class="pre">files</span></code></a></p>
+<p>Locate Tensorflow model checkpoint files</p>
+</li>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0035"><code class="docutils literal notranslate"><span class="pre">Collection:</span> <span class="pre">Search</span> <span class="pre">and</span> <span class="pre">Stage</span> <span class="pre">Tensorflow</span> <span class="pre">model</span> <span class="pre">files</span></code></a></p>
+<p>Searches for Tensorflow directories and checkpoint files, and then stages</p>
+</li>
+<li><p><a class="reference external" href="https://attack.mitre.org/techniques/T1074/001/"><code class="docutils literal notranslate"><span class="pre">Collection:</span> <span class="pre">CNN</span> <span class="pre">Image</span> <span class="pre">Classifier</span></code></a></p>
+<p>Searches for images and applies an image classifier</p>
+</li>
+<li><p><a class="reference external" href="https://attack.mitre.org/techniques/T1105/"><code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">and</span> <span class="pre">Control:</span> <span class="pre">Install</span> <span class="pre">Python</span></code></a></p></li>
+<li><p><a class="reference external" href="https://attack.mitre.org/techniques/T1105/"><code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">and</span> <span class="pre">Control:</span> <span class="pre">Install</span> <span class="pre">Counterfit</span></code></a></p></li>
+<li><p><a class="reference external" href="https://attack.mitre.org/techniques/T1105/"><code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">and</span> <span class="pre">Control:</span> <span class="pre">PIP</span> <span class="pre">Install</span> <span class="pre">Tensorflow-CPU</span></code></a></p></li>
+<li><p><a class="reference external" href="https://attack.mitre.org/techniques/T1105/"><code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">and</span> <span class="pre">Control:</span> <span class="pre">PIP</span> <span class="pre">Install</span> <span class="pre">Tensorflow-GPU</span></code></a></p></li>
+<li><p><a class="reference external" href="https://attack.mitre.org/techniques/T1518/"><code class="docutils literal notranslate"><span class="pre">Discovery:</span> <span class="pre">Determine</span> <span class="pre">Python3</span> <span class="pre">version</span></code></a></p></li>
+<li><p><a class="reference external" href="https://attack.mitre.org/techniques/T1082/"><code class="docutils literal notranslate"><span class="pre">Discovery:</span> <span class="pre">Discover</span> <span class="pre">GPUs</span> <span class="pre">present</span></code></a></p></li>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0007"><code class="docutils literal notranslate"><span class="pre">Discovery:</span> <span class="pre">Discover</span> <span class="pre">TorchServe</span> <span class="pre">API</span></code></a></p>
+<p>This ability allows a user to discover IP address that host ML services (PyTorchServe) and the model file(s) they are serving.</p>
+</li>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0040"><code class="docutils literal notranslate"><span class="pre">ML</span> <span class="pre">Model</span> <span class="pre">Access:</span> <span class="pre">Inference</span> <span class="pre">API</span> <span class="pre">Access</span></code></a></p>
+<p>Gain access to TorchServe prediction endpoint</p>
+</li>
+<li><p><a class="reference external" href="https://atlas.mitre.org/techniques/AML.T0043"><code class="docutils literal notranslate"><span class="pre">ML</span> <span class="pre">Attack</span> <span class="pre">Staging:</span> <span class="pre">Build</span> <span class="pre">and</span> <span class="pre">Attack</span> <span class="pre">a</span> <span class="pre">Custom</span> <span class="pre">CFTarget</span></code></a></p>
+<p>Creates an interface between a target model and the attacks included in a framework. This is done by creating a sub-class of counterfit.core.targets.CFTarget, where the collected target.model_server.prediction_endpoint fact will be used to specify the target_endpoint. Once the respective target is built, the attack is executed against the target.</p>
 </li>
 </ul>
 </section>
 <hr class="docutils" />
-<section id="implemented-adversaries">
-<h2>Implemented Adversaries<a class="headerlink" href="#implemented-adversaries" title="Permalink to this heading">#</a></h2>
-<ul>
-<li><p><strong>Evasion</strong></p>
-<p>This adversary profile combines multiple abilities together to scan a victim system, find running ML services, and perform black-box evasion attacks.</p>
-</li>
-</ul>
-<!-- The following diagram illustrates the basic usage of the Arsenal plugin within CALDERA: -->
-<!-- ![arsenal](../assets/arsenal_diagram.png) -->
+<section id="implemented-autonoumous-adversaries">
+<h2>Implemented Autonoumous Adversaries<a class="headerlink" href="#implemented-autonoumous-adversaries" title="Permalink to this heading">#</a></h2>
+<p>For implemented autonomous adversaries, navigate to our <a class="reference external" href="https://mitre-atlas.github.io/arsenal/adversary.html"><code class="docutils literal notranslate"><span class="pre">page</span></code></a> for more details!</p>
 </section>
 <hr class="docutils" />
 <section id="developers">
 <h2>Developers<a class="headerlink" href="#developers" title="Permalink to this heading">#</a></h2>
-<hr class="docutils" />
-<p>If you are a developer and looking to contribute to <code class="docutils literal notranslate"><span class="pre">arsenal</span></code> or modify it for your needs, please navigate to the <a class="reference external" href="https://advml.pages.mitre.org/arsenal/dev.html"><code class="docutils literal notranslate"><span class="pre">developers</span> <span class="pre">page</span></code></a>.</p>
+<p>If you are a developer and looking to contribute to <code class="docutils literal notranslate"><span class="pre">arsenal</span></code> or modify it for your needs, please navigate to the <a class="reference external" href="https://mitre-atlas.github.io/arsenal/dev.html"><code class="docutils literal notranslate"><span class="pre">developers</span> <span class="pre">page</span></code></a>.</p>
 <p><em>Currently, <code class="docutils literal notranslate"><span class="pre">arsenal</span></code> is not a default plugin within <code class="docutils literal notranslate"><span class="pre">caldera</span></code>, and therefore additional setup to integrate with the app is required.</em></p>
 </section>
 </section>
@@ -290,11 +307,11 @@
 <li><a class="reference internal" href="#">ARSENAL</a><ul>
 <li><a class="reference internal" href="#arsenal-is-a-machine-learning-ml-plugin-to-caldera-that-implements-tactics-techniques-and-procedures-ttps-specific-to-ml-operations-described-in-mitre-atlas"><strong>arsenal</strong> is a Machine Learning (ML) plugin to <code class="docutils literal notranslate"><span class="pre">CALDERA</span></code>, that implements Tactics, Techniques, and Procedures (TTPs) specific to ML operations described in <code class="docutils literal notranslate"><span class="pre">MITRE</span> <span class="pre">ATLAS</span></code>.</a></li>
 <li><a class="reference internal" href="#included-ml-libraries">Included ML Libraries</a><ul>
-<li><a class="reference internal" href="#arsenal-implements-the-following-libraries-for-emulating-ml-adversarial-behavior">Arsenal implements the following libraries for emulating ML adversarial behavior:</a></li>
+<li><a class="reference internal" href="#arsenal-implements-the-following-libraries-for-emulating-ai-ml-adversarial-behavior">Arsenal implements the following libraries for emulating AI/ML adversarial behavior:</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#implemented-abilities">Implemented Abilities</a></li>
-<li><a class="reference internal" href="#implemented-adversaries">Implemented Adversaries</a></li>
+<li><a class="reference internal" href="#implemented-autonoumous-adversaries">Implemented Autonoumous Adversaries</a></li>
 <li><a class="reference internal" href="#developers">Developers</a></li>
 </ul>
 </li>
