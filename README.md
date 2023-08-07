@@ -4,7 +4,7 @@ Arsenal is a plugin developed for adversary emulation of AI-enabled systems. Thi
 
 [`Read the full documentation`](https://mitre-atlas.github.io/arsenal/intro.html#arsenal)
 
-For ml-attack-staging and ml-model-access abilities (see list below), additional information and [`examples`](https://advml.pages.mitre.org/arsenal/adversary.html#adversary-arsenal) on using these abilities are detailed in the arsenal/docs/ folder.
+For ml-attack-staging and ml-model-access abilities (see list below), additional information and [`examples`](https://mitre-atlas.github.io/arsenal/adversary.html#adversary-arsenal) on using these abilities are detailed in the arsenal/docs/ folder.
 
 
 *JUNE 2023 included abilities:*
